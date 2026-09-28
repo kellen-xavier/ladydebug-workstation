@@ -1,0 +1,26 @@
+import { Brand } from "./Brand";
+
+const badges = [
+  ["HANDCODED", "WITH CARE"],
+  ["PIXELS &", "PULL REQUESTS"],
+  ["KEEP THE", "WEB PERSONAL"],
+];
+
+export function Footer() {
+  return (
+    <footer>
+      <Brand />
+      <span className="copyright">© {new Date().getFullYear()} Kellen Xavier</span>
+      <span>Built with intent. Shared with curiosity.</span>
+      <div className="web-badges" aria-label="Interests">
+        {badges.map(([first, second]) => (
+          <span key={first}>
+            {first}
+            <br />
+            {second}
+          </span>
+        ))}
+      </div>
+    </footer>
+  );
+}
