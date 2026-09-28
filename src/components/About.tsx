@@ -4,7 +4,8 @@ export function About() {
       <div>
         <p className="eyebrow">readme.txt / About me</p>
         <h2 id="about-title">
-          A quality mindset.<br />
+          A quality mindset.
+          <br />
           An engineer's curiosity.
         </h2>
       </div>

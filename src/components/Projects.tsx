@@ -10,10 +10,12 @@ export function Projects() {
           <p className="eyebrow">C:\ladydebug\projects</p>
           <h2 id="projects-title">My project directory</h2>
         </div>
-        <ExternalLink className="text-link" href={links.repositories}>All repositories ↗</ExternalLink>
+        <ExternalLink className="text-link" href={links.repositories}>
+          All repositories ↗
+        </ExternalLink>
       </div>
       <div className="grid">
-        {projects.map(project => (
+        {projects.map((project) => (
           <ProjectCard key={project.url} project={project} />
         ))}
       </div>

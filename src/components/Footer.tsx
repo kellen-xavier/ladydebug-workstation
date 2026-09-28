@@ -12,15 +12,15 @@ export function Footer() {
       <Brand />
       <span className="copyright">© {new Date().getFullYear()} Kellen Xavier</span>
       <span>Built with intent. Shared with curiosity.</span>
-      <div className="web-badges" aria-label="Interests">
+      <ul className="web-badges" aria-label="Interests">
         {badges.map(([first, second]) => (
-          <span key={first}>
+          <li key={first}>
             {first}
             <br />
             {second}
-          </span>
+          </li>
         ))}
-      </div>
+      </ul>
     </footer>
   );
 }

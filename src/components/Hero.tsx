@@ -8,7 +8,8 @@ export function Hero() {
       <div>
         <p className="eyebrow">★ Kellen Xavier — LadyDebug ★</p>
         <h1 id="hero-title">
-          Welcome to my<br />
+          Welcome to my
+          <br />
           <em>little web corner.</em>
         </h1>
         <p className="intro">
@@ -21,7 +22,9 @@ export function Hero() {
           <a className="button" href="#projects">
             Explore my projects <span aria-hidden="true">↓</span>
           </a>
-          <ExternalLink className="text-link" href={links.github}>Find me on GitHub ↗</ExternalLink>
+          <ExternalLink className="text-link" href={links.github}>
+            Find me on GitHub ↗
+          </ExternalLink>
         </div>
       </div>
       <figure className="pixel-scene">

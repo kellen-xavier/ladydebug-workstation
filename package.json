@@ -7,13 +7,16 @@
     "dev": "bun --port=3000 ./src/index.html",
     "build": "rm -rf dist && bun build ./src/index.html --outdir=dist --production --public-path=./ && cp src/assets/fonts/OFL.txt dist/",
     "preview": "bun run build && bun scripts/preview.ts",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "lint": "biome check .",
+    "lint:fix": "biome check --write ."
   },
   "dependencies": {
     "react": "^19",
     "react-dom": "^19"
   },
   "devDependencies": {
+    "@biomejs/biome": "2.5.14",
     "@types/bun": "latest",
     "@types/react": "^19",
     "@types/react-dom": "^19",

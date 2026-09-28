@@ -9,7 +9,9 @@ import { Topics } from "./components/Topics";
 export function App() {
   return (
     <>
-      <a className="skip" href="#main">Skip to content</a>
+      <a className="skip" href="#main">
+        Skip to content
+      </a>
       <div className="wrap">
         <div className="browser-bar">
           <span>LadyDebug — personal homepage</span>

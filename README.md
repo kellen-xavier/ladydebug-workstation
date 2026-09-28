@@ -11,6 +11,7 @@ Estética de homepage dos anos 2000–2009, ilustração em pixel art e paleta d
 - [Bun](https://bun.com/) — runtime, gerenciador de pacotes, servidor de desenvolvimento (com hot reload) e bundler.
 - [React 19](https://react.dev/) + TypeScript.
 - CSS puro (sem framework), com variáveis de cor em `:root`.
+- [Biome](https://biomejs.dev/) — lint e formatação de TS/TSX, CSS e JSON (inclui regras de React e acessibilidade).
 
 ## Estrutura
 
@@ -38,6 +39,7 @@ ladydebug-workstation/
 │       └── fonts/          # pixelify.woff2 + OFL.txt
 ├── scripts/preview.ts      # servidor estático para testar o build
 ├── dist/                   # saída do build (gerada, não versionada)
+├── biome.json            # configuração do lint/formatação
 ├── bun-env.d.ts            # tipos para importar .png e .css
 ├── package.json
 └── tsconfig.json
@@ -53,6 +55,8 @@ bun run dev        # desenvolvimento em http://localhost:3000 (hot reload)
 bun run build      # gera o site estático em dist/
 bun run preview    # build + serve dist/ em http://localhost:4173
 bun run typecheck  # verificação de tipos com TypeScript
+bun run lint       # lint + checagem de formatação (Biome)
+bun run lint:fix   # corrige automaticamente o que for possível
 ```
 
 ## Editar
