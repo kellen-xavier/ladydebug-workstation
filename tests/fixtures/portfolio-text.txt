@@ -1,0 +1,197 @@
+Ir para o conteúdo
+LadyDebug Workstation
+▁ □ ×
+ladydebug
+Na prática
+Meu fluxo
+Projetos
+Sobre
+★ Kellen Xavier — Ladydebug ★
+Meu trabalho,
+por dentro.
+Engenharia de Software &amp; Qualidade.
+Olá, sou Kellen Xavier, pós-graduada em engenharia de software e qualidade. Desenvolvo, escrevo testes, investigo comportamentos e documento o que encontro. Este é meu espaço para apresentar contribuições, decisões e os registros que ajudam a conferir o trabalho.
+Explorar a prática ↓
+Meu GitHub ↗
+code · test · document · repeat
+DESENVOLVIMENTO
+AUTOMAÇÃO DE TESTES
+DOCUMENTAÇÃO
+CONHECIMENTO ABERTO
+worklog / contribuições
+O que faço, na prática.
+IMPLEMENTAÇÃO · EVIDÊNCIA · LIMITES
+Os exemplos abaixo vêm de relatórios de contribuições com referências a código, histórico Git e registros de execução. Cada caso explicita o que foi feito e até onde a evidência permite afirmar.
+Mobile: implementação, testes e verificação de estado
+React Native · TypeScript · Detox · Jest
+Desenvolvi e corrigi fluxos em uma aplicação mobile de mobilidade e pagamentos, junto com a infraestrutura e os cenários de teste.
+O que fiz
+Implantei Detox com Jest, helpers, seletores de teste, fixtures e coleta de vídeos, capturas e resultados.
+Implementei e ajustei cadastro, localização, duração, consulta de multas e tratamento de respostas de negócio.
+Construí verificações que comparam interface, estado anterior e posterior retornado pela API e débito nos cenários contemplados.
+Mapeei requisitos e lacunas de cobertura; configurei verificações antes do commit e automação de changelog e releases.
+Referências para conferência
+O relatório registra execução bem-sucedida de login e continuidade de sessão em Android físico. A matriz distingue cenários implementados de estruturas pendentes e execuções bloqueadas.
+Alcance da evidência:
+O relatório não apresenta homologação de todos os fluxos de pagamento, execução em iOS, publicação em lojas ou ativação integral dos pipelines. Não fornece hashes individuais para os exemplos resumidos aqui.
+Origem e referências do relatório
+Esta ficha é uma síntese do relatório fornecido por mim onde analisei o git (git blame) dos repositório e extrai as devidas informações. A revisão da página leu esse documento; não teve acesso ao checkout privado nem repetiu sua coleta de Git ou execução de testes.
+Documento:
+relatorio-contribuicoes-mobile(2).md
+Localizadores:
+§§ 1–2, 5, 7–12 e Resultados e limites de comprovação
+SHA-256 do anexo lido:
+6e84f4c7895f46d3b3f778f2367e3b0192cac345edb6b48625d844b47d292efd
+O hash identifica a cópia consultada; não valida por si só a autoria ou o conteúdo. As referências de commits permitem conferência por quem tem acesso ao repositório original. Esta ficha não disponibiliza o código nem os relatórios internos completos.
+Fonte: relatório de análise de 29/10/2026. Síntese para o portfólio: 30/10/2026.
+Backend: regras transacionais e contratos HTTP
+C# · .NET 10 · xUnit · Moq
+Criei testes e documentação para um backend de estacionamento. A contribuição identificada está nos testes das regras existentes e na explicação técnica do sistema.
+O que fiz
+Estruturei um projeto de testes com mocks estritos, fakes em memória e serviços reais sob teste.
+Escrevi cenários de consulta e renovação, associação de preços, taxa de uso, imposto, isenção e arredondamento.
+Capturei requisições HTTP simuladas para verificar método, JSON, datas, tokens e identificadores.
+Documentei arquitetura, modelo de dados, fluxos tarifários e integrações.
+Referências para conferência
+Referências do relatório: cd2def8 (base e oito métodos), 3d40620 (seis métodos), 812b437 (cenário adicional de extensão). Total atribuído: 15 métodos introduzidos, sem somar reorganizações novamente.
+Alcance da evidência:
+Análise estática e documental: não foram reexecutados testes nem verificados resultados de CI. HTTP simulado não equivale a integração real com fornecedor. A documentação não atribui autoria das funcionalidades descritas.
+Origem e referências do relatório
+Esta ficha é uma síntese do relatório fornecida por mim onde analisei o git (git blame) dos repositório e extrai as devidas informações. A revisão da página leu esse documento; não teve acesso ao checkout privado nem repetiu sua coleta de Git ou execução de testes.
+Documento:
+relatorio-contribuicoes-projeto-backend(1).md
+Localizadores:
+§§ 1–5, 9–11, Resultados e anexos B–D
+SHA-256 do anexo lido:
+58f82f5f2ac87f63fa123e1c90a1c539ac9a2ccb26acbf32659ef4377171674a
+O hash identifica a cópia consultada; não valida por si só a autoria ou o conteúdo. As referências de commits permitem conferência por quem tem acesso ao repositório original. Esta ficha não disponibiliza o código nem os relatórios internos completos.
+Fonte: relatório de análise de 29/10/2026. Síntese para o portfólio: 30/10/2026.
+Cadastro: regras fiscais extraídas do legado
+C# · .NET · NUnit · Contratos HTTP
+Extraí validações fiscais do legado para um módulo de domínio e integrei o serviço aos endpoints e modelos de cadastro de pessoas e empresas.
+O que fiz
+Organizei interfaces, catálogo por país e tipo de titular e regras de normalização.
+Implementei regras de controle e integrei definições de formato preexistentes, preservando a distinção entre formato, checksum e heurística.
+Desenvolvi testes de domínio, serviço e contrato HTTP em host isolado; mantive o comportamento padrão do endpoint existente.
+Acrescentei cenários de equivalência com exemplos do aplicativo e configuração versionada de execução e publicação de resultados.
+Referências para conferência
+Referências do relatório: b607c1c (extração inicial), c51813a (avaliação detalhada), c9a0347 e 3de14ce (consolidação). O catálogo reúne 114 pares país/titular: 44 registros de checksum e 70 definições de formato.
+Alcance da evidência:
+Esses registros não são 114 algoritmos originais ou países homologados. A validação local não comprova existência cadastral. O levantamento é estático, com histórico shallow; não confirma deploy nem ativação remota do pipeline.
+Origem e referências do relatório
+Esta ficha é uma síntese do relatório fornecida por mim onde analisei o git (git blame) dos repositório e extrai as devidas informações. . A revisão da página leu esse documento; não teve acesso ao checkout privado nem repetiu sua coleta de Git ou execução de testes.
+Documento:
+relatorio-contribuicoes-projeto-customer-sheet(1).md
+Localizadores:
+§§ 1–7, 10–14, Resultados e anexos C–E
+SHA-256 do anexo lido:
+6533eda14db2c56a44b672187a7cfce417f669cfea1338c00e07f6eac71acaed
+O hash identifica a cópia consultada; não valida por si só a autoria ou o conteúdo. As referências de commits permitem conferência por quem tem acesso ao repositório original. Esta ficha não disponibiliza o código nem os relatórios internos completos.
+Fonte: relatório de análise de 29/10/2026. Síntese para o portfólio: 30/10/2026.
+Unity: jornadas de simulação automatizadas
+C# · Unity Test Framework · NUnit · Zenject
+Criei e mantive testes de aceitação de um simulador educacional em Unity, reproduzindo jornadas do aluno e decisões alternativas.
+O que fiz
+Automatizei sequências de interação com interfaces, seleção de procedimentos e acompanhamento de timelines.
+Ampliei fluxos principais, negativos e alternativos, com verificações explícitas de orientações e mensagens em alguns cenários.
+Reorganizei testes e evoluí sua nomenclatura para distinguir a intenção dos fluxos.
+Os registros também relacionam contribuições à documentação e à configuração de conteúdo de simulação.
+Referências para conferência
+Exemplos com objeto de autoria identificado no relatório: 001cde8262 (nomenclatura), 3963165353 (organização), 5dacd00bd4 e 9cc2e28a5d (expansão de fluxos). Os registros encontrados abrangem setembro de 2023 a março de 2024.
+Alcance da evidência:
+Histórico Git incompleto; parte das evidências depende de reflog. Não houve execução Unity na análise, nem relatório de aprovação ou cobertura. Os testes acionam componentes da cena; não comprovam entrada física ou execução em dispositivos. A autoria de toda a suíte não é atribuída a mim.
+Origem e referências do relatório
+Esta ficha é uma síntese do relatório fornecido por mim onde analisei o git (git blame) dos repositório e extrai as devidas informações. A revisão da página leu esse documento; não teve acesso ao checkout privado nem repetiu sua coleta de Git ou execução de testes.
+Documento:
+report-testing-unity-simulador(2).md
+Localizadores:
+Trabalhos identificados; Estratégia de automação; Execução, cobertura e integração contínua; Histórico de commits
+SHA-256 do anexo lido:
+d46819db8ee2d7b5baf0a75d938ee965426a4591c7797950f5bfe1520e7f3d23
+O hash identifica a cópia consultada; não valida por si só a autoria ou o conteúdo. As referências de commits permitem conferência por quem tem acesso ao repositório original. Esta ficha não disponibiliza o código nem os relatórios internos completos.
+Fonte: relatório de análise de 29/10/2026. Síntese para o portfólio: 30/10/2026.
+Como ler:
+os casos profissionais são sínteses dos relatórios fornecidos, não uma auditoria independente dos repositórios privados. As fichas identificam a fonte e os localizadores para conferência com acesso ao original. Os projetos abertos, abaixo, podem ser inspecionados diretamente no GitHub.
+03 / COMO TRABALHO
+Entender. Construir.
+Aprender. Evoluir.
+Qualidade faz parte do desenvolvimento: os testes acompanham a implementação, e o que aprendemos orienta a próxima entrega.
+⌕
+Entender o contexto
+Regras de negócio, integrações, riscos e critérios de aceite tornam o problema concreto.
+Requisitos e lacunas no mobile →
+&lt;/&gt;
+Construir e testar
+Implementação e testes avançam juntos, em mudanças pequenas e revisáveis.
+Regras e testes no cadastro →
+[✓]
+Revisar e evidenciar
+Código, verificações e documentação apoiam a revisão e a decisão de entrega.
+Contratos e documentação no backend →
+↻
+Acompanhar e evoluir
+Feedback e comportamento observado ajudam a ajustar o próximo incremento.
+Evolução dos cenários em Unity →
+↻
+Um ciclo de colaboração e melhoria contínua.
+Voltar ao contexto ↑
+repositories / projetos abertos
+Conhecimento que vira repositório.
+Todos os repositórios ↗
+[↻]
+COMUNICAÇÃO ASSÍNCRONA
+LadyDebug Bot Planner
+Bot para Discord que registra notas, tarefas, links e PRs e compila um relatório ao encerrar o dia. Núcleo em ports &amp; adapters, com SQLite e testes em pytest. Slack é uma evolução prevista.
+Python
+Discord · SQLite · pytest
+Ver repositório ↗
+{ }
+QUALITY ENGINEERING
+QA Readme
+Referência compartilhada de qualidade: casos de teste, defeitos, evidências, BDD e exemplos SQL.
+Documentation
+QA
+Ver repositório ↗
+~/
+STUDY IN PROGRESS
+LadyDebug Wiki Projects
+Estudo em desenvolvimento para organizar documentação com IA, regras de negócio, Markdown e wiki.
+Markdown
+AI · Wiki
+Ver repositório ↗
+&gt;_
+DEVELOPER TOOLING
+My Skills
+Repositório central de skills para agentes de código, compartilhadas entre ferramentas de desenvolvimento.
+Agent skills
+CLI
+Ver repositório ↗
+k6
+TEST AUTOMATION
+Tests with k6
+Estudo prático com scripts k6 e aplicação Express local, incluindo configuração e execução.
+k6
+Node.js · Express
+Ver repositório ↗
+readme.txt / sobre mim
+Uma trajetória entre
+código, testes
+e documentação.
+Sou Kellen Xavier, também conhecida como LadyDebug. Minha trajetória passou por suporte, frontend e qualidade de software. Hoje reúno essas experiências em desenvolvimento, automação e documentação técnica.
+Neste portfólio, apresento o trabalho pelo que é possível observar: mudanças implementadas, cenários escritos, decisões registradas e resultados acompanhados dos seus limites.
+Análise e Desenvolvimento de Sistemas · UNINTER
+Pós-graduação em Engenharia de Software · Unisinos
+O estudo continua.
+Outras anotações, referências e experiências estão no blog LadyDebug.
+Ler o blog ↗
+ladydebug
+© 2026 Kellen Xavier
+GitHub ↗
+·
+LinkedIn ↗
+CODE &amp;
+TESTS
+PIXELS &amp;
+PULL REQUESTS
+KEEP THE
+WEB PERSONAL

@@ -1,4 +1,5 @@
-import { links, projects } from "../data/site";
+import { projectSection, projects } from "../content/projetos";
+import { links } from "../content/site";
 import { ExternalLink } from "./ExternalLink";
 import { ProjectCard } from "./ProjectCard";
 
@@ -7,11 +8,11 @@ export function Projects() {
     <section className="projects" id="projetos" aria-labelledby="projects-title">
       <div className="section-head">
         <div>
-          <p className="eyebrow">repositories / projetos abertos</p>
-          <h2 id="projects-title">Conhecimento que vira repositório.</h2>
+          <p className="eyebrow">{projectSection.eyebrow}</p>
+          <h2 id="projects-title">{projectSection.title}</h2>
         </div>
         <ExternalLink className="text-link" href={links.repositories}>
-          Todos os repositórios ↗
+          {projectSection.linkLabel}
         </ExternalLink>
       </div>
       <div className="grid">

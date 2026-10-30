@@ -8,6 +8,7 @@ import { Projects } from "./components/Projects";
 import { Topics } from "./components/Topics";
 import { Work } from "./components/Work";
 import { Workflow } from "./components/Workflow";
+import { site } from "./content/site";
 
 export function App() {
   useEffect(() => {
@@ -25,11 +26,11 @@ export function App() {
   return (
     <>
       <a className="skip" href="#main">
-        Ir para o conteúdo
+        {site.skipLink}
       </a>
       <div className="wrap">
         <div className="browser-bar">
-          <span>LadyDebug Workstation</span>
+          <span>{site.browserTitle}</span>
           <span aria-hidden="true">▁ □ ×</span>
         </div>
         <Header />

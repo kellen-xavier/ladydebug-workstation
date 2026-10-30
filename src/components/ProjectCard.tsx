@@ -1,4 +1,5 @@
-import type { Project } from "../data/site";
+import type { Project } from "../content/projetos";
+import { site } from "../content/site";
 import { ExternalLink } from "./ExternalLink";
 
 export function ProjectCard({ project }: { project: Project }) {
@@ -21,9 +22,9 @@ export function ProjectCard({ project }: { project: Project }) {
         <ExternalLink
           className="repo-link"
           href={project.url}
-          aria-label={`Ver repositório ${project.title}`}
+          aria-label={`${site.projectLinkAccessibleLabel} ${project.title}`}
         >
-          Ver repositório ↗
+          {site.projectLinkLabel}
         </ExternalLink>
       </div>
     </article>

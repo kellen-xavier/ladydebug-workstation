@@ -14,11 +14,13 @@
   },
   "dependencies": {
     "react": "^19",
-    "react-dom": "^19"
+    "react-dom": "^19",
+    "react-markdown": "^10.1.0"
   },
   "devDependencies": {
     "@biomejs/biome": "2.5.14",
     "@types/bun": "latest",
+    "@types/mdast": "^4.0.4",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "typescript": "^5"

@@ -2,14 +2,17 @@ export function Header() {
   return (
     <header>
       <a className="brand" href="#main">
-        ladydebug
+        {site.brand}
       </a>
-      <nav aria-label="Navegação principal">
-        <a href="#pratica">Na prática</a>
-        <a href="#fluxo">Meu fluxo</a>
-        <a href="#projetos">Projetos</a>
-        <a href="#sobre">Sobre</a>
+      <nav aria-label={site.navigationLabel}>
+        {site.navigation.map((item) => (
+          <a key={item.href} href={item.href}>
+            {item.label}
+          </a>
+        ))}
       </nav>
     </header>
   );
 }
+
+import { site } from "../content/site";

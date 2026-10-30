@@ -32,6 +32,6 @@
     "noPropertyAccessFromIndexSignature": false
   },
 
-  "include": ["src", "scripts", "bun-env.d.ts"],
+  "include": ["src", "scripts", "tests", "bun-env.d.ts"],
   "exclude": ["dist", "node_modules"]
 }

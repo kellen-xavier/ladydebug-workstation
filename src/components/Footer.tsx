@@ -1,43 +1,31 @@
+import { site } from "../content/site";
+import { ExternalLink } from "./ExternalLink";
+
 export function Footer() {
   return (
     <footer>
       <a className="brand" href="#main">
-        ladydebug
+        {site.brand}
       </a>
-      <span>© {new Date().getFullYear()} Kellen Xavier</span>
       <span>
-        <a
-          className=""
-          href="https://github.com/kellen-xavier"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          GitHub ↗
-        </a>{" "}
-        ·{" "}
-        <a
-          className=""
-          href="https://www.linkedin.com/in/kellen-xavier/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          LinkedIn ↗
-        </a>
+        © {new Date().getFullYear()} {site.footer.author}
       </span>
-      <ul className="web-badges" aria-label="Interesses">
-        <li>
-          CODE &<br />
-          TESTS
-        </li>
-        <li>
-          PIXELS &<br />
-          PULL REQUESTS
-        </li>
-        <li>
-          KEEP THE
-          <br />
-          WEB PERSONAL
-        </li>
+      <span>
+        {site.footer.socialLinks.map((link, index) => (
+          <span key={link.href}>
+            {index > 0 && " · "}
+            <ExternalLink href={link.href}>{link.label}</ExternalLink>
+          </span>
+        ))}
+      </span>
+      <ul className="web-badges" aria-label={site.footer.badgesLabel}>
+        {site.footer.badges.map(([first, second]) => (
+          <li key={first}>
+            {first}
+            <br />
+            {second}
+          </li>
+        ))}
       </ul>
     </footer>
   );

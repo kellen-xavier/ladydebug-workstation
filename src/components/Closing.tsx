@@ -2,17 +2,15 @@ export function Closing() {
   return (
     <section className="closing">
       <div>
-        <h2>O estudo continua.</h2>
-        <p>Outras anotações, referências e experiências estão no blog LadyDebug.</p>
+        <h2>{site.closing.title}</h2>
+        <p>{site.closing.description}</p>
       </div>
-      <a
-        className="button"
-        href="https://kellen-xavier.github.io/ladydebug.github.io/"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        Ler o blog ↗
-      </a>
+      <ExternalLink className="button" href={links.blog}>
+        {site.closing.linkLabel}
+      </ExternalLink>
     </section>
   );
 }
+
+import { links, site } from "../content/site";
+import { ExternalLink } from "./ExternalLink";

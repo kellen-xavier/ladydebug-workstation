@@ -671,7 +671,7 @@ footer .brand {
 .case ul {
     padding-left: 22px;
 }
-.case p.trace {
+.case :where(h3) + p {
     padding: 13px;
     background: var(--soft);
     border-left: 3px solid var(--link);
@@ -681,10 +681,11 @@ footer .brand {
 .trace code {
     color: var(--ink);
 }
-.case p.case-limit {
+.case .case-limit {
     font-size: 13px;
     border-top: 1px dashed #b7a68c;
     padding-top: 14px;
+    margin: 1em 0;
 }
 .case-label {
     display: block;
@@ -736,7 +737,8 @@ footer .brand {
 .card.featured .card-top {
     background: #efc7dd;
 }
-.meta {
+.meta,
+.provenance p:has(code) {
     font: 12px monospace;
     color: var(--muted);
     overflow-wrap: anywhere;
@@ -901,4 +903,15 @@ footer .brand {
     font: 16px var(--pixel);
     padding: 8px;
     background: var(--soft);
+}
+
+.about-text .education p {
+    margin: 0;
+    color: inherit;
+    font: inherit;
+}
+
+.case .case-limit p {
+    font-size: inherit;
+    margin: 0;
 }
