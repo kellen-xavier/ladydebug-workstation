@@ -1,10 +1,10 @@
 import { site } from "../content/site";
 import { ExternalLink } from "./ExternalLink";
 
-export function Footer() {
+export function Footer({ homeHref = "" }: { homeHref?: string }) {
   return (
     <footer>
-      <a className="brand" href="#main">
+      <a className="brand" href={`${homeHref}#main`}>
         {site.brand}
       </a>
       <span>

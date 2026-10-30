@@ -1,5 +1,5 @@
 import type { Blockquote, Heading, Root } from "mdast";
-import Markdown, { type Components } from "react-markdown";
+import Markdown, { type Components, type Options } from "react-markdown";
 import { ExternalLink } from "./ExternalLink";
 
 type Part = "title" | "body";
@@ -39,6 +39,16 @@ function referenceDisclosures() {
 }
 
 const linkComponents: Components = {
+  img: ({ src, alt, title }) => (
+    <img
+      className="markdown-image"
+      src={src}
+      alt={alt ?? ""}
+      title={title}
+      loading="lazy"
+      decoding="async"
+    />
+  ),
   a: ({ children, href }) =>
     href?.startsWith("https://") || href?.startsWith("http://") ? (
       <ExternalLink href={href}>{children}</ExternalLink>
@@ -52,18 +62,22 @@ export function MarkdownContent({
   part,
   components,
   disclosures = false,
+  remarkPlugins = [],
 }: {
   children: string;
   part?: Part;
   components?: Components;
   disclosures?: boolean;
+  remarkPlugins?: NonNullable<Options["remarkPlugins"]>;
 }) {
   return (
     <Markdown
       skipHtml
-      remarkPlugins={
-        disclosures ? [[selectPart, { part }], referenceDisclosures] : [[selectPart, { part }]]
-      }
+      remarkPlugins={[
+        [selectPart, { part }],
+        ...(disclosures ? [referenceDisclosures] : []),
+        ...remarkPlugins,
+      ]}
       components={{ ...linkComponents, ...components }}
     >
       {children}

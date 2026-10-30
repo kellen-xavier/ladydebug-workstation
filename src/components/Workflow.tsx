@@ -1,5 +1,10 @@
+import type { ReactNode } from "react";
 import { workflow } from "../content/fluxo";
 import { MarkdownContent } from "./MarkdownContent";
+
+function Subtitle({ children }: { children?: ReactNode }) {
+  return <p className="flow-subtitle">{children}</p>;
+}
 
 export function Workflow() {
   return (
@@ -14,8 +19,22 @@ export function Workflow() {
           </h2>
         </div>
         <div className="flow-intro">
-          <MarkdownContent>{workflow.intro}</MarkdownContent>
+          <MarkdownContent
+            components={{
+              h1: Subtitle,
+              h2: Subtitle,
+              h3: Subtitle,
+              h4: Subtitle,
+              h5: Subtitle,
+              h6: Subtitle,
+            }}
+          >
+            {workflow.intro}
+          </MarkdownContent>
         </div>
+        <a className="button workflow-cta" href={workflow.details.href}>
+          {workflow.details.label}
+        </a>
       </div>
       <ol className="workflow">
         {workflow.steps.map((step) => (

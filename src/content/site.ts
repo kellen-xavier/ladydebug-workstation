@@ -22,16 +22,16 @@ export const site = {
       label: "Na prática",
     },
     {
+      href: "#sobre",
+      label: "Sobre",
+    },
+    {
       href: "#fluxo",
       label: "Meu fluxo",
     },
     {
       href: "#projetos",
       label: "Projetos",
-    },
-    {
-      href: "#sobre",
-      label: "Sobre",
     },
   ],
   hero: {
@@ -57,14 +57,14 @@ export const site = {
     title: "O que faço, na prática.",
     badge: "IMPLEMENTAÇÃO · EVIDÊNCIA · LIMITES",
     intro:
-      "Os exemplos abaixo vêm de relatórios de contribuições com referências a código, histórico Git e registros de execução. Cada caso explicita o que foi feito e até onde a evidência permite afirmar.",
+      "Os exemplos abaixo vêm de relatórios de contribuições com referências de código, histórico Git e registros de execução. Cada caso explicita o que foi feito e até onde a evidência permite afirmar.",
     methodLabel: "Como ler:",
     method:
       "os casos profissionais são sínteses dos relatórios fornecidos, não uma auditoria independente dos repositórios privados. As fichas identificam a fonte e os localizadores para conferência com acesso ao original. Os projetos abertos, abaixo, podem ser inspecionados diretamente no GitHub.",
   },
   closing: {
     title: "O estudo continua.",
-    description: "Outras anotações, referências e experiências estão no blog Ladydebug.",
+    description: "Outras anotações, referências e experiências estão no meu blog Ladydebug.",
     linkLabel: "Ler o blog ↗",
   },
   footer: {

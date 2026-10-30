@@ -20,7 +20,10 @@ export default defineConfig({
     { name: "narrow-mobile", use: { viewport: { width: 320, height: 812 }, hasTouch: true } },
   ],
   webServer: {
-    command: "bun --port=4174 ./src/index.html",
+    command:
+      process.env.PLAYWRIGHT_SERVER === "production"
+        ? "bun run build && PORT=4174 bun scripts/preview.ts"
+        : "bun --port=4174 scripts/dev.ts",
     url: "http://localhost:4174",
     reuseExistingServer: false,
   },

@@ -14,6 +14,23 @@ test("shows the complete primary action in the first viewport", async ({ page })
   expect((box?.y ?? 0) + (box?.height ?? 0)).toBeLessThanOrEqual(page.viewportSize()?.height ?? 0);
 });
 
+test("places the about block below topics with clear spacing before the work examples", async ({
+  page,
+}) => {
+  expect(await page.locator(".topics").evaluate((topics) => topics.nextElementSibling?.id)).toBe(
+    "sobre",
+  );
+  await expect(page.locator("#sobre")).toHaveCount(1);
+  const topics = await page.locator(".topics").boundingBox();
+  const about = await page.locator("#sobre").boundingBox();
+  const workHeading = await page.locator("#pratica .section-head").boundingBox();
+  if (!topics || !about || !workHeading) throw new Error("Portfolio sections are missing");
+  expect(about.y - (topics.y + topics.height)).toBeGreaterThanOrEqual(24);
+  expect(workHeading.y - (about.y + about.height)).toBeGreaterThanOrEqual(24);
+  await page.locator('nav a[href="#sobre"]').click();
+  await expect(page.locator("#sobre")).toBeInViewport();
+});
+
 test("shows a contribution preview while keeping report details collapsible", async ({ page }) => {
   const reports = page.locator("details.case");
   await expect(reports).toHaveCount(4);
@@ -102,4 +119,68 @@ test("centers the workflow steps and closing message", async ({ page }) => {
   for (const link of await page.locator(".flow-ref").all()) {
     await expect(link).toHaveCSS("justify-content", "center");
   }
+});
+
+test("uses one subtitle style for all workflow introduction headings", async ({ page }) => {
+  const introduction = page.locator(".flow-intro");
+  await expect(introduction.locator("h1, h2, h3, h4, h5, h6")).toHaveCount(0);
+  const subtitles = introduction.locator(".flow-subtitle");
+  await expect(subtitles).toHaveCount(2);
+  const styles = await subtitles.evaluateAll((elements) =>
+    elements.map((element) => {
+      const style = getComputedStyle(element);
+      return {
+        font: style.fontFamily,
+        size: style.fontSize,
+        weight: style.fontWeight,
+        align: style.textAlign,
+      };
+    }),
+  );
+  expect(styles[0]).toEqual(styles[1]);
+  expect(styles[0]?.align).toBe("center");
+});
+
+test("opens the full workflow page and supports direct reload and return navigation", async ({
+  page,
+}) => {
+  const action = page.getByRole("link", { name: "Conhecer meu Workflow", exact: true });
+  await expect(action).toHaveAttribute("href", "./workflow.html");
+  await action.click();
+  await expect(page).toHaveURL(/\/workflow\.html$/);
+  await expect(page).toHaveTitle(/Workflow.*Ladydebug/);
+  await expect(page.locator("h1")).toHaveText("Workflow de Trabalho e Aprendizados");
+  await expect(
+    page.getByRole("heading", { name: "Como é o fluxo do desenvolvimento?" }),
+  ).toBeVisible();
+  await page.reload();
+  await expect(page.locator(".workflow-page")).toContainText("Meu Definition of Done de Estudos");
+  await expect(page.locator('.workflow-page input[type="checkbox"]')).toHaveCount(6);
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+  await page.getByRole("link", { name: "Voltar ao portfólio", exact: true }).click();
+  await expect(page).toHaveURL(/\/index\.html#fluxo$/);
+  await expect(page.locator("#fluxo")).toBeInViewport();
+});
+
+test("loads local Markdown images and keeps them within the article width", async ({ page }) => {
+  await page.goto("/workflow.html");
+  const image = page.getByRole("img", { name: "workflow", exact: true });
+  await image.scrollIntoViewIfNeeded();
+  await expect
+    .poll(() =>
+      image.evaluate((element) => {
+        const image = element as HTMLImageElement;
+        return image.complete && image.naturalWidth > 0;
+      }),
+    )
+    .toBe(true);
+  const source = await image.getAttribute("src");
+  expect(source).not.toMatch(/^\/src\//);
+  const article = await page.locator(".workflow-page").boundingBox();
+  const box = await image.boundingBox();
+  if (!article || !box) throw new Error("Workflow image is missing");
+  expect(box.width).toBeGreaterThan(0);
+  expect(box.x).toBeGreaterThanOrEqual(article.x);
+  expect(box.x + box.width).toBeLessThanOrEqual(article.x + article.width + 1);
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
 });

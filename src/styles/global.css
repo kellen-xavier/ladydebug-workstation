@@ -254,6 +254,13 @@ main {
     color: var(--link);
 }
 
+.markdown-image {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin: 20px auto;
+}
+
 .topics,
 .web-badges {
     list-style: none;
@@ -385,7 +392,7 @@ h2 {
     border: 3px double #a89178;
     background: var(--soft);
     padding: 22px;
-    margin: 5px 0 26px;
+    margin: 28px 0 0;
 }
 
 .about h2 {
@@ -825,8 +832,12 @@ footer .brand {
 }
 .flow-intro {
     width: 100%;
-    max-width: 72ch;
-    font-size: 15px;
+    max-width: 60ch;
+    font:
+        18px / 1.6 Tahoma,
+        Verdana,
+        Arial,
+        sans-serif;
     color: var(--muted);
     overflow-wrap: anywhere;
 }
@@ -836,6 +847,57 @@ footer .brand {
 .flow-intro > :last-child {
     margin-bottom: 0;
 }
+
+.workflow-page {
+    max-width: 76ch;
+    margin-inline: auto;
+    padding: 32px 0 40px;
+    overflow-wrap: anywhere;
+}
+.workflow-page-nav {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 28px;
+}
+.workflow-page h1 {
+    margin: 0 0 28px;
+    text-align: center;
+    font: clamp(28px, 4vw, 40px) / 1.2 var(--pixel);
+}
+.workflow-page h2 {
+    margin: 32px 0 16px;
+    font-size: 28px;
+}
+.workflow-page p {
+    margin: 0 0 18px;
+    line-height: 1.8;
+}
+.workflow-page ul {
+    padding-left: 24px;
+}
+.workflow-page li {
+    margin-bottom: 12px;
+}
+.workflow-page .contains-task-list {
+    padding: 0;
+    list-style: none;
+}
+.workflow-page input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    margin-right: 8px;
+    vertical-align: middle;
+}
+.workflow-page blockquote {
+    margin: 24px 0;
+    padding: 16px;
+    border-left: 3px solid var(--link);
+    background: var(--soft);
+}
+.workflow-page blockquote > :last-child {
+    margin-bottom: 0;
+}
+
 .workflow {
     grid-template-columns: repeat(4, 1fr);
     gap: 16px;

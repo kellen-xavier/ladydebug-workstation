@@ -6,8 +6,9 @@
   "scripts": {
     "test": "bun test",
     "test:browser": "playwright test",
-    "dev": "bun --port=3000 ./src/index.html",
-    "build": "rm -rf dist && bun build ./src/index.html --outdir=dist --production --public-path=./ && cp src/assets/fonts/OFL.txt dist/",
+    "test:browser:production": "PLAYWRIGHT_SERVER=production playwright test",
+    "dev": "bun --port=3000 scripts/dev.ts",
+    "build": "bun scripts/build.ts",
     "preview": "bun run build && bun scripts/preview.ts",
     "typecheck": "tsc --noEmit",
     "lint": "biome check .",
@@ -16,7 +17,8 @@
   "dependencies": {
     "react": "^19",
     "react-dom": "^19",
-    "react-markdown": "^10.1.0"
+    "react-markdown": "^10.1.0",
+    "remark-gfm": "^4.0.1"
   },
   "devDependencies": {
     "@biomejs/biome": "2.5.14",
@@ -25,6 +27,8 @@
     "@types/mdast": "^4.0.4",
     "@types/react": "^19",
     "@types/react-dom": "^19",
-    "typescript": "^5"
+    "mdast-util-from-markdown": "^2.1.0",
+    "typescript": "^5",
+    "unist-util-visit": "^5.2.0"
   }
 }

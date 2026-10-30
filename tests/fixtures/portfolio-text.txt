@@ -3,9 +3,9 @@ Ladydebug Workstation
 ▁ □ ×
 ladydebug
 Na prática
+Sobre
 Meu fluxo
 Projetos
-Sobre
 ★ Kellen Xavier — Ladydebug ★
 Meu trabalho,
 por dentro.
@@ -18,10 +18,18 @@ DESENVOLVIMENTO
 AUTOMAÇÃO DE TESTES
 DOCUMENTAÇÃO
 CONHECIMENTO ABERTO
+readme.txt / sobre mim
+Uma trajetória entre
+código, testes
+e documentação.
+Sou Kellen Xavier, e criei este projeto chamado de Ladydebug Workflow, compartilho aqui ferramentas e skills de trabalho atual. Minha trajetória passou por suporte, frontend e qualidade de software. Hoje reúno essas experiências em trabalhos de programação, automações e documentação técnica. Sou pós-graduada em engenharia de software, tenho foco qualidade.
+Neste portfólio, apresento o trabalho pelo que é possível observar: mudanças implementadas, cenários escritos, decisões registradas e resultados acompanhados dos seus limites.
+Análise e Desenvolvimento de Sistemas · UNINTER
+Pós-graduação em Engenharia de Software · Unisinos
 worklog / contribuições
 O que faço, na prática.
 IMPLEMENTAÇÃO · EVIDÊNCIA · LIMITES
-Os exemplos abaixo vêm de relatórios de contribuições com referências a código, histórico Git e registros de execução. Cada caso explicita o que foi feito e até onde a evidência permite afirmar.
+Os exemplos abaixo vêm de relatórios de contribuições com referências de código, histórico Git e registros de execução. Cada caso explicita o que foi feito e até onde a evidência permite afirmar.
 Mobile: implementação, testes e verificação de estado
 React Native · TypeScript · Detox · Jest
 Implementei fluxos mobile e testes que comparam interface, estado da API e débito nos cenários contemplados.
@@ -119,19 +127,9 @@ os casos profissionais são sínteses dos relatórios fornecidos, não uma audit
 03 / COMO TRABALHO
 Entender. Construir.
 Aprender. Evoluir.
-Do contexto à revisão, os testes acompanham a implementação.
-Registro decisões e uso o aprendizado para orientar a próxima entrega
-Aqui mais texto, Aqui mais texto Aqui mais texto Aqui mais texto Aqui mais texto Aqui mais texto Aqui mais texto
-Aqui mais texto, Aqui mais texto Aqui mais texto Aqui mais texto Aqui mais texto Aqui mais texto Aqui mais texto
-Aqui mais texto, Aqui mais texto Aqui mais texto Aqui mais texto Aqui mais texto Aqui mais texto Aqui mais texto
-Aqui mais texto, Aqui mais texto Aqui mais texto Aqui mais texto Aqui mais texto Aqui mais texto Aqui mais texto
-Aqui mais texto, Aqui mais texto Aqui mais texto Aqui mais texto Aqui mais texto Aqui mais texto Aqui mais texto
-Aqui mais texto, Aqui mais texto Aqui mais texto Aqui mais texto Aqui mais texto Aqui mais texto Aqui mais texto
-Aqui mais texto, Aqui mais texto Aqui mais texto Aqui mais texto Aqui mais texto Aqui mais texto Aqui mais texto
-Aqui mais texto, Aqui mais texto Aqui mais texto Aqui mais texto Aqui mais texto Aqui mais texto Aqui mais texto
-Aqui mais texto, Aqui mais texto Aqui mais texto Aqui mais texto Aqui mais texto Aqui mais texto Aqui mais texto
-Aqui mais texto, Aqui mais texto Aqui mais texto Aqui mais texto Aqui mais texto Aqui mais texto Aqui mais texto
-Aqui mais texto, Aqui mais texto Aqui mais texto Aqui mais texto Aqui mais texto Aqui mais texto Aqui mais texto
+Do contexto à revisão, os testes acompanham a implementação
+Registro as decisões e uso o aprendizado para orientar a próxima entrega
+Conhecer meu Workflow
 ⌕
 Entender o contexto
 Regras de negócio, integrações, riscos e critérios de aceite definem o contexto.
@@ -189,16 +187,8 @@ Estudo prático com scripts k6 e aplicação Express local, incluindo configura�
 k6
 Node.js · Express
 Ver repositório ↗
-readme.txt / sobre mim
-Uma trajetória entre
-código, testes
-e documentação.
-Sou Kellen Xavier, criei este projeto chamado de Ladydebug. Minha trajetória passou por suporte, frontend e qualidade de software. Hoje reúno essas experiências em trabalhos de programação, automações e documentação técnica. Sou pós-graduada em engenharia de software e qualidade.
-Neste portfólio, apresento o trabalho pelo que é possível observar: mudanças implementadas, cenários escritos, decisões registradas e resultados acompanhados dos seus limites.
-Análise e Desenvolvimento de Sistemas · UNINTER
-Pós-graduação em Engenharia de Software · Unisinos
 O estudo continua.
-Outras anotações, referências e experiências estão no blog Ladydebug.
+Outras anotações, referências e experiências estão no meu blog Ladydebug.
 Ler o blog ↗
 ladydebug
 © 2026 Kellen Xavier

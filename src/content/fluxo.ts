@@ -14,6 +14,12 @@ export const workflow = {
   title: "Entender. Construir.",
   titleEmphasis: "Aprender. Evoluir.",
   intro: introduction,
+  details: {
+    href: "./workflow.html",
+    label: "Conhecer meu Workflow",
+    backHref: "./index.html#fluxo",
+    backLabel: "Voltar ao portfólio",
+  },
   steps: [
     {
       id: "mobile",
@@ -60,6 +66,7 @@ export const workflow = {
   title: string;
   titleEmphasis: string;
   intro: string;
+  details: { href: string; label: string; backHref: string; backLabel: string };
   steps: WorkflowStep[];
   cycle: { icon: string; description: string; href: `#${string}`; linkLabel: string };
 };
