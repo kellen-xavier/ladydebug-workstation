@@ -6,8 +6,8 @@ import { projects } from "../src/data/site";
 
 const markup = () => renderToStaticMarkup(<App />);
 
-describe("portfólio de trabalho", () => {
-  test("permite navegar para contribuições, fluxo e projetos por âncoras existentes", () => {
+describe("work portfolio", () => {
+  test("allows navigation to contributions, workflow, and projects via existing anchors", () => {
     const html = markup();
     for (const id of ["pratica", "fluxo", "projetos", "sobre"]) {
       expect(html).toContain(`href="#${id}"`);
@@ -15,7 +15,7 @@ describe("portfólio de trabalho", () => {
     }
   });
 
-  test("apresenta quatro casos com origem documental e limites da comprovação", () => {
+  test("presents four case studies with documentary sources and evidence limitations", () => {
     const html = markup();
     for (const id of ["mobile", "backend", "cadastro", "unity"]) {
       const caseHtml = html.match(
@@ -28,7 +28,7 @@ describe("portfólio de trabalho", () => {
     }
   });
 
-  test("preserva o fluxo aprovado com links para exemplos de trabalho", () => {
+  test("preserves the approved workflow with links to work examples", () => {
     const html = markup();
     for (const title of [
       "Entender o contexto",
@@ -45,7 +45,7 @@ describe("portfólio de trabalho", () => {
     expect(html).not.toMatch(/Vamos conversar|Fale comigo|Seu próximo projeto/);
   });
 
-  test("inclui Bot Planner com destino público e descreve Slack como evolução prevista", () => {
+  test("includes Bot Planner with a public URL and describes Slack as a planned enhancement", () => {
     const planner = projects.find((project) => project.url.endsWith("/ladydebug-bot-planner"));
     expect(planner).toBeDefined();
     expect(planner?.description).toContain("Discord");
@@ -53,7 +53,7 @@ describe("portfólio de trabalho", () => {
     expect(markup()).toContain('href="https://github.com/kellen-xavier/ladydebug-bot-planner"');
   });
 
-  test("exibe a marca apenas como ladydebug", () => {
+  test("displays the brand only as ladydebug", () => {
     expect(renderToStaticMarkup(<Brand />)).toMatch(/>ladydebug<\/a>/);
   });
 });
