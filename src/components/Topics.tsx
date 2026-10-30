@@ -1,11 +1,10 @@
-import { topics } from "../data/site";
-
 export function Topics() {
   return (
-    <ul className="topics" aria-label="Areas of focus">
-      {topics.map((topic) => (
-        <li key={topic}>{topic}</li>
-      ))}
+    <ul className="topics">
+      <li>DESENVOLVIMENTO</li>
+      <li>AUTOMAÇÃO DE TESTES</li>
+      <li>DOCUMENTAÇÃO</li>
+      <li>CONHECIMENTO ABERTO</li>
     </ul>
   );
 }

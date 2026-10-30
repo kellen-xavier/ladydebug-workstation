@@ -21,9 +21,9 @@ export function ProjectCard({ project }: { project: Project }) {
         <ExternalLink
           className="repo-link"
           href={project.url}
-          aria-label={`View ${project.title} repository`}
+          aria-label={`Ver repositório ${project.title}`}
         >
-          View repository ↗
+          Ver repositório ↗
         </ExternalLink>
       </div>
     </article>

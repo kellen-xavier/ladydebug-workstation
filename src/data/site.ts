@@ -17,11 +17,20 @@ export type Project = {
 
 export const projects: Project[] = [
   {
+    title: "LadyDebug Bot Planner",
+    icon: "[↻]",
+    badge: "COMUNICAÇÃO ASSÍNCRONA",
+    description:
+      "Bot para Discord que registra notas, tarefas, links e PRs e compila um relatório ao encerrar o dia. Núcleo em ports & adapters, com SQLite e testes em pytest. Slack é uma evolução prevista.",
+    tags: ["Python", "Discord · SQLite · pytest"],
+    url: "https://github.com/kellen-xavier/ladydebug-bot-planner",
+  },
+  {
     title: "QA Readme",
     icon: "{ }",
     badge: "QUALITY ENGINEERING",
     description:
-      "A shared reference for software quality: test cases, bug reports, test evidence, BDD, and SQL examples.",
+      "Referência compartilhada de qualidade: casos de teste, defeitos, evidências, BDD e exemplos SQL.",
     tags: ["Documentation", "QA"],
     url: "https://github.com/kellen-xavier/qa-readme",
   },
@@ -30,7 +39,7 @@ export const projects: Project[] = [
     icon: "~/",
     badge: "STUDY IN PROGRESS",
     description:
-      "A starting point for project documentation with AI, connecting business rules, Markdown, and a shared knowledge base.",
+      "Estudo em desenvolvimento para organizar documentação com IA, regras de negócio, Markdown e wiki.",
     tags: ["Markdown", "AI · Wiki"],
     url: "https://github.com/kellen-xavier/ladydebug-wiki-projects",
   },
@@ -39,7 +48,7 @@ export const projects: Project[] = [
     icon: ">_",
     badge: "DEVELOPER TOOLING",
     description:
-      "A central repository of agent skills, shared across AI coding tools so one update can reach multiple workflows.",
+      "Repositório central de skills para agentes de código, compartilhadas entre ferramentas de desenvolvimento.",
     tags: ["Agent skills", "CLI"],
     url: "https://github.com/kellen-xavier/my-skills",
   },
@@ -48,7 +57,7 @@ export const projects: Project[] = [
     icon: "k6",
     badge: "TEST AUTOMATION",
     description:
-      "A hands-on test project pairing k6 scripts with a local Express application, with setup and execution instructions.",
+      "Estudo prático com scripts k6 e aplicação Express local, incluindo configuração e execução.",
     tags: ["k6", "Node.js · Express"],
     url: "https://github.com/kellen-xavier/testes-k6",
   },

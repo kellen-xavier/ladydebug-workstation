@@ -1,28 +1,30 @@
 export function About() {
   return (
-    <section className="about" id="about" aria-labelledby="about-title">
+    <section className="about" id="sobre">
       <div>
-        <p className="eyebrow">readme.txt / About me</p>
-        <h2 id="about-title">
-          A quality mindset.
+        <p className="eyebrow">readme.txt / sobre mim</p>
+        <h2>
+          Uma trajetória entre
           <br />
-          An engineer's curiosity.
+          código, testes
+          <br />e documentação.
         </h2>
       </div>
       <div className="about-text">
         <p>
-          My path has taken me from support and front-end work to software testing. Today, I bring
-          those perspectives together through{" "}
-          <strong>development, manual and automated testing, and technical documentation.</strong>
+          Sou Kellen Xavier, também conhecida como LadyDebug. Minha trajetória passou por suporte,
+          frontend e qualidade de software. Hoje reúno essas experiências em desenvolvimento,
+          automação e documentação técnica.
         </p>
         <p>
-          These repositories are where I explore tools, organize what I learn, and make practical
-          knowledge available to others.
+          Neste portfólio, apresento o trabalho pelo que é possível observar: mudanças
+          implementadas, cenários escritos, decisões registradas e resultados acompanhados dos seus
+          limites.
         </p>
         <div className="education">
-          Systems Analysis &amp; Development · UNINTER
+          Análise e Desenvolvimento de Sistemas · UNINTER
           <br />
-          Postgraduate studies in Software Engineering · Unisinos
+          Pós-graduação em Engenharia de Software · Unisinos
         </div>
       </div>
     </section>

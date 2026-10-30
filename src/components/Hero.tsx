@@ -1,38 +1,42 @@
 import pixelDesk from "../assets/pixel-desk.png";
-import { links } from "../data/site";
-import { ExternalLink } from "./ExternalLink";
 
 export function Hero() {
   return (
-    <section className="hero" aria-labelledby="hero-title">
+    <section className="hero">
       <div>
         <p className="eyebrow">★ Kellen Xavier — LadyDebug ★</p>
-        <h1 id="hero-title">
-          Welcome to my
+        <h1>
+          Meu trabalho,
           <br />
-          <em>little web corner.</em>
+          <em>por dentro.</em>
         </h1>
         <p className="intro">
-          <strong>Software &amp; Quality Engineering.</strong>
+          <strong>Engenharia de Software & Qualidade.</strong>
           <br />
-          I'm Kellen, also known as <strong>LadyDebug</strong>. I connect software development, test
-          automation, and documentation — and share what I learn along the way.
+          Desenvolvo, escrevo testes, investigo comportamentos e documento o que encontro. Este é
+          meu espaço para apresentar contribuições, decisões e os registros que ajudam a conferir o
+          trabalho.
         </p>
         <div className="actions">
-          <a className="button" href="#projects">
-            Explore my projects <span aria-hidden="true">↓</span>
+          <a className="button" href="#pratica">
+            Explorar a prática ↓
           </a>
-          <ExternalLink className="text-link" href={links.github}>
-            Find me on GitHub ↗
-          </ExternalLink>
+          <a
+            className="text-link"
+            href="https://github.com/kellen-xavier"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Meu GitHub ↗
+          </a>
         </div>
       </div>
       <figure className="pixel-scene">
         <img
           src={pixelDesk}
-          alt="Pixel art of a retro computer desk with a pink mug and floppy disk"
-          width={1536}
-          height={1024}
+          width="1536"
+          height="1024"
+          alt="Estação de trabalho retrô em pixel art, com computador e caneca rosa"
         />
         <figcaption>code · test · document · repeat</figcaption>
       </figure>

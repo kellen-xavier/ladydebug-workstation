@@ -1,16 +1,18 @@
-import { links } from "../data/site";
-import { ExternalLink } from "./ExternalLink";
-
 export function Closing() {
   return (
-    <section className="closing" aria-labelledby="closing-title">
+    <section className="closing">
       <div>
-        <h2 id="closing-title">Good work grows when it's shared.</h2>
-        <p>Explore the code, read the docs, or follow what I build next.</p>
+        <h2>O estudo continua.</h2>
+        <p>Outras anotações, referências e experiências estão no blog LadyDebug.</p>
       </div>
-      <ExternalLink className="button" href={links.github}>
-        Let's connect on GitHub <span aria-hidden="true">↗</span>
-      </ExternalLink>
+      <a
+        className="button"
+        href="https://kellen-xavier.github.io/ladydebug.github.io/"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Ler o blog ↗
+      </a>
     </section>
   );
 }

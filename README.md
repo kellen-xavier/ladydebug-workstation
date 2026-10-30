@@ -74,3 +74,13 @@ bun run lint:fix   # corrige automaticamente o que for possível
 - Paleta e fonte utilizadas no [blog LadyDebug](https://kellen-xavier.github.io/ladydebug.github.io/).
 - Pixelify Sans distribuída sob SIL Open Font License 1.1; consulte `src/assets/fonts/OFL.txt`.
 - Ilustração do computador gerada com IA para este projeto.
+
+## Portfólio de contribuições
+
+A seção **Na prática** apresenta quatro casos a partir dos relatórios fornecidos pela autora (análise de 29/10/2026): mobile, backend de estacionamento, cadastro/identificadores fiscais e Unity. Cada caso identifica trabalho realizado, referências históricas e limites da evidência. A página não publica código privado ou relatórios internos completos.
+
+- `src/components/Work.tsx`: casos e origem documental, com hashes SHA-256 das cópias consultadas. Os hashes identificam documentos e não certificam suas afirmações.
+- `src/components/Workflow.tsx`: fluxo de trabalho com links para os casos.
+- `src/data/site.ts`: projetos abertos, incluindo LadyDebug Bot Planner.
+
+A revisão da página não repetiu a coleta Git dos projetos privados nem a execução dos testes descritos. Implementação, configuração, execução documentada e implantação são apresentadas separadamente.

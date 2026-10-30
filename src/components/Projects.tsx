@@ -4,14 +4,14 @@ import { ProjectCard } from "./ProjectCard";
 
 export function Projects() {
   return (
-    <section className="projects" id="projects" aria-labelledby="projects-title">
+    <section className="projects" id="projetos" aria-labelledby="projects-title">
       <div className="section-head">
         <div>
-          <p className="eyebrow">C:\ladydebug\projects</p>
-          <h2 id="projects-title">My project directory</h2>
+          <p className="eyebrow">repositories / projetos abertos</p>
+          <h2 id="projects-title">Conhecimento que vira repositório.</h2>
         </div>
         <ExternalLink className="text-link" href={links.repositories}>
-          All repositories ↗
+          Todos os repositórios ↗
         </ExternalLink>
       </div>
       <div className="grid">
