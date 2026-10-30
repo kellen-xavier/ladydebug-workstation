@@ -1,10 +1,10 @@
-# LadyDebug Workstation
+# Ladydebug Workstation
 
-Landing page pessoal minha (LadyDebug), com projetos de engenharia de software, qualidade, automação de testes e documentação.
+Landing page pessoal minha (Ladydebug), com projetos de engenharia de software, qualidade, automação de testes e documentação.
 
 ## Visual
 
-Estética de homepage dos anos 2000–2009, ilustração em pixel art e paleta do blog LadyDebug: creme, bege, marrom e rosa. Layout responsivo, navegação por teclado e fonte hospedada localmente.
+Estética de homepage dos anos 2000–2009, ilustração em pixel art e paleta do blog Ladydebug: creme, bege, marrom e rosa. Layout responsivo, navegação por teclado e fonte hospedada localmente.
 
 ## Tecnologias
 
@@ -45,6 +45,7 @@ ladydebug-workstation/
 │   │   │   ├── backend.md
 │   │   │   ├── cadastro.md
 │   │   │   └── unity.md
+│   │   ├── fluxo.md        # breve apresentação do processo de trabalho
 │   │   ├── fluxo.ts        # etapas e links do fluxo
 │   │   ├── projetos.ts     # cartões dos projetos
 │   │   └── site.ts         # navegação, rótulos, links e textos auxiliares
@@ -72,6 +73,8 @@ Requer [Bun](https://bun.com/docs/installation) 1.3 ou superior.
 ```sh
 bun install        # instala as dependências
 bun test           # testes de regressão e integração
+bunx playwright install chromium # instala o navegador dos testes (uma vez)
+bun run test:browser # testes de interface em desktop, tablet e celular
 bun run dev        # desenvolvimento em http://localhost:3000 (hot reload)
 bun run build      # gera o site estático em dist/
 bun run preview    # build + serve dist/ em http://localhost:4173
@@ -83,7 +86,8 @@ bun run lint:fix   # corrige automaticamente o que for possível
 ## Editar
 
 - **Apresentação e sobre:** `src/content/apresentacao.md` e `src/content/sobre.md`.
-- **Relatos dos trabalhos:** `src/content/trabalhos/*.md`. A ordem, o ID da âncora e as tecnologias ficam em `src/content/trabalhos/index.ts`.
+- **Relatos dos trabalhos:** `src/content/trabalhos/*.md`. A ordem, o ID da âncora, as tecnologias e o resumo visível de cada contribuição (`summary`) ficam em `src/content/trabalhos/index.ts`.
+- **Texto de apresentação do fluxo:** `src/content/fluxo.md` — aceita parágrafos, ênfase e links Markdown.
 - **Etapas do fluxo:** `src/content/fluxo.ts`. A ordem dos itens em `steps` define a ordem de exibição.
 - **Projetos:** `src/content/projetos.ts` — adicione um item em `projects` para criar um novo cartão.
 - **Navegação, rótulos, links, tópicos e textos auxiliares:** `src/content/site.ts`.
@@ -104,7 +108,9 @@ O plugin em `scripts/markdown-text.ts`, registrado em `bunfig.toml`, preserva a 
 
 Os testes cobrem as âncoras existentes, os relatos e suas referências, a formatação Markdown e a inclusão de novos relatos e etapas sem alterar o layout. O teste do servidor de desenvolvimento edita uma cópia temporária do conteúdo e verifica o recarregamento.
 
-`tests/fixtures/portfolio-text.txt` registra os textos anteriores à separação para detectar perdas acidentais. Ao alterar deliberadamente a redação do site, atualize também essa referência e as expectativas de conteúdo afetadas. Os nomes dos testes permanecem em inglês.
+`tests/fixtures/portfolio-text.txt` registra a redação revisada da página para detectar perdas acidentais. Ao alterar deliberadamente os textos, atualize também essa referência e as expectativas de conteúdo afetadas. Os nomes dos testes permanecem em inglês.
+
+`bun run test:browser` executa os testes Playwright em 1440, 768, 390 e 320 px de largura, usando um servidor próprio na porta 4174. Eles verificam o botão principal na primeira tela, os resumos visíveis dos relatos, a expansão por teclado, as referências, os destinos das âncoras, a ausência de rolagem horizontal e áreas de toque de pelo menos 44 × 44 px. Em celulares, também verificam a navegação em duas colunas e o fluxo compacto.
 
 ## Publicação
 
@@ -112,7 +118,7 @@ Os testes cobrem as âncoras existentes, os relatos e suas referências, a forma
 
 ## Créditos
 
-- Paleta e fonte utilizadas no [blog LadyDebug](https://kellen-xavier.github.io/ladydebug.github.io/).
+- Paleta e fonte utilizadas no [blog Ladydebug](https://kellen-xavier.github.io/ladydebug.github.io/).
 - Pixelify Sans distribuída sob SIL Open Font License 1.1; consulte `src/assets/fonts/OFL.txt`.
 - Ilustração do computador gerada com IA para este projeto.
 
@@ -122,6 +128,6 @@ A seção **Na prática** apresenta quatro casos a partir dos relatórios fornec
 
 - `src/content/trabalhos/`: casos e origem documental, com hashes SHA-256 das cópias consultadas. Os hashes identificam documentos e não certificam suas afirmações.
 - `src/content/fluxo.ts`: fluxo de trabalho com links para os casos.
-- `src/content/projetos.ts`: projetos abertos, incluindo LadyDebug Bot Planner.
+- `src/content/projetos.ts`: projetos abertos, incluindo Ladydebug Bot Planner.
 
 A revisão da página não repetiu a coleta Git dos projetos privados nem a execução dos testes descritos. Implementação, configuração, execução documentada e implantação são apresentadas separadamente.

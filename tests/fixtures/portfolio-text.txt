@@ -1,5 +1,5 @@
 Ir para o conteúdo
-LadyDebug Workstation
+Ladydebug Workstation
 ▁ □ ×
 ladydebug
 Na prática
@@ -10,7 +10,7 @@ Sobre
 Meu trabalho,
 por dentro.
 Engenharia de Software &amp; Qualidade.
-Olá, sou Kellen Xavier, pós-graduada em engenharia de software e qualidade. Desenvolvo, escrevo testes, investigo comportamentos e documento o que encontro. Este é meu espaço para apresentar contribuições, decisões e os registros que ajudam a conferir o trabalho.
+Sou Kellen Xavier. Há mais de 7 anos, trabalho com programação e testes. Aqui compartilho contribuições em desenvolvimento, automação e documentação, com referências para conferir cada trabalho.
 Explorar a prática ↓
 Meu GitHub ↗
 code · test · document · repeat
@@ -24,6 +24,7 @@ IMPLEMENTAÇÃO · EVIDÊNCIA · LIMITES
 Os exemplos abaixo vêm de relatórios de contribuições com referências a código, histórico Git e registros de execução. Cada caso explicita o que foi feito e até onde a evidência permite afirmar.
 Mobile: implementação, testes e verificação de estado
 React Native · TypeScript · Detox · Jest
+Implementei fluxos mobile e testes que comparam interface, estado da API e débito nos cenários contemplados.
 Desenvolvi e corrigi fluxos em uma aplicação mobile de mobilidade e pagamentos, junto com a infraestrutura e os cenários de teste.
 O que fiz
 Implantei Detox com Jest, helpers, seletores de teste, fixtures e coleta de vídeos, capturas e resultados.
@@ -46,6 +47,7 @@ O hash identifica a cópia consultada; não valida por si só a autoria ou o con
 Fonte: relatório de análise de 29/10/2026. Síntese para o portfólio: 30/10/2026.
 Backend: regras transacionais e contratos HTTP
 C# · .NET 10 · xUnit · Moq
+Estruturei testes de regras de estacionamento e contratos HTTP simulados, com documentação técnica.
 Criei testes e documentação para um backend de estacionamento. A contribuição identificada está nos testes das regras existentes e na explicação técnica do sistema.
 O que fiz
 Estruturei um projeto de testes com mocks estritos, fakes em memória e serviços reais sob teste.
@@ -68,6 +70,7 @@ O hash identifica a cópia consultada; não valida por si só a autoria ou o con
 Fonte: relatório de análise de 29/10/2026. Síntese para o portfólio: 30/10/2026.
 Cadastro: regras fiscais extraídas do legado
 C# · .NET · NUnit · Contratos HTTP
+Extraí validações fiscais do legado e integrei o módulo ao cadastro, com testes de domínio e contrato HTTP.
 Extraí validações fiscais do legado para um módulo de domínio e integrei o serviço aos endpoints e modelos de cadastro de pessoas e empresas.
 O que fiz
 Organizei interfaces, catálogo por país e tipo de titular e regras de normalização.
@@ -90,6 +93,7 @@ O hash identifica a cópia consultada; não valida por si só a autoria ou o con
 Fonte: relatório de análise de 29/10/2026. Síntese para o portfólio: 30/10/2026.
 Unity: jornadas de simulação automatizadas
 C# · Unity Test Framework · NUnit · Zenject
+Criei e mantive testes de aceitação que reproduzem jornadas e decisões alternativas em um simulador educacional.
 Criei e mantive testes de aceitação de um simulador educacional em Unity, reproduzindo jornadas do aluno e decisões alternativas.
 O que fiz
 Automatizei sequências de interação com interfaces, seleção de procedimentos e acompanhamento de timelines.
@@ -115,23 +119,35 @@ os casos profissionais são sínteses dos relatórios fornecidos, não uma audit
 03 / COMO TRABALHO
 Entender. Construir.
 Aprender. Evoluir.
-Qualidade faz parte do desenvolvimento: os testes acompanham a implementação, e o que aprendemos orienta a próxima entrega.
+Do contexto à revisão, os testes acompanham a implementação.
+Registro decisões e uso o aprendizado para orientar a próxima entrega
+Aqui mais texto, Aqui mais texto Aqui mais texto Aqui mais texto Aqui mais texto Aqui mais texto Aqui mais texto
+Aqui mais texto, Aqui mais texto Aqui mais texto Aqui mais texto Aqui mais texto Aqui mais texto Aqui mais texto
+Aqui mais texto, Aqui mais texto Aqui mais texto Aqui mais texto Aqui mais texto Aqui mais texto Aqui mais texto
+Aqui mais texto, Aqui mais texto Aqui mais texto Aqui mais texto Aqui mais texto Aqui mais texto Aqui mais texto
+Aqui mais texto, Aqui mais texto Aqui mais texto Aqui mais texto Aqui mais texto Aqui mais texto Aqui mais texto
+Aqui mais texto, Aqui mais texto Aqui mais texto Aqui mais texto Aqui mais texto Aqui mais texto Aqui mais texto
+Aqui mais texto, Aqui mais texto Aqui mais texto Aqui mais texto Aqui mais texto Aqui mais texto Aqui mais texto
+Aqui mais texto, Aqui mais texto Aqui mais texto Aqui mais texto Aqui mais texto Aqui mais texto Aqui mais texto
+Aqui mais texto, Aqui mais texto Aqui mais texto Aqui mais texto Aqui mais texto Aqui mais texto Aqui mais texto
+Aqui mais texto, Aqui mais texto Aqui mais texto Aqui mais texto Aqui mais texto Aqui mais texto Aqui mais texto
+Aqui mais texto, Aqui mais texto Aqui mais texto Aqui mais texto Aqui mais texto Aqui mais texto Aqui mais texto
 ⌕
 Entender o contexto
-Regras de negócio, integrações, riscos e critérios de aceite tornam o problema concreto.
-Requisitos e lacunas no mobile →
+Regras de negócio, integrações, riscos e critérios de aceite definem o contexto.
+Requisitos no mobile →
 &lt;/&gt;
 Construir e testar
-Implementação e testes avançam juntos, em mudanças pequenas e revisáveis.
-Regras e testes no cadastro →
+Implementação e testes em mudanças pequenas e revisáveis.
+Regras no cadastro →
 [✓]
 Revisar e evidenciar
-Código, verificações e documentação apoiam a revisão e a decisão de entrega.
-Contratos e documentação no backend →
+Código, verificações e documentação apoiam a entrega.
+Contratos no backend →
 ↻
 Acompanhar e evoluir
-Feedback e comportamento observado ajudam a ajustar o próximo incremento.
-Evolução dos cenários em Unity →
+Feedback e comportamento observado orientam o próximo incremento.
+Cenários em Unity →
 ↻
 Um ciclo de colaboração e melhoria contínua.
 Voltar ao contexto ↑
@@ -140,7 +156,7 @@ Conhecimento que vira repositório.
 Todos os repositórios ↗
 [↻]
 COMUNICAÇÃO ASSÍNCRONA
-LadyDebug Bot Planner
+Ladydebug Bot Planner
 Bot para Discord que registra notas, tarefas, links e PRs e compila um relatório ao encerrar o dia. Núcleo em ports &amp; adapters, com SQLite e testes em pytest. Slack é uma evolução prevista.
 Python
 Discord · SQLite · pytest
@@ -154,7 +170,7 @@ QA
 Ver repositório ↗
 ~/
 STUDY IN PROGRESS
-LadyDebug Wiki Projects
+Ladydebug Wiki Projects
 Estudo em desenvolvimento para organizar documentação com IA, regras de negócio, Markdown e wiki.
 Markdown
 AI · Wiki
@@ -177,12 +193,12 @@ readme.txt / sobre mim
 Uma trajetória entre
 código, testes
 e documentação.
-Sou Kellen Xavier, também conhecida como LadyDebug. Minha trajetória passou por suporte, frontend e qualidade de software. Hoje reúno essas experiências em desenvolvimento, automação e documentação técnica.
+Sou Kellen Xavier, criei este projeto chamado de Ladydebug. Minha trajetória passou por suporte, frontend e qualidade de software. Hoje reúno essas experiências em trabalhos de programação, automações e documentação técnica. Sou pós-graduada em engenharia de software e qualidade.
 Neste portfólio, apresento o trabalho pelo que é possível observar: mudanças implementadas, cenários escritos, decisões registradas e resultados acompanhados dos seus limites.
 Análise e Desenvolvimento de Sistemas · UNINTER
 Pós-graduação em Engenharia de Software · Unisinos
 O estudo continua.
-Outras anotações, referências e experiências estão no blog LadyDebug.
+Outras anotações, referências e experiências estão no blog Ladydebug.
 Ler o blog ↗
 ladydebug
 © 2026 Kellen Xavier

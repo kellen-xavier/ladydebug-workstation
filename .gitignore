@@ -8,6 +8,8 @@ dist
 *.log
 .cache
 *.tsbuildinfo
+test-results/
+playwright-report/
 
 # env
 .env

@@ -13,7 +13,7 @@ export const topics = [
 
 export const site = {
   brand: "ladydebug",
-  browserTitle: "LadyDebug Workstation",
+  browserTitle: "Ladydebug Workstation",
   skipLink: "Ir para o conteúdo",
   navigationLabel: "Navegação principal",
   navigation: [
@@ -64,7 +64,7 @@ export const site = {
   },
   closing: {
     title: "O estudo continua.",
-    description: "Outras anotações, referências e experiências estão no blog LadyDebug.",
+    description: "Outras anotações, referências e experiências estão no blog Ladydebug.",
     linkLabel: "Ler o blog ↗",
   },
   footer: {

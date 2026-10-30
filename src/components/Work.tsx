@@ -20,6 +20,7 @@ export function Work() {
               {work.content}
             </MarkdownContent>
             <span className="case-label">{work.stack}</span>
+            <span className="case-excerpt">{work.summary}</span>
           </summary>
           <div className="case-body">
             <MarkdownContent

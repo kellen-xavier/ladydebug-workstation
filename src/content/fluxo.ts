@@ -1,3 +1,5 @@
+import introduction from "./fluxo.md" with { type: "text" };
+
 export type WorkflowStep = {
   id: string;
   icon: string;
@@ -11,41 +13,40 @@ export const workflow = {
   eyebrow: "03 / COMO TRABALHO",
   title: "Entender. Construir.",
   titleEmphasis: "Aprender. Evoluir.",
-  intro:
-    "Qualidade faz parte do desenvolvimento: os testes acompanham a implementação, e o que aprendemos orienta a próxima entrega.",
+  intro: introduction,
   steps: [
     {
       id: "mobile",
       icon: "⌕",
       title: "Entender o contexto",
       description:
-        "Regras de negócio, integrações, riscos e critérios de aceite tornam o problema concreto.",
+        "Regras de negócio, integrações, riscos e critérios de aceite definem o contexto.",
       href: "#mobile",
-      linkLabel: "Requisitos e lacunas no mobile →",
+      linkLabel: "Requisitos no mobile →",
     },
     {
       id: "cadastro",
       icon: "</>",
       title: "Construir e testar",
-      description: "Implementação e testes avançam juntos, em mudanças pequenas e revisáveis.",
+      description: "Implementação e testes em mudanças pequenas e revisáveis.",
       href: "#cadastro",
-      linkLabel: "Regras e testes no cadastro →",
+      linkLabel: "Regras no cadastro →",
     },
     {
       id: "backend",
       icon: "[✓]",
       title: "Revisar e evidenciar",
-      description: "Código, verificações e documentação apoiam a revisão e a decisão de entrega.",
+      description: "Código, verificações e documentação apoiam a entrega.",
       href: "#backend",
-      linkLabel: "Contratos e documentação no backend →",
+      linkLabel: "Contratos no backend →",
     },
     {
       id: "unity",
       icon: "↻",
       title: "Acompanhar e evoluir",
-      description: "Feedback e comportamento observado ajudam a ajustar o próximo incremento.",
+      description: "Feedback e comportamento observado orientam o próximo incremento.",
       href: "#unity",
-      linkLabel: "Evolução dos cenários em Unity →",
+      linkLabel: "Cenários em Unity →",
     },
   ],
   cycle: {

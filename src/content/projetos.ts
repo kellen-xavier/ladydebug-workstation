@@ -15,7 +15,7 @@ export type Project = {
 
 export const projects: Project[] = [
   {
-    title: "LadyDebug Bot Planner",
+    title: "Ladydebug Bot Planner",
     icon: "[↻]",
     badge: "COMUNICAÇÃO ASSÍNCRONA",
     description:
@@ -33,7 +33,7 @@ export const projects: Project[] = [
     url: "https://github.com/kellen-xavier/qa-readme",
   },
   {
-    title: "LadyDebug Wiki Projects",
+    title: "Ladydebug Wiki Projects",
     icon: "~/",
     badge: "STUDY IN PROGRESS",
     description:

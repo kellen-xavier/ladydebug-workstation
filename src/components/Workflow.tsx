@@ -1,4 +1,5 @@
 import { workflow } from "../content/fluxo";
+import { MarkdownContent } from "./MarkdownContent";
 
 export function Workflow() {
   return (
@@ -12,7 +13,9 @@ export function Workflow() {
             <em>{workflow.titleEmphasis}</em>
           </h2>
         </div>
-        <p className="flow-intro">{workflow.intro}</p>
+        <div className="flow-intro">
+          <MarkdownContent>{workflow.intro}</MarkdownContent>
+        </div>
       </div>
       <ol className="workflow">
         {workflow.steps.map((step) => (

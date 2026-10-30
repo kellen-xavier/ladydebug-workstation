@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "test": "bun test",
+    "test:browser": "playwright test",
     "dev": "bun --port=3000 ./src/index.html",
     "build": "rm -rf dist && bun build ./src/index.html --outdir=dist --production --public-path=./ && cp src/assets/fonts/OFL.txt dist/",
     "preview": "bun run build && bun scripts/preview.ts",
@@ -19,6 +20,7 @@
   },
   "devDependencies": {
     "@biomejs/biome": "2.5.14",
+    "@playwright/test": "^1.64.1",
     "@types/bun": "latest",
     "@types/mdast": "^4.0.4",
     "@types/react": "^19",

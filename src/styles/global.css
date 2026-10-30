@@ -120,6 +120,10 @@ nav {
 
 nav a,
 .button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
     border: 2px solid var(--ink);
     border-top-color: white;
     border-left-color: white;
@@ -178,8 +182,20 @@ main {
     margin: 0;
     color: var(--muted);
     font-size: 16px;
-    line-height: 1.8;
+    line-height: 1.65;
     max-width: 550px;
+}
+
+.intro + .intro {
+    margin-top: 12px;
+}
+
+:where(.text-link, .repo-link, .flow-ref, footer a, .cycle a) {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    min-width: 44px;
+    padding-block: 8px;
 }
 
 .intro strong {
@@ -530,11 +546,14 @@ footer .brand {
     }
 
     header {
-        gap: 14px;
-        padding: 15px 12px;
+        gap: 10px;
+        padding: 12px;
     }
 
     nav {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        width: 100%;
         gap: 7px;
     }
 
@@ -693,6 +712,18 @@ footer .brand {
     color: var(--link);
     padding-left: 19px;
 }
+
+.case-excerpt {
+    display: block;
+    max-width: 72ch;
+    margin: 8px 0 0 19px;
+    color: var(--muted);
+    font:
+        15px / 1.6 Tahoma,
+        Verdana,
+        Arial,
+        sans-serif;
+}
 .workflow {
     counter-reset: steps;
     display: grid;
@@ -783,16 +814,27 @@ footer .brand {
 }
 
 #fluxo .section-head {
+    flex-direction: column;
     align-items: center;
+    gap: 24px;
+    text-align: center;
 }
 #fluxo h2 em {
     font-style: normal;
     color: var(--link);
 }
 .flow-intro {
-    max-width: 400px;
+    width: 100%;
+    max-width: 72ch;
     font-size: 15px;
     color: var(--muted);
+    overflow-wrap: anywhere;
+}
+.flow-intro p {
+    margin: 0 0 12px;
+}
+.flow-intro > :last-child {
+    margin-bottom: 0;
 }
 .workflow {
     grid-template-columns: repeat(4, 1fr);
@@ -801,6 +843,7 @@ footer .brand {
 .workflow li {
     display: flex;
     flex-direction: column;
+    text-align: center;
     position: relative;
     border: 2px solid #8a7f6d;
     box-shadow: 3px 3px 0 var(--border);
@@ -837,6 +880,7 @@ footer .brand {
     margin-bottom: 18px;
 }
 .flow-ref {
+    justify-content: center;
     font-size: 12px;
     margin-top: auto;
     border-top: 1px dotted #ab967d;
@@ -844,8 +888,10 @@ footer .brand {
 }
 .cycle {
     display: flex;
+    flex-direction: column;
     align-items: center;
-    gap: 14px;
+    gap: 6px;
+    text-align: center;
     border: 3px double #a89178;
     background: var(--soft);
     padding: 15px;
@@ -856,7 +902,7 @@ footer .brand {
     color: var(--link);
 }
 .cycle a {
-    margin-left: auto;
+    margin-left: 0;
     font-size: 14px;
 }
 
@@ -869,8 +915,35 @@ footer .brand {
     }
 }
 @media (max-width: 560px) {
+    #fluxo h2 {
+        font-size: 24px;
+    }
     .workflow {
         grid-template-columns: 1fr;
+        gap: 14px;
+    }
+    .workflow li {
+        gap: 8px;
+        padding: 12px;
+    }
+    .workflow h3 {
+        margin: 0;
+        font-size: 18px;
+    }
+    .workflow h3:before {
+        display: inline;
+        margin: 0 6px 0 0;
+    }
+    .workflow p,
+    .workflow .flow-ref {
+        margin: 0;
+        font-size: 15px;
+    }
+    .workflow .step-icon {
+        display: none;
+    }
+    .case-label {
+        font-size: 13px;
     }
     .workflow li:not(:last-child):after {
         content: "↓";
@@ -880,14 +953,13 @@ footer .brand {
         display: block;
     }
     .cycle {
-        align-items: flex-start;
-        flex-wrap: wrap;
+        align-items: center;
     }
     .cycle strong {
         flex: 1;
     }
     .cycle a {
-        margin-left: 40px;
+        margin-left: 0;
     }
     .flow-intro {
         margin: 0;
