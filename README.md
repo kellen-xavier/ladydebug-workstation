@@ -137,7 +137,17 @@ Os testes cobrem as âncoras existentes, os relatos e suas referências, a forma
 
 ## Publicação
 
-`bun run build` gera em `dist/` as páginas `index.html` e `workflow.html`, com arquivos estáticos e caminhos relativos. Publique todo o diretório para que o acesso direto à página de workflow funcione sem redirecionamentos de SPA. Os arquivos podem ser hospedados no GitHub Pages, Netlify ou outra hospedagem estática. Nenhuma integração de publicação automática está configurada neste repositório.
+`bun run build` gera em `dist/` as páginas `index.html` e `workflow.html`, com arquivos estáticos e caminhos relativos. Publique todo o diretório para que o acesso direto à página de workflow funcione sem redirecionamentos de SPA. Os arquivos podem ser hospedados no GitHub Pages, Netlify ou outra hospedagem estática.
+
+### GitHub Pages
+
+O workflow `.github/workflows/pages.yml` valida pull requests destinados à `main`. Ele instala as dependências com o lockfile, executa lint, TypeScript, testes Bun e testes de navegador sobre o build de produção em quatro larguras.
+
+Após um push na `main`, os mesmos testes são executados e o diretório `dist/` validado é publicado no ambiente `github-pages`. A publicação também pode ser iniciada manualmente na aba Actions, selecionando a `main`. Pull requests e outras branches não publicam o site.
+
+A pipeline usa Bun 1.3.14 e Node 24 para o Playwright, com as actions fixadas por commit. As permissões de publicação ficam restritas ao job de deploy. O Pages deve usar **Settings → Pages → Source → GitHub Actions**.
+
+Endereço de publicação: [kellen-xavier.github.io/ladydebug-workstation](https://kellen-xavier.github.io/ladydebug-workstation/).
 
 ## Créditos
 
