@@ -1,19 +1,25 @@
-import { Brand } from "./Brand";
+import { site } from "../content/site";
+import { ExternalLink } from "./ExternalLink";
 
-const badges = [
-  ["HANDCODED", "WITH CARE"],
-  ["PIXELS &", "PULL REQUESTS"],
-  ["KEEP THE", "WEB PERSONAL"],
-];
-
-export function Footer() {
+export function Footer({ homeHref = "" }: { homeHref?: string }) {
   return (
     <footer>
-      <Brand />
-      <span className="copyright">© {new Date().getFullYear()} Kellen Xavier</span>
-      <span>Built with intent. Shared with curiosity.</span>
-      <ul className="web-badges" aria-label="Interests">
-        {badges.map(([first, second]) => (
+      <a className="brand" href={`${homeHref}#main`}>
+        {site.brand}
+      </a>
+      <span>
+        © {new Date().getFullYear()} {site.footer.author}
+      </span>
+      <span>
+        {site.footer.socialLinks.map((link, index) => (
+          <span key={link.href}>
+            {index > 0 && " · "}
+            <ExternalLink href={link.href}>{link.label}</ExternalLink>
+          </span>
+        ))}
+      </span>
+      <ul className="web-badges" aria-label={site.footer.badgesLabel}>
+        {site.footer.badges.map(([first, second]) => (
           <li key={first}>
             {first}
             <br />

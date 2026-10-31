@@ -1,19 +1,18 @@
-import { links } from "../data/site";
-import { Brand } from "./Brand";
-import { ExternalLink } from "./ExternalLink";
-
-export function Header() {
+export function Header({ homeHref = "" }: { homeHref?: string }) {
   return (
     <header>
-      <Brand label="LadyDebug home" />
-      <nav aria-label="Main navigation">
-        <a href="#projects">Projects</a>
-        <a href="#about">About</a>
-        <ExternalLink className="nav-git" href={links.github}>
-          GitHub ↗
-        </ExternalLink>
-        <ExternalLink href={links.blog}>My blog ↗</ExternalLink>
+      <a className="brand" href={`${homeHref}#main`}>
+        {site.brand}
+      </a>
+      <nav aria-label={site.navigationLabel}>
+        {site.navigation.map((item) => (
+          <a key={item.href} href={`${homeHref}${item.href}`}>
+            {item.label}
+          </a>
+        ))}
       </nav>
     </header>
   );
 }
+
+import { site } from "../content/site";

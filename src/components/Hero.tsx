@@ -1,40 +1,38 @@
 import pixelDesk from "../assets/pixel-desk.png";
-import { links } from "../data/site";
+import presentation from "../content/apresentacao.md" with { type: "text" };
+import { site } from "../content/site";
 import { ExternalLink } from "./ExternalLink";
+import { MarkdownContent } from "./MarkdownContent";
 
 export function Hero() {
   return (
-    <section className="hero" aria-labelledby="hero-title">
+    <section className="hero">
       <div>
-        <p className="eyebrow">★ Kellen Xavier — LadyDebug ★</p>
-        <h1 id="hero-title">
-          Welcome to my
-          <br />
-          <em>little web corner.</em>
-        </h1>
-        <p className="intro">
-          <strong>Software &amp; Quality Engineering.</strong>
-          <br />
-          I'm Kellen, also known as <strong>LadyDebug</strong>. I connect software development, test
-          automation, and documentation — and share what I learn along the way.
-        </p>
+        <p className="eyebrow">{site.hero.eyebrow}</p>
+        <MarkdownContent part="title">{presentation}</MarkdownContent>
+        <MarkdownContent
+          part="body"
+          components={{ p: ({ children }) => <p className="intro">{children}</p> }}
+        >
+          {presentation}
+        </MarkdownContent>
         <div className="actions">
-          <a className="button" href="#projects">
-            Explore my projects <span aria-hidden="true">↓</span>
-          </a>
-          <ExternalLink className="text-link" href={links.github}>
-            Find me on GitHub ↗
-          </ExternalLink>
+          {site.hero.actions.map((action) =>
+            action.href.startsWith("#") ? (
+              <a key={action.href} className="button" href={action.href}>
+                {action.label}
+              </a>
+            ) : (
+              <ExternalLink key={action.href} className="text-link" href={action.href}>
+                {action.label}
+              </ExternalLink>
+            ),
+          )}
         </div>
       </div>
       <figure className="pixel-scene">
-        <img
-          src={pixelDesk}
-          alt="Pixel art of a retro computer desk with a pink mug and floppy disk"
-          width={1536}
-          height={1024}
-        />
-        <figcaption>code · test · document · repeat</figcaption>
+        <img src={pixelDesk} width="1536" height="1024" alt={site.hero.imageAlt} />
+        <figcaption>{site.hero.imageCaption}</figcaption>
       </figure>
     </section>
   );

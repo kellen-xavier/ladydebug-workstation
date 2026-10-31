@@ -102,6 +102,7 @@ header {
 }
 
 .brand {
+    white-space: nowrap;
     font: 32px var(--pixel);
     color: var(--ink);
     text-decoration: none;
@@ -119,6 +120,10 @@ nav {
 
 nav a,
 .button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
     border: 2px solid var(--ink);
     border-top-color: white;
     border-left-color: white;
@@ -177,8 +182,20 @@ main {
     margin: 0;
     color: var(--muted);
     font-size: 16px;
-    line-height: 1.8;
+    line-height: 1.65;
     max-width: 550px;
+}
+
+.intro + .intro {
+    margin-top: 12px;
+}
+
+:where(.text-link, .repo-link, .flow-ref, footer a, .cycle a) {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    min-width: 44px;
+    padding-block: 8px;
 }
 
 .intro strong {
@@ -235,6 +252,13 @@ main {
     padding: 8px 3px 2px;
     font: 16px var(--pixel);
     color: var(--link);
+}
+
+.markdown-image {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin: 20px auto;
 }
 
 .topics,
@@ -368,7 +392,7 @@ h2 {
     border: 3px double #a89178;
     background: var(--soft);
     padding: 22px;
-    margin: 5px 0 26px;
+    margin: 28px 0 0;
 }
 
 .about h2 {
@@ -529,11 +553,14 @@ footer .brand {
     }
 
     header {
-        gap: 14px;
-        padding: 15px 12px;
+        gap: 10px;
+        padding: 12px;
     }
 
     nav {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        width: 100%;
         gap: 7px;
     }
 
@@ -625,4 +652,400 @@ footer .brand {
     html {
         scroll-behavior: auto;
     }
+}
+
+.practice {
+    padding: 32px 0;
+    border-bottom: 3px double #a89178;
+}
+.section-copy {
+    color: var(--muted);
+    max-width: 760px;
+}
+.case {
+    border: 2px solid #8a7f6d;
+    box-shadow: 3px 3px 0 var(--border);
+    margin: 20px 0;
+    background: var(--bg);
+}
+.case summary {
+    cursor: pointer;
+    padding: 18px;
+    list-style-position: inside;
+    font: 24px / 1.4 var(--pixel);
+    background: var(--soft);
+}
+.case summary:hover {
+    background: #efc7dd;
+}
+.case summary:focus-visible {
+    outline: 3px dashed var(--link);
+    outline-offset: 3px;
+}
+.case .case-body {
+    padding: 20px;
+}
+.case h3 {
+    font: 23px var(--pixel);
+    margin: 0 0 12px;
+}
+.case p,
+.case li {
+    font-size: 15px;
+    color: var(--muted);
+}
+.case ul {
+    padding-left: 22px;
+}
+.case :where(h3) + p {
+    padding: 13px;
+    background: var(--soft);
+    border-left: 3px solid var(--link);
+    font-size: 13px;
+    overflow-wrap: anywhere;
+}
+.trace code {
+    color: var(--ink);
+}
+.case .case-limit {
+    font-size: 13px;
+    border-top: 1px dashed #b7a68c;
+    padding-top: 14px;
+    margin: 1em 0;
+}
+.case-label {
+    display: block;
+    font: 12px / 1.7 monospace;
+    color: var(--link);
+    padding-left: 19px;
+}
+
+.case-excerpt {
+    display: block;
+    max-width: 72ch;
+    margin: 8px 0 0 19px;
+    color: var(--muted);
+    font:
+        15px / 1.6 Tahoma,
+        Verdana,
+        Arial,
+        sans-serif;
+}
+.workflow {
+    counter-reset: steps;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+    padding: 0;
+    list-style: none;
+}
+.workflow li {
+    padding: 18px;
+    border: 1px dashed #a89178;
+    background: var(--soft);
+}
+.workflow h3 {
+    font: 23px var(--pixel);
+    margin: 0 0 10px;
+}
+.workflow p {
+    font-size: 14px;
+    color: var(--muted);
+    margin: 0;
+}
+.workflow h3:before {
+    counter-increment: steps;
+    content: "0" counter(steps) " / ";
+    color: var(--link);
+}
+.method {
+    font-size: 13px;
+    color: var(--muted);
+    padding: 16px;
+    border: 1px dashed #a89178;
+}
+.evidence-heading {
+    font: 18px var(--pixel);
+    color: var(--link);
+}
+.card.featured {
+    grid-column: 1 / -1;
+    background: #f5ecde;
+}
+.card.featured .card-top {
+    background: #efc7dd;
+}
+.meta,
+.provenance p:has(code) {
+    font: 12px monospace;
+    color: var(--muted);
+    overflow-wrap: anywhere;
+}
+.report-page {
+    padding: 28px;
+    max-width: 900px;
+    margin: auto;
+}
+.report-page h1 {
+    font: 36px var(--pixel);
+}
+.report-page h2 {
+    font-size: 26px;
+    margin-top: 30px;
+}
+.report-page p {
+    overflow-wrap: anywhere;
+}
+.report-page code {
+    font-size: 12px;
+}
+.report-page footer {
+    margin-top: 30px;
+}
+@media (max-width: 560px) {
+    .workflow {
+        grid-template-columns: 1fr;
+    }
+    .case summary {
+        font-size: 22px;
+    }
+    .case .case-body {
+        padding: 15px;
+    }
+    .card.featured {
+        grid-column: auto;
+    }
+    .report-page {
+        padding: 20px 12px;
+    }
+}
+
+#fluxo .section-head {
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    text-align: center;
+}
+#fluxo h2 em {
+    font-style: normal;
+    color: var(--link);
+}
+.flow-intro {
+    width: 100%;
+    max-width: 60ch;
+    font:
+        18px / 1.6 Tahoma,
+        Verdana,
+        Arial,
+        sans-serif;
+    color: var(--muted);
+    overflow-wrap: anywhere;
+}
+.flow-intro p {
+    margin: 0 0 12px;
+}
+.flow-intro > :last-child {
+    margin-bottom: 0;
+}
+
+.workflow-page {
+    max-width: 76ch;
+    margin-inline: auto;
+    padding: 32px 0 40px;
+    overflow-wrap: anywhere;
+}
+.workflow-page-nav {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 28px;
+}
+.workflow-page h1 {
+    margin: 0 0 28px;
+    text-align: center;
+    font: clamp(28px, 4vw, 40px) / 1.2 var(--pixel);
+}
+.workflow-page h2 {
+    margin: 32px 0 16px;
+    font-size: 28px;
+}
+.workflow-page p {
+    margin: 0 0 18px;
+    line-height: 1.8;
+}
+.workflow-page ul {
+    padding-left: 24px;
+}
+.workflow-page li {
+    margin-bottom: 12px;
+}
+.workflow-page .contains-task-list {
+    padding: 0;
+    list-style: none;
+}
+.workflow-page input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    margin-right: 8px;
+    vertical-align: middle;
+}
+.workflow-page blockquote {
+    margin: 24px 0;
+    padding: 16px;
+    border-left: 3px solid var(--link);
+    background: var(--soft);
+}
+.workflow-page blockquote > :last-child {
+    margin-bottom: 0;
+}
+
+.workflow {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+}
+.workflow li {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    position: relative;
+    border: 2px solid #8a7f6d;
+    box-shadow: 3px 3px 0 var(--border);
+    padding: 16px;
+    background: var(--bg);
+}
+.workflow li:not(:last-child):after {
+    content: "→";
+    position: absolute;
+    right: -16px;
+    top: 27px;
+    z-index: 1;
+    background: var(--bg);
+    color: var(--link);
+    font: 24px var(--pixel);
+}
+.step-icon {
+    font: 26px var(--pixel);
+    color: var(--link);
+    display: block;
+    margin-bottom: 18px;
+}
+.workflow h3 {
+    font-size: 22px;
+    line-height: 1.25;
+}
+.workflow h3:before {
+    display: block;
+    font: 13px monospace;
+    margin-bottom: 9px;
+}
+.workflow p {
+    font-size: 14px;
+    margin-bottom: 18px;
+}
+.flow-ref {
+    justify-content: center;
+    font-size: 12px;
+    margin-top: auto;
+    border-top: 1px dotted #ab967d;
+    padding-top: 12px;
+}
+.cycle {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    text-align: center;
+    border: 3px double #a89178;
+    background: var(--soft);
+    padding: 15px;
+    font: 15px var(--pixel);
+}
+.cycle > span {
+    font-size: 29px;
+    color: var(--link);
+}
+.cycle a {
+    margin-left: 0;
+    font-size: 14px;
+}
+
+@media (max-width: 900px) {
+    .workflow {
+        grid-template-columns: 1fr 1fr;
+    }
+    .workflow li:nth-child(2):after {
+        display: none;
+    }
+}
+@media (max-width: 560px) {
+    #fluxo h2 {
+        font-size: 24px;
+    }
+    .workflow {
+        grid-template-columns: 1fr;
+        gap: 14px;
+    }
+    .workflow li {
+        gap: 8px;
+        padding: 12px;
+    }
+    .workflow h3 {
+        margin: 0;
+        font-size: 18px;
+    }
+    .workflow h3:before {
+        display: inline;
+        margin: 0 6px 0 0;
+    }
+    .workflow p,
+    .workflow .flow-ref {
+        margin: 0;
+        font-size: 15px;
+    }
+    .workflow .step-icon {
+        display: none;
+    }
+    .case-label {
+        font-size: 13px;
+    }
+    .workflow li:not(:last-child):after {
+        content: "↓";
+        right: 20px;
+        top: auto;
+        bottom: -20px;
+        display: block;
+    }
+    .cycle {
+        align-items: center;
+    }
+    .cycle strong {
+        flex: 1;
+    }
+    .cycle a {
+        margin-left: 0;
+    }
+    .flow-intro {
+        margin: 0;
+    }
+}
+
+.provenance {
+    margin-top: 18px;
+    border-top: 1px dashed var(--border);
+    padding-top: 12px;
+}
+.provenance summary {
+    font: 16px var(--pixel);
+    padding: 8px;
+    background: var(--soft);
+}
+
+.about-text .education p {
+    margin: 0;
+    color: inherit;
+    font: inherit;
+}
+
+.case .case-limit p {
+    font-size: inherit;
+    margin: 0;
 }
