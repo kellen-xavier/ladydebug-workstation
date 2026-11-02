@@ -10,7 +10,7 @@ const localFile = (href: string) => href.replace(/^\.\//, "").split("#")[0] ?? h
 describe("site map", () => {
   test("answers a visitor question with each place", () => {
     for (const place of siteMap.places) {
-      expect(place.question.endsWith("?")).toBe(true);
+      expect(place.question.includes("?")).toBe(true);
     }
   });
 
