@@ -1,13 +1,16 @@
 import introduction from "./fluxo.md" with { type: "text" };
+import { pageHref } from "./site";
 
 export type WorkflowStep = {
   id: string;
   icon: string;
   title: string;
   description: string;
-  href: `#${string}`;
+  href: string;
   linkLabel: string;
 };
+
+const caseHref = (id: string) => `${pageHref.pratica}#${id}`;
 
 export const workflow = {
   eyebrow: "03 / COMO TRABALHO",
@@ -15,10 +18,8 @@ export const workflow = {
   titleEmphasis: "Aprender. Evoluir.",
   intro: introduction,
   details: {
-    href: "./workflow.html",
+    href: pageHref.workflow,
     label: "Conhecer meu Workflow",
-    backHref: "./index.html#fluxo",
-    backLabel: "Voltar ao portfólio",
   },
   steps: [
     {
@@ -27,7 +28,7 @@ export const workflow = {
       title: "Entender o contexto",
       description:
         "Regras de negócio, integrações, riscos e critérios de aceite definem o contexto.",
-      href: "#mobile",
+      href: caseHref("mobile"),
       linkLabel: "Requisitos no mobile →",
     },
     {
@@ -35,7 +36,7 @@ export const workflow = {
       icon: "</>",
       title: "Construir e testar",
       description: "Implementação e testes em mudanças pequenas e revisáveis.",
-      href: "#cadastro",
+      href: caseHref("cadastro"),
       linkLabel: "Regras no cadastro →",
     },
     {
@@ -43,7 +44,7 @@ export const workflow = {
       icon: "[✓]",
       title: "Revisar e evidenciar",
       description: "Código, verificações e documentação apoiam a entrega.",
-      href: "#backend",
+      href: caseHref("backend"),
       linkLabel: "Contratos no backend →",
     },
     {
@@ -51,22 +52,14 @@ export const workflow = {
       icon: "↻",
       title: "Acompanhar e evoluir",
       description: "Feedback e comportamento observado orientam o próximo incremento.",
-      href: "#unity",
+      href: caseHref("unity"),
       linkLabel: "Cenários em Unity →",
     },
-  ],
+  ] satisfies WorkflowStep[],
   cycle: {
     icon: "↻",
     description: "Um ciclo de colaboração e melhoria contínua.",
     href: "#fluxo",
     linkLabel: "Voltar ao contexto ↑",
   },
-} satisfies {
-  eyebrow: string;
-  title: string;
-  titleEmphasis: string;
-  intro: string;
-  details: { href: string; label: string; backHref: string; backLabel: string };
-  steps: WorkflowStep[];
-  cycle: { icon: string; description: string; href: `#${string}`; linkLabel: string };
 };

@@ -1,7 +1,6 @@
 import pixelDesk from "../assets/pixel-desk.png";
 import presentation from "../content/apresentacao.md" with { type: "text" };
 import { site } from "../content/site";
-import { ExternalLink } from "./ExternalLink";
 import { MarkdownContent } from "./MarkdownContent";
 
 export function Hero() {
@@ -17,17 +16,9 @@ export function Hero() {
           {presentation}
         </MarkdownContent>
         <div className="actions">
-          {site.hero.actions.map((action) =>
-            action.href.startsWith("#") ? (
-              <a key={action.href} className="button" href={action.href}>
-                {action.label}
-              </a>
-            ) : (
-              <ExternalLink key={action.href} className="text-link" href={action.href}>
-                {action.label}
-              </ExternalLink>
-            ),
-          )}
+          <a className="button" href={site.hero.action.href}>
+            {site.hero.action.label}
+          </a>
         </div>
       </div>
       <figure className="pixel-scene">

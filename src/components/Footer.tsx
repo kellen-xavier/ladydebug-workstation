@@ -1,32 +1,15 @@
-import { site } from "../content/site";
-import { ExternalLink } from "./ExternalLink";
+import { pageHref, site } from "../content/site";
 
-export function Footer({ homeHref = "" }: { homeHref?: string }) {
+export function Footer() {
   return (
     <footer>
-      <a className="brand" href={`${homeHref}#main`}>
+      <a className="brand" href={`${pageHref.home}#main`}>
         {site.brand}
       </a>
-      <span>
+      <span className="footer-note">
         © {new Date().getFullYear()} {site.footer.author}
+        {site.footer.taglines.map((tagline) => ` · ${tagline}`).join("")}
       </span>
-      <span>
-        {site.footer.socialLinks.map((link, index) => (
-          <span key={link.href}>
-            {index > 0 && " · "}
-            <ExternalLink href={link.href}>{link.label}</ExternalLink>
-          </span>
-        ))}
-      </span>
-      <ul className="web-badges" aria-label={site.footer.badgesLabel}>
-        {site.footer.badges.map(([first, second]) => (
-          <li key={first}>
-            {first}
-            <br />
-            {second}
-          </li>
-        ))}
-      </ul>
     </footer>
   );
 }

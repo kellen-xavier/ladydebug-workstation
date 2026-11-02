@@ -3,10 +3,15 @@ import { renderToStaticMarkup } from "react-dom/server";
 import { Workflow } from "../src/components/Workflow";
 import { WorkflowPage } from "../src/components/WorkflowPage";
 
-describe("workflow details page", () => {
-  test("links to the internal workflow page from the portfolio", () => {
+describe("workflow page", () => {
+  test("links to the workflow page from the home summary", () => {
     const html = renderToStaticMarkup(<Workflow />);
     expect(html).toContain('href="./workflow.html">Conhecer meu Workflow</a>');
+  });
+
+  test("does not link the workflow page to itself", () => {
+    const html = renderToStaticMarkup(<WorkflowPage />);
+    expect(html).not.toContain(">Conhecer meu Workflow</a>");
   });
 
   test("renders the full Markdown narrative with a single page heading", () => {
@@ -18,11 +23,14 @@ describe("workflow details page", () => {
     expect(html).toContain("o repositório deve guardar evidência do aprendizado.");
   });
 
-  test("routes header, footer, and return links back to the portfolio", () => {
+  test("shows how I work and my projects", () => {
     const html = renderToStaticMarkup(<WorkflowPage />);
-    expect(html).toContain('href="./index.html#fluxo"');
-    expect(html).toContain('href="./index.html#pratica"');
-    expect(html).toContain('href="./index.html#projetos"');
+    expect(html).toContain("Entender o contexto");
+    expect(html).toContain('id="projetos"');
+  });
+
+  test("routes header and footer back to the home page", () => {
+    const html = renderToStaticMarkup(<WorkflowPage />);
     expect(html).toContain('href="./index.html#sobre"');
     expect(html.match(/href="\.\/index\.html#main"/g)).toHaveLength(2);
     expect(html).toContain('class="skip" href="#main"');

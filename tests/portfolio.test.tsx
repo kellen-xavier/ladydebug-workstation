@@ -2,21 +2,23 @@ import { describe, expect, test } from "bun:test";
 import { renderToStaticMarkup } from "react-dom/server";
 import { App } from "../src/App";
 import { Brand } from "../src/components/Brand";
+import { PracticePage } from "../src/components/PracticePage";
+import { Workflow } from "../src/components/Workflow";
 import { projects } from "../src/data/site";
 
 const markup = () => renderToStaticMarkup(<App />);
 
 describe("work portfolio", () => {
-  test("allows navigation to contributions, workflow, and projects via existing anchors", () => {
+  test("keeps the home anchors used by the navigation", () => {
     const html = markup();
-    for (const id of ["pratica", "fluxo", "projetos", "sobre"]) {
-      expect(html).toContain(`href="#${id}"`);
+    for (const id of ["sobre", "mapa"]) {
+      expect(html).toContain(`href="./index.html#${id}"`);
       expect(html).toContain(`id="${id}"`);
     }
   });
 
   test("presents four case studies with documentary sources and evidence limitations", () => {
-    const html = markup();
+    const html = renderToStaticMarkup(<PracticePage />);
     for (const id of ["mobile", "backend", "cadastro", "unity"]) {
       const caseHtml = html.match(
         new RegExp(`<details[^>]+id="${id}"[^>]*>([\\s\\S]*?)</details>\\s*</div>\\s*</details>`),
@@ -28,8 +30,8 @@ describe("work portfolio", () => {
     }
   });
 
-  test("preserves the approved workflow with links to work examples", () => {
-    const html = markup();
+  test("preserves the approved workflow with links to the practice page", () => {
+    const html = renderToStaticMarkup(<Workflow />);
     for (const title of [
       "Entender o contexto",
       "Construir e testar",
@@ -40,7 +42,7 @@ describe("work portfolio", () => {
     }
     expect(html).toContain("os testes acompanham a implementação");
     for (const id of ["mobile", "cadastro", "backend", "unity"]) {
-      expect(html).toContain(`href="#${id}"`);
+      expect(html).toContain(`href="./pratica.html#${id}"`);
     }
     expect(html).not.toMatch(/Vamos conversar|Fale comigo|Seu próximo projeto/);
   });

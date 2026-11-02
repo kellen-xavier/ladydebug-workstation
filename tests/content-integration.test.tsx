@@ -10,13 +10,13 @@ import { workCases } from "../src/content/trabalhos";
 describe("content-driven portfolio sections", () => {
   test("preserves the presentation heading, emphasis, and line break", () => {
     const html = renderToStaticMarkup(<Hero />);
-    expect(html).toMatch(/<h1>Meu trabalho,\s*<br\/>\s*<em>por dentro\.<\/em><\/h1>/);
+    expect(html).toMatch(/<h1>Oi, eu sou a\s*<br\/>\s*<em>Kellen\.<\/em><\/h1>/);
     expect(html.match(/class="intro"/g)).toHaveLength(1);
   });
 
   test("preserves the about title as a single heading", () => {
     const html = renderToStaticMarkup(<About />);
-    expect(html).toMatch(/<h2>Uma trajetória entre\s+código, testes\s+e documentação\.<\/h2>/);
+    expect(html).toMatch(/<h2>Quem sou eu\?<\/h2>/);
   });
 
   test("renders a newly registered Markdown work report without changing the layout", () => {

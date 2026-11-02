@@ -261,8 +261,7 @@ main {
     margin: 20px auto;
 }
 
-.topics,
-.web-badges {
+.topics {
     list-style: none;
     margin: 0;
     padding: 0;
@@ -463,29 +462,8 @@ footer .brand {
     font-size: 24px;
 }
 
-.web-badges {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    margin: 4px 0;
-}
-
-.web-badges li {
-    display: block;
-    border: 2px solid var(--ink);
-    box-shadow:
-        inset 1px 1px 0 white,
-        2px 2px 0 #ac9784;
-    padding: 3px 7px;
-    color: var(--ink);
-    background: #efc7dd;
-    font: 12px / 1.1 var(--pixel);
-    min-width: 98px;
-}
-
-.web-badges li:nth-child(2) {
-    background: var(--bg);
+.footer-note {
+    text-align: right;
 }
 
 @media (max-width: 780px) {
@@ -628,19 +606,9 @@ footer .brand {
         padding: 17px 8px;
     }
 
-    footer .copyright {
+    .footer-note {
         width: 100%;
-    }
-
-    .web-badges {
-        gap: 6px;
-    }
-
-    .web-badges li {
-        min-width: 0;
-        flex: 1;
-        font-size: 12px;
-        padding: 4px;
+        text-align: center;
     }
 
     .hero .eyebrow {

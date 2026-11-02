@@ -19,27 +19,51 @@ Estética de homepage dos anos 2000–2009, ilustração em pixel art e paleta d
 ```txt
 ladydebug-workstation/
 ├── src/
-│   ├── index.html          # HTML do portfólio (metatags, favicon, CSS, script)
+│   ├── pages.ts            # fonte única das entradas HTML (build, dev e testes)
+│   ├── index.html          # home do portfólio (metatags, favicon, CSS, script)
+│   ├── trajetoria.html     # página de trajetória profissional
+│   ├── pratica.html        # página "Na prática" (casos e evidências)
 │   ├── workflow.html       # página interna sobre o processo de trabalho
-│   ├── workflow-main.tsx  # entrada React da página de workflow
-│   ├── main.tsx            # monta o React em #root
-│   ├── App.tsx             # composição da página
-│   ├── components/         # uma seção por componente
-│   │   ├── Header.tsx
+│   ├── setup.html          # página de setup
+│   ├── ferramentas.html    # página de ferramentas
+│   ├── games.html          # página de games
+│   ├── main.tsx            # entrada React da home
+│   ├── trajetoria-main.tsx # entrada React da trajetória
+│   ├── pratica-main.tsx    # entrada React do "Na prática"
+│   ├── workflow-main.tsx   # entrada React do workflow
+│   ├── setup-main.tsx      # entrada React do setup
+│   ├── ferramentas-main.tsx # entrada React das ferramentas
+│   ├── games-main.tsx      # entrada React dos games
+│   ├── mount.tsx           # monta um componente de página em #root
+│   ├── App.tsx             # composição da home
+│   ├── components/         # uma seção/página por componente
+│   │   ├── Header.tsx       # navegação principal + links sociais
+│   │   ├── SocialLinks.tsx  # ícones GitHub, LinkedIn e Blog
 │   │   ├── Hero.tsx
-│   │   ├── Topics.tsx
+│   │   ├── About.tsx
+│   │   ├── SiteMap.tsx      # mapa do site na home
+│   │   ├── HowIWork.tsx     # resumo de workflow e setup na home
 │   │   ├── Projects.tsx
 │   │   ├── ProjectCard.tsx
-│   │   ├── About.tsx
+│   │   ├── CvDownload.tsx   # bloco de download do CV
 │   │   ├── Closing.tsx
 │   │   ├── Footer.tsx
 │   │   ├── Brand.tsx
 │   │   ├── ExternalLink.tsx
+│   │   ├── CopyButton.tsx   # botão de copiar (ferramentas)
+│   │   ├── CareerPage.tsx   # página de trajetória
+│   │   ├── PracticePage.tsx # página "Na prática"
+│   │   ├── SetupPage.tsx
+│   │   ├── ToolsPage.tsx
+│   │   ├── GamesPage.tsx
 │   │   ├── Work.tsx
 │   │   ├── Workflow.tsx
 │   │   ├── WorkflowPage.tsx # relato completo do processo
-│   │   ├── PageLayout.tsx  # cabeçalho e rodapé compartilhados
+│   │   ├── PageHead.tsx     # cabeçalho de página interna
+│   │   ├── PageLayout.tsx   # cabeçalho e rodapé compartilhados
 │   │   └── MarkdownContent.tsx # renderização compartilhada de Markdown
+│   ├── hooks/
+│   │   └── useHashReveal.ts # abre o caso/seção indicado pela âncora da URL
 │   ├── content/            # conteúdo editável, separado do layout
 │   │   ├── apresentacao.md
 │   │   ├── sobre.md
@@ -52,15 +76,24 @@ ladydebug-workstation/
 │   │   ├── fluxo.md        # breve apresentação do processo de trabalho
 │   │   ├── fluxo-completo.md # relato e critérios de conclusão dos estudos
 │   │   ├── fluxo.ts        # etapas e links do fluxo
+│   │   ├── mapa.ts         # itens do mapa do site
+│   │   ├── trajetoria.ts   # linha do tempo da trajetória
+│   │   ├── setup.ts        # painéis do setup
+│   │   ├── ferramentas.ts  # lista de ferramentas e comandos
+│   │   ├── games.ts        # lista de games e status
 │   │   ├── projetos.ts     # cartões dos projetos
 │   │   └── site.ts         # navegação, rótulos, links e textos auxiliares
 │   ├── data/site.ts        # reexportações para compatibilidade
-│   ├── styles/global.css   # todos os estilos
+│   ├── styles/
+│   │   ├── global.css      # estilos base e compartilhados
+│   │   └── pages.css        # estilos das novas páginas (carregado após global.css)
 │   └── assets/
 │       ├── pixel-desk.png
+│       ├── workflow.png
+│       ├── cv-kellen-xavier.pdf # CV baixável (adicione o arquivo; o build exige)
 │       └── fonts/          # pixelify.woff2 + OFL.txt
 ├── scripts/
-│   ├── dev.ts              # servidor de desenvolvimento das duas páginas
+│   ├── dev.ts              # servidor de desenvolvimento de todas as páginas
 │   ├── build.ts            # build estático com imagens referenciadas no Markdown
 │   ├── preview.ts          # servidor estático para testar o build
 │   └── markdown-text.ts    # leitura de Markdown como texto no desenvolvimento
@@ -99,6 +132,11 @@ bun run lint:fix   # corrige automaticamente o que for possível
 - **Página completa do workflow:** `src/content/fluxo-completo.md` — conteúdo acessível pelo botão “Conhecer meu Workflow”, em `workflow.html`. Aceita listas de tarefas com `- [ ]` e `- [x]`.
 - **Etapas do fluxo:** `src/content/fluxo.ts`. A ordem dos itens em `steps` define a ordem de exibição.
 - **Projetos:** `src/content/projetos.ts` — adicione um item em `projects` para criar um novo cartão.
+- **Mapa do site:** `src/content/mapa.ts`.
+- **Trajetória:** `src/content/trajetoria.ts` — linha do tempo da página Trajetória.
+- **Setup:** `src/content/setup.ts`.
+- **Ferramentas:** `src/content/ferramentas.ts` — lista e comandos de instalação (os exemplos de Git e k6 assumem Linux/Homebrew).
+- **Games:** `src/content/games.ts`.
 - **Navegação, rótulos, links, tópicos e textos auxiliares:** `src/content/site.ts`.
 - **Estrutura dos componentes:** `src/components/`.
 - **Cores e estilos:** `src/styles/global.css`.
@@ -133,11 +171,11 @@ Os testes cobrem as âncoras existentes, os relatos e suas referências, a forma
 
 `tests/fixtures/portfolio-text.txt` registra a redação revisada da página para detectar perdas acidentais. Ao alterar deliberadamente os textos, atualize também essa referência e as expectativas de conteúdo afetadas. Os nomes dos testes permanecem em inglês.
 
-`bun run test:browser` executa os testes Playwright em 1440, 768, 390 e 320 px de largura, usando um servidor próprio na porta 4174. Eles verificam o botão principal na primeira tela, os resumos visíveis dos relatos, a expansão por teclado, as referências, os destinos das âncoras, a ausência de rolagem horizontal e áreas de toque de pelo menos 44 × 44 px. Em celulares, também verificam a navegação em duas colunas e o fluxo compacto.
+`bun run test:browser` executa os testes Playwright em 1440, 768, 390 e 320 px de largura, usando um servidor próprio na porta 4174. Eles verificam a navegação entre todas as páginas e a marcação da página atual (`aria-current`), as âncoras da home, os links sociais externos, o botão principal na primeira tela e o download do CV, os relatos de "Na prática" (recolhidos, expansão por teclado, abertura por âncora da URL), a página de Workflow (carregamento direto, recarga e imagem Markdown empacotada), o setup, as ferramentas (comando de instalação e botão de copiar) e o filtro de games. As invariantes de layout — ausência de rolagem horizontal, âncoras internas válidas e áreas de toque de pelo menos 44 px nos controles principais — rodam em todas as larguras (o toque, apenas nos perfis móveis). Os locators preferem papéis e rótulos acessíveis em vez de seletores frágeis.
 
 ## Publicação
 
-`bun run build` gera em `dist/` as páginas `index.html` e `workflow.html`, com arquivos estáticos e caminhos relativos. Publique todo o diretório para que o acesso direto à página de workflow funcione sem redirecionamentos de SPA. Os arquivos podem ser hospedados no GitHub Pages, Netlify ou outra hospedagem estática.
+`bun run build` gera em `dist/` as páginas `index.html`, `trajetoria.html`, `pratica.html`, `workflow.html`, `setup.html`, `ferramentas.html` e `games.html`, além do `cv-kellen-xavier.pdf` e dos arquivos estáticos, com caminhos relativos. O build falha de propósito se `src/assets/cv-kellen-xavier.pdf` não existir. Publique todo o diretório para que o acesso direto a cada página funcione sem redirecionamentos de SPA. Os arquivos podem ser hospedados no GitHub Pages, Netlify ou outra hospedagem estática.
 
 ### GitHub Pages
 

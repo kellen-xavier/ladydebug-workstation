@@ -6,7 +6,7 @@ function Subtitle({ children }: { children?: ReactNode }) {
   return <p className="flow-subtitle">{children}</p>;
 }
 
-export function Workflow() {
+export function Workflow({ showDetailsLink = true }: { showDetailsLink?: boolean }) {
   return (
     <section className="practice" id="fluxo">
       <div className="section-head">
@@ -32,9 +32,11 @@ export function Workflow() {
             {workflow.intro}
           </MarkdownContent>
         </div>
-        <a className="button workflow-cta" href={workflow.details.href}>
-          {workflow.details.label}
-        </a>
+        {showDetailsLink && (
+          <a className="button workflow-cta" href={workflow.details.href}>
+            {workflow.details.label}
+          </a>
+        )}
       </div>
       <ol className="workflow">
         {workflow.steps.map((step) => (

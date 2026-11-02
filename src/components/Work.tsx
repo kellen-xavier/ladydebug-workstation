@@ -2,13 +2,13 @@ import { site } from "../content/site";
 import { workCases } from "../content/trabalhos";
 import { MarkdownContent } from "./MarkdownContent";
 
-export function Work() {
+export function Work({ titleAs: Title = "h2" }: { titleAs?: "h1" | "h2" }) {
   return (
     <section className="practice" id="pratica">
       <div className="section-head">
         <div>
           <p className="eyebrow">{site.work.eyebrow}</p>
-          <h2>{site.work.title}</h2>
+          <Title>{site.work.title}</Title>
         </div>
         <span className="badge">{site.work.badge}</span>
       </div>
