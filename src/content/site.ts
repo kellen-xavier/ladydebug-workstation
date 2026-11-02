@@ -112,12 +112,7 @@ export const site = {
   },
   footer: {
     author: "Kellen Xavier",
-    badgesLabel: "Interesses",
-    badges: [
-      ["CODE &", "TESTS"],
-      ["PIXELS &", "PULL REQUESTS"],
-      ["KEEP THE", "WEB PERSONAL"],
-    ],
+    taglines: ["code & tests", "keep the web personal"],
   },
   projectsBlogLabel: "Estudos no blog ↗",
   projectLinkLabel: "Ver repositório ↗",
