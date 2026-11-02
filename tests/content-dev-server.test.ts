@@ -34,11 +34,13 @@ describe("Markdown content in the development server", () => {
         url = output.match(/url:\s*(http:\/\/\S+)/)?.[1];
       }
       reader.releaseLock();
+      // Work-case Markdown renders on the "Na prática" page, not the home page.
+      const pageUrl = new URL("/pratica.html", url).href;
       const readBundle = async () => {
-        const html = await (await fetch(url)).text();
+        const html = await (await fetch(pageUrl)).text();
         const script = html.match(/src="([^"]+)" data-bun-dev-server-script/)?.[1];
         if (!script) throw new Error("Development bundle was not included in the page");
-        const response = await fetch(new URL(script, url));
+        const response = await fetch(new URL(script, pageUrl));
         expect(response.ok).toBe(true);
         return response.text();
       };
