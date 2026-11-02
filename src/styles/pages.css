@@ -1,0 +1,617 @@
+/* Reformulação: visual mais limpo, mantendo a linguagem retrô de global.css. */
+
+nav a {
+    border-width: 1px;
+    outline: none;
+    box-shadow: 2px 2px 0 var(--ink);
+}
+
+nav a[aria-current="page"] {
+    background: #efc7dd;
+}
+
+.header-tools {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px 18px;
+}
+
+.social {
+    display: flex;
+    gap: 4px;
+    padding-left: 14px;
+    border-left: 1px dashed #b69f83;
+}
+
+.social a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    color: var(--ink);
+}
+
+.social a:hover {
+    color: var(--link);
+}
+
+.social svg {
+    width: 20px;
+    height: 20px;
+    fill: currentColor;
+}
+
+.section {
+    padding: 40px 0;
+    border-top: 1px dashed #b69f83;
+}
+
+.section-intro {
+    margin: 0;
+    color: var(--muted);
+    max-width: 60ch;
+}
+
+/* Quem sou eu */
+.about {
+    border: 0;
+    border-top: 1px dashed #b69f83;
+    background: none;
+    padding: 40px 0;
+    margin: 0;
+}
+
+.about-text {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.about-text p {
+    margin: 0;
+}
+
+.education-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr));
+    gap: 12px;
+    margin: 0;
+}
+
+.education-list div,
+.panel {
+    border: 1px solid var(--ink);
+    box-shadow: 3px 3px 0 var(--border);
+    background: var(--bg);
+}
+
+.education-list div {
+    padding: 12px 14px;
+}
+
+.education-list dt,
+.game-organization dt,
+.spec-list dt,
+.tool-category {
+    font: 12px / 1.5 "Courier New", monospace;
+    color: #554737;
+    text-transform: uppercase;
+}
+
+.education-list dd,
+.game-organization dd {
+    margin: 4px 0 0;
+    font: 17px / 1.35 var(--pixel);
+}
+
+/* Mapa do site */
+.site-map {
+    list-style: none;
+    margin: 0;
+    padding: 18px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr));
+    gap: 14px;
+    background-color: #e7ead3;
+    background-image: radial-gradient(#d3d9b8 1.5px, transparent 1.5px);
+    background-size: 14px 14px;
+    border: 1px solid var(--ink);
+    box-shadow: 4px 4px 0 #b6a68f;
+}
+
+.map-place {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    height: 100%;
+    min-height: 138px;
+    padding: 14px;
+    background: var(--bg);
+    border: 1px solid var(--ink);
+    box-shadow: 3px 3px 0 #8a7f6d;
+    color: var(--ink);
+    text-decoration: none;
+}
+
+.map-place:hover {
+    background: #fbe6f0;
+    color: var(--ink);
+    text-decoration: none;
+}
+
+.map-icon {
+    font: 24px / 1 var(--pixel);
+    color: var(--link);
+}
+
+.map-name {
+    margin-top: 8px;
+    font: 19px / 1.25 var(--pixel);
+}
+
+.map-destination {
+    font: 12px / 1.5 "Courier New", monospace;
+    color: var(--link);
+}
+
+.map-question {
+    margin-top: auto;
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--muted);
+}
+
+/* Como trabalho / Setup */
+.highlights {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
+    gap: 20px;
+}
+
+.panel {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 22px;
+}
+
+.panel .eyebrow {
+    margin: 0;
+    font-size: 14px;
+}
+
+.panel h2 {
+    font-size: 26px;
+}
+
+.panel p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 15px;
+}
+
+.panel-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
+
+.panel-title span {
+    color: var(--link);
+    font: 18px var(--pixel);
+}
+
+.panel-links {
+    margin-top: auto;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 20px;
+}
+
+.panel-links a,
+.page-note a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.chips {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.chips li {
+    padding: 3px 8px;
+    border: 1px dashed #a89178;
+    font: 12px / 1.5 "Courier New", monospace;
+    color: #554737;
+}
+
+/* CV e chamadas finais */
+.cv {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px 24px;
+    margin: 8px 0 36px;
+    padding: 22px 24px;
+    background: var(--soft);
+    border: 1px solid var(--ink);
+}
+
+.cv h2 {
+    font-size: 26px;
+}
+
+.cv p {
+    margin: 6px 0 0;
+    font-size: 14px;
+    color: var(--muted);
+}
+
+/* Páginas internas */
+.page-head {
+    padding: 44px 0 28px;
+}
+
+.page-head h1 {
+    margin: 0 0 14px;
+    font: clamp(36px, 4.4vw, 52px) / 1.06 var(--pixel);
+    letter-spacing: -1px;
+}
+
+.page-note {
+    margin: 22px 0 40px;
+}
+
+/* Trajetória */
+.career-highlight {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+    gap: 18px 32px;
+    margin-bottom: 40px;
+    padding: 22px 24px;
+    background: #fbe6f0;
+    border: 1px solid var(--ink);
+    box-shadow: 4px 4px 0 var(--ink);
+}
+
+.career-highlight h2 {
+    font-size: 28px;
+    margin-bottom: 8px;
+}
+
+.career-highlight p:not(.eyebrow) {
+    margin: 0;
+    color: var(--muted);
+    font-size: 15px;
+}
+
+.career-highlight ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.career-highlight li {
+    padding: 8px 0;
+    border-top: 1px dotted #b69f83;
+    font-size: 14px;
+}
+
+.career-highlight li:before {
+    content: "✦ ";
+    color: var(--link);
+}
+
+.timeline {
+    list-style: none;
+    margin: 0 0 0 8px;
+    padding: 0;
+    border-left: 2px solid var(--ink);
+}
+
+.timeline > li {
+    position: relative;
+    padding: 0 0 32px 28px;
+}
+
+.timeline > li:before {
+    content: "";
+    position: absolute;
+    left: -9px;
+    top: 6px;
+    width: 16px;
+    height: 16px;
+    border: 2px solid var(--ink);
+    background: var(--bg);
+}
+
+.timeline > li.is-current:before {
+    background: var(--pink);
+}
+
+.timeline > li.is-education:before {
+    background: #efc7dd;
+}
+
+.timeline-period {
+    margin: 0 0 2px;
+    font: 13px / 1.5 "Courier New", monospace;
+    color: var(--link);
+}
+
+.timeline h3 {
+    margin: 0;
+    font: 22px / 1.25 var(--pixel);
+}
+
+.timeline-org {
+    margin: 2px 0 8px;
+    font: 14px / 1.5 "Courier New", monospace;
+    color: #554737;
+}
+
+.timeline-text {
+    margin: 0;
+    max-width: 70ch;
+    font-size: 15px;
+    color: var(--muted);
+}
+
+.case-links {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin: 12px 0 0;
+    padding: 0;
+}
+
+.case-links a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    padding: 4px 10px;
+    border: 1px solid var(--ink);
+    color: var(--ink);
+    font: 12px / 1.5 "Courier New", monospace;
+    text-decoration: none;
+}
+
+.case-links a:hover {
+    background: #efc7dd;
+    text-decoration: none;
+}
+
+.career-before {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+    gap: 12px 32px;
+    margin-bottom: 40px;
+    padding-top: 24px;
+    border-top: 1px dashed #b69f83;
+}
+
+.career-before h2 {
+    font-size: 22px;
+}
+
+.career-before p:not(.eyebrow) {
+    margin: 0;
+    font-size: 14px;
+    color: var(--muted);
+}
+
+/* Setup */
+.setup-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+    gap: 16px;
+}
+
+.setup-grid .panel h2 {
+    font-size: 22px;
+}
+
+.spec-list {
+    margin: 0;
+}
+
+.spec-list div {
+    display: grid;
+    grid-template-columns: 100px minmax(0, 1fr);
+    gap: 12px;
+    padding: 8px 0;
+    border-top: 1px dotted #ab967d;
+}
+
+.spec-list dd {
+    margin: 0;
+    font-size: 15px;
+}
+
+/* Ferramentas */
+.tool-list {
+    list-style: none;
+    margin: 0 0 40px;
+    padding: 0;
+    border-top: 1px solid var(--ink);
+}
+
+.tool {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+    gap: 10px 24px;
+    align-items: center;
+    padding: 16px 0;
+    border-bottom: 1px dashed #b69f83;
+}
+
+.tool h2 {
+    margin: 2px 0 4px;
+    font-size: 22px;
+}
+
+.tool p {
+    margin: 0;
+    font-size: 14px;
+    color: var(--muted);
+}
+
+.tool-install {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+    min-width: 0;
+}
+
+.install {
+    display: flex;
+    width: 100%;
+    border: 1px solid var(--ink);
+    background: var(--ink);
+}
+
+.install code {
+    flex: 1;
+    min-width: 0;
+    padding: 8px 10px;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+    color: var(--bg);
+    font: 13px / 1.5 "Courier New", monospace;
+}
+
+.copy-button {
+    min-width: 72px;
+    min-height: 44px;
+    padding: 0 12px;
+    border: 0;
+    border-left: 1px solid var(--muted);
+    background: var(--ink);
+    color: #efc7dd;
+    font: 13px var(--pixel);
+    cursor: pointer;
+}
+
+.copy-button:hover {
+    color: #fff;
+}
+
+.copy-button:focus-visible,
+.filters button:focus-visible {
+    outline: 3px dashed var(--link);
+    outline-offset: 2px;
+}
+
+/* Games */
+.game-organization {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr));
+    gap: 14px;
+    margin: 0 0 40px;
+}
+
+.game-organization .panel {
+    gap: 0;
+    padding: 16px;
+}
+
+.games-library .section-head {
+    flex-wrap: wrap;
+}
+
+.filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.filters button {
+    min-height: 44px;
+    padding: 4px 12px;
+    border: 1px solid var(--ink);
+    box-shadow: 2px 2px 0 var(--ink);
+    background: var(--bg);
+    color: var(--ink);
+    font: 15px / 1.5 var(--pixel);
+    cursor: pointer;
+}
+
+.filters button:hover,
+.filters button[aria-pressed="true"] {
+    background: #efc7dd;
+}
+
+.game-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 200px), 1fr));
+    gap: 14px;
+    margin-bottom: 36px;
+}
+
+.game {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 10px;
+    border: 1px solid var(--ink);
+    box-shadow: 3px 3px 0 var(--border);
+}
+
+.game-cover {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    aspect-ratio: 4 / 3;
+    border: 1px dashed #b69f83;
+    background: var(--soft);
+    color: var(--muted);
+    font: 12px "Courier New", monospace;
+}
+
+.game-meta {
+    display: flex;
+    justify-content: space-between;
+    margin: 0;
+    color: #554737;
+    font: 12px / 1.5 "Courier New", monospace;
+}
+
+.game h3 {
+    margin: 0;
+    font: 19px / 1.2 var(--pixel);
+}
+
+@media (max-width: 780px) {
+    .header-tools {
+        width: 100%;
+    }
+
+    .career-before {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 560px) {
+    .social {
+        padding-left: 0;
+        border-left: 0;
+    }
+
+    .site-map {
+        padding: 12px;
+    }
+}
