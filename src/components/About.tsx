@@ -1,29 +1,27 @@
+import { site } from "../content/site";
+import about from "../content/sobre.md" with { type: "text" };
+import { MarkdownContent } from "./MarkdownContent";
+
 export function About() {
   return (
-    <section className="about" id="about" aria-labelledby="about-title">
+    <section className="about" id="sobre">
       <div>
-        <p className="eyebrow">readme.txt / About me</p>
-        <h2 id="about-title">
-          A quality mindset.
-          <br />
-          An engineer's curiosity.
-        </h2>
+        <p className="eyebrow">{site.about.eyebrow}</p>
+        <MarkdownContent part="title">{about}</MarkdownContent>
       </div>
       <div className="about-text">
-        <p>
-          My path has taken me from support and front-end work to software testing. Today, I bring
-          those perspectives together through{" "}
-          <strong>development, manual and automated testing, and technical documentation.</strong>
-        </p>
-        <p>
-          These repositories are where I explore tools, organize what I learn, and make practical
-          knowledge available to others.
-        </p>
-        <div className="education">
-          Systems Analysis &amp; Development · UNINTER
-          <br />
-          Postgraduate studies in Software Engineering · Unisinos
-        </div>
+        <MarkdownContent part="body">{about}</MarkdownContent>
+        <dl className="education-list">
+          {site.about.education.map((item) => (
+            <div key={item.label}>
+              <dt>{item.label}</dt>
+              <dd>{item.value}</dd>
+            </div>
+          ))}
+        </dl>
+        <a className="text-link" href={site.about.careerLink.href}>
+          {site.about.careerLink.label}
+        </a>
       </div>
     </section>
   );

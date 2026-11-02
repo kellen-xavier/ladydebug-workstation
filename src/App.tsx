@@ -1,32 +1,24 @@
 import { About } from "./components/About";
 import { Closing } from "./components/Closing";
-import { Footer } from "./components/Footer";
-import { Header } from "./components/Header";
+import { CvDownload } from "./components/CvDownload";
 import { Hero } from "./components/Hero";
+import { HowIWork } from "./components/HowIWork";
+import { PageLayout } from "./components/PageLayout";
 import { Projects } from "./components/Projects";
-import { Topics } from "./components/Topics";
+import { SiteMap } from "./components/SiteMap";
+import { useHashReveal } from "./hooks/useHashReveal";
 
 export function App() {
+  useHashReveal();
   return (
-    <>
-      <a className="skip" href="#main">
-        Skip to content
-      </a>
-      <div className="wrap">
-        <div className="browser-bar">
-          <span>LadyDebug — personal homepage</span>
-          <span aria-hidden="true">▁ □ ×</span>
-        </div>
-        <Header />
-        <main id="main">
-          <Hero />
-          <Topics />
-          <Projects />
-          <About />
-          <Closing />
-        </main>
-        <Footer />
-      </div>
-    </>
+    <PageLayout current="home">
+      <Hero />
+      <About />
+      <SiteMap />
+      <HowIWork />
+      <Projects limit={3} />
+      <CvDownload />
+      <Closing />
+    </PageLayout>
   );
 }
