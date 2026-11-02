@@ -171,7 +171,7 @@ Os testes cobrem as âncoras existentes, os relatos e suas referências, a forma
 
 `tests/fixtures/portfolio-text.txt` registra a redação revisada da página para detectar perdas acidentais. Ao alterar deliberadamente os textos, atualize também essa referência e as expectativas de conteúdo afetadas. Os nomes dos testes permanecem em inglês.
 
-`bun run test:browser` executa os testes Playwright em 1440, 768, 390 e 320 px de largura, usando um servidor próprio na porta 4174. Eles verificam o botão principal na primeira tela, os resumos visíveis dos relatos, a expansão por teclado, as referências, os destinos das âncoras, a ausência de rolagem horizontal e áreas de toque de pelo menos 44 × 44 px. Em celulares, também verificam a navegação em duas colunas e o fluxo compacto.
+`bun run test:browser` executa os testes Playwright em 1440, 768, 390 e 320 px de largura, usando um servidor próprio na porta 4174. Eles verificam a navegação entre todas as páginas e a marcação da página atual (`aria-current`), as âncoras da home, os links sociais externos, o botão principal na primeira tela e o download do CV, os relatos de "Na prática" (recolhidos, expansão por teclado, abertura por âncora da URL), a página de Workflow (carregamento direto, recarga e imagem Markdown empacotada), o setup, as ferramentas (comando de instalação e botão de copiar) e o filtro de games. As invariantes de layout — ausência de rolagem horizontal, âncoras internas válidas e áreas de toque de pelo menos 44 px nos controles principais — rodam em todas as larguras (o toque, apenas nos perfis móveis). Os locators preferem papéis e rótulos acessíveis em vez de seletores frágeis.
 
 ## Publicação
 
