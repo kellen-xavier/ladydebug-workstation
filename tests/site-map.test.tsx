@@ -2,9 +2,10 @@ import { describe, expect, test } from "bun:test";
 import { renderToStaticMarkup } from "react-dom/server";
 import { SiteMap } from "../src/components/SiteMap";
 import { siteMap } from "../src/content/mapa";
-import { pageFiles } from "../src/pages";
+import { pageFile, pages } from "../src/pages";
 
-const localFile = (href: string) => href.replace(/^\.\//, "").split("#")[0];
+const pageFiles = pages.map(pageFile);
+const localFile = (href: string) => href.replace(/^\.\//, "").split("#")[0] ?? href;
 
 describe("site map", () => {
   test("answers a visitor question with each place", () => {
@@ -16,7 +17,7 @@ describe("site map", () => {
   test("leads only to existing pages or to external https links", () => {
     for (const { href } of siteMap.places) {
       if (href.startsWith("https://")) continue;
-      expect(pageFiles).toContain(localFile(href) as (typeof pageFiles)[number]);
+      expect(pageFiles).toContain(localFile(href));
     }
   });
 

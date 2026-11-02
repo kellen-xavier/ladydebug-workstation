@@ -1,6 +1,6 @@
 import { describe, expect, test } from "bun:test";
 import { renderToStaticMarkup } from "react-dom/server";
-import { App } from "../src/App";
+import { HomePage } from "../src/components/HomePage";
 
 const normalize = (text: string) => text.replace(/©\s*\d{4}/g, "©YEAR").replace(/\s/g, "");
 
@@ -9,7 +9,7 @@ describe("portfolio content preservation", () => {
     const original = await Bun.file(
       new URL("./fixtures/portfolio-text.txt", import.meta.url),
     ).text();
-    const html = renderToStaticMarkup(<App />);
+    const html = renderToStaticMarkup(<HomePage />);
     expect(normalize(html.replace(/<[^>]*>/g, ""))).toBe(normalize(original));
   });
 });

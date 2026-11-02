@@ -1,27 +1,22 @@
-// Bun needs static HTML imports; tests/pages.test.tsx checks this list against src/pages.ts.
-import ferramentas from "../src/ferramentas.html";
-import games from "../src/games.html";
-import portfolio from "../src/index.html";
-import pratica from "../src/pratica.html";
-import setup from "../src/setup.html";
-import trajetoria from "../src/trajetoria.html";
-import workflow from "../src/workflow.html";
+import { fileURLToPath } from "node:url";
+import type { BunFile, HTMLBundle } from "bun";
+import { pages } from "../src/pages";
+import { generatePages } from "./generate-pages";
 
-const server = Bun.serve({
-  routes: {
-    "/": portfolio,
-    "/index.html": portfolio,
-    "/trajetoria.html": trajetoria,
-    "/pratica.html": pratica,
-    "/workflow.html": workflow,
-    "/setup.html": setup,
-    "/ferramentas.html": ferramentas,
-    "/games.html": games,
-    "/cv-kellen-xavier.pdf": Bun.file(
-      new URL("../src/assets/cv-kellen-xavier.pdf", import.meta.url),
-    ),
-  },
-  development: true,
-});
+// Generate each page's HTML entry and client script, then let Bun bundle and
+// hot-reload them. Editing a component or a Markdown file reloads the page.
+const root = new URL("../", import.meta.url);
+const generated = new URL(".generated/", root);
+await generatePages(fileURLToPath(generated), "../src");
 
+const routes: Record<string, HTMLBundle | BunFile> = {};
+for (const page of pages) {
+  const html: HTMLBundle = (await import(fileURLToPath(new URL(`${page.slug}.html`, generated))))
+    .default;
+  routes[page.path] = html;
+  routes[`/${page.slug}.html`] = html;
+}
+routes["/cv-kellen-xavier.pdf"] = Bun.file(new URL("src/assets/cv-kellen-xavier.pdf", root));
+
+const server = Bun.serve({ routes, development: true });
 console.log(`url: ${server.url}`);

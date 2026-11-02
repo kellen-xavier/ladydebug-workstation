@@ -19,24 +19,15 @@ Estética de homepage dos anos 2000–2009, ilustração em pixel art e paleta d
 ```txt
 ladydebug-workstation/
 ├── src/
-│   ├── pages.ts            # fonte única das entradas HTML (build, dev e testes)
-│   ├── index.html          # home do portfólio (metatags, favicon, CSS, script)
-│   ├── trajetoria.html     # página de trajetória profissional
-│   ├── pratica.html        # página "Na prática" (casos e evidências)
-│   ├── workflow.html       # página interna sobre o processo de trabalho
-│   ├── setup.html          # página de setup
-│   ├── ferramentas.html    # página de ferramentas
-│   ├── games.html          # página de games
-│   ├── main.tsx            # entrada React da home
-│   ├── trajetoria-main.tsx # entrada React da trajetória
-│   ├── pratica-main.tsx    # entrada React do "Na prática"
-│   ├── workflow-main.tsx   # entrada React do workflow
-│   ├── setup-main.tsx      # entrada React do setup
-│   ├── ferramentas-main.tsx # entrada React das ferramentas
-│   ├── games-main.tsx      # entrada React dos games
-│   ├── mount.tsx           # monta um componente de página em #root
-│   ├── App.tsx             # composição da home
-│   ├── components/         # uma seção/página por componente
+│   ├── pages.ts            # registro único das páginas (slug, título, descrição, componente)
+│   ├── components/         # componentes: páginas (*Page/HomePage) e seções compartilhadas
+│   │   ├── HomePage.tsx     # composição da home
+│   │   ├── CareerPage.tsx   # página de trajetória
+│   │   ├── PracticePage.tsx # página "Na prática"
+│   │   ├── WorkflowPage.tsx # página de workflow (relato completo do processo)
+│   │   ├── SetupPage.tsx
+│   │   ├── ToolsPage.tsx
+│   │   ├── GamesPage.tsx
 │   │   ├── Header.tsx       # navegação principal + links sociais
 │   │   ├── SocialLinks.tsx  # ícones GitHub, LinkedIn e Blog
 │   │   ├── Hero.tsx
@@ -51,14 +42,8 @@ ladydebug-workstation/
 │   │   ├── Brand.tsx
 │   │   ├── ExternalLink.tsx
 │   │   ├── CopyButton.tsx   # botão de copiar (ferramentas)
-│   │   ├── CareerPage.tsx   # página de trajetória
-│   │   ├── PracticePage.tsx # página "Na prática"
-│   │   ├── SetupPage.tsx
-│   │   ├── ToolsPage.tsx
-│   │   ├── GamesPage.tsx
 │   │   ├── Work.tsx
 │   │   ├── Workflow.tsx
-│   │   ├── WorkflowPage.tsx # relato completo do processo
 │   │   ├── PageHead.tsx     # cabeçalho de página interna
 │   │   ├── PageLayout.tsx   # cabeçalho e rodapé compartilhados
 │   │   └── MarkdownContent.tsx # renderização compartilhada de Markdown
@@ -93,12 +78,14 @@ ladydebug-workstation/
 │       ├── cv-kellen-xavier.pdf # CV baixável (adicione o arquivo; o build exige)
 │       └── fonts/          # pixelify.woff2 + OFL.txt
 ├── scripts/
-│   ├── dev.ts              # servidor de desenvolvimento de todas as páginas
+│   ├── generate-pages.ts   # gera, a partir de src/pages.ts, o HTML e a entrada de cada página
+│   ├── dev.ts              # servidor de desenvolvimento (gera as páginas e usa o bundler do Bun)
 │   ├── build.ts            # build estático com imagens referenciadas no Markdown
 │   ├── preview.ts          # servidor estático para testar o build
 │   └── markdown-text.ts    # leitura de Markdown como texto no desenvolvimento
 ├── tests/                  # testes de conteúdo, renderização e navegação
 ├── bunfig.toml             # plugin de Markdown do servidor de desenvolvimento
+├── .generated/             # HTML e entradas geradas (temporário, não versionado)
 ├── dist/                   # saída do build (gerada, não versionada)
 ├── biome.json            # configuração do lint/formatação
 ├── bun-env.d.ts            # tipos para importar .png e .css

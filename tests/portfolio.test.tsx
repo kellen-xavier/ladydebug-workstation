@@ -1,12 +1,12 @@
 import { describe, expect, test } from "bun:test";
 import { renderToStaticMarkup } from "react-dom/server";
-import { App } from "../src/App";
 import { Brand } from "../src/components/Brand";
+import { HomePage } from "../src/components/HomePage";
 import { PracticePage } from "../src/components/PracticePage";
 import { Workflow } from "../src/components/Workflow";
 import { projects } from "../src/data/site";
 
-const markup = () => renderToStaticMarkup(<App />);
+const markup = () => renderToStaticMarkup(<HomePage />);
 
 describe("work portfolio", () => {
   test("keeps the home anchors used by the navigation", () => {
