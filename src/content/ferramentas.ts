@@ -17,12 +17,60 @@ export const toolsPage = {
 
 // Review the commands for your operating system before publishing.
 export const tools: Tool[] = [
-  { category: "IA", name: "Claude Code", description: "Agente de código no terminal.", install: "npm install -g @anthropic-ai/claude-code", url: "https://www.anthropic.com/claude-code" },
-  { category: "IA", name: "Codex CLI", description: "Agente de código da OpenAI no terminal.", install: "npm install -g @openai/codex", url: "https://github.com/openai/codex" },
-  { category: "Terminal", name: "Kitty", description: "Terminal rápido, acelerado por GPU.", install: "curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin", url: "https://sw.kovidgoyal.net/kitty/" },
-  { category: "Terminal", name: "Git", description: "Controle de versão.", install: "sudo apt install git", url: "https://git-scm.com/downloads" },
-  { category: "Dev", name: "Bun", description: "Runtime e gerenciador de pacotes usado neste site.", install: "curl -fsSL https://bun.sh/install | bash", url: "https://bun.sh" },
-  { category: "Dev", name: "Biome", description: "Formatação e lint.", install: "bun add -D -E @biomejs/biome", url: "https://biomejs.dev" },
-  { category: "Testes", name: "Playwright", description: "Testes end-to-end no navegador.", install: "bunx playwright install", url: "https://playwright.dev" },
-  { category: "Testes", name: "k6", description: "Testes de carga e performance.", install: "brew install k6", url: "https://k6.io" },
+  {
+    category: "IA",
+    name: "Claude Code",
+    description: "Agente de código no terminal.",
+    install: "npm install -g @anthropic-ai/claude-code",
+    url: "https://www.anthropic.com/claude-code",
+  },
+  {
+    category: "IA",
+    name: "Codex CLI",
+    description: "Agente de código da OpenAI no terminal.",
+    install: "npm install -g @openai/codex",
+    url: "https://github.com/openai/codex",
+  },
+  {
+    category: "Terminal",
+    name: "Kitty",
+    description: "Terminal rápido, acelerado por GPU.",
+    install: "curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin",
+    url: "https://sw.kovidgoyal.net/kitty/",
+  },
+  {
+    category: "Terminal",
+    name: "Git",
+    description: "Controle de versão.",
+    install: "sudo apt install git",
+    url: "https://git-scm.com/downloads",
+  },
+  {
+    category: "Dev",
+    name: "Bun",
+    description: "Runtime e gerenciador de pacotes usado neste site.",
+    install: "curl -fsSL https://bun.sh/install | bash",
+    url: "https://bun.sh",
+  },
+  {
+    category: "Dev",
+    name: "Biome",
+    description: "Formatação e lint.",
+    install: "bun add -D -E @biomejs/biome",
+    url: "https://biomejs.dev",
+  },
+  {
+    category: "Testes",
+    name: "Playwright",
+    description: "Testes end-to-end no navegador.",
+    install: "bunx playwright install",
+    url: "https://playwright.dev",
+  },
+  {
+    category: "Testes",
+    name: "k6",
+    description: "Testes de carga e performance.",
+    install: "brew install k6",
+    url: "https://k6.io",
+  },
 ];

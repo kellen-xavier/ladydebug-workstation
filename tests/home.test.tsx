@@ -8,7 +8,9 @@ const html = renderToStaticMarkup(<App />);
 
 describe("home page", () => {
   test("introduces the author right below the welcome", () => {
-    expect(html).toMatch(/<section class="hero">[\s\S]*?<\/section><section class="about" id="sobre">/);
+    expect(html).toMatch(
+      /<section class="hero">[\s\S]*?<\/section><section class="about" id="sobre">/,
+    );
     const about = html.match(/<section class="about" id="sobre">([\s\S]*?)<\/section>/)?.[1];
     expect(about).toContain("Quem sou eu?");
     expect(about).toContain("UNINTER");

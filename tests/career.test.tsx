@@ -1,11 +1,15 @@
 import { describe, expect, test } from "bun:test";
 import { renderToStaticMarkup } from "react-dom/server";
 import { CareerPage } from "../src/components/CareerPage";
-import { career } from "../src/content/trajetoria";
 import { workCases } from "../src/content/trabalhos";
+import { career } from "../src/content/trajetoria";
 
 const html = renderToStaticMarkup(<CareerPage />);
-const text = (markup: string) => markup.replace(/<[^>]*>/g, " ").replace(/\s+/g, " ").trim();
+const text = (markup: string) =>
+  markup
+    .replace(/<[^>]*>/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
 
 describe("career page", () => {
   test("renders a single page heading", () => {

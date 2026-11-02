@@ -1,11 +1,12 @@
 import { pageHref } from "../content/site";
-import { career } from "../content/trajetoria";
 import { workCases } from "../content/trabalhos";
+import { career } from "../content/trajetoria";
 import { PageHead } from "./PageHead";
 import { PageLayout } from "./PageLayout";
 
 const caseTitle = (id: string) =>
-  workCases.find((work) => work.id === id)?.id.replace(/^./, (letter) => letter.toUpperCase()) ?? id;
+  workCases.find((work) => work.id === id)?.id.replace(/^./, (letter) => letter.toUpperCase()) ??
+  id;
 
 export function CareerPage() {
   const { highlight } = career;

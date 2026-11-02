@@ -95,7 +95,9 @@ nav a[aria-current="page"] {
 .game-organization dt,
 .spec-list dt,
 .tool-category {
-    font: 12px / 1.5 "Courier New", monospace;
+    font:
+        12px / 1.5 "Courier New",
+        monospace;
     color: #554737;
     text-transform: uppercase;
 }
@@ -152,7 +154,9 @@ nav a[aria-current="page"] {
 }
 
 .map-destination {
-    font: 12px / 1.5 "Courier New", monospace;
+    font:
+        12px / 1.5 "Courier New",
+        monospace;
     color: var(--link);
 }
 
@@ -232,7 +236,9 @@ nav a[aria-current="page"] {
 .chips li {
     padding: 3px 8px;
     border: 1px dashed #a89178;
-    font: 12px / 1.5 "Courier New", monospace;
+    font:
+        12px / 1.5 "Courier New",
+        monospace;
     color: #554737;
 }
 
@@ -347,7 +353,9 @@ nav a[aria-current="page"] {
 
 .timeline-period {
     margin: 0 0 2px;
-    font: 13px / 1.5 "Courier New", monospace;
+    font:
+        13px / 1.5 "Courier New",
+        monospace;
     color: var(--link);
 }
 
@@ -358,7 +366,9 @@ nav a[aria-current="page"] {
 
 .timeline-org {
     margin: 2px 0 8px;
-    font: 14px / 1.5 "Courier New", monospace;
+    font:
+        14px / 1.5 "Courier New",
+        monospace;
     color: #554737;
 }
 
@@ -385,7 +395,9 @@ nav a[aria-current="page"] {
     padding: 4px 10px;
     border: 1px solid var(--ink);
     color: var(--ink);
-    font: 12px / 1.5 "Courier New", monospace;
+    font:
+        12px / 1.5 "Courier New",
+        monospace;
     text-decoration: none;
 }
 
@@ -458,6 +470,7 @@ nav a[aria-current="page"] {
     border-bottom: 1px dashed #b69f83;
 }
 
+/* biome-ignore lint/style/noDescendingSpecificity: targets a different, non-overlapping subtree than .setup-grid .panel h2 */
 .tool h2 {
     margin: 2px 0 4px;
     font-size: 22px;
@@ -491,7 +504,9 @@ nav a[aria-current="page"] {
     white-space: pre-wrap;
     overflow-wrap: anywhere;
     color: var(--bg);
-    font: 13px / 1.5 "Courier New", monospace;
+    font:
+        13px / 1.5 "Courier New",
+        monospace;
 }
 
 .copy-button {
@@ -579,7 +594,9 @@ nav a[aria-current="page"] {
     border: 1px dashed #b69f83;
     background: var(--soft);
     color: var(--muted);
-    font: 12px "Courier New", monospace;
+    font:
+        12px "Courier New",
+        monospace;
 }
 
 .game-meta {
@@ -587,7 +604,9 @@ nav a[aria-current="page"] {
     justify-content: space-between;
     margin: 0;
     color: #554737;
-    font: 12px / 1.5 "Courier New", monospace;
+    font:
+        12px / 1.5 "Courier New",
+        monospace;
 }
 
 .game h3 {

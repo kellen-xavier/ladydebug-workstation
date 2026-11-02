@@ -7,7 +7,9 @@ import { Work } from "../src/components/Work";
 describe("portfolio design priorities", () => {
   test("places the about section right after the welcome and only once", () => {
     const html = renderToStaticMarkup(<App />);
-    expect(html).toMatch(/<section class="hero">[\s\S]*?<\/section><section class="about" id="sobre">/);
+    expect(html).toMatch(
+      /<section class="hero">[\s\S]*?<\/section><section class="about" id="sobre">/,
+    );
     expect(html.match(/id="sobre"/g)).toHaveLength(1);
   });
 

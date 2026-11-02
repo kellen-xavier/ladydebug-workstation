@@ -48,6 +48,7 @@ export function GamesPage() {
         </div>
         <div className="game-grid">
           {visible.map((game, index) => (
+            // biome-ignore lint/suspicious/noArrayIndexKey: static, non-reordered cards; placeholder title/platform can repeat
             <article className="game" key={`${game.title}-${game.platform}-${index}`}>
               <div className="game-cover" aria-hidden="true">
                 {games.coverLabel}

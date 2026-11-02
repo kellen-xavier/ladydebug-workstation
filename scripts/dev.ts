@@ -17,7 +17,9 @@ const server = Bun.serve({
     "/setup.html": setup,
     "/ferramentas.html": ferramentas,
     "/games.html": games,
-    "/cv-kellen-xavier.pdf": Bun.file(new URL("../src/assets/cv-kellen-xavier.pdf", import.meta.url)),
+    "/cv-kellen-xavier.pdf": Bun.file(
+      new URL("../src/assets/cv-kellen-xavier.pdf", import.meta.url),
+    ),
   },
   development: true,
 });

@@ -11,6 +11,7 @@ const icons: Record<SocialLink["id"], string> = {
 
 export function SocialLinks() {
   return (
+    // biome-ignore lint/a11y/useSemanticElements: a labeled set of external social links, not form controls
     <div className="social" role="group" aria-label={site.socialLabel}>
       {site.social.map((link) => (
         <ExternalLink key={link.id} href={link.href} aria-label={link.label} title={link.label}>

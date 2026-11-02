@@ -6,7 +6,14 @@ export const links = {
   cv: "./cv-kellen-xavier.pdf",
 };
 
-export type PageId = "home" | "trajetoria" | "pratica" | "workflow" | "setup" | "ferramentas" | "games";
+export type PageId =
+  | "home"
+  | "trajetoria"
+  | "pratica"
+  | "workflow"
+  | "setup"
+  | "ferramentas"
+  | "games";
 
 export const pageHref: Record<PageId, string> = {
   home: "./index.html",
