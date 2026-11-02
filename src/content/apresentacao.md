@@ -1,6 +1,6 @@
-Meu trabalho,  
-*por dentro.*
+Oi, eu sou a  
+*Kellen.*
 ===
 
 **Engenharia de Software & Qualidade.**  
-Sou Kellen Xavier. Há mais de 7 anos, trabalho com programação e testes. Aqui compartilho contribuições em desenvolvimento, automação e documentação, com referências para conferir cada trabalho.
+Sou Kellen Xavier. Há mais de 7 anos, trabalho com programação e testes. Aqui compartilho como trabalho, as ferramentas que uso e os projetos que estudo.
