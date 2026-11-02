@@ -1,14 +1,14 @@
 import type { ReactNode } from "react";
-import { site } from "../content/site";
+import { type PageId, site } from "../content/site";
 import { Footer } from "./Footer";
 import { Header } from "./Header";
 
 export function PageLayout({
   children,
-  homeHref = "",
+  current = "home",
 }: {
   children: ReactNode;
-  homeHref?: string;
+  current?: PageId;
 }) {
   return (
     <>
@@ -20,9 +20,9 @@ export function PageLayout({
           <span>{site.browserTitle}</span>
           <span aria-hidden="true">▁ □ ×</span>
         </div>
-        <Header homeHref={homeHref} />
+        <Header current={current} />
         <main id="main">{children}</main>
-        <Footer homeHref={homeHref} />
+        <Footer />
       </div>
     </>
   );

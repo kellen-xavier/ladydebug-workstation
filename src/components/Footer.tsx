@@ -1,20 +1,20 @@
-import { site } from "../content/site";
+import { pageHref, site } from "../content/site";
 import { ExternalLink } from "./ExternalLink";
 
-export function Footer({ homeHref = "" }: { homeHref?: string }) {
+export function Footer() {
   return (
     <footer>
-      <a className="brand" href={`${homeHref}#main`}>
+      <a className="brand" href={`${pageHref.home}#main`}>
         {site.brand}
       </a>
       <span>
         © {new Date().getFullYear()} {site.footer.author}
       </span>
       <span>
-        {site.footer.socialLinks.map((link, index) => (
-          <span key={link.href}>
+        {site.social.map((link, index) => (
+          <span key={link.id}>
             {index > 0 && " · "}
-            <ExternalLink href={link.href}>{link.label}</ExternalLink>
+            <ExternalLink href={link.href}>{link.label} ↗</ExternalLink>
           </span>
         ))}
       </span>

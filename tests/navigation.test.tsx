@@ -57,7 +57,7 @@ describe("site navigation", () => {
       expect(anchor?.[0]).toContain(`href="${href}"`);
       expect(anchor?.[0]).toContain('rel="noopener noreferrer"');
       expect(anchor?.[1]).toStartWith("<svg");
-      expect(anchor?.[1].replace(/<[^>]*>/g, "").trim()).toBe("");
+      expect((anchor?.[1] ?? "").replace(/<[^>]*>/g, "").trim()).toBe("");
     }
   });
 });
