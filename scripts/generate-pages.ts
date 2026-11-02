@@ -16,13 +16,20 @@ const escapeHtml = (text: string) =>
  *
  * `srcPrefix` is the import path from `outDir` back to `src` (e.g. "../src").
  * Returns the generated HTML file paths, to pass to Bun as entrypoints.
+ *
+ * `clean` (default true) wipes `outDir` first. The dev server regenerates in
+ * place (`clean: false`) so Bun keeps watching the existing generated files.
  */
-export async function generatePages(outDir: string, srcPrefix: string): Promise<string[]> {
-  await rm(outDir, { recursive: true, force: true });
+export async function generatePages(
+  outDir: string,
+  srcPrefix: string,
+  { clean = true, pageList = pages }: { clean?: boolean; pageList?: readonly Page[] } = {},
+): Promise<string[]> {
+  if (clean) await rm(outDir, { recursive: true, force: true });
   await mkdir(outDir, { recursive: true });
 
   const htmlFiles: string[] = [];
-  for (const page of pages) {
+  for (const page of pageList) {
     const entryName = `${page.slug}.entry.tsx`;
     await writeFile(join(outDir, entryName), clientEntry(page.componentName, srcPrefix));
 
