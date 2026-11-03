@@ -13,12 +13,9 @@ blogLabel: Ler no blog ↗
 ## Organização
 
 - Launcher: [Steam / Heroic / Lutris]
+- Steam: Minha Steam — PC
 - Plataformas: [PC · Console · Emulador]
 - Organização: [coleções, saves, backups]
-
-## Steam
-
-- [Minha Steam] — [PC]
 
 ## Na fila
 

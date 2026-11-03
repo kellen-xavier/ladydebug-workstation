@@ -34,6 +34,11 @@ describe("setup page", () => {
 });
 
 describe("games page", () => {
+  test("shows the Steam account in organization details, not as a game", () => {
+    expect(games.organization).toContainEqual({ label: "Steam", value: "Minha Steam — PC" });
+    expect(games.library.map((game) => game.title)).not.toContain("Minha Steam");
+  });
+
   test("uses only known statuses", () => {
     const known = gameStatuses.map((status) => status.id);
     for (const game of games.library) {

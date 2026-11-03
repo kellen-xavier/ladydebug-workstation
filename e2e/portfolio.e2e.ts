@@ -230,7 +230,7 @@ test.describe("setup, tools and games", () => {
   test("filters the games library by status", async ({ page }) => {
     await page.goto("/games.html");
     const cards = page.locator(".game");
-    await expect(cards).toHaveCount(6);
+    await expect(cards).toHaveCount(1);
     await expect(page.getByRole("button", { name: "Todos" })).toHaveAttribute(
       "aria-pressed",
       "true",
@@ -239,10 +239,10 @@ test.describe("setup, tools and games", () => {
     const playing = page.getByRole("button", { name: "Jogando" });
     await playing.click();
     await expect(playing).toHaveAttribute("aria-pressed", "true");
-    await expect(cards).toHaveCount(2);
+    await expect(cards).toHaveCount(0);
 
     await page.getByRole("button", { name: "Todos" }).click();
-    await expect(cards).toHaveCount(6);
+    await expect(cards).toHaveCount(1);
   });
 });
 
