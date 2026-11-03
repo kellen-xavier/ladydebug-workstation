@@ -60,13 +60,13 @@ ladydebug-workstation/
 │   │   │   └── unity.md
 │   │   ├── fluxo.md        # breve apresentação do processo de trabalho
 │   │   ├── fluxo-completo.md # relato e critérios de conclusão dos estudos
-│   │   ├── fluxo.ts        # etapas e links do fluxo
+│   │   ├── fluxo-passos.md # etapas, rótulos e ciclo do fluxo (seção da home)
 │   │   ├── mapa.md         # lugares do mapa do site
 │   │   ├── trajetoria.md   # linha do tempo da trajetória
 │   │   ├── setup.md        # painéis do setup
 │   │   ├── ferramentas.md  # lista de ferramentas e comandos
 │   │   ├── games.md         # games, organização e status
-│   │   ├── projetos.ts     # cartões dos projetos
+│   │   ├── projetos.md     # cartões dos projetos
 │   │   └── site.ts         # navegação, rótulos, links e textos auxiliares
 │   ├── styles/
 │   │   ├── global.css      # estilos base e compartilhados
@@ -116,8 +116,8 @@ bun run lint:fix   # corrige automaticamente o que for possível
 - **Relatos dos trabalhos:** `src/content/trabalhos/*.md`. A ordem, o ID da âncora, as tecnologias e o resumo visível de cada contribuição (`summary`) ficam em `src/content/trabalhos/index.ts`.
 - **Texto de apresentação do fluxo:** `src/content/fluxo.md` — aceita parágrafos, ênfase e links Markdown.
 - **Página completa do workflow:** `src/content/fluxo-completo.md` — conteúdo acessível pelo botão “Conhecer meu Workflow”, em `workflow.html`. Aceita listas de tarefas com `- [ ]` e `- [x]`.
-- **Etapas do fluxo:** `src/content/fluxo.ts`. A ordem dos itens em `steps` define a ordem de exibição.
-- **Projetos:** `src/content/projetos.ts` — adicione um item em `projects` para criar um novo cartão.
+- **Etapas do fluxo:** `src/content/fluxo-passos.md` — uma seção `## <id-do-caso>` por etapa (o id liga ao caso em Na prática); a ordem das seções define a exibição.
+- **Projetos:** `src/content/projetos.md` — uma seção `## Nome do projeto` por cartão (tags separadas por `|`).
 - **Mapa do site:** `src/content/mapa.md`.
 - **Trajetória:** `src/content/trajetoria.md` — linha do tempo da página Trajetória.
 - **Setup:** `src/content/setup.md`.
@@ -186,7 +186,7 @@ Endereço de publicação: [kellen-xavier.github.io/ladydebug-workstation](https
 A seção **Na prática** apresenta quatro casos a partir dos relatórios fornecidos pela autora (análise de 29/10/2026): mobile, backend de estacionamento, cadastro/identificadores fiscais e Unity. Cada caso identifica trabalho realizado, referências históricas e limites da evidência. A página não publica código privado ou relatórios internos completos.
 
 - `src/content/trabalhos/`: casos e origem documental, com hashes SHA-256 das cópias consultadas. Os hashes identificam documentos e não certificam suas afirmações.
-- `src/content/fluxo.ts`: fluxo de trabalho com links para os casos.
-- `src/content/projetos.ts`: projetos abertos, incluindo Ladydebug Bot Planner.
+- `src/content/fluxo-passos.md`: etapas do fluxo com links para os casos.
+- `src/content/projetos.md`: projetos abertos, incluindo Ladydebug Bot Planner.
 
 A revisão da página não repetiu a coleta Git dos projetos privados nem a execução dos testes descritos. Implementação, configuração, execução documentada e implantação são apresentadas separadamente.

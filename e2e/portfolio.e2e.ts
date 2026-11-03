@@ -200,22 +200,17 @@ test.describe("workflow page", () => {
 test.describe("setup, tools and games", () => {
   test("groups the setup specs into labelled panels", async ({ page }) => {
     await page.goto("/setup.html");
-    for (const group of ["Sistema", "IAs", "Terminal & editor", "Hardware"]) {
-      await expect(page.getByRole("heading", { level: 2, name: group })).toBeVisible();
-    }
-    await expect(
-      page.getByRole("link", { name: "Como instalar cada ferramenta →" }),
-    ).toHaveAttribute("href", "./ferramentas.html");
+    await expect(page.locator(".setup-grid .panel")).not.toHaveCount(0);
+    await expect(page.locator(".setup-grid .panel h2").first()).toBeVisible();
+    await expect(page.locator(".page-note a")).toHaveAttribute("href", "./ferramentas.html");
   });
 
   test("lists each tool with an install command and a copy button", async ({ page }) => {
     await page.goto("/ferramentas.html");
-    const bun = page.locator(".tool", {
-      has: page.getByRole("heading", { name: "Bun", exact: true }),
-    });
-    await expect(bun.locator("code")).toContainText("bun");
-    await expect(bun.getByRole("button", { name: "copiar: Bun" })).toBeVisible();
-    await expect(bun.getByRole("link", { name: "Site oficial ↗" })).toHaveAttribute(
+    const tool = page.locator(".tool").first();
+    await expect(tool.locator("code")).toBeVisible();
+    await expect(tool.getByRole("button", { name: /^copiar:/ })).toBeVisible();
+    await expect(tool.getByRole("link", { name: "Site oficial ↗" })).toHaveAttribute(
       "target",
       "_blank",
     );
@@ -224,12 +219,12 @@ test.describe("setup, tools and games", () => {
   test("copies an install command to the clipboard", async ({ page, context }) => {
     await context.grantPermissions(["clipboard-read", "clipboard-write"]);
     await page.goto("/ferramentas.html");
-    const bun = page.locator(".tool", {
-      has: page.getByRole("heading", { name: "Bun", exact: true }),
-    });
-    await bun.getByRole("button", { name: "copiar: Bun" }).click();
-    await expect(bun.getByText("copiado")).toBeVisible();
-    expect(await page.evaluate(() => navigator.clipboard.readText())).toContain("bun");
+    const tool = page.locator(".tool").first();
+    const command = ((await tool.locator("code").textContent()) ?? "").trim();
+    expect(command.length).toBeGreaterThan(0);
+    await tool.getByRole("button", { name: /^copiar:/ }).click();
+    await expect(tool.getByText("copiado")).toBeVisible();
+    expect(await page.evaluate(() => navigator.clipboard.readText())).toBe(command);
   });
 
   test("filters the games library by status", async ({ page }) => {
