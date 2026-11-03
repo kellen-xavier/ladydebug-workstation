@@ -1,5 +1,5 @@
 ---
-eyebrow: setup.txt / qual o meu PC?
+eyebrow: setup.txt / qual o meu Setup?
 title: Setup
 intro: Sistema, IAs, terminal e o resto da estação onde programo, testo e documento.
 toolsLink: Como instalar cada ferramenta →
@@ -16,7 +16,7 @@ toolsLink: Como instalar cada ferramenta →
 
 ## >_ Terminal & editor
 - Terminal: [Kitty](https://sw.kovidgoyal.net/kitty/) and [multiplexer TMUX](https://github.com/tmux/tmux)
-- Editor: [editor + tema]
+- Editor: [neovim + VS Code + Open Code]
 - Fonte: [fonte]
 
 ## ▤ Hardware

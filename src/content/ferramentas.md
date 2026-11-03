@@ -25,32 +25,20 @@ copiedLabel: copiado
 - instalar: curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin
 - site: https://sw.kovidgoyal.net/kitty/
 
-## Git
-- categoria: Terminal
-- descricao: Controle de versão.
-- instalar: sudo apt install git
-- site: https://git-scm.com/downloads
+## Game DEV
+- categoria: IDEs
+- descricao: IDE para Criação de Testes de Gameplay
+- instalar: 
+- site: 
 
-## Bun
-- categoria: Dev
-- descricao: Runtime e gerenciador de pacotes usado neste site.
-- instalar: curl -fsSL https://bun.sh/install | bash
-- site: https://bun.sh
+## AI-Memory
+- categoria: Terminal Skill Agentes
+- descricao: Veja no Site passo a passo para install`ai-memory-bin` (aur)
+- instalar: yay -S ai-memory-bin yay -S ai-memory ai-memory setup
+- site: https://aimemory.sh/pt-br/
 
-## Biome
-- categoria: Dev
-- descricao: Formatação e lint.
-- instalar: bun add -D -E @biomejs/biome
-- site: https://biomejs.dev
-
-## Playwright
-- categoria: Testes
-- descricao: Testes end-to-end no navegador.
-- instalar: bunx playwright install
-- site: https://playwright.dev
-
-## k6
-- categoria: Testes
-- descricao: Testes de carga e performance.
-- instalar: brew install k6
-- site: https://k6.io
+## AI-Jail
+- categoria: Para o uso viar terminal para executar o seu agente em um local seguro
+- descricao: Veja no Site passo a passo para o install
+- instalar: 
+- site: https://github.com/akitaonrails/ai-jail
