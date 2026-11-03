@@ -20,16 +20,16 @@ copiedLabel: copiado
 - site: https://github.com/openai/codex
 
 ## Kitty
-- categoria: Terminal
-- descricao: Terminal rápido, acelerado por GPU.
-- instalar: curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin
-- site: https://sw.kovidgoyal.net/kitty/
+- Categoria: Terminal
+- Descricao: Terminal rápido, acelerado por GPU.
+- Instalar: curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin
+- Site: https://sw.kovidgoyal.net/kitty/
 
 ## Game DEV
 - categoria: IDEs
 - descricao: IDE para Criação de Testes de Gameplay
-- instalar: 
-- site: 
+- instalar:
+- site:
 
 ## AI-Memory
 - categoria: Terminal Skill Agentes
@@ -39,6 +39,6 @@ copiedLabel: copiado
 
 ## AI-Jail
 - categoria: Para o uso viar terminal para executar o seu agente em um local seguro
-- descricao: Veja no Site passo a passo para o install
-- instalar: 
+- descricao: Veja no Repositório passo a passo para o install
+- instalar: yay -S ai-jail-bin
 - site: https://github.com/akitaonrails/ai-jail
