@@ -5,13 +5,14 @@ intro: Sistema, IAs, terminal e o resto da estação onde programo, testo e docu
 toolsLink: Como instalar cada ferramenta →
 ---
 
-## [▣] Sistema
+## [▣] Sistema Operacional
 - SO: [Omarchy](https://omarchy.org/)
-- Descrição: Sistema Operacional principal
+- Descrição: Atualmente estou utilizando este sistema como Principal
 - Repositório Oficial: [link do repo](https://github.com/omacom/omarchy)
 - Blog: [Sobre o Omarchy]()
 
 ## ✦ IAs
+
 - Agentes: Claude Code, Codex
 - Skills: [My Skills](https://github.com/kellen-xavier/my-skills)
 
