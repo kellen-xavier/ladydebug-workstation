@@ -68,7 +68,6 @@ ladydebug-workstation/
 │   │   ├── games.ts        # lista de games e status
 │   │   ├── projetos.ts     # cartões dos projetos
 │   │   └── site.ts         # navegação, rótulos, links e textos auxiliares
-│   ├── data/site.ts        # reexportações para compatibilidade
 │   ├── styles/
 │   │   ├── global.css      # estilos base e compartilhados
 │   │   └── pages.css        # estilos das novas páginas (carregado após global.css)

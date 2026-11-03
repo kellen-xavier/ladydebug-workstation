@@ -1,10 +1,10 @@
 import { describe, expect, test } from "bun:test";
 import { renderToStaticMarkup } from "react-dom/server";
-import { Brand } from "../src/components/Brand";
+import { Header } from "../src/components/Header";
 import { HomePage } from "../src/components/HomePage";
 import { PracticePage } from "../src/components/PracticePage";
 import { Workflow } from "../src/components/Workflow";
-import { projects } from "../src/data/site";
+import { projects } from "../src/content/projetos";
 
 const markup = () => renderToStaticMarkup(<HomePage />);
 
@@ -56,6 +56,6 @@ describe("work portfolio", () => {
   });
 
   test("displays the brand only as ladydebug", () => {
-    expect(renderToStaticMarkup(<Brand />)).toMatch(/>ladydebug<\/a>/);
+    expect(renderToStaticMarkup(<Header />)).toContain(">ladydebug</a>");
   });
 });
