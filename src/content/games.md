@@ -11,18 +11,12 @@ blogLabel: Ler no blog ↗
 ---
 
 ## Organização
+
 - Launcher: [Steam / Heroic / Lutris]
-- Plataformas: [PC · console · portátil]
+- Steam: Minha Steam — PC
+- Plataformas: [PC · Console · Emulador]
 - Organização: [coleções, saves, backups]
 
-## Jogando
-- [Nome do jogo] — [PC]
-- [Nome do jogo] — [Switch]
-
-## Zerados
-- [Nome do jogo] — [PC]
-- [Nome do jogo] — [PS5]
-
 ## Na fila
-- [Nome do jogo] — [PC]
-- [Nome do jogo] — [Mobile]
+
+- [Loading] — [;--;]

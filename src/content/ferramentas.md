@@ -28,6 +28,13 @@ copiedLabel: copiado
 - instalar: curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin
 - site: https://sw.kovidgoyal.net/kitty/
 
+## Open Code
+
+- categoria: Terminal
+- descricao: Modelo open-source de terminal para integrar seus agents
+- instalar: curl -fsSL https://opencode.ai/v2/install | bash
+- site: https://opencode.ai/
+
 ## Game DEV
 
 - categoria: IDEs
