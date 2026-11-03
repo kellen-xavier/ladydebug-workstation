@@ -1,6 +1,37 @@
-import { setup } from "../content/setup";
+import setupSource from "../content/setup.md" with { type: "text" };
+import { pageHref } from "../content/site";
+import { frontmatter, keyValue, sections, splitIcon } from "./contentFormat";
+import { MarkdownContent } from "./MarkdownContent";
 import { PageHead } from "./PageHead";
 import { PageLayout } from "./PageLayout";
+
+type SetupItem = { label: string; value: string };
+type SetupGroup = { icon: string; title: string; items: SetupItem[] };
+
+/**
+ * Reads src/content/setup.md: front matter (eyebrow/title/intro/toolsLink) plus
+ * "## icon Title" panels of "- Label: value" rows. Each value may be inline
+ * Markdown, so links are written as [text](url) in the content file.
+ */
+function parseSetup(source: string) {
+  const { meta, body } = frontmatter(source);
+  const groups: SetupGroup[] = sections(body).map((section) => ({
+    ...splitIcon(section.heading),
+    items: section.lines.map((line) => {
+      const { key, value } = keyValue(line);
+      return { label: key, value };
+    }),
+  }));
+  return {
+    eyebrow: meta.eyebrow ?? "",
+    title: meta.title ?? "",
+    intro: meta.intro ?? "",
+    toolsLink: meta.toolsLink ?? "",
+    groups,
+  };
+}
+
+export const setup = parseSetup(setupSource);
 
 export function SetupPage() {
   return (
@@ -17,7 +48,11 @@ export function SetupPage() {
               {group.items.map((item) => (
                 <div key={`${item.label}-${item.value}`}>
                   <dt>{item.label}</dt>
-                  <dd>{item.value}</dd>
+                  <dd>
+                    <MarkdownContent components={{ p: ({ children }) => <>{children}</> }}>
+                      {item.value}
+                    </MarkdownContent>
+                  </dd>
                 </div>
               ))}
             </dl>
@@ -25,7 +60,7 @@ export function SetupPage() {
         ))}
       </div>
       <p className="page-note">
-        <a href={setup.toolsLink.href}>{setup.toolsLink.label}</a>
+        <a href={pageHref.ferramentas}>{setup.toolsLink}</a>
       </p>
     </PageLayout>
   );

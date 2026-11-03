@@ -3,8 +3,7 @@ import { renderToStaticMarkup } from "react-dom/server";
 import { About } from "../src/components/About";
 import { Hero } from "../src/components/Hero";
 import { Work } from "../src/components/Work";
-import { Workflow } from "../src/components/Workflow";
-import { workflow } from "../src/content/fluxo";
+import { Workflow, workflow } from "../src/components/Workflow";
 import { workCases } from "../src/content/trabalhos";
 
 describe("content-driven portfolio sections", () => {

@@ -1,7 +1,43 @@
-import { projectSection, projects } from "../content/projetos";
+import projectsSource from "../content/projetos.md" with { type: "text" };
 import { links, site } from "../content/site";
+import { frontmatter, keyValue, sections } from "./contentFormat";
 import { ExternalLink } from "./ExternalLink";
-import { ProjectCard } from "./ProjectCard";
+import { type Project, ProjectCard } from "./ProjectCard";
+
+/**
+ * Reads src/content/projetos.md: front matter (section labels) plus one
+ * "## Project name" section with "- icon / badge / descricao / tags / url"
+ * (tags are "|"-separated).
+ */
+function parseProjects(source: string) {
+  const { meta, body } = frontmatter(source);
+  const projects: Project[] = sections(body).map((section) => {
+    const fields: Record<string, string> = {};
+    for (const line of section.lines) {
+      const { key, value } = keyValue(line);
+      fields[key] = value;
+    }
+    return {
+      title: section.heading,
+      icon: fields.icon ?? "",
+      badge: fields.badge ?? "",
+      description: fields.descricao ?? "",
+      tags: fields.tags ? fields.tags.split("|").map((tag) => tag.trim()) : [],
+      url: fields.url ?? "",
+    };
+  });
+  return {
+    projects,
+    projectSection: {
+      eyebrow: meta.eyebrow ?? "",
+      title: meta.title ?? "",
+      description: meta.description ?? "",
+      linkLabel: meta.linkLabel ?? "",
+    },
+  };
+}
+
+export const { projects, projectSection } = parseProjects(projectsSource);
 
 /** Lists open projects; `limit` shows a preview with a link to the blog studies. */
 export function Projects({ limit }: { limit?: number }) {

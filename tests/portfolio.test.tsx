@@ -3,8 +3,8 @@ import { renderToStaticMarkup } from "react-dom/server";
 import { Header } from "../src/components/Header";
 import { HomePage } from "../src/components/HomePage";
 import { PracticePage } from "../src/components/PracticePage";
+import { projects } from "../src/components/Projects";
 import { Workflow } from "../src/components/Workflow";
-import { projects } from "../src/content/projetos";
 
 const markup = () => renderToStaticMarkup(<HomePage />);
 
