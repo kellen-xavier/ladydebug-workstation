@@ -19,3 +19,6 @@ playwright-report/
 .idea
 .vscode
 .DS_Store
+
+# generated page entries (build/dev)
+.generated/

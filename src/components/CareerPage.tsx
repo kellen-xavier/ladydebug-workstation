@@ -1,12 +1,71 @@
 import { pageHref } from "../content/site";
-import { workCases } from "../content/trabalhos";
-import { career } from "../content/trajetoria";
+import careerSource from "../content/trajetoria.md" with { type: "text" };
+import { frontmatter, keyValue, sections } from "./contentFormat";
 import { PageHead } from "./PageHead";
 import { PageLayout } from "./PageLayout";
 
-const caseTitle = (id: string) =>
-  workCases.find((work) => work.id === id)?.id.replace(/^./, (letter) => letter.toUpperCase()) ??
-  id;
+type CareerEntry = {
+  end: string;
+  period: string;
+  role: string;
+  organization: string;
+  kind: string;
+  description: string;
+  cases?: string[];
+};
+
+const caseTitle = (id: string) => id.replace(/^./, (letter) => letter.toUpperCase());
+
+/**
+ * Reads src/content/trajetoria.md: front matter (intro, highlight and "before"
+ * blocks), a "## Foco" list for the highlight, and one "## Role" section per
+ * timeline entry with "- periodo / organizacao / fim / tipo / descricao / casos".
+ */
+function parseCareer(source: string) {
+  const { meta, body } = frontmatter(source);
+  const secs = sections(body);
+  const focus = secs.find((section) => section.heading === "Foco")?.lines ?? [];
+  const timeline: CareerEntry[] = secs
+    .filter((section) => section.heading !== "Foco")
+    .map((section) => {
+      const fields: Record<string, string> = {};
+      for (const line of section.lines) {
+        const { key, value } = keyValue(line);
+        fields[key] = value;
+      }
+      const cases = fields.casos ? fields.casos.split(",").map((id) => id.trim()) : undefined;
+      return {
+        role: section.heading,
+        period: fields.periodo ?? "",
+        organization: fields.organizacao ?? "",
+        end: fields.fim ?? "",
+        kind: fields.tipo ?? "",
+        description: fields.descricao ?? "",
+        ...(cases ? { cases } : {}),
+      };
+    });
+
+  return {
+    eyebrow: meta.eyebrow ?? "",
+    title: meta.title ?? "",
+    intro: meta.intro ?? "",
+    practiceLinkLabel: meta.practiceLinkLabel ?? "",
+    highlight: {
+      eyebrow: meta.highlightEyebrow ?? "",
+      title: meta.highlightTitle ?? "",
+      description: meta.highlightDescription ?? "",
+      focus,
+    },
+    timeline,
+    before: {
+      eyebrow: meta.beforeEyebrow ?? "",
+      title: meta.beforeTitle ?? "",
+      description: meta.beforeDescription ?? "",
+    },
+  };
+}
+
+export const career = parseCareer(careerSource);
 
 export function CareerPage() {
   const { highlight } = career;

@@ -1,7 +1,16 @@
 import { useEffect, useRef, useState } from "react";
-import { toolsPage } from "../content/ferramentas";
 
-export function CopyButton({ text, label }: { text: string; label: string }) {
+export function CopyButton({
+  text,
+  label,
+  copyLabel,
+  copiedLabel,
+}: {
+  text: string;
+  label: string;
+  copyLabel: string;
+  copiedLabel: string;
+}) {
   const [copied, setCopied] = useState(false);
   const timer = useRef<ReturnType<typeof setTimeout>>(undefined);
   useEffect(() => () => clearTimeout(timer.current), []);
@@ -22,9 +31,9 @@ export function CopyButton({ text, label }: { text: string; label: string }) {
       type="button"
       className="copy-button"
       onClick={copy}
-      aria-label={`${toolsPage.copyLabel}: ${label}`}
+      aria-label={`${copyLabel}: ${label}`}
     >
-      <span aria-live="polite">{copied ? toolsPage.copiedLabel : toolsPage.copyLabel}</span>
+      <span aria-live="polite">{copied ? copiedLabel : copyLabel}</span>
     </button>
   );
 }

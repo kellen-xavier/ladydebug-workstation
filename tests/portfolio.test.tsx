@@ -1,12 +1,12 @@
 import { describe, expect, test } from "bun:test";
 import { renderToStaticMarkup } from "react-dom/server";
-import { App } from "../src/App";
-import { Brand } from "../src/components/Brand";
+import { Header } from "../src/components/Header";
+import { HomePage } from "../src/components/HomePage";
 import { PracticePage } from "../src/components/PracticePage";
+import { projects } from "../src/components/Projects";
 import { Workflow } from "../src/components/Workflow";
-import { projects } from "../src/data/site";
 
-const markup = () => renderToStaticMarkup(<App />);
+const markup = () => renderToStaticMarkup(<HomePage />);
 
 describe("work portfolio", () => {
   test("keeps the home anchors used by the navigation", () => {
@@ -56,6 +56,6 @@ describe("work portfolio", () => {
   });
 
   test("displays the brand only as ladydebug", () => {
-    expect(renderToStaticMarkup(<Brand />)).toMatch(/>ladydebug<\/a>/);
+    expect(renderToStaticMarkup(<Header />)).toContain(">ladydebug</a>");
   });
 });

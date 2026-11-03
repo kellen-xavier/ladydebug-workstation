@@ -1,8 +1,11 @@
+import { links, site } from "../content/site";
+import { ExternalLink } from "./ExternalLink";
+
 export function Closing() {
   return (
-    <section className="closing">
+    <section className="closing" aria-labelledby="closing-title">
       <div>
-        <h2>{site.closing.title}</h2>
+        <h2 id="closing-title">{site.closing.title}</h2>
         <p>{site.closing.description}</p>
       </div>
       <ExternalLink className="button" href={links.blog}>
@@ -11,6 +14,3 @@ export function Closing() {
     </section>
   );
 }
-
-import { links, site } from "../content/site";
-import { ExternalLink } from "./ExternalLink";

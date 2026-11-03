@@ -23,3 +23,14 @@ ESTUDO CONCLUÍDO
 - [ ] registrei o que aprendi
 
 > o repositório deve guardar evidência do aprendizado.
+
+---
+
+## Inicio do Trabalho
+
+Para gerar os projetos que venho atuando ou simplemente trabalhar neles, inicio via terminal
+o ai-memory como agente abro o projeto, analise e vejo quais modificações deve ser realizadas.
+
+Gero uma base de conhecimento caso o projeto não tenha um para compartilhar com a equipe envolvida (docs as code)
+Gero essa Wiki nos projetos, e para o desenvolvimento sempre analiso como esta a base de testes do projeto, para então
+Criar esse testes e executar o ciclo, testes > implementa no código fonte > testes > deploy.

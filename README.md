@@ -19,24 +19,15 @@ Estética de homepage dos anos 2000–2009, ilustração em pixel art e paleta d
 ```txt
 ladydebug-workstation/
 ├── src/
-│   ├── pages.ts            # fonte única das entradas HTML (build, dev e testes)
-│   ├── index.html          # home do portfólio (metatags, favicon, CSS, script)
-│   ├── trajetoria.html     # página de trajetória profissional
-│   ├── pratica.html        # página "Na prática" (casos e evidências)
-│   ├── workflow.html       # página interna sobre o processo de trabalho
-│   ├── setup.html          # página de setup
-│   ├── ferramentas.html    # página de ferramentas
-│   ├── games.html          # página de games
-│   ├── main.tsx            # entrada React da home
-│   ├── trajetoria-main.tsx # entrada React da trajetória
-│   ├── pratica-main.tsx    # entrada React do "Na prática"
-│   ├── workflow-main.tsx   # entrada React do workflow
-│   ├── setup-main.tsx      # entrada React do setup
-│   ├── ferramentas-main.tsx # entrada React das ferramentas
-│   ├── games-main.tsx      # entrada React dos games
-│   ├── mount.tsx           # monta um componente de página em #root
-│   ├── App.tsx             # composição da home
-│   ├── components/         # uma seção/página por componente
+│   ├── pages.ts            # registro único das páginas (slug, título, descrição, componente)
+│   ├── components/         # componentes: páginas (*Page/HomePage) e seções compartilhadas
+│   │   ├── HomePage.tsx     # composição da home
+│   │   ├── CareerPage.tsx   # página de trajetória
+│   │   ├── PracticePage.tsx # página "Na prática"
+│   │   ├── WorkflowPage.tsx # página de workflow (relato completo do processo)
+│   │   ├── SetupPage.tsx
+│   │   ├── ToolsPage.tsx
+│   │   ├── GamesPage.tsx
 │   │   ├── Header.tsx       # navegação principal + links sociais
 │   │   ├── SocialLinks.tsx  # ícones GitHub, LinkedIn e Blog
 │   │   ├── Hero.tsx
@@ -51,14 +42,8 @@ ladydebug-workstation/
 │   │   ├── Brand.tsx
 │   │   ├── ExternalLink.tsx
 │   │   ├── CopyButton.tsx   # botão de copiar (ferramentas)
-│   │   ├── CareerPage.tsx   # página de trajetória
-│   │   ├── PracticePage.tsx # página "Na prática"
-│   │   ├── SetupPage.tsx
-│   │   ├── ToolsPage.tsx
-│   │   ├── GamesPage.tsx
 │   │   ├── Work.tsx
 │   │   ├── Workflow.tsx
-│   │   ├── WorkflowPage.tsx # relato completo do processo
 │   │   ├── PageHead.tsx     # cabeçalho de página interna
 │   │   ├── PageLayout.tsx   # cabeçalho e rodapé compartilhados
 │   │   └── MarkdownContent.tsx # renderização compartilhada de Markdown
@@ -75,15 +60,14 @@ ladydebug-workstation/
 │   │   │   └── unity.md
 │   │   ├── fluxo.md        # breve apresentação do processo de trabalho
 │   │   ├── fluxo-completo.md # relato e critérios de conclusão dos estudos
-│   │   ├── fluxo.ts        # etapas e links do fluxo
-│   │   ├── mapa.ts         # itens do mapa do site
-│   │   ├── trajetoria.ts   # linha do tempo da trajetória
-│   │   ├── setup.ts        # painéis do setup
-│   │   ├── ferramentas.ts  # lista de ferramentas e comandos
-│   │   ├── games.ts        # lista de games e status
-│   │   ├── projetos.ts     # cartões dos projetos
+│   │   ├── fluxo-passos.md # etapas, rótulos e ciclo do fluxo (seção da home)
+│   │   ├── mapa.md         # lugares do mapa do site
+│   │   ├── trajetoria.md   # linha do tempo da trajetória
+│   │   ├── setup.md        # painéis do setup
+│   │   ├── ferramentas.md  # lista de ferramentas e comandos
+│   │   ├── games.md         # games, organização e status
+│   │   ├── projetos.md     # cartões dos projetos
 │   │   └── site.ts         # navegação, rótulos, links e textos auxiliares
-│   ├── data/site.ts        # reexportações para compatibilidade
 │   ├── styles/
 │   │   ├── global.css      # estilos base e compartilhados
 │   │   └── pages.css        # estilos das novas páginas (carregado após global.css)
@@ -93,12 +77,14 @@ ladydebug-workstation/
 │       ├── cv-kellen-xavier.pdf # CV baixável (adicione o arquivo; o build exige)
 │       └── fonts/          # pixelify.woff2 + OFL.txt
 ├── scripts/
-│   ├── dev.ts              # servidor de desenvolvimento de todas as páginas
+│   ├── generate-pages.ts   # gera, a partir de src/pages.ts, o HTML e a entrada de cada página
+│   ├── dev.ts              # servidor de desenvolvimento (gera as páginas e usa o bundler do Bun)
 │   ├── build.ts            # build estático com imagens referenciadas no Markdown
 │   ├── preview.ts          # servidor estático para testar o build
 │   └── markdown-text.ts    # leitura de Markdown como texto no desenvolvimento
 ├── tests/                  # testes de conteúdo, renderização e navegação
 ├── bunfig.toml             # plugin de Markdown do servidor de desenvolvimento
+├── .generated/             # HTML e entradas geradas (temporário, não versionado)
 ├── dist/                   # saída do build (gerada, não versionada)
 ├── biome.json            # configuração do lint/formatação
 ├── bun-env.d.ts            # tipos para importar .png e .css
@@ -130,13 +116,15 @@ bun run lint:fix   # corrige automaticamente o que for possível
 - **Relatos dos trabalhos:** `src/content/trabalhos/*.md`. A ordem, o ID da âncora, as tecnologias e o resumo visível de cada contribuição (`summary`) ficam em `src/content/trabalhos/index.ts`.
 - **Texto de apresentação do fluxo:** `src/content/fluxo.md` — aceita parágrafos, ênfase e links Markdown.
 - **Página completa do workflow:** `src/content/fluxo-completo.md` — conteúdo acessível pelo botão “Conhecer meu Workflow”, em `workflow.html`. Aceita listas de tarefas com `- [ ]` e `- [x]`.
-- **Etapas do fluxo:** `src/content/fluxo.ts`. A ordem dos itens em `steps` define a ordem de exibição.
-- **Projetos:** `src/content/projetos.ts` — adicione um item em `projects` para criar um novo cartão.
-- **Mapa do site:** `src/content/mapa.ts`.
-- **Trajetória:** `src/content/trajetoria.ts` — linha do tempo da página Trajetória.
-- **Setup:** `src/content/setup.ts`.
-- **Ferramentas:** `src/content/ferramentas.ts` — lista e comandos de instalação (os exemplos de Git e k6 assumem Linux/Homebrew).
-- **Games:** `src/content/games.ts`.
+- **Etapas do fluxo:** `src/content/fluxo-passos.md` — uma seção `## <id-do-caso>` por etapa (o id liga ao caso em Na prática); a ordem das seções define a exibição.
+- **Projetos:** `src/content/projetos.md` — uma seção `## Nome do projeto` por cartão (tags separadas por `|`).
+- **Mapa do site:** `src/content/mapa.md`.
+- **Trajetória:** `src/content/trajetoria.md` — linha do tempo da página Trajetória.
+- **Setup:** `src/content/setup.md`.
+- **Ferramentas:** `src/content/ferramentas.md` — lista e comandos de instalação (os exemplos de Git e k6 assumem Linux/Homebrew).
+- **Games:** `src/content/games.md`.
+
+Essas cinco páginas usam o mesmo formato Markdown: front matter (`--- ... ---`) com os rótulos da página e seções `## título` com linhas `- chave: valor`. Onde quiser um link, escreva `[texto](url)` no valor (em Setup, o link vira um link externo seguro). O parsing fica em `src/components/contentFormat.ts`; cada componente de página monta a estrutura e o texto vem só do `.md`.
 - **Navegação, rótulos, links, tópicos e textos auxiliares:** `src/content/site.ts`.
 - **Estrutura dos componentes:** `src/components/`.
 - **Cores e estilos:** `src/styles/global.css`.
@@ -198,7 +186,7 @@ Endereço de publicação: [kellen-xavier.github.io/ladydebug-workstation](https
 A seção **Na prática** apresenta quatro casos a partir dos relatórios fornecidos pela autora (análise de 29/10/2026): mobile, backend de estacionamento, cadastro/identificadores fiscais e Unity. Cada caso identifica trabalho realizado, referências históricas e limites da evidência. A página não publica código privado ou relatórios internos completos.
 
 - `src/content/trabalhos/`: casos e origem documental, com hashes SHA-256 das cópias consultadas. Os hashes identificam documentos e não certificam suas afirmações.
-- `src/content/fluxo.ts`: fluxo de trabalho com links para os casos.
-- `src/content/projetos.ts`: projetos abertos, incluindo Ladydebug Bot Planner.
+- `src/content/fluxo-passos.md`: etapas do fluxo com links para os casos.
+- `src/content/projetos.md`: projetos abertos, incluindo Ladydebug Bot Planner.
 
 A revisão da página não repetiu a coleta Git dos projetos privados nem a execução dos testes descritos. Implementação, configuração, execução documentada e implantação são apresentadas separadamente.

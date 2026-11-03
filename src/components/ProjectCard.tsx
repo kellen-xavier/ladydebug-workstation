@@ -1,6 +1,14 @@
-import type { Project } from "../content/projetos";
 import { site } from "../content/site";
 import { ExternalLink } from "./ExternalLink";
+
+export type Project = {
+  title: string;
+  icon: string;
+  badge: string;
+  description: string;
+  tags: string[];
+  url: string;
+};
 
 export function ProjectCard({ project }: { project: Project }) {
   return (
