@@ -61,11 +61,11 @@ ladydebug-workstation/
 │   │   ├── fluxo.md        # breve apresentação do processo de trabalho
 │   │   ├── fluxo-completo.md # relato e critérios de conclusão dos estudos
 │   │   ├── fluxo.ts        # etapas e links do fluxo
-│   │   ├── mapa.ts         # itens do mapa do site
-│   │   ├── trajetoria.ts   # linha do tempo da trajetória
-│   │   ├── setup.ts        # painéis do setup
-│   │   ├── ferramentas.ts  # lista de ferramentas e comandos
-│   │   ├── games.ts        # lista de games e status
+│   │   ├── mapa.md         # lugares do mapa do site
+│   │   ├── trajetoria.md   # linha do tempo da trajetória
+│   │   ├── setup.md        # painéis do setup
+│   │   ├── ferramentas.md  # lista de ferramentas e comandos
+│   │   ├── games.md         # games, organização e status
 │   │   ├── projetos.ts     # cartões dos projetos
 │   │   └── site.ts         # navegação, rótulos, links e textos auxiliares
 │   ├── styles/
@@ -118,11 +118,13 @@ bun run lint:fix   # corrige automaticamente o que for possível
 - **Página completa do workflow:** `src/content/fluxo-completo.md` — conteúdo acessível pelo botão “Conhecer meu Workflow”, em `workflow.html`. Aceita listas de tarefas com `- [ ]` e `- [x]`.
 - **Etapas do fluxo:** `src/content/fluxo.ts`. A ordem dos itens em `steps` define a ordem de exibição.
 - **Projetos:** `src/content/projetos.ts` — adicione um item em `projects` para criar um novo cartão.
-- **Mapa do site:** `src/content/mapa.ts`.
-- **Trajetória:** `src/content/trajetoria.ts` — linha do tempo da página Trajetória.
-- **Setup:** `src/content/setup.ts`.
-- **Ferramentas:** `src/content/ferramentas.ts` — lista e comandos de instalação (os exemplos de Git e k6 assumem Linux/Homebrew).
-- **Games:** `src/content/games.ts`.
+- **Mapa do site:** `src/content/mapa.md`.
+- **Trajetória:** `src/content/trajetoria.md` — linha do tempo da página Trajetória.
+- **Setup:** `src/content/setup.md`.
+- **Ferramentas:** `src/content/ferramentas.md` — lista e comandos de instalação (os exemplos de Git e k6 assumem Linux/Homebrew).
+- **Games:** `src/content/games.md`.
+
+Essas cinco páginas usam o mesmo formato Markdown: front matter (`--- ... ---`) com os rótulos da página e seções `## título` com linhas `- chave: valor`. Onde quiser um link, escreva `[texto](url)` no valor (em Setup, o link vira um link externo seguro). O parsing fica em `src/components/contentFormat.ts`; cada componente de página monta a estrutura e o texto vem só do `.md`.
 - **Navegação, rótulos, links, tópicos e textos auxiliares:** `src/content/site.ts`.
 - **Estrutura dos componentes:** `src/components/`.
 - **Cores e estilos:** `src/styles/global.css`.

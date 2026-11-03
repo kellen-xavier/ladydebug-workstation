@@ -1,7 +1,6 @@
 import { describe, expect, test } from "bun:test";
 import { renderToStaticMarkup } from "react-dom/server";
-import { SiteMap } from "../src/components/SiteMap";
-import { siteMap } from "../src/content/mapa";
+import { SiteMap, siteMap } from "../src/components/SiteMap";
 import { pageFile, pages } from "../src/pages";
 
 const pageFiles = pages.map(pageFile);

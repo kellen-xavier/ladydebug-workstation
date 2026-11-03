@@ -1,10 +1,8 @@
 import { describe, expect, test } from "bun:test";
 import { renderToStaticMarkup } from "react-dom/server";
-import { GamesPage } from "../src/components/GamesPage";
+import { GamesPage, gameStatuses, games } from "../src/components/GamesPage";
 import { SetupPage } from "../src/components/SetupPage";
-import { ToolsPage } from "../src/components/ToolsPage";
-import { tools } from "../src/content/ferramentas";
-import { gameStatuses, games } from "../src/content/games";
+import { ToolsPage, tools } from "../src/components/ToolsPage";
 
 describe("tools page", () => {
   test("documents where to download and how to install each tool", () => {
