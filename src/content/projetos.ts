@@ -1,6 +1,7 @@
 export const projectSection = {
   eyebrow: "repositories / projetos abertos",
-  title: "Conhecimento que vira repositório.",
+  title: "Projetos pessois e de estudo",
+  description: "Conhecimento que vira repositório.",
   linkLabel: "Todos os repositórios ↗",
 };
 
