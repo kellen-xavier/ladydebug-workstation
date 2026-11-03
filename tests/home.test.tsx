@@ -1,10 +1,10 @@
 import { describe, expect, test } from "bun:test";
 import { renderToStaticMarkup } from "react-dom/server";
-import { App } from "../src/App";
 import { Hero } from "../src/components/Hero";
+import { HomePage } from "../src/components/HomePage";
 import { links } from "../src/content/site";
 
-const html = renderToStaticMarkup(<App />);
+const html = renderToStaticMarkup(<HomePage />);
 
 describe("home page", () => {
   test("introduces the author right below the welcome", () => {

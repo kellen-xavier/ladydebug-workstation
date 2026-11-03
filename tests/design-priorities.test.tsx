@@ -1,12 +1,12 @@
 import { describe, expect, test } from "bun:test";
 import { renderToStaticMarkup } from "react-dom/server";
-import { App } from "../src/App";
 import { Hero } from "../src/components/Hero";
+import { HomePage } from "../src/components/HomePage";
 import { Work } from "../src/components/Work";
 
 describe("portfolio design priorities", () => {
   test("places the about section right after the welcome and only once", () => {
-    const html = renderToStaticMarkup(<App />);
+    const html = renderToStaticMarkup(<HomePage />);
     expect(html).toMatch(
       /<section class="hero">[\s\S]*?<\/section><section class="about" id="sobre">/,
     );
