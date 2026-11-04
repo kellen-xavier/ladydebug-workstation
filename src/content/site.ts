@@ -41,6 +41,7 @@ export const site = {
   browserTitle: "Ladydebug Workstation",
   skipLink: "Ir para o conteúdo",
   navigationLabel: "Navegação principal",
+  menuLabel: "menu",
   navigation: [
     { label: "Sobre", href: `${pageHref.home}#sobre`, page: "home" },
     { label: "Mapa", href: `${pageHref.home}#mapa`, page: "home" },
