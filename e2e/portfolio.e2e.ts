@@ -25,6 +25,13 @@ const allPaths = ["index.html", ...pages.map((page) => page.path)] as const;
 
 const mainNav = (page: Page) => page.getByRole("navigation", { name: "Navegação principal" });
 
+// On small screens the nav and social links are collapsed behind a toggle;
+// open it when it is present (a no-op on wide screens where the toggle is hidden).
+const openMenu = async (page: Page) => {
+  const toggle = page.getByRole("button", { name: "menu", exact: true });
+  if (await toggle.isVisible().catch(() => false)) await toggle.click();
+};
+
 const hasHorizontalScroll = (page: Page) =>
   page.evaluate(() => document.documentElement.scrollWidth > window.innerWidth + 1);
 
@@ -32,6 +39,7 @@ test.describe("primary navigation", () => {
   test("opens every internal page from the home navigation", async ({ page }) => {
     for (const entry of pages) {
       await page.goto("/");
+      await openMenu(page);
       await mainNav(page).getByRole("link", { name: entry.nav, exact: true }).click();
       await expect(page).toHaveURL(new RegExp(`/${entry.path}$`));
       await expect(page).toHaveTitle(entry.title);
@@ -41,6 +49,7 @@ test.describe("primary navigation", () => {
 
   test("marks only the open page as the current one", async ({ page }) => {
     await page.goto("/trajetoria.html");
+    await openMenu(page);
     const nav = mainNav(page);
     await expect(nav.getByRole("link", { name: "Trajetória", exact: true })).toHaveAttribute(
       "aria-current",
@@ -50,12 +59,14 @@ test.describe("primary navigation", () => {
 
     // The home page exposes Sobre/Mapa as in-page anchors, so none is "current".
     await page.goto("/");
+    await openMenu(page);
     await expect(mainNav(page).locator('a[aria-current="page"]')).toHaveCount(0);
   });
 
   test("scrolls to the home sections from the navigation anchors", async ({ page }) => {
-    await page.goto("/");
     for (const anchor of ["sobre", "mapa"] as const) {
+      await page.goto("/");
+      await openMenu(page);
       await mainNav(page)
         .getByRole("link", { name: anchor === "sobre" ? "Sobre" : "Mapa", exact: true })
         .click();
@@ -66,6 +77,7 @@ test.describe("primary navigation", () => {
 
   test("exposes GitHub, LinkedIn and Blog as external social links", async ({ page }) => {
     await page.goto("/");
+    await openMenu(page);
     const social = page.getByRole("group", { name: "Redes" });
     const expected = {
       GitHub: "https://github.com/kellen-xavier",
@@ -271,11 +283,37 @@ test.describe("responsive layout invariants", () => {
   test("keeps primary tap targets comfortable on touch devices", async ({ page }) => {
     test.skip(!test.info().project.use.hasTouch, "Applies to touch viewports");
     await page.goto("/");
+    await expect(page.getByRole("button", { name: "menu", exact: true })).toHaveCSS(
+      "min-height",
+      "44px",
+    );
+    await openMenu(page);
     const targets = page.locator("nav a, .button, .social a");
     for (const target of await targets.all()) {
       const box = await target.boundingBox();
       const label = (await target.textContent())?.trim() || "tap target";
       expect(box?.height, label).toBeGreaterThanOrEqual(44);
     }
+  });
+
+  test("collapses the nav behind the menu toggle on small screens", async ({ page }) => {
+    test.skip(!test.info().project.use.hasTouch, "small-screen layout only");
+    await page.goto("/");
+    const nav = mainNav(page);
+    const toggle = page.getByRole("button", { name: "menu", exact: true });
+    await expect(toggle).toBeVisible();
+    await expect(nav).toBeHidden();
+    await expect(toggle).toHaveAttribute("aria-expanded", "false");
+    await toggle.click();
+    await expect(toggle).toHaveAttribute("aria-expanded", "true");
+    await expect(nav).toBeVisible();
+    await expect(nav.getByRole("link", { name: "Trajetória", exact: true })).toBeVisible();
+  });
+
+  test("keeps the nav visible without a toggle on wide screens", async ({ page }) => {
+    test.skip(test.info().project.use.hasTouch === true, "wide-screen layout only");
+    await page.goto("/");
+    await expect(mainNav(page)).toBeVisible();
+    await expect(page.getByRole("button", { name: "menu", exact: true })).toBeHidden();
   });
 });

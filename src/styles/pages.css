@@ -17,6 +17,11 @@ nav a[aria-current="page"] {
     gap: 12px 18px;
 }
 
+/* The collapsible menu toggle is for small screens only (see the 560px query). */
+.menu-toggle {
+    display: none;
+}
+
 .social {
     display: flex;
     gap: 4px;
@@ -625,6 +630,46 @@ nav a[aria-current="page"] {
 }
 
 @media (max-width: 560px) {
+    header {
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .menu-toggle {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        min-height: 44px;
+        padding: 6px 14px;
+        border: 2px solid var(--ink);
+        border-top-color: white;
+        border-left-color: white;
+        outline: 1px solid #9c8c79;
+        box-shadow: 1px 1px 0 var(--ink);
+        background: var(--soft);
+        color: var(--ink);
+        font: 16px / 1.5 var(--pixel);
+        cursor: pointer;
+    }
+
+    .menu-toggle[aria-expanded="true"] {
+        background: #efc7dd;
+    }
+
+    .header-tools {
+        display: none;
+        flex-basis: 100%;
+        width: 100%;
+    }
+
+    .header-tools[data-open="true"] {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+
     .social {
         padding-left: 0;
         border-left: 0;
@@ -632,5 +677,16 @@ nav a[aria-current="page"] {
 
     .site-map {
         padding: 12px;
+    }
+
+    /* Stack the install command and its copy button so the code gets full width. */
+    .install {
+        flex-direction: column;
+    }
+
+    .install .copy-button {
+        width: 100%;
+        border-left: 0;
+        border-top: 1px solid var(--muted);
     }
 }
