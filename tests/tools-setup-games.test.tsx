@@ -12,10 +12,12 @@ describe("tools page", () => {
     }
   });
 
-  test("renders an install command with a copy button for each tool", () => {
+  test("renders an install command with a copy button only for tools that have one", () => {
     const html = renderToStaticMarkup(<ToolsPage />);
-    expect(html.match(/<code>/g)).toHaveLength(tools.length);
-    expect(html.match(/class="copy-button"/g)).toHaveLength(tools.length);
+    const withInstall = tools.filter((tool) => tool.install).length;
+    expect(withInstall).toBeGreaterThan(0);
+    expect(html.match(/<code>/g) ?? []).toHaveLength(withInstall);
+    expect(html.match(/class="copy-button"/g) ?? []).toHaveLength(withInstall);
   });
 });
 

@@ -40,6 +40,16 @@ describe("site navigation", () => {
     ]);
   });
 
+  test("offers a collapsible menu toggle that controls the nav tools", () => {
+    const html = renderToStaticMarkup(<Header />);
+    expect(html).toContain('class="menu-toggle"');
+    expect(html).toContain('aria-controls="header-tools"');
+    expect(html).toContain('aria-expanded="false"');
+    expect(html).toContain('id="header-tools"');
+    // the links stay in the DOM so the collapse is purely presentational
+    expect(navLinks(html)).toHaveLength(8);
+  });
+
   test("marks only the current page", () => {
     const html = renderToStaticMarkup(<Header current="setup" />);
     expect(html.match(/aria-current="page"/g)).toHaveLength(1);

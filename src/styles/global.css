@@ -168,7 +168,7 @@ main {
 }
 
 .hero h1 {
-    font: clamp(36px, 4.4vw, 53px) / 1.06 var(--pixel);
+    font: clamp(32px, 8vw, 53px) / 1.06 var(--pixel);
     letter-spacing: -1px;
     margin: 0 0 20px;
 }
@@ -259,29 +259,6 @@ main {
     max-width: 100%;
     height: auto;
     margin: 20px auto;
-}
-
-.topics {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-}
-
-.topics {
-    border-top: 3px double #a89178;
-    border-bottom: 3px double #a89178;
-    padding: 12px 0;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    gap: 10px;
-    font: 14px var(--pixel);
-    color: var(--muted);
-}
-
-.topics li:before {
-    content: "✦ ";
-    color: var(--link);
 }
 
 .projects {
@@ -485,10 +462,6 @@ footer .brand {
         gap: 18px;
     }
 
-    .hero h1 {
-        font-size: 38px;
-    }
-
     .actions {
         gap: 15px;
     }
@@ -557,21 +530,10 @@ footer .brand {
         gap: 24px;
     }
 
-    .hero h1 {
-        font-size: 42px;
-    }
-
     .pixel-scene {
         max-width: 360px;
         width: 100%;
         margin: auto;
-    }
-
-    .topics {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        line-height: 1.4;
-        font-size: 14px;
     }
 
     .section-head {

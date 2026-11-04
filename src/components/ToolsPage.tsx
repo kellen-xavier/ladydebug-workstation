@@ -56,18 +56,22 @@ export function ToolsPage() {
               <p>{tool.description}</p>
             </div>
             <div className="tool-install">
-              <div className="install">
-                <code>{tool.install}</code>
-                <CopyButton
-                  text={tool.install}
-                  label={tool.name}
-                  copyLabel={toolsPage.copyLabel}
-                  copiedLabel={toolsPage.copiedLabel}
-                />
-              </div>
-              <ExternalLink className="text-link" href={tool.url}>
-                {toolsPage.officialSiteLabel}
-              </ExternalLink>
+              {tool.install && (
+                <div className="install">
+                  <code>{tool.install}</code>
+                  <CopyButton
+                    text={tool.install}
+                    label={tool.name}
+                    copyLabel={toolsPage.copyLabel}
+                    copiedLabel={toolsPage.copiedLabel}
+                  />
+                </div>
+              )}
+              {tool.url && (
+                <ExternalLink className="text-link" href={tool.url}>
+                  {toolsPage.officialSiteLabel}
+                </ExternalLink>
+              )}
             </div>
           </li>
         ))}

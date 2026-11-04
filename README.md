@@ -125,6 +125,7 @@ bun run lint:fix   # corrige automaticamente o que for possível
 - **Games:** `src/content/games.md`.
 
 Essas cinco páginas usam o mesmo formato Markdown: front matter (`--- ... ---`) com os rótulos da página e seções `## título` com linhas `- chave: valor`. Onde quiser um link, escreva `[texto](url)` no valor (em Setup, o link vira um link externo seguro). O parsing fica em `src/components/contentFormat.ts`; cada componente de página monta a estrutura e o texto vem só do `.md`.
+
 - **Navegação, rótulos, links, tópicos e textos auxiliares:** `src/content/site.ts`.
 - **Estrutura dos componentes:** `src/components/`.
 - **Cores e estilos:** `src/styles/global.css`.
