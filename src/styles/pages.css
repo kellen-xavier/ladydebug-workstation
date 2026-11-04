@@ -531,7 +531,8 @@ nav a[aria-current="page"] {
 }
 
 .copy-button:focus-visible,
-.filters button:focus-visible {
+.filters button:focus-visible,
+.menu-toggle:focus-visible {
     outline: 3px dashed var(--link);
     outline-offset: 2px;
 }
