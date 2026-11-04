@@ -631,13 +631,13 @@ nav a[aria-current="page"] {
 
 @media (max-width: 560px) {
     header {
-        flex-direction: row;
-        flex-wrap: wrap;
-        align-items: center;
-        justify-content: space-between;
+        position: relative;
     }
 
     .menu-toggle {
+        position: absolute;
+        top: 14px;
+        right: 12px;
         display: inline-flex;
         align-items: center;
         gap: 8px;
