@@ -122,10 +122,27 @@ test.describe("home page", () => {
     }
   });
 
-  test("offers the CV as a downloadable PDF", async ({ page }) => {
-    const download = page.getByRole("link", { name: "Baixar CV ↓" });
-    await expect(download).toHaveAttribute("href", "./cv-kellen-xavier.pdf");
-    await expect(download).toHaveAttribute("download", "");
+  test("offers Portuguese and English CV downloads", async ({ page }) => {
+    const downloads = [
+      {
+        label: "Baixar CV em português ↓",
+        href: "./cv-kellen-xavier-pt-br.pdf",
+        file: "cv-kellen-xavier-pt-br.pdf",
+      },
+      {
+        label: "Download CV in English ↓",
+        href: "./cv-kellen-xavier-en.pdf",
+        file: "cv-kellen-xavier-en.pdf",
+      },
+    ];
+    for (const item of downloads) {
+      const link = page.getByRole("link", { name: item.label });
+      await expect(link).toHaveAttribute("href", item.href);
+      await expect(link).toHaveAttribute("download", "");
+      const downloadPromise = page.waitForEvent("download");
+      await link.click();
+      expect((await downloadPromise).suggestedFilename()).toBe(item.file);
+    }
   });
 
   test("renders the simplified footer without badges or social links", async ({ page }) => {
@@ -137,15 +154,28 @@ test.describe("home page", () => {
 });
 
 test.describe("na prática — work cases", () => {
-  test("keeps the four reports collapsed with a visible excerpt", async ({ page }) => {
+  test("keeps the six reports collapsed with a visible excerpt", async ({ page }) => {
     await page.goto("/pratica.html");
     const reports = page.locator("details.case");
-    await expect(reports).toHaveCount(4);
+    await expect(reports).toHaveCount(6);
     for (const report of await reports.all()) {
       await expect(report).not.toHaveAttribute("open", "");
       await expect(report.locator(":scope > summary .case-excerpt")).toBeVisible();
       await expect(report.locator(".case-limit")).toBeHidden();
     }
+  });
+
+  test("links the PPCI contribution to its public GitHub repository", async ({ page }) => {
+    await page.goto("/pratica.html");
+    const report = page.locator("#ppci");
+    await report.locator("summary").click();
+    const repository = report.getByRole("link", { name: "Repositório do site PPCI" });
+    await expect(repository).toHaveAttribute(
+      "href",
+      "https://github.com/kellen-xavier/site-douglas-ppci",
+    );
+    await expect(repository).toHaveAttribute("target", "_blank");
+    await expect(repository).toHaveAttribute("rel", "noopener noreferrer");
   });
 
   test("expands a report with the keyboard and reveals its limits and provenance", async ({
@@ -156,12 +186,14 @@ test.describe("na prática — work cases", () => {
     await mobile.locator(":scope > summary").focus();
     await page.keyboard.press("Enter");
     await expect(mobile).toHaveAttribute("open", "");
+    const contributionDetails = mobile.locator(".case-body > details.provenance").first();
+    await contributionDetails.locator(":scope > summary").click();
     await expect(mobile.locator(".case-limit")).toBeVisible();
 
-    const provenance = mobile.locator(".provenance");
+    const provenance = mobile.locator(".case-body > details.provenance").nth(1);
     await provenance.locator(":scope > summary").click();
     await expect(provenance).toHaveAttribute("open", "");
-    await expect(provenance).toContainText("SHA-256");
+    await expect(provenance).toContainText("O hash identifica a cópia consultada");
   });
 
   test("auto-opens the case referenced by the URL hash", async ({ page }) => {

@@ -2,9 +2,9 @@
 
 Extraí validações fiscais do legado para um módulo de domínio e integrei o serviço aos endpoints e modelos de cadastro de pessoas e empresas.
 
-## O que fiz
+### O que fiz
 
-- Organizei interfaces, catálogo por país e tipo de titular e regras de normalização.
+- Organizei interfaces, catálogo por país e tipo de titular e regras de normalização. O catálogo documentado reúne 57 códigos de países e territórios e 114 pares país/titular: 44 registros de checksum e 70 definições de formato preexistentes integradas ao módulo.
 - Implementei regras de controle e integrei definições de formato preexistentes, preservando a distinção entre formato, checksum e heurística.
 - Desenvolvi testes de domínio, serviço e contrato HTTP em host isolado; mantive o comportamento padrão do endpoint existente.
 - Acrescentei cenários de equivalência com exemplos do aplicativo e configuração versionada de execução e publicação de resultados.

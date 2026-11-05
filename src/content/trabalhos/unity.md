@@ -5,7 +5,7 @@ Criei e mantive testes de aceitação de um simulador educacional em Unity, repr
 ## O que fiz
 
 - Automatizei sequências de interação com interfaces, seleção de procedimentos e acompanhamento de timelines.
-- Ampliei fluxos principais, negativos e alternativos, com verificações explícitas de orientações e mensagens em alguns cenários.
+- Contribuí para pelo menos 11 casos de simulação com fluxos principais, negativos e alternativos e verificações explícitas de orientações e mensagens em alguns cenários.
 - Reorganizei testes e evoluí sua nomenclatura para distinguir a intenção dos fluxos.
 - Os registros também relacionam contribuições à documentação e à configuração de conteúdo de simulação.
 

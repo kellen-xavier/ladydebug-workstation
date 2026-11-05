@@ -23,7 +23,8 @@ if (!result.success) throw new AggregateError(result.logs, "Production build fai
 
 const staticFiles: [from: string, to: string][] = [
   ["src/assets/fonts/OFL.txt", "dist/OFL.txt"],
-  ["src/assets/cv-kellen-xavier.pdf", "dist/cv-kellen-xavier.pdf"],
+  ["src/assets/cv-kellen-xavier-pt-br.pdf", "dist/cv-kellen-xavier-pt-br.pdf"],
+  ["src/assets/cv-kellen-xavier-en.pdf", "dist/cv-kellen-xavier-en.pdf"],
 ];
 for (const [from, to] of staticFiles) {
   const source = Bun.file(new URL(from, root));

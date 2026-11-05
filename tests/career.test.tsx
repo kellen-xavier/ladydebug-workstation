@@ -15,12 +15,30 @@ describe("career page", () => {
     expect(html.match(/<h1>/g)).toHaveLength(1);
   });
 
-  test("highlights the period after the postgraduate degree", () => {
+  test("highlights software engineering and QA in alignment with the CV", () => {
     const postgraduate = career.timeline.find((entry) => entry.organization.includes("Unisinos"));
     expect(postgraduate?.end).toBe("2025-12");
     const highlight = html.match(/<section class="career-highlight">([\s\S]*?)<\/section>/)?.[1];
-    expect(highlight).toContain("após a pós-graduação");
-    expect(highlight).toContain(career.highlight.title);
+    expect(career.highlight.title).toBe("Engenharia de Software | QA");
+    expect(highlight).toContain("desenvolvimento");
+    expect(highlight).toContain("testes");
+  });
+
+  test("describes DBServer and Vortigo responsibilities from the CV", () => {
+    const dbserver = career.timeline.find((entry) => entry.organization === "DBServer");
+    const vortigo = career.timeline.find((entry) => entry.organization === "Vortigo Digital");
+    expect(dbserver?.role).toBe("Analista de Testes / Quality Engineer");
+    expect(dbserver?.description).toContain("Selenium WebDriver");
+    expect(dbserver?.description).toContain("Perfecto");
+    expect(vortigo?.description).toContain("redução gradual");
+    expect(vortigo?.description).toContain("DBServer");
+  });
+
+  test("associates the PPCI site contribution with the independent work", () => {
+    const independent = career.timeline.find(
+      (entry) => entry.organization === "Atuação independente",
+    );
+    expect(independent?.cases).toContain("ppci");
   });
 
   test("lists the timeline from the most recent activity", () => {

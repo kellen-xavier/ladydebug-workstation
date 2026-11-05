@@ -3,4 +3,4 @@ Oi, eu sou a
 ===
 
 **Engenharia de Software & Qualidade.**  
-Sou Kellen Xavier. Há mais de 7 anos, trabalho com programação e testes. Aqui compartilho como trabalho, as ferramentas que uso e os projetos que estudo.
+Sou Kellen Xavier. Tenho uma trajetória em tecnologia desde 2018, passando por desenvolvimento, suporte e qualidade. Hoje reúno essas experiências em implementação, integrações, testes e documentação técnica. Aqui compartilho como trabalho e os projetos que estudo.

@@ -20,6 +20,7 @@ export function Work({ titleAs: Title = "h2" }: { titleAs?: "h1" | "h2" }) {
               {work.content}
             </MarkdownContent>
             <span className="case-label">{work.stack}</span>
+            <span className="case-period">{work.period}</span>
             <span className="case-excerpt">{work.summary}</span>
           </summary>
           <div className="case-body">

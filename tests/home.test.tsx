@@ -35,8 +35,11 @@ describe("home page", () => {
     expect(about).toContain('href="./trajetoria.html"');
   });
 
-  test("offers the complete CV as a PDF download", () => {
-    expect(html).toMatch(/<a class="button" href="\.\/cv-kellen-xavier\.pdf" download="">/);
+  test("offers the Portuguese and English CVs as PDF downloads", () => {
+    expect(html).toContain('href="./cv-kellen-xavier-pt-br.pdf" download=""');
+    expect(html).toContain('href="./cv-kellen-xavier-en.pdf" download=""');
+    expect(html).toContain("Baixar CV em português");
+    expect(html).toContain("Download CV in English");
   });
 
   test("previews personal projects and links to the blog studies", () => {

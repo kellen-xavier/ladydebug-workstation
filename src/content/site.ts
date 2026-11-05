@@ -3,7 +3,8 @@ export const links = {
   linkedin: "https://www.linkedin.com/in/kellen-xavier/",
   repositories: "https://github.com/kellen-xavier?tab=repositories",
   blog: "https://kellen-xavier.github.io/ladydebug.github.io/",
-  cv: "./cv-kellen-xavier.pdf",
+  cvPt: "./cv-kellen-xavier-pt-br.pdf",
+  cvEn: "./cv-kellen-xavier-en.pdf",
 };
 
 export type PageId =
@@ -103,8 +104,11 @@ export const site = {
   },
   cv: {
     title: "Prefere em PDF?",
-    description: "Baixe meu CV completo. O resto está aqui no site.",
-    label: "Baixar CV ↓",
+    description: "Baixe meu CV em português ou inglês.",
+    downloads: [
+      { href: links.cvPt, label: "Baixar CV em português ↓" },
+      { href: links.cvEn, label: "Download CV in English ↓" },
+    ],
   },
   closing: {
     title: "O estudo continua.",

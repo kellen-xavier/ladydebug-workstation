@@ -270,6 +270,12 @@ nav a[aria-current="page"] {
     color: var(--muted);
 }
 
+.cv-downloads {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
 /* Páginas internas */
 .page-head {
     padding: 44px 0 28px;

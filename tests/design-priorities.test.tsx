@@ -19,14 +19,14 @@ describe("portfolio design priorities", () => {
     expect(paragraphs).toHaveLength(1);
     const text = paragraphs.join(" ").replace(/<[^>]*>/g, "");
     expect(text).toContain("Kellen Xavier");
-    expect(text).toContain("7 anos");
+    expect(text).toContain("2018");
     expect(text).toContain("Engenharia de Software");
     expect(text.split(/\s+/).length).toBeLessThanOrEqual(55);
   });
 
   test("includes a contribution preview inside each closed report summary", () => {
     const html = renderToStaticMarkup(<Work />);
-    for (const id of ["mobile", "backend", "cadastro", "unity"]) {
+    for (const id of ["web", "mobile", "backend", "cadastro", "ppci", "unity"]) {
       const summary = html.match(
         new RegExp(`<details[^>]+id="${id}"[^>]*><summary>([\\s\\S]*?)</summary>`),
       )?.[1];

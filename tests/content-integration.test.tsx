@@ -22,13 +22,16 @@ describe("content-driven portfolio sections", () => {
     workCases.push({
       id: "new-work",
       stack: "TypeScript",
+      period: "2026",
       summary: "An editable contribution preview.",
       content: "# New work\n\nAn **editable** report.\n\n## References\n\nSource document.",
     });
     try {
       const html = renderToStaticMarkup(<Work />);
       expect(html).toContain('id="new-work"');
-      expect(html).toMatch(/<summary>New work\s*<span class="case-label">TypeScript<\/span>/);
+      expect(html).toMatch(
+        /<summary>New work\s*<span class="case-label">TypeScript<\/span>\s*<span class="case-period">2026<\/span>/,
+      );
       expect(html).toContain("An <strong>editable</strong> report.");
       expect(html).toContain('<span class="case-excerpt">An editable contribution preview.</span>');
       expect(html).toMatch(/<details class="provenance">\s*<summary>References<\/summary>/);
