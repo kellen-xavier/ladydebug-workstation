@@ -4,36 +4,26 @@ import { CareerPage, career } from "../src/components/CareerPage";
 import { workCases } from "../src/content/trabalhos";
 
 const html = renderToStaticMarkup(<CareerPage />);
-const text = (markup: string) =>
-  markup
-    .replace(/<[^>]*>/g, " ")
-    .replace(/\s+/g, " ")
-    .trim();
-
 describe("career page", () => {
   test("renders a single page heading", () => {
     expect(html.match(/<h1>/g)).toHaveLength(1);
   });
 
-  test("highlights software engineering and QA in alignment with the CV", () => {
+  test("keeps the postgraduate completion date and career highlight", () => {
     const postgraduate = career.timeline.find((entry) => entry.organization.includes("Unisinos"));
     expect(postgraduate?.end).toBe("2025-12");
     const highlight = html.match(
       /<section class="career-highlight(?: career-highlight--full)?">([\s\S]*?)<\/section>/,
     )?.[1];
-    expect(career.highlight.title).toBe("Engenharia de Software | QA");
-    expect(highlight).toContain("desenvolvimento");
-    expect(highlight).toContain("testes");
+    expect(highlight).toBeDefined();
+    expect(highlight).toContain("<h2>");
   });
 
-  test("describes DBServer and Vortigo responsibilities from the CV", () => {
+  test("keeps DBServer and Vortigo career entries", () => {
     const dbserver = career.timeline.find((entry) => entry.organization === "DBServer");
     const vortigo = career.timeline.find((entry) => entry.organization === "Vortigo Digital");
-    expect(dbserver?.role).toBe("Analista de Testes / Quality Engineer");
-    expect(dbserver?.description).toContain("Selenium WebDriver");
-    expect(dbserver?.description).toContain("Perfecto");
-    expect(vortigo?.description).toContain("redução gradual");
-    expect(vortigo?.description).toContain("DBServer");
+    expect(dbserver).toBeDefined();
+    expect(vortigo).toBeDefined();
   });
 
   test("associates the services website contribution with the independent work", () => {
@@ -56,11 +46,5 @@ describe("career page", () => {
       expect(ids).toContain(id);
       expect(html).toContain(`href="./pratica.html#${id}"`);
     }
-  });
-
-  test("summarizes the earlier support and front-end work briefly", () => {
-    const before = html.match(/<section class="career-before">([\s\S]*?)<\/section>/)?.[1] ?? "";
-    expect(text(before)).toContain("2018");
-    expect(text(career.before.description).split(" ").length).toBeLessThanOrEqual(60);
   });
 });

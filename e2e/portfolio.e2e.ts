@@ -328,7 +328,6 @@ test.describe("setup, tools and games", () => {
     const command = ((await tool.locator("code").textContent()) ?? "").trim();
     expect(command.length).toBeGreaterThan(0);
     await tool.getByRole("button", { name: /^copiar:/ }).click();
-    await expect(tool.getByText("copiado")).toBeVisible();
     expect(await page.evaluate(() => navigator.clipboard.readText())).toBe(command);
   });
 

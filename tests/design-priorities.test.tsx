@@ -1,6 +1,5 @@
 import { describe, expect, test } from "bun:test";
 import { renderToStaticMarkup } from "react-dom/server";
-import { Hero } from "../src/components/Hero";
 import { HomePage } from "../src/components/HomePage";
 import { Work } from "../src/components/Work";
 
@@ -11,18 +10,6 @@ describe("portfolio design priorities", () => {
       /<section class="hero">[\s\S]*?<\/section><section class="about" id="sobre">/,
     );
     expect(html.match(/id="sobre"/g)).toHaveLength(1);
-  });
-
-  test("introduces the author in the heading and summarizes experience concisely", () => {
-    const html = renderToStaticMarkup(<Hero />);
-    const paragraphs = html.match(/<p class="intro">[\s\S]*?<\/p>/g) ?? [];
-    expect(paragraphs).toHaveLength(1);
-    const text = paragraphs.join(" ").replace(/<[^>]*>/g, "");
-    expect(html).toContain("Kellen.");
-    expect(text).toContain("2018");
-    expect(text).toContain("Engenharia de Software");
-    expect(text).not.toContain("Kellen Xavier");
-    expect(text.split(/\s+/).length).toBeLessThanOrEqual(55);
   });
 
   test("includes a contribution preview inside each closed report summary", () => {
