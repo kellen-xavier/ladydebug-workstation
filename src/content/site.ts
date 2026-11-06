@@ -3,7 +3,8 @@ export const links = {
   linkedin: "https://www.linkedin.com/in/kellen-xavier/",
   repositories: "https://github.com/kellen-xavier?tab=repositories",
   blog: "https://kellen-xavier.github.io/ladydebug.github.io/",
-  cv: "./cv-kellen-xavier.pdf",
+  cvPt: "./cv-kellen-xavier-pt-br.pdf",
+  cvEn: "./cv-kellen-xavier-en.pdf",
 };
 
 export type PageId =
@@ -43,7 +44,6 @@ export const site = {
   navigationLabel: "Navegação principal",
   menuLabel: "menu",
   navigation: [
-    { label: "Sobre", href: `${pageHref.home}#sobre`, page: "home" },
     { label: "Mapa", href: `${pageHref.home}#mapa`, page: "home" },
     { label: "Trajetória", href: pageHref.trajetoria, page: "trajetoria" },
     { label: "Na prática", href: pageHref.pratica, page: "pratica" },
@@ -60,17 +60,12 @@ export const site = {
   ] satisfies SocialLink[],
   hero: {
     eyebrow: "★ bem-vindo à workstation ★",
-    action: { href: "#mapa", label: "Explorar o mapa ↓" },
+    action: { href: pageHref.pratica, label: "Ver contribuições →" },
     imageAlt: "Estação de trabalho retrô em pixel art, com computador e caneca rosa",
     imageCaption: "code · test · document · repeat",
   },
   about: {
     eyebrow: "readme.txt",
-    education: [
-      { label: "Profissional", value: "Software & Quality Engineering" },
-      { label: "Graduação", value: "Análise e Desenvolvimento de Sistemas · UNINTER" },
-      { label: "Pós-graduação", value: "Engenharia de Software · Unisinos" },
-    ],
     careerLink: { href: pageHref.trajetoria, label: "Ver trajetória completa →" },
   },
   howIWork: {
@@ -103,8 +98,11 @@ export const site = {
   },
   cv: {
     title: "Prefere em PDF?",
-    description: "Baixe meu CV completo. O resto está aqui no site.",
-    label: "Baixar CV ↓",
+    description: "Baixe meu CV em português ou inglês.",
+    downloads: [
+      { href: links.cvPt, label: "Baixar CV em português ↓" },
+      { href: links.cvEn, label: "Baixar CV em inglês ↓" },
+    ],
   },
   closing: {
     title: "O estudo continua.",

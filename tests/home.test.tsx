@@ -7,14 +7,10 @@ import { links } from "../src/content/site";
 const html = renderToStaticMarkup(<HomePage />);
 
 describe("home page", () => {
-  test("introduces the author right below the welcome", () => {
+  test("places the about section right below the welcome", () => {
     expect(html).toMatch(
       /<section class="hero">[\s\S]*?<\/section><section class="about" id="sobre">/,
     );
-    const about = html.match(/<section class="about" id="sobre">([\s\S]*?)<\/section>/)?.[1];
-    expect(about).toContain("Quem sou eu?");
-    expect(about).toContain("UNINTER");
-    expect(about).toContain("Unisinos");
   });
 
   test("orders the sections as in the site flow", () => {
@@ -35,8 +31,14 @@ describe("home page", () => {
     expect(about).toContain('href="./trajetoria.html"');
   });
 
-  test("offers the complete CV as a PDF download", () => {
-    expect(html).toMatch(/<a class="button" href="\.\/cv-kellen-xavier\.pdf" download="">/);
+  test("offers the Portuguese and English CVs as downloadable PDFs", () => {
+    expect(html).toContain('href="./cv-kellen-xavier-pt-br.pdf" download=""');
+    expect(html).toContain('href="./cv-kellen-xavier-en.pdf" download=""');
+  });
+
+  test("takes the primary call to action directly to the contribution page", () => {
+    const hero = renderToStaticMarkup(<Hero />);
+    expect(hero).toContain('href="./pratica.html"');
   });
 
   test("previews personal projects and links to the blog studies", () => {

@@ -35,13 +35,6 @@ copiedLabel: copiado
 - instalar: curl -fsSL https://opencode.ai/v2/install | bash
 - site: https://opencode.ai/
 
-## Game DEV
-
-- categoria: IDEs
-- descricao: IDE para Criação de Testes de Gameplay
-- instalar:
-- site:
-
 ## AI-Memory
 
 - categoria: Terminal Skill Agentes

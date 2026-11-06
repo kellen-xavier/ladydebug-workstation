@@ -20,7 +20,7 @@ toolsLink: Como instalar cada ferramenta →
 ## >_ Terminal
 
 - Terminal: [Kitty](https://sw.kovidgoyal.net/kitty/) and [multiplexer TMUX](https://github.com/tmux/tmux)
-- Editor: [NeoVim + VS Code + Open Code]
+- Editor: [NeoVim + VS Code] + [Open Code](https://opencode.ai/)
 
 ## ▤ Hardware
 

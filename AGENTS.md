@@ -1,6 +1,6 @@
 # AGENTS
 
-All the Agents must read this file first. And read after [README](README.md)
+All the Agents must read this file first. And read after [README](README.md) and [docs](docs)
 
 ## Project Structure & Module Organization
 

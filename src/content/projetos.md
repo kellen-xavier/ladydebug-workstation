@@ -1,6 +1,6 @@
 ---
 eyebrow: repositories / projetos abertos
-title: Projetos pessois e de estudo
+title: Projetos pessoais e de estudo
 description: Conhecimento que vira repositório.
 linkLabel: Todos os repositórios ↗
 ---

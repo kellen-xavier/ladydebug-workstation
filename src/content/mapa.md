@@ -1,50 +1,59 @@
 ---
 eyebrow: map.sav / dia 1, primavera
 title: Mapa do site
-intro: Escolha um lugar da Vila conforme a sua dúvida.
+intro: Escolha uma seção para conhecer meu trabalho.
 ---
 
 ## ⌂ A casa
+
 - destino: Quem sou eu
-- pergunta: Certo, quem é?
+- pergunta: Quem é a Kellen?
 - link: ./index.html#sobre
 
 ## ≡ O museu
+
 - destino: Trajetória
 - pergunta: Por onde passei?
 - link: ./trajetoria.html
 
 ## ✿ A plantação
+
 - destino: Na prática
 - pergunta: O que já entreguei?
 - link: ./pratica.html
 
 ## [#] A oficina
+
 - destino: Workflow
 - pergunta: Como eu trabalho?
 - link: ./workflow.html
 
 ## ▣ A escrivaninha
+
 - destino: Setup
 - pergunta: Qual o meu PC?
 - link: ./setup.html
 
 ## ▤ O galpão
+
 - destino: Ferramentas
-- pergunta: Quais minhas ferramentas de trabalho no uso diário?
+- pergunta: Quais ferramentas uso no dia a dia?
 - link: ./ferramentas.html
 
 ## ◈ O fliperama
+
 - destino: Games
-- pergunta: Eu jogo e estudo isso? As vezes jogo (ou tento)
+- pergunta: O que estudo sobre jogos?
 - link: ./games.html
 
 ## ✎ O mural
+
 - destino: Blog
 - pergunta: O que eu ando estudando?
 - link: https://kellen-xavier.github.io/ladydebug.github.io/
 
 ## [@] A caixa de correio
+
 - destino: CV em PDF
-- pergunta: Tem como baixar em PDF? Sim, é só clicar aqui.
+- pergunta: Onde baixo meu CV?
 - link: ./index.html#cv

@@ -650,6 +650,13 @@ footer .brand {
     padding-left: 19px;
 }
 
+.case-period {
+    display: block;
+    padding-left: 19px;
+    color: var(--muted);
+    font: 12px / 1.5 monospace;
+}
+
 .case-excerpt {
     display: block;
     max-width: 72ch;
