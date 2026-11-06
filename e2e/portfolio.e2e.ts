@@ -36,6 +36,26 @@ const hasHorizontalScroll = (page: Page) =>
   page.evaluate(() => document.documentElement.scrollWidth > window.innerWidth + 1);
 
 test.describe("primary navigation", () => {
+  test("keeps desktop navigation and social links on one row", async ({ page }) => {
+    if ((page.viewportSize()?.width ?? 0) <= 1100) return;
+    await page.goto("/");
+    await page.evaluate(() => document.fonts.ready);
+    const boxes = await page
+      .locator("header .brand, header nav a, header .social a")
+      .evaluateAll((elements) =>
+        elements.map((element) => {
+          const rect = element.getBoundingClientRect();
+          return { center: rect.top + rect.height / 2, width: rect.width };
+        }),
+      );
+    for (const box of boxes) {
+      expect(Math.abs(box.center - (boxes[0]?.center ?? 0))).toBeLessThan(2);
+      expect(box.width).toBeGreaterThanOrEqual(44);
+    }
+    await expect(mainNav(page).getByRole("link", { name: "Sobre", exact: true })).toHaveCount(0);
+    expect(await hasHorizontalScroll(page)).toBe(false);
+  });
+
   test("opens every internal page from the home navigation", async ({ page }) => {
     for (const entry of pages) {
       await page.goto("/");
@@ -57,7 +77,7 @@ test.describe("primary navigation", () => {
     );
     await expect(nav.locator('a[aria-current="page"]')).toHaveCount(1);
 
-    // The home page exposes Sobre/Mapa as in-page anchors, so none is "current".
+    // The home page exposes Mapa as in-page anchors, so none is "current".
     await page.goto("/");
     await openMenu(page);
     await expect(mainNav(page).locator('a[aria-current="page"]')).toHaveCount(0);
@@ -67,9 +87,11 @@ test.describe("primary navigation", () => {
     for (const anchor of ["sobre", "mapa"] as const) {
       await page.goto("/");
       await openMenu(page);
-      await mainNav(page)
-        .getByRole("link", { name: anchor === "sobre" ? "Sobre" : "Mapa", exact: true })
-        .click();
+      const link =
+        anchor === "sobre"
+          ? page.locator("header").getByRole("link", { name: "ladydebug", exact: true })
+          : mainNav(page).getByRole("link", { name: "Mapa", exact: true });
+      await link.click();
       await expect(page).toHaveURL(new RegExp(`#${anchor}$`));
       await expect(page.locator(`#${anchor}`)).toBeInViewport();
     }
@@ -329,7 +351,7 @@ test.describe("responsive layout invariants", () => {
   });
 
   test("collapses the nav behind the menu toggle on small screens", async ({ page }) => {
-    test.skip(!test.info().project.use.hasTouch, "small-screen layout only");
+    test.skip((page.viewportSize()?.width ?? 0) > 1100, "collapsed layout only");
     await page.goto("/");
     const nav = mainNav(page);
     const toggle = page.getByRole("button", { name: "menu", exact: true });
@@ -343,7 +365,7 @@ test.describe("responsive layout invariants", () => {
   });
 
   test("keeps the nav visible without a toggle on wide screens", async ({ page }) => {
-    test.skip(test.info().project.use.hasTouch === true, "wide-screen layout only");
+    test.skip((page.viewportSize()?.width ?? 0) <= 1100, "wide-screen layout only");
     await page.goto("/");
     await expect(mainNav(page)).toBeVisible();
     await expect(page.getByRole("button", { name: "menu", exact: true })).toBeHidden();

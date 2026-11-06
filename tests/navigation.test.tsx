@@ -15,7 +15,6 @@ describe("site navigation", () => {
   test("lists the sections in the order of the site flow", () => {
     const labels = navLinks(renderToStaticMarkup(<Header />)).map((link) => link.label);
     expect(labels).toEqual([
-      "Sobre",
       "Mapa",
       "Trajetória",
       "Na prática",
@@ -29,7 +28,6 @@ describe("site navigation", () => {
   test("links each item to a page or to an anchor on the home page", () => {
     const hrefs = navLinks(renderToStaticMarkup(<Header />)).map((link) => link.href);
     expect(hrefs).toEqual([
-      "./index.html#sobre",
       "./index.html#mapa",
       "./trajetoria.html",
       "./pratica.html",
@@ -47,7 +45,15 @@ describe("site navigation", () => {
     expect(html).toContain('aria-expanded="false"');
     expect(html).toContain('id="header-tools"');
     // the links stay in the DOM so the collapse is purely presentational
-    expect(navLinks(html)).toHaveLength(8);
+    expect(navLinks(html)).toHaveLength(7);
+  });
+
+  test("uses the brand to reach the about section from every page", () => {
+    for (const current of ["home", "setup"] as const) {
+      expect(renderToStaticMarkup(<Header current={current} />)).toContain(
+        'class="brand" href="./index.html#sobre"',
+      );
+    }
   });
 
   test("marks only the current page", () => {

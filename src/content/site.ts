@@ -44,7 +44,6 @@ export const site = {
   navigationLabel: "Navegação principal",
   menuLabel: "menu",
   navigation: [
-    { label: "Sobre", href: `${pageHref.home}#sobre`, page: "home" },
     { label: "Mapa", href: `${pageHref.home}#mapa`, page: "home" },
     { label: "Trajetória", href: pageHref.trajetoria, page: "trajetoria" },
     { label: "Na prática", href: pageHref.pratica, page: "pratica" },

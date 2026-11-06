@@ -32,7 +32,7 @@ describe("workflow page", () => {
   test("routes header and footer back to the home page", () => {
     const html = renderToStaticMarkup(<WorkflowPage />);
     expect(html).toContain('href="./index.html#sobre"');
-    expect(html.match(/href="\.\/index\.html#main"/g)).toHaveLength(2);
+    expect(html.match(/href="\.\/index\.html#main"/g)).toHaveLength(1);
     expect(html).toContain('class="skip" href="#main"');
   });
 
