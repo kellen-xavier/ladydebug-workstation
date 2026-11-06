@@ -239,22 +239,19 @@ test.describe("na prática — work cases", () => {
     await expect(publishedSite).toHaveAttribute("rel", "noopener noreferrer");
   });
 
-  test("expands a report with the keyboard and reveals its limits and provenance", async ({
-    page,
-  }) => {
+  test("expands a report with the keyboard and toggles its provenance", async ({ page }) => {
     await page.goto("/pratica.html");
     const mobile = page.locator("#mobile");
     await mobile.locator(":scope > summary").focus();
     await page.keyboard.press("Enter");
     await expect(mobile).toHaveAttribute("open", "");
-    const contributionDetails = mobile.locator(".case-body > details.provenance").first();
-    await contributionDetails.locator(":scope > summary").click();
-    await expect(mobile.locator(".case-limit")).toBeVisible();
-
-    const provenance = mobile.locator(".case-body > details.provenance").nth(1);
+    const provenance = mobile.locator(".case-body > details.provenance").first();
     await provenance.locator(":scope > summary").click();
     await expect(provenance).toHaveAttribute("open", "");
-    await expect(provenance).toContainText("O hash identifica a cópia consultada");
+    await expect(mobile.locator(".case-limit")).toBeVisible();
+    await provenance.locator(":scope > summary").click();
+    await expect(provenance).not.toHaveAttribute("open", "");
+    await expect(mobile.locator(".case-limit")).not.toBeVisible();
   });
 
   test("auto-opens the case referenced by the URL hash", async ({ page }) => {

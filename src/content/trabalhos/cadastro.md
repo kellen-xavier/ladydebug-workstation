@@ -16,8 +16,6 @@ O catálogo documentado reúne 57 códigos de países e territórios e 114 pares
 
 > **Alcance da evidência:** Esses registros não são 114 algoritmos originais ou países homologados. A validação local não comprova existência cadastral. O levantamento é estático, com histórico shallow;
 
-[Pesquisa realizada aqui](#link)
-
 ## Origem e referências do relatório
 
 Esta ficha é uma síntese do relatório fornecida por mim onde analisei o git (git blame) dos repositório e extrai as devidas informações. . A revisão da página leu esse documento; não teve acesso ao checkout privado nem repetiu sua coleta de Git ou execução de testes.
