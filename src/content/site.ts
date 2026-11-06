@@ -60,14 +60,14 @@ export const site = {
   ] satisfies SocialLink[],
   hero: {
     eyebrow: "★ bem-vindo à workstation ★",
-    action: { href: "#mapa", label: "Explorar o mapa ↓" },
+    action: { href: "#mapa", label: "Ver seções ↓" },
     imageAlt: "Estação de trabalho retrô em pixel art, com computador e caneca rosa",
     imageCaption: "code · test · document · repeat",
   },
   about: {
     eyebrow: "readme.txt",
     education: [
-      { label: "Profissional", value: "Software & Quality Engineering" },
+      { label: "Profissional", value: "Engenharia de Software e Qualidade" },
       { label: "Graduação", value: "Análise e Desenvolvimento de Sistemas · UNINTER" },
       { label: "Pós-graduação", value: "Engenharia de Software · Unisinos" },
     ],
@@ -106,7 +106,7 @@ export const site = {
     description: "Baixe meu CV em português ou inglês.",
     downloads: [
       { href: links.cvPt, label: "Baixar CV em português ↓" },
-      { href: links.cvEn, label: "Download CV in English ↓" },
+      { href: links.cvEn, label: "Baixar CV em inglês ↓" },
     ],
   },
   closing: {

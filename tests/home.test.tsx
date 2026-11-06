@@ -39,7 +39,20 @@ describe("home page", () => {
     expect(html).toContain('href="./cv-kellen-xavier-pt-br.pdf" download=""');
     expect(html).toContain('href="./cv-kellen-xavier-en.pdf" download=""');
     expect(html).toContain("Baixar CV em português");
-    expect(html).toContain("Download CV in English");
+    expect(html).toContain("Baixar CV em inglês");
+  });
+
+  test("uses concise and consistent copy across the home page", () => {
+    expect(html).toContain(
+      "Desde 2018, atuo com desenvolvimento, integrações, testes e documentação técnica.",
+    );
+    expect(html).not.toContain("Sou Kellen Xavier.");
+    expect(html).toContain("Software &amp; Qualidade");
+    expect(html).toContain("Ver seções ↓");
+    expect(html).toContain("Escolha uma seção para conhecer meu trabalho.");
+    expect(html).toContain("Quais ferramentas uso no dia a dia?");
+    expect(html).toContain("O que estudo sobre jogos?");
+    expect(html).toContain("Onde baixo meu CV?");
   });
 
   test("previews personal projects and links to the blog studies", () => {

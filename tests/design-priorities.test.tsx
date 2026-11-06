@@ -13,14 +13,15 @@ describe("portfolio design priorities", () => {
     expect(html.match(/id="sobre"/g)).toHaveLength(1);
   });
 
-  test("introduces the author, experience, and work in one short paragraph", () => {
+  test("introduces the author in the heading and summarizes experience concisely", () => {
     const html = renderToStaticMarkup(<Hero />);
     const paragraphs = html.match(/<p class="intro">[\s\S]*?<\/p>/g) ?? [];
     expect(paragraphs).toHaveLength(1);
     const text = paragraphs.join(" ").replace(/<[^>]*>/g, "");
-    expect(text).toContain("Kellen Xavier");
+    expect(html).toContain("Kellen.");
     expect(text).toContain("2018");
     expect(text).toContain("Engenharia de Software");
+    expect(text).not.toContain("Kellen Xavier");
     expect(text.split(/\s+/).length).toBeLessThanOrEqual(55);
   });
 
