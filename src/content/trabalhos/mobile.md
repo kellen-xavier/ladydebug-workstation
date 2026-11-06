@@ -15,5 +15,3 @@ Desenvolvi e corrigi fluxos em uma aplicação mobile de mobilidade e pagamentos
 ## Origem e referências do relatório
 
 Esta ficha é uma síntese do relatório fornecido por mim onde analisei o git (git blame) dos repositório e extrai as devidas informações. A revisão da página leu esse documento; não teve acesso ao checkout privado nem repetiu sua coleta de Git ou execução de testes.
-
-O hash identifica a cópia consultada; não valida por si só a autoria ou o conteúdo. As referências de commits permitem conferência por quem tem acesso ao repositório original. Esta ficha não disponibiliza o código nem os relatórios internos completos.

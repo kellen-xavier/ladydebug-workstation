@@ -18,7 +18,9 @@ describe("career page", () => {
   test("highlights software engineering and QA in alignment with the CV", () => {
     const postgraduate = career.timeline.find((entry) => entry.organization.includes("Unisinos"));
     expect(postgraduate?.end).toBe("2025-12");
-    const highlight = html.match(/<section class="career-highlight">([\s\S]*?)<\/section>/)?.[1];
+    const highlight = html.match(
+      /<section class="career-highlight(?: career-highlight--full)?">([\s\S]*?)<\/section>/,
+    )?.[1];
     expect(career.highlight.title).toBe("Engenharia de Software | QA");
     expect(highlight).toContain("desenvolvimento");
     expect(highlight).toContain("testes");

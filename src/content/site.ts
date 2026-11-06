@@ -60,17 +60,12 @@ export const site = {
   ] satisfies SocialLink[],
   hero: {
     eyebrow: "★ bem-vindo à workstation ★",
-    action: { href: "#mapa", label: "Ver seções ↓" },
+    action: { href: pageHref.pratica, label: "Ver contribuições →" },
     imageAlt: "Estação de trabalho retrô em pixel art, com computador e caneca rosa",
     imageCaption: "code · test · document · repeat",
   },
   about: {
     eyebrow: "readme.txt",
-    education: [
-      { label: "Profissional", value: "Engenharia de Software e Qualidade" },
-      { label: "Graduação", value: "Análise e Desenvolvimento de Sistemas · UNINTER" },
-      { label: "Pós-graduação", value: "Engenharia de Software · Unisinos" },
-    ],
     careerLink: { href: pageHref.trajetoria, label: "Ver trajetória completa →" },
   },
   howIWork: {

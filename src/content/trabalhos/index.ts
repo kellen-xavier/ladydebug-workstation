@@ -27,7 +27,7 @@ export const workCases: WorkCase[] = [
     stack: "React Native · TypeScript · Detox · Jest",
     period: "2026",
     summary:
-      "Implementei fluxos mobile e testes que comparam interface, estado da API e débito nos cenários contemplados.",
+      "Aplicativo mobile de estacionamento de carros (com gerenciamento de estacionamento e multas) para usuários finais.",
     content: mobile,
   },
   {
@@ -35,7 +35,7 @@ export const workCases: WorkCase[] = [
     stack: "C# · .NET · NUnit · Contratos HTTP",
     period: "2026",
     summary:
-      "Extraí validações fiscais do legado e integrei o módulo ao cadastro, com testes de domínio e contrato HTTP.",
+      "Backend demicroserviço de cadastro de clientes, com testes unitários e de integração, além de contratos HTTP.",
     content: cadastro,
   },
   {
@@ -43,7 +43,7 @@ export const workCases: WorkCase[] = [
     stack: "C# · .NET 10 · xUnit · Moq",
     period: "2026",
     summary:
-      "Estruturei testes de regras de estacionamento e contratos HTTP simulados, com documentação técnica.",
+      "Backend de microserviço para cadastro de clientes, com testes unitários e de integração, além de contratos HTTP.",
     content: backend,
   },
   {
@@ -51,7 +51,7 @@ export const workCases: WorkCase[] = [
     stack: "React · TypeScript · Decap CMS",
     period: "2026",
     summary:
-      "Contribuí no fluxo editorial do CMS, no desempenho da página e na configuração de CI.",
+      "Criação de site profissional para divulgação de Prestação de Serviços com o suporte do CMS, com testes de interface e integração.",
     content: siteWeb,
   },
   {
@@ -59,7 +59,7 @@ export const workCases: WorkCase[] = [
     stack: "C# · Unity Test Framework · NUnit · Zenject",
     period: "set. 2023 – mar. 2024",
     summary:
-      "Criei e mantive testes de aceitação que reproduzem jornadas e decisões alternativas em um simulador educacional.",
+      "Teste de unidade e integração de jogos desenvolvidos em Unity, com injeção de dependência e testes automatizados.",
     content: unity,
   },
 ];

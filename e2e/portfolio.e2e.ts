@@ -115,15 +115,44 @@ test.describe("primary navigation", () => {
   });
 });
 
+test.describe("career page", () => {
+  test("aligns the introduction with the left edge of its title", async ({ page }) => {
+    await page.goto("/trajetoria.html");
+    const intro = page.locator(".career-page-head .section-intro");
+    await expect(intro).toHaveCSS("text-align", "left");
+    const introBox = await intro.boundingBox();
+    const titleBox = await page.getByRole("heading", { level: 1 }).boundingBox();
+    if (!introBox || !titleBox) throw new Error("The career title or introduction is not visible");
+    expect(Math.abs(introBox.x - titleBox.x)).toBeLessThanOrEqual(1);
+  });
+
+  test("lets the highlight description use the full panel when no focus list exists", async ({
+    page,
+  }) => {
+    await page.goto("/trajetoria.html");
+    const panel = page.locator(".career-highlight");
+    const description = panel.locator(":scope > div > p:not(.eyebrow)");
+    const contentBlock = panel.locator(":scope > div");
+    const columns = await panel.evaluate(
+      (element) => getComputedStyle(element).gridTemplateColumns.split(" ").length,
+    );
+    const contentBox = await contentBlock.boundingBox();
+    const descriptionBox = await description.boundingBox();
+    if (!contentBox || !descriptionBox) throw new Error("The career highlight is not visible");
+    expect(columns).toBe(1);
+    expect(descriptionBox.width).toBeGreaterThan(contentBox.width * 0.95);
+  });
+});
+
 test.describe("home page", () => {
   test.beforeEach(async ({ page }) => {
     await page.goto("/");
   });
 
   test("shows the primary call to action within the first viewport", async ({ page }) => {
-    const action = page.getByRole("link", { name: "Explorar o mapa ↓" });
+    const action = page.getByRole("link", { name: "Ver contribuições →" });
     await expect(action).toBeVisible();
-    await expect(action).toHaveAttribute("href", "#mapa");
+    await expect(action).toHaveAttribute("href", "./pratica.html");
     await expect(action).toBeInViewport();
   });
 
@@ -152,7 +181,7 @@ test.describe("home page", () => {
         file: "cv-kellen-xavier-pt-br.pdf",
       },
       {
-        label: "Download CV in English ↓",
+        label: "Baixar CV em inglês ↓",
         href: "./cv-kellen-xavier-en.pdf",
         file: "cv-kellen-xavier-en.pdf",
       },
@@ -323,6 +352,26 @@ test.describe("setup, tools and games", () => {
 });
 
 test.describe("responsive layout invariants", () => {
+  test("centers all site map cards in a responsive three-column grid", async ({ page }) => {
+    await page.goto("/");
+    const map = page.locator("#mapa");
+    const grid = map.locator(".site-map");
+    const columns = await grid.evaluate(
+      (element) => getComputedStyle(element).gridTemplateColumns.split(" ").length,
+    );
+    const width = page.viewportSize()?.width ?? 0;
+    const expectedColumns = width <= 560 ? 1 : width <= 900 ? 2 : 3;
+    expect(columns).toBe(expectedColumns);
+    await expect(grid.locator(":scope > li")).toHaveCount(9);
+
+    const mapBox = await map.boundingBox();
+    const gridBox = await grid.boundingBox();
+    if (!mapBox || !gridBox) throw new Error("The site map or section is not visible");
+    expect(
+      Math.abs(mapBox.x + mapBox.width / 2 - (gridBox.x + gridBox.width / 2)),
+    ).toBeLessThanOrEqual(1);
+  });
+
   for (const path of allPaths) {
     test(`avoids horizontal scrolling on ${path}`, async ({ page }) => {
       await page.goto(`/${path}`);

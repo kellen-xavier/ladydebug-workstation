@@ -1,6 +1,7 @@
-# Site de Serviços
+# Site para Prestação de Serviços
 
-Criei um website simples para apresentação e divulgação de prestação de serviços. Inicialmente o principal foi a lading page evoluindo depois com adicionar o admin, com funções de blog.
+Criei um website simples para apresentação e divulgação de prestação de serviços do cliente. Inicialmente o principal foi a lading page evoluindo depois com 
+adicionar o admin com funcionalidades de blog.
 
 - Para configurar o fluxo editorial implementei como ferramenta o Decap CMS para rascunhos, revisão e publicação de conteúdo, incluindo atualizações de testes e documentação.
 - Otimizei o desempenho da página e o carregamento de scripts.

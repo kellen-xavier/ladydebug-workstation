@@ -38,6 +38,7 @@ practiceLinkLabel: Casos relacionados:
 - descricao: Especialização que aprofunda a formação em Engenharia de Software e se conecta à atuação em desenvolvimento, integrações, testes e documentação.
 
 ## Analista de teste / QA
+
 - periodo: jun 2021 – jan 2023
 - organizacao: Vortigo Digital
 - fim: 2023-01
@@ -45,6 +46,7 @@ practiceLinkLabel: Casos relacionados:
 - descricao: Elaboração de planos, casos e cenários de teste, acompanhamento de funcionalidades e validação de releases; rastreamento de defeitos, investigação de causas, acompanhamento de crashes e análise de dados com SQL em equipes Scrum e Kanban. Vínculo PJ com redução gradual das demandas até o encerramento, em paralelo à DBServer.
 
 ## Graduação em Análise e Desenvolvimento de Sistemas
+
 - periodo: mar 2018 – mai 2022
 - organizacao: UNINTER
 - fim: 2022-05

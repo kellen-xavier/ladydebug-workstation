@@ -1,6 +1,6 @@
 # Backend: regras transacionais e contratos HTTP
 
-Criei testes e documentação para um backend de estacionamento. A contribuição identificada está nos testes das regras existentes e na explicação técnica do sistema.
+Criei testes e documentação para um backend de aplicativo de Mobilidade para Estacionamento. A contribuição identificada está nos testes das regras existentes e na explicação técnica do sistema.
 
 ## O que fiz
 

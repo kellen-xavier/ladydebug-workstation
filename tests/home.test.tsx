@@ -48,11 +48,17 @@ describe("home page", () => {
     );
     expect(html).not.toContain("Sou Kellen Xavier.");
     expect(html).toContain("Software &amp; Qualidade");
-    expect(html).toContain("Ver seções ↓");
+    expect(html).toContain("Ver contribuições →");
     expect(html).toContain("Escolha uma seção para conhecer meu trabalho.");
     expect(html).toContain("Quais ferramentas uso no dia a dia?");
     expect(html).toContain("O que estudo sobre jogos?");
     expect(html).toContain("Onde baixo meu CV?");
+  });
+
+  test("takes the primary call to action directly to the contribution page", () => {
+    const hero = renderToStaticMarkup(<Hero />);
+    expect(hero).toContain('href="./pratica.html"');
+    expect(hero).toContain("Ver contribuições →");
   });
 
   test("previews personal projects and links to the blog studies", () => {
