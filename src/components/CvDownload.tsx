@@ -1,4 +1,4 @@
-import { links, site } from "../content/site";
+import { site } from "../content/site";
 
 export function CvDownload() {
   return (
@@ -7,9 +7,13 @@ export function CvDownload() {
         <h2>{site.cv.title}</h2>
         <p>{site.cv.description}</p>
       </div>
-      <a className="button" href={links.cv} download>
-        {site.cv.label}
-      </a>
+      <div className="cv-downloads">
+        {site.cv.downloads.map((item) => (
+          <a className="button" href={item.href} download key={item.href}>
+            {item.label}
+          </a>
+        ))}
+      </div>
     </section>
   );
 }

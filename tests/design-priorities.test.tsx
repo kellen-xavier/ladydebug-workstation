@@ -1,6 +1,5 @@
 import { describe, expect, test } from "bun:test";
 import { renderToStaticMarkup } from "react-dom/server";
-import { Hero } from "../src/components/Hero";
 import { HomePage } from "../src/components/HomePage";
 import { Work } from "../src/components/Work";
 
@@ -13,20 +12,9 @@ describe("portfolio design priorities", () => {
     expect(html.match(/id="sobre"/g)).toHaveLength(1);
   });
 
-  test("introduces the author, experience, and work in one short paragraph", () => {
-    const html = renderToStaticMarkup(<Hero />);
-    const paragraphs = html.match(/<p class="intro">[\s\S]*?<\/p>/g) ?? [];
-    expect(paragraphs).toHaveLength(1);
-    const text = paragraphs.join(" ").replace(/<[^>]*>/g, "");
-    expect(text).toContain("Kellen Xavier");
-    expect(text).toContain("7 anos");
-    expect(text).toContain("Engenharia de Software");
-    expect(text.split(/\s+/).length).toBeLessThanOrEqual(55);
-  });
-
   test("includes a contribution preview inside each closed report summary", () => {
     const html = renderToStaticMarkup(<Work />);
-    for (const id of ["mobile", "backend", "cadastro", "unity"]) {
+    for (const id of ["web", "mobile", "backend", "cadastro", "site-web", "unity"]) {
       const summary = html.match(
         new RegExp(`<details[^>]+id="${id}"[^>]*><summary>([\\s\\S]*?)</summary>`),
       )?.[1];

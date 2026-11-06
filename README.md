@@ -54,6 +54,8 @@ ladydebug-workstation/
 │   │   ├── sobre.md
 │   │   ├── trabalhos/
 │   │   │   ├── index.ts    # ordem, IDs e tecnologias dos relatos
+│   │   │   ├── web.md
+│   │   │   ├── site-web.md
 │   │   │   ├── mobile.md
 │   │   │   ├── backend.md
 │   │   │   ├── cadastro.md
@@ -74,7 +76,8 @@ ladydebug-workstation/
 │   └── assets/
 │       ├── pixel-desk.png
 │       ├── workflow.png
-│       ├── cv-kellen-xavier.pdf # CV baixável (adicione o arquivo; o build exige)
+│       ├── cv-kellen-xavier-pt-br.pdf # CV em português
+│       ├── cv-kellen-xavier-en.pdf    # CV em inglês
 │       └── fonts/          # pixelify.woff2 + OFL.txt
 ├── scripts/
 │   ├── generate-pages.ts   # gera, a partir de src/pages.ts, o HTML e a entrada de cada página
@@ -113,7 +116,7 @@ bun run lint:fix   # corrige automaticamente o que for possível
 ## Editar
 
 - **Apresentação e sobre:** `src/content/apresentacao.md` e `src/content/sobre.md`.
-- **Relatos dos trabalhos:** `src/content/trabalhos/*.md`. A ordem, o ID da âncora, as tecnologias e o resumo visível de cada contribuição (`summary`) ficam em `src/content/trabalhos/index.ts`.
+- **Relatos dos trabalhos:** `src/content/trabalhos/*.md`. A ordem, o ID da âncora, as tecnologias, o período e o resumo visível de cada contribuição (`summary`) ficam em `src/content/trabalhos/index.ts`.
 - **Texto de apresentação do fluxo:** `src/content/fluxo.md` — aceita parágrafos, ênfase e links Markdown.
 - **Página completa do workflow:** `src/content/fluxo-completo.md` — conteúdo acessível pelo botão “Conhecer meu Workflow”, em `workflow.html`. Aceita listas de tarefas com `- [ ]` e `- [x]`.
 - **Etapas do fluxo:** `src/content/fluxo-passos.md` — uma seção `## <id-do-caso>` por etapa (o id liga ao caso em Na prática); a ordem das seções define a exibição.
@@ -164,7 +167,7 @@ Os testes cobrem as âncoras existentes, os relatos e suas referências, a forma
 
 ## Publicação
 
-`bun run build` gera em `dist/` as páginas `index.html`, `trajetoria.html`, `pratica.html`, `workflow.html`, `setup.html`, `ferramentas.html` e `games.html`, além do `cv-kellen-xavier.pdf` e dos arquivos estáticos, com caminhos relativos. O build falha de propósito se `src/assets/cv-kellen-xavier.pdf` não existir. Publique todo o diretório para que o acesso direto a cada página funcione sem redirecionamentos de SPA. Os arquivos podem ser hospedados no GitHub Pages, Netlify ou outra hospedagem estática.
+`bun run build` gera em `dist/` as páginas `index.html`, `trajetoria.html`, `pratica.html`, `workflow.html`, `setup.html`, `ferramentas.html` e `games.html`, além dos CVs em português e inglês e dos arquivos estáticos, com caminhos relativos. O build falha se algum dos PDFs em `src/assets/` não existir. Publique todo o diretório para que o acesso direto a cada página funcione sem redirecionamentos de SPA. Os arquivos podem ser hospedados no GitHub Pages, Netlify ou outra hospedagem estática.
 
 ### GitHub Pages
 
@@ -184,7 +187,7 @@ Endereço de publicação: [kellen-xavier.github.io/ladydebug-workstation](https
 
 ## Portfólio de contribuições
 
-A seção **Na prática** apresenta quatro casos a partir dos relatórios fornecidos pela autora (análise de 29/10/2026): mobile, backend de estacionamento, cadastro/identificadores fiscais e Unity. Cada caso identifica trabalho realizado, referências históricas e limites da evidência. A página não publica código privado ou relatórios internos completos.
+A seção **Na prática** apresenta cinco casos a partir dos relatórios fornecidos pela autora (análises de 29 e 30/10/2026): web, mobile, backend de estacionamento, cadastro/identificadores fiscais e Unity. A atualização do caso web inclui leitura pontual do checkout local, sem repetir a coleta completa de autoria ou as execuções do relatório. Cada caso identifica trabalho realizado, referências históricas e limites da evidência. A página não publica código privado ou relatórios internos completos.
 
 - `src/content/trabalhos/`: casos e origem documental, com hashes SHA-256 das cópias consultadas. Os hashes identificam documentos e não certificam suas afirmações.
 - `src/content/fluxo-passos.md`: etapas do fluxo com links para os casos.

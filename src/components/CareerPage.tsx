@@ -71,19 +71,32 @@ export function CareerPage() {
   const { highlight } = career;
   return (
     <PageLayout current="trajetoria">
-      <PageHead eyebrow={career.eyebrow} title={career.title} intro={career.intro} />
+      <PageHead
+        eyebrow={career.eyebrow}
+        title={career.title}
+        intro={career.intro}
+        className="career-page-head"
+      />
 
-      <section className="career-highlight">
+      <section
+        className={
+          highlight.focus.length > 0
+            ? "career-highlight"
+            : "career-highlight career-highlight--full"
+        }
+      >
         <div>
           <p className="eyebrow">{highlight.eyebrow}</p>
           <h2>{highlight.title}</h2>
           <p>{highlight.description}</p>
         </div>
-        <ul>
-          {highlight.focus.map((item) => (
-            <li key={item}>{item}</li>
-          ))}
-        </ul>
+        {highlight.focus.length > 0 && (
+          <ul>
+            {highlight.focus.map((item) => (
+              <li key={item}>{item}</li>
+            ))}
+          </ul>
+        )}
       </section>
 
       <ol className="timeline">

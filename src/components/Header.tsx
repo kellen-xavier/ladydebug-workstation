@@ -6,7 +6,7 @@ export function Header({ current = "home" }: { current?: PageId }) {
   const [open, setOpen] = useState(false);
   return (
     <header>
-      <a className="brand" href={`${pageHref.home}#main`}>
+      <a className="brand" href={`${pageHref.home}#sobre`}>
         {site.brand}
       </a>
       <button

@@ -21,7 +21,12 @@ async function buildRoutes(clean: boolean): Promise<Record<string, HTMLBundle | 
     routes[page.path] = html;
     routes[`/${page.slug}.html`] = html;
   }
-  routes["/cv-kellen-xavier.pdf"] = Bun.file(new URL("src/assets/cv-kellen-xavier.pdf", root));
+  routes["/cv-kellen-xavier-pt-br.pdf"] = Bun.file(
+    new URL("src/assets/cv-kellen-xavier-pt-br.pdf", root),
+  );
+  routes["/cv-kellen-xavier-en.pdf"] = Bun.file(
+    new URL("src/assets/cv-kellen-xavier-en.pdf", root),
+  );
   return routes;
 }
 
