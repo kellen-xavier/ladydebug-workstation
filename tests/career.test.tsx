@@ -34,11 +34,11 @@ describe("career page", () => {
     expect(vortigo?.description).toContain("DBServer");
   });
 
-  test("associates the PPCI site contribution with the independent work", () => {
+  test("associates the services website contribution with the independent work", () => {
     const independent = career.timeline.find(
       (entry) => entry.organization === "Atuação independente",
     );
-    expect(independent?.cases).toContain("ppci");
+    expect(independent?.cases).toContain("site-web");
   });
 
   test("lists the timeline from the most recent activity", () => {

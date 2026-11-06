@@ -176,6 +176,19 @@ test.describe("home page", () => {
 });
 
 test.describe("na prática — work cases", () => {
+  test("matches the heading typography of other internal pages", async ({ page }) => {
+    await page.goto("/setup.html");
+    const typography = await page.getByRole("heading", { level: 1 }).evaluate((element) => {
+      const style = getComputedStyle(element);
+      return { family: style.fontFamily, size: style.fontSize, weight: style.fontWeight };
+    });
+    await page.goto("/pratica.html");
+    const title = page.getByRole("heading", { level: 1 });
+    await expect(title).toHaveCSS("font-family", typography.family);
+    await expect(title).toHaveCSS("font-size", typography.size);
+    await expect(title).toHaveCSS("font-weight", typography.weight);
+  });
+
   test("keeps the six reports collapsed with a visible excerpt", async ({ page }) => {
     await page.goto("/pratica.html");
     const reports = page.locator("details.case");
@@ -187,17 +200,14 @@ test.describe("na prática — work cases", () => {
     }
   });
 
-  test("links the PPCI contribution to its public GitHub repository", async ({ page }) => {
+  test("links the services website contribution to its published site", async ({ page }) => {
     await page.goto("/pratica.html");
-    const report = page.locator("#ppci");
+    const report = page.locator("#site-web");
     await report.locator("summary").click();
-    const repository = report.getByRole("link", { name: "Repositório do site PPCI" });
-    await expect(repository).toHaveAttribute(
-      "href",
-      "https://github.com/kellen-xavier/site-douglas-ppci",
-    );
-    await expect(repository).toHaveAttribute("target", "_blank");
-    await expect(repository).toHaveAttribute("rel", "noopener noreferrer");
+    const publishedSite = report.getByRole("link", { name: "Link do Site" });
+    await expect(publishedSite).toHaveAttribute("href", "https://elementarprojetos.com.br");
+    await expect(publishedSite).toHaveAttribute("target", "_blank");
+    await expect(publishedSite).toHaveAttribute("rel", "noopener noreferrer");
   });
 
   test("expands a report with the keyboard and reveals its limits and provenance", async ({

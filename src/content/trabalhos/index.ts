@@ -1,7 +1,7 @@
 import backend from "./backend.md" with { type: "text" };
 import cadastro from "./cadastro.md" with { type: "text" };
 import mobile from "./mobile.md" with { type: "text" };
-import ppci from "./ppci.md" with { type: "text" };
+import siteWeb from "./site-web.md" with { type: "text" };
 import unity from "./unity.md" with { type: "text" };
 import web from "./web.md" with { type: "text" };
 
@@ -47,12 +47,12 @@ export const workCases: WorkCase[] = [
     content: backend,
   },
   {
-    id: "ppci",
+    id: "site-web",
     stack: "React · TypeScript · Decap CMS",
     period: "2026",
     summary:
       "Contribuí no fluxo editorial do CMS, no desempenho da página e na configuração de CI.",
-    content: ppci,
+    content: siteWeb,
   },
   {
     id: "unity",

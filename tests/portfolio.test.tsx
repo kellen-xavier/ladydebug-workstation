@@ -48,15 +48,15 @@ describe("work portfolio", () => {
     expect(html).not.toMatch(/Vamos conversar|Fale comigo|Seu próximo projeto/);
   });
 
-  test("includes the PPCI website contribution and public repository link", () => {
-    const ppci = workCases.find((work) => work.id === "ppci");
-    expect(ppci).toBeDefined();
-    expect(ppci?.content).toContain("Decap CMS");
-    expect(ppci?.content).toContain("desempenho");
-    expect(ppci?.content).toContain("configuração de CI");
-    expect(ppci?.period).toBe("2026");
+  test("includes the services website contribution and published site link", () => {
+    const siteWeb = workCases.find((work) => work.id === "site-web");
+    expect(siteWeb).toBeDefined();
+    expect(siteWeb?.content).toContain("Decap CMS");
+    expect(siteWeb?.content).toContain("desempenho");
+    expect(siteWeb?.content).toContain("configuração de CI");
+    expect(siteWeb?.period).toBe("2026");
     const html = renderToStaticMarkup(<PracticePage />);
-    expect(html).toContain('href="https://github.com/kellen-xavier/site-douglas-ppci"');
+    expect(html).toContain('href="https://elementarprojetos.com.br"');
     expect(html).toContain('rel="noopener noreferrer"');
   });
 

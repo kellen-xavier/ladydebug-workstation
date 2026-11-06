@@ -296,7 +296,8 @@ header nav a {
     padding: 44px 0 28px;
 }
 
-.page-head h1 {
+.page-head h1,
+.practice h1 {
     margin: 0 0 14px;
     font: clamp(36px, 4.4vw, 52px) / 1.06 var(--pixel);
     letter-spacing: -1px;

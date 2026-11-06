@@ -26,7 +26,7 @@ describe("portfolio design priorities", () => {
 
   test("includes a contribution preview inside each closed report summary", () => {
     const html = renderToStaticMarkup(<Work />);
-    for (const id of ["web", "mobile", "backend", "cadastro", "ppci", "unity"]) {
+    for (const id of ["web", "mobile", "backend", "cadastro", "site-web", "unity"]) {
       const summary = html.match(
         new RegExp(`<details[^>]+id="${id}"[^>]*><summary>([\\s\\S]*?)</summary>`),
       )?.[1];

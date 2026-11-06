@@ -19,7 +19,7 @@ practiceLinkLabel: Casos relacionados:
 - fim: present
 - tipo: work
 - descricao: Desenvolvimento e manutenção de aplicações web e mobile e de regras de negócio, integração com APIs, testes em diferentes níveis, configuração de pipelines e documentação técnica. Projetos realizados em paralelo aos demais vínculos, respeitando o período e o escopo de cada contribuição.
-- casos: web, mobile, cadastro, backend, ppci, unity
+- casos: web, mobile, cadastro, backend, site-web, unity
 
 ## Analista de Testes / Quality Engineer
 

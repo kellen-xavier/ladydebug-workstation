@@ -55,7 +55,7 @@ ladydebug-workstation/
 │   │   ├── trabalhos/
 │   │   │   ├── index.ts    # ordem, IDs e tecnologias dos relatos
 │   │   │   ├── web.md
-│   │   │   ├── ppci.md
+│   │   │   ├── site-web.md
 │   │   │   ├── mobile.md
 │   │   │   ├── backend.md
 │   │   │   ├── cadastro.md
