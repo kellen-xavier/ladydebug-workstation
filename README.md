@@ -161,9 +161,9 @@ O plugin identifica as imagens locais e registra seus arquivos no empacotamento 
 
 Os testes cobrem as âncoras existentes, os relatos e suas referências, a formatação Markdown e a inclusão de novos relatos e etapas sem alterar o layout. O teste do servidor de desenvolvimento edita uma cópia temporária do conteúdo e verifica o recarregamento.
 
-`tests/fixtures/portfolio-text.txt` registra a redação revisada da página para detectar perdas acidentais. Ao alterar deliberadamente os textos, atualize também essa referência e as expectativas de conteúdo afetadas. Os nomes dos testes permanecem em inglês.
+Os testes verificam estrutura, integração e comportamento; não comparam a redação das páginas com snapshots. Os nomes dos testes permanecem em inglês.
 
-`bun run test:browser` executa os testes Playwright em 1440, 768, 390 e 320 px de largura, usando um servidor próprio na porta 4174. Eles verificam a navegação entre todas as páginas e a marcação da página atual (`aria-current`), as âncoras da home, os links sociais externos, o botão principal na primeira tela e o download do CV, os relatos de "Na prática" (recolhidos, expansão por teclado, abertura por âncora da URL), a página de Workflow (carregamento direto, recarga e imagem Markdown empacotada), o setup, as ferramentas (comando de instalação e botão de copiar) e o filtro de games. As invariantes de layout — ausência de rolagem horizontal, âncoras internas válidas e áreas de toque de pelo menos 44 px nos controles principais — rodam em todas as larguras (o toque, apenas nos perfis móveis). Os locators preferem papéis e rótulos acessíveis em vez de seletores frágeis.
+`bun run test:browser` executa 36 cenários Playwright em 1440, 768, 390 e 320 px de largura, usando um servidor próprio na porta 4174. Os cenários ficam separados por fluxo em `e2e/navigation.e2e.ts`, `home.e2e.ts`, `career.e2e.ts`, `practice.e2e.ts`, `workflow.e2e.ts`, `tools-and-games.e2e.ts` e `responsive.e2e.ts`; helpers compartilhados ficam em `e2e/support/`. A suíte cobre navegação, ações e downloads da home, disclosures de relatórios, workflow e imagem local, ferramentas e cópia para área de transferência, filtros de jogos e invariantes responsivas. Os testes focam destinos, estados e efeitos funcionais, sem comparar textos editoriais. Os locators usam estrutura e atributos acessíveis para acionar controles.
 
 ## Publicação
 
@@ -187,10 +187,8 @@ Endereço de publicação: [kellen-xavier.github.io/ladydebug-workstation](https
 
 ## Portfólio de contribuições
 
-A seção **Na prática** apresenta cinco casos a partir dos relatórios fornecidos pela autora (análises de 29 e 30/10/2026): web, mobile, backend de estacionamento, cadastro/identificadores fiscais e Unity. A atualização do caso web inclui leitura pontual do checkout local, sem repetir a coleta completa de autoria ou as execuções do relatório. Cada caso identifica trabalho realizado, referências históricas e limites da evidência. A página não publica código privado ou relatórios internos completos.
+A página não publica código privado ou relatórios internos completos.
 
-- `src/content/trabalhos/`: casos e origem documental, com hashes SHA-256 das cópias consultadas. Os hashes identificam documentos e não certificam suas afirmações.
+- `src/content/trabalhos/`: casos e origem documental
 - `src/content/fluxo-passos.md`: etapas do fluxo com links para os casos.
 - `src/content/projetos.md`: projetos abertos, incluindo Ladydebug Bot Planner.
-
-A revisão da página não repetiu a coleta Git dos projetos privados nem a execução dos testes descritos. Implementação, configuração, execução documentada e implantação são apresentadas separadamente.
