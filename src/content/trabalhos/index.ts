@@ -35,7 +35,7 @@ export const workCases: WorkCase[] = [
     stack: "C# · .NET · NUnit · Contratos HTTP",
     period: "2026",
     summary:
-      "Backend demicroserviço de cadastro de clientes, com testes unitários e de integração, além de contratos HTTP.",
+      "Extraí validações fiscais do legado para um módulo de domínio, integrei ao cadastro e criei testes de regressão.",
     content: cadastro,
   },
   {
