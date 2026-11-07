@@ -9,7 +9,7 @@ toolsLink: Como instalar cada ferramenta →
 
 - SO: [Omarchy](https://omarchy.org/)
 - Descrição: Atualmente estou utilizando este sistema como Principal
-- Repositório Oficial: [link do repo](https://github.com/omacom/omarchy)
+- Repositório Oficial: [Github Omarchy](https://github.com/omacom/omarchy)
 - Blog: [Sobre o Omarchy](https://ladydebug.com.br/)
 
 ## ✦ IAs
@@ -25,5 +25,5 @@ toolsLink: Como instalar cada ferramenta →
 ## ▤ Hardware
 
 - Máquina: [ CPU amd ryzen 5 5600x (6 cores / 12 threads) / 32gb RAM]
-- Monitor: [Samsung Odyssey 34p]
+- Monitor: [Samsung Odyssey 34p, secundário Dell 27p]
 - Periféricos: [Teclado Logitech Aurora / Mouse G504]
