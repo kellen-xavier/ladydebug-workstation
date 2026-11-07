@@ -28,9 +28,8 @@ ESTUDO CONCLUÍDO
 
 ## Inicio do Trabalho
 
-Para gerar os projetos que venho atuando ou simplemente trabalhar neles, inicio via terminal
-o ai-memory como agente abro o projeto, analise e vejo quais modificações deve ser realizadas.
+Para gerar os projetos que venho atuando ou simplemente trabalhar neles, inicio via terminal o [ai-memory](https://aimemory.sh/pt-br/) com o meu agente, abro na raíz do projeto, faço a analise e vejo quais modificações deve ser realizadas.
 
-Gero uma base de conhecimento caso o projeto não tenha um para compartilhar com a equipe envolvida (docs as code)
-Gero essa Wiki nos projetos, e para o desenvolvimento sempre analiso como esta a base de testes do projeto, para então
-Criar esse testes e executar o ciclo, testes > implementa no código fonte > testes > deploy.
+Gero uma base de conhecimento caso o projeto não tenha um para compartilhar com a equipe envolvida (docs as code).
+Crio uma Wiki nos projetos para o desenvolvimento sempre analiso como esta a base de testes do projeto.
+Seguindo para criar esses testes e executar o ciclo, testes > implementa no código fonte > testes > deploy.
