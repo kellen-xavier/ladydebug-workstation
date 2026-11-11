@@ -39,7 +39,6 @@ export const topics = [
 
 export const site = {
   brand: "ladydebug",
-  browserTitle: "Ladydebug Workstation",
   skipLink: "Ir para o conteúdo",
   navigationLabel: "Navegação principal",
   menuLabel: "menu",

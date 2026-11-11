@@ -15,15 +15,11 @@ export function PageLayout({
       <a className="skip" href="#main">
         {site.skipLink}
       </a>
-      <div className="wrap">
-        <div className="browser-bar">
-          <span>{site.browserTitle}</span>
-          <span aria-hidden="true">▁ □ ×</span>
-        </div>
-        <Header current={current} />
-        <main id="main">{children}</main>
-        <Footer />
-      </div>
+      <Header current={current} />
+      <main className="wrap" id="main">
+        {children}
+      </main>
+      <Footer />
     </>
   );
 }

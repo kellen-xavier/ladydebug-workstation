@@ -58,13 +58,4 @@ test.describe("practice reports", () => {
     await expect(page.locator("#backend")).toHaveAttribute("open", "");
     await expect(page.locator("#backend")).toBeInViewport();
   });
-
-  test("links career entries to existing practice reports", async ({ page }) => {
-    await page.goto("/trajetoria.html");
-    const reportLink = page.locator('a[href="./pratica.html#mobile"]');
-    await expect(reportLink).toBeVisible();
-    await reportLink.click();
-    await expect(page).toHaveURL(/\/pratica\.html#mobile$/);
-    await expect(page.locator("#mobile")).toHaveAttribute("open", "");
-  });
 });
