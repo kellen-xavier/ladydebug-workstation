@@ -111,7 +111,7 @@ export const site = {
   },
   footer: {
     author: "Kellen Xavier",
-    taglines: ["code & tests", "keep the web personal"],
+    taglines: ["code & tests"],
   },
   projectsBlogLabel: "Estudos no blog ↗",
   projectLinkLabel: "Ver repositório ↗",

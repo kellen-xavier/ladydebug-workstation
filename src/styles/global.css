@@ -1,19 +1,23 @@
-@font-face {
-    font-family: Pixelify;
-    src: url("../assets/fonts/pixelify.woff2") format("woff2");
-    font-display: swap;
-}
-
 :root {
     color-scheme: light;
-    --bg: #faf6ed;
-    --soft: #f1ead9;
-    --ink: #2b2622;
-    --pink: #d468a5;
-    --muted: #685e50;
-    --border: #e6dcc6;
-    --link: #913565;
-    --pixel: Pixelify, "Courier New", monospace;
+    --paper: #faf6ef;
+    --ink: #2c2423;
+    --muted: #625451;
+    --accent: #813b59;
+    --pink: #f0d4df;
+    --line: #d9cbc1;
+    --surface-card: #fffaf5;
+    --surface-consulting: #f4e2e9;
+    --surface-window: #f6eadf;
+    --window-shadow: #ddc6bb;
+    --on-ink: #ffffff;
+    --font-display: Georgia, "Times New Roman", serif;
+    --font-body: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    --font-mono: ui-monospace, "SFMono-Regular", Consolas, monospace;
+    --bg: var(--paper);
+    --soft: var(--surface-window);
+    --border: var(--line);
+    --link: var(--accent);
 }
 
 * {
@@ -29,24 +33,16 @@ body {
     margin: 0;
     padding: 36px 20px;
     color: var(--ink);
-    background-color: var(--soft);
-    background-image:
-        linear-gradient(90deg, #e6dcc660 1px, transparent 1px),
-        linear-gradient(#e6dcc660 1px, transparent 1px);
-    background-size: 16px 16px;
-    font:
-        16px / 1.65 Tahoma,
-        Verdana,
-        Arial,
-        sans-serif;
+    background: var(--surface-window);
+    font: 17px / 1.6 var(--font-body);
 }
 
 .wrap {
-    max-width: 1080px;
+    max-width: 1100px;
     margin: auto;
     background: var(--bg);
     border: 2px solid var(--ink);
-    box-shadow: 7px 7px 0 #b6a68f;
+    box-shadow: 7px 7px 0 var(--window-shadow);
     padding: 5px;
 }
 
@@ -88,7 +84,7 @@ a:focus-visible {
     background: var(--pink);
     padding: 4px 10px;
     border: 1px solid var(--ink);
-    font: 16px / 1.5 var(--pixel);
+    font: 17px / 1.6 var(--font-body);
 }
 
 header {
@@ -103,7 +99,8 @@ header {
 
 .brand {
     white-space: nowrap;
-    font: 32px var(--pixel);
+    font: 17px / 1.6 var(--font-body);
+    font-weight: 800;
     color: var(--ink);
     text-decoration: none;
 }
@@ -125,27 +122,27 @@ nav a,
     justify-content: center;
     min-height: 44px;
     border: 2px solid var(--ink);
-    border-top-color: white;
-    border-left-color: white;
-    outline: 1px solid #9c8c79;
+    border-top-color: var(--on-ink);
+    border-left-color: var(--on-ink);
+    outline: 1px solid var(--line);
     box-shadow: 1px 1px 0 var(--ink);
     background: var(--soft);
     padding: 5px 12px;
     color: var(--ink);
-    font: 16px / 1.5 var(--pixel);
+    font: 17px / 1.6 var(--font-body);
     text-decoration: none;
 }
 
 nav a:hover,
 .button:hover {
-    background: #efc7dd;
+    background: var(--pink);
     color: var(--ink);
     text-decoration: none;
 }
 
 nav a:active,
 .button:active {
-    border-color: var(--ink) white white var(--ink);
+    border-color: var(--ink) var(--on-ink) var(--on-ink) var(--ink);
     box-shadow: none;
 }
 
@@ -162,13 +159,13 @@ main {
 }
 
 .eyebrow {
-    font: 16px / 1.5 var(--pixel);
+    font: 17px / 1.6 var(--font-body);
     color: var(--link);
     margin: 0 0 15px;
 }
 
 .hero h1 {
-    font: clamp(32px, 8vw, 53px) / 1.06 var(--pixel);
+    font: clamp(32px, 8vw, 53px) / 1.06 var(--font-body);
     letter-spacing: -1px;
     margin: 0 0 20px;
 }
@@ -219,7 +216,7 @@ main {
     display: inline-flex;
     gap: 14px;
     align-items: center;
-    background: #efc7dd;
+    background: var(--pink);
     padding: 8px 15px;
     font-size: 18px;
 }
@@ -231,7 +228,7 @@ main {
 
 .pixel-scene {
     margin: 0;
-    border: 1px dashed #b69f83;
+    border: 1px dashed var(--line);
     padding: 7px;
     position: relative;
     background: var(--bg);
@@ -241,16 +238,16 @@ main {
     display: block;
     max-width: 100%;
     height: auto;
-    aspect-ratio: 3 / 2;
+    aspect-ratio: 128 / 88;
     object-fit: contain;
     image-rendering: pixelated;
 }
 
 .pixel-scene figcaption {
     text-align: center;
-    border-top: 1px dashed #b69f83;
+    border-top: 1px dashed var(--line);
     padding: 8px 3px 2px;
-    font: 16px var(--pixel);
+    font: 17px / 1.6 var(--font-body);
     color: var(--link);
 }
 
@@ -279,7 +276,7 @@ main {
 }
 
 h2 {
-    font: 32px / 1.2 var(--pixel);
+    font: 32px / 1.2 var(--font-body);
     margin: 0;
 }
 
@@ -290,7 +287,7 @@ h2 {
 }
 
 .card {
-    border: 2px solid #8a7f6d;
+    border: 2px solid var(--line);
     background: var(--bg);
     box-shadow: 3px 3px 0 var(--border);
     padding: 0 18px 17px;
@@ -301,7 +298,7 @@ h2 {
 
 .card-top {
     background: var(--soft);
-    border-bottom: 1px solid #8a7f6d;
+    border-bottom: 1px solid var(--line);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -312,18 +309,16 @@ h2 {
 
 .repo-icon {
     color: var(--link);
-    font: 20px var(--pixel);
+    font: 20px var(--font-body);
 }
 
 .badge {
-    font:
-        12px / 1.5 "Courier New",
-        monospace;
-    color: #554737;
+    font: 12px / 1.5 var(--font-mono);
+    color: var(--muted);
 }
 
 .card h3 {
-    font: 27px / 1.2 var(--pixel);
+    font: 27px / 1.2 var(--font-body);
     margin: 0 0 10px;
     overflow-wrap: anywhere;
 }
@@ -338,7 +333,7 @@ h2 {
 .card-bottom {
     margin-top: auto;
     padding-top: 12px;
-    border-top: 1px dotted #ab967d;
+    border-top: 1px dotted var(--line);
     display: flex;
     gap: 10px;
     justify-content: space-between;
@@ -347,9 +342,7 @@ h2 {
 }
 
 .tags {
-    font:
-        12px "Courier New",
-        monospace;
+    font: 12px var(--font-mono);
     color: var(--muted);
     display: flex;
     gap: 10px;
@@ -365,7 +358,7 @@ h2 {
     display: grid;
     grid-template-columns: 0.85fr 1.4fr;
     gap: 30px;
-    border: 3px double #a89178;
+    border: 3px double var(--line);
     background: var(--soft);
     padding: 22px;
     margin: 28px 0 0;
@@ -387,10 +380,8 @@ h2 {
 }
 
 .education {
-    font:
-        14px / 1.7 "Courier New",
-        monospace;
-    border-top: 1px dashed #b7a68c;
+    font: 14px / 1.7 var(--font-mono);
+    border-top: 1px dashed var(--line);
     padding-top: 14px;
 }
 
@@ -401,7 +392,7 @@ h2 {
     gap: 20px;
     margin: 25px 0 28px;
     padding: 18px 0;
-    border-top: 2px dotted #b49a81;
+    border-top: 2px dotted var(--line);
 }
 
 .closing h2 {
@@ -421,7 +412,7 @@ h2 {
 
 footer {
     background: var(--soft);
-    border-top: 2px solid #8a7f6d;
+    border-top: 2px solid var(--line);
     padding: 20px 22px;
     text-align: center;
     display: flex;
@@ -429,9 +420,7 @@ footer {
     justify-content: space-between;
     flex-wrap: wrap;
     gap: 14px;
-    font:
-        12px "Courier New",
-        monospace;
+    font: 12px var(--font-mono);
     color: var(--muted);
 }
 
@@ -495,7 +484,7 @@ footer .brand {
     }
 
     .wrap {
-        box-shadow: 3px 3px 0 #b6a68f;
+        box-shadow: 3px 3px 0 var(--window-shadow);
     }
 
     .browser-bar {
@@ -586,14 +575,14 @@ footer .brand {
 
 .practice {
     padding: 32px 0;
-    border-bottom: 3px double #a89178;
+    border-bottom: 3px double var(--line);
 }
 .section-copy {
     color: var(--muted);
     max-width: 760px;
 }
 .case {
-    border: 2px solid #8a7f6d;
+    border: 2px solid var(--line);
     box-shadow: 3px 3px 0 var(--border);
     margin: 20px 0;
     background: var(--bg);
@@ -602,11 +591,11 @@ footer .brand {
     cursor: pointer;
     padding: 18px;
     list-style-position: inside;
-    font: 24px / 1.4 var(--pixel);
+    font: 24px / 1.4 var(--font-body);
     background: var(--soft);
 }
 .case summary:hover {
-    background: #efc7dd;
+    background: var(--pink);
 }
 .case summary:focus-visible {
     outline: 3px dashed var(--link);
@@ -616,7 +605,7 @@ footer .brand {
     padding: 20px;
 }
 .case h3 {
-    font: 23px var(--pixel);
+    font: 23px var(--font-body);
     margin: 0 0 12px;
 }
 .case p,
@@ -639,13 +628,13 @@ footer .brand {
 }
 .case .case-limit {
     font-size: 13px;
-    border-top: 1px dashed #b7a68c;
+    border-top: 1px dashed var(--line);
     padding-top: 14px;
     margin: 1em 0;
 }
 .case-label {
     display: block;
-    font: 12px / 1.7 monospace;
+    font: 0.78rem / 1.6 var(--font-mono);
     color: var(--link);
     padding-left: 19px;
 }
@@ -654,7 +643,7 @@ footer .brand {
     display: block;
     padding-left: 19px;
     color: var(--muted);
-    font: 12px / 1.5 monospace;
+    font: 0.78rem / 1.6 var(--font-mono);
 }
 
 .case-excerpt {
@@ -662,11 +651,7 @@ footer .brand {
     max-width: 72ch;
     margin: 8px 0 0 19px;
     color: var(--muted);
-    font:
-        15px / 1.6 Tahoma,
-        Verdana,
-        Arial,
-        sans-serif;
+    font: 15px / 1.6 var(--font-body);
 }
 .workflow {
     counter-reset: steps;
@@ -678,11 +663,11 @@ footer .brand {
 }
 .workflow li {
     padding: 18px;
-    border: 1px dashed #a89178;
+    border: 1px dashed var(--line);
     background: var(--soft);
 }
 .workflow h3 {
-    font: 23px var(--pixel);
+    font: 23px var(--font-body);
     margin: 0 0 10px;
 }
 .workflow p {
@@ -699,22 +684,22 @@ footer .brand {
     font-size: 13px;
     color: var(--muted);
     padding: 16px;
-    border: 1px dashed #a89178;
+    border: 1px dashed var(--line);
 }
 .evidence-heading {
-    font: 18px var(--pixel);
+    font: 18px var(--font-body);
     color: var(--link);
 }
 .card.featured {
     grid-column: 1 / -1;
-    background: #f5ecde;
+    background: var(--surface-card);
 }
 .card.featured .card-top {
-    background: #efc7dd;
+    background: var(--pink);
 }
 .meta,
 .provenance p:has(code) {
-    font: 12px monospace;
+    font: 0.78rem / 1.6 var(--font-mono);
     color: var(--muted);
     overflow-wrap: anywhere;
 }
@@ -724,7 +709,7 @@ footer .brand {
     margin: auto;
 }
 .report-page h1 {
-    font: 36px var(--pixel);
+    font: 36px var(--font-body);
 }
 .report-page h2 {
     font-size: 26px;
@@ -770,11 +755,7 @@ footer .brand {
 .flow-intro {
     width: 100%;
     max-width: 60ch;
-    font:
-        18px / 1.6 Tahoma,
-        Verdana,
-        Arial,
-        sans-serif;
+    font: 18px / 1.6 var(--font-body);
     color: var(--muted);
     overflow-wrap: anywhere;
 }
@@ -799,7 +780,7 @@ footer .brand {
 .workflow-page h1 {
     margin: 0 0 28px;
     text-align: center;
-    font: clamp(28px, 4vw, 40px) / 1.2 var(--pixel);
+    font: clamp(28px, 4vw, 40px) / 1.2 var(--font-body);
 }
 .workflow-page h2 {
     margin: 32px 0 16px;
@@ -844,7 +825,7 @@ footer .brand {
     flex-direction: column;
     text-align: center;
     position: relative;
-    border: 2px solid #8a7f6d;
+    border: 2px solid var(--line);
     box-shadow: 3px 3px 0 var(--border);
     padding: 16px;
     background: var(--bg);
@@ -857,10 +838,10 @@ footer .brand {
     z-index: 1;
     background: var(--bg);
     color: var(--link);
-    font: 24px var(--pixel);
+    font: 24px var(--font-body);
 }
 .step-icon {
-    font: 26px var(--pixel);
+    font: 26px var(--font-body);
     color: var(--link);
     display: block;
     margin-bottom: 18px;
@@ -871,7 +852,7 @@ footer .brand {
 }
 .workflow h3:before {
     display: block;
-    font: 13px monospace;
+    font: 0.78rem / 1.6 var(--font-mono);
     margin-bottom: 9px;
 }
 .workflow p {
@@ -882,7 +863,7 @@ footer .brand {
     justify-content: center;
     font-size: 12px;
     margin-top: auto;
-    border-top: 1px dotted #ab967d;
+    border-top: 1px dotted var(--line);
     padding-top: 12px;
 }
 .cycle {
@@ -891,10 +872,10 @@ footer .brand {
     align-items: center;
     gap: 6px;
     text-align: center;
-    border: 3px double #a89178;
+    border: 3px double var(--line);
     background: var(--soft);
     padding: 15px;
-    font: 15px var(--pixel);
+    font: 15px var(--font-body);
 }
 .cycle > span {
     font-size: 29px;
@@ -971,7 +952,7 @@ footer .brand {
     padding-top: 12px;
 }
 .provenance summary {
-    font: 16px var(--pixel);
+    font: 17px / 1.6 var(--font-body);
     padding: 8px;
     background: var(--soft);
 }
@@ -985,4 +966,172 @@ footer .brand {
 .case .case-limit p {
     font-size: inherit;
     margin: 0;
+}
+
+/* Editorial type system from the workstation UI kit. */
+.browser-bar {
+    font: 600 0.82rem / 1.4 var(--font-mono);
+}
+.brand {
+    font: 800 17px / 1.6 var(--font-body);
+}
+.eyebrow,
+.badge,
+.tags,
+.education,
+.meta,
+.provenance p:has(code),
+.case-label,
+.case-period,
+.timeline-period,
+.timeline-org,
+.game-organization dt,
+.spec-list dt,
+.tool-category,
+.map-destination,
+.workflow h3:before,
+.case-links a,
+.install code {
+    font-family: var(--font-mono);
+}
+.eyebrow {
+    font-size: 0.78rem;
+    line-height: 1.6;
+    font-weight: 600;
+}
+.hero h1,
+.page-head h1,
+.practice h1,
+.report-page h1,
+.workflow-page h1 {
+    font-family: var(--font-display);
+    font-size: clamp(2.65rem, 6vw, 5.2rem);
+    font-weight: 400;
+    line-height: 1.03;
+    letter-spacing: -0.045em;
+}
+h2,
+.report-page h2,
+.workflow-page h2 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    line-height: 1.1;
+}
+.card h3,
+.case h3,
+.timeline h3,
+.workflow h3,
+.game h3,
+.map-name,
+.game-organization dd {
+    font-family: var(--font-body);
+    font-weight: 700;
+    line-height: 1.3;
+}
+.panel h2 {
+    font-size: 1.85rem;
+}
+.intro,
+.section-intro,
+.about-text p,
+.card p,
+.case p,
+.case li,
+.timeline-text,
+.workflow-page p,
+.flow-intro,
+.career-before p:not(.eyebrow),
+.panel p,
+.game-organization dd {
+    max-width: 62ch;
+    font-family: var(--font-body);
+}
+.button {
+    border: 1px solid var(--ink);
+    border-radius: 4px;
+    outline: none;
+    box-shadow: none;
+    background: var(--ink);
+    color: var(--on-ink);
+    padding: 10px 16px;
+    font: 600 17px / 1.4 var(--font-body);
+}
+.button:hover {
+    background: var(--accent);
+    color: var(--on-ink);
+}
+nav a,
+.filters button,
+.menu-toggle,
+.copy-button {
+    font-family: var(--font-body);
+    font-size: 17px;
+}
+nav a {
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    outline: none;
+    box-shadow: none;
+    background: var(--surface-card);
+}
+nav a:hover,
+nav a[aria-current="page"],
+.filters button:hover,
+.filters button[aria-pressed="true"],
+.menu-toggle[aria-expanded="true"] {
+    background: var(--pink);
+}
+:focus-visible {
+    outline: 3px solid var(--accent);
+    outline-offset: 4px;
+}
+.pixel-scene {
+    border: 1px solid var(--line);
+    background: var(--surface-window);
+}
+.pixel-scene figcaption {
+    border-color: var(--line);
+    font: 0.78rem / 1.6 var(--font-mono);
+}
+.card,
+.panel,
+.map-place,
+.game {
+    background-color: var(--surface-card);
+    border-radius: 6px;
+}
+.card {
+    border-width: 1px;
+    box-shadow: none;
+    padding: 22px;
+}
+.card-top {
+    margin: -22px -22px 16px;
+    border-radius: 5px 5px 0 0;
+    background: var(--surface-window);
+}
+.card h3 {
+    font-size: 1.25rem;
+}
+footer {
+    font: 0.9rem / 1.6 var(--font-body);
+    border-color: var(--line);
+}
+@media (max-width: 700px) {
+    .hero {
+        grid-template-columns: 1fr;
+        gap: 24px;
+        padding-block: clamp(48px, 9vw, 72px);
+    }
+    .pixel-scene {
+        max-width: 420px;
+        width: 100%;
+        margin-inline: auto;
+    }
+    .hero > div {
+        order: 0;
+    }
+    .pixel-scene {
+        order: 1;
+    }
 }

@@ -1,4 +1,4 @@
-import pixelDesk from "../assets/pixel-desk.png";
+import pixelDesk from "../assets/workstation-pixel.png";
 import presentation from "../content/apresentacao.md" with { type: "text" };
 import { site } from "../content/site";
 import { MarkdownContent } from "./MarkdownContent";
@@ -22,7 +22,7 @@ export function Hero() {
         </div>
       </div>
       <figure className="pixel-scene">
-        <img src={pixelDesk} width="1536" height="1024" alt={site.hero.imageAlt} />
+        <img src={pixelDesk} width="1512" height="1040" alt={site.hero.imageAlt} />
         <figcaption>{site.hero.imageCaption}</figcaption>
       </figure>
     </section>

@@ -7,7 +7,7 @@ nav a {
 }
 
 nav a[aria-current="page"] {
-    background: #efc7dd;
+    background: var(--pink);
 }
 
 .header-tools {
@@ -41,7 +41,7 @@ header nav a {
     flex-shrink: 0;
     gap: 4px;
     padding-left: 10px;
-    border-left: 1px dashed #b69f83;
+    border-left: 1px dashed var(--line);
 }
 
 .social a {
@@ -65,7 +65,7 @@ header nav a {
 
 .section {
     padding: 40px 0;
-    border-top: 1px dashed #b69f83;
+    border-top: 1px dashed var(--line);
 }
 
 .section-intro {
@@ -77,7 +77,7 @@ header nav a {
 /* Quem sou eu */
 .about {
     border: 0;
-    border-top: 1px dashed #b69f83;
+    border-top: 1px dashed var(--line);
     background: none;
     padding: 40px 0;
     margin: 0;
@@ -102,16 +102,14 @@ header nav a {
 .game-organization dt,
 .spec-list dt,
 .tool-category {
-    font:
-        12px / 1.5 "Courier New",
-        monospace;
-    color: #554737;
+    font: 12px / 1.5 var(--font-mono);
+    color: var(--muted);
     text-transform: uppercase;
 }
 
 .game-organization dd {
     margin: 4px 0 0;
-    font: 17px / 1.35 var(--pixel);
+    font: 17px / 1.35 var(--font-body);
 }
 
 /* Mapa do site */
@@ -124,11 +122,11 @@ header nav a {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 14px;
-    background-color: #e7ead3;
-    background-image: radial-gradient(#d3d9b8 1.5px, transparent 1.5px);
+    background-color: var(--surface-window);
+    background-image: radial-gradient(var(--line) 1.5px, transparent 1.5px);
     background-size: 14px 14px;
     border: 1px solid var(--ink);
-    box-shadow: 4px 4px 0 #b6a68f;
+    box-shadow: 4px 4px 0 var(--window-shadow);
 }
 
 .map-place {
@@ -140,31 +138,29 @@ header nav a {
     padding: 14px;
     background: var(--bg);
     border: 1px solid var(--ink);
-    box-shadow: 3px 3px 0 #8a7f6d;
+    box-shadow: 3px 3px 0 var(--line);
     color: var(--ink);
     text-decoration: none;
 }
 
 .map-place:hover {
-    background: #fbe6f0;
+    background: var(--surface-consulting);
     color: var(--ink);
     text-decoration: none;
 }
 
 .map-icon {
-    font: 24px / 1 var(--pixel);
+    font: 24px / 1 var(--font-body);
     color: var(--link);
 }
 
 .map-name {
     margin-top: 8px;
-    font: 19px / 1.25 var(--pixel);
+    font: 19px / 1.25 var(--font-body);
 }
 
 .map-destination {
-    font:
-        12px / 1.5 "Courier New",
-        monospace;
+    font: 12px / 1.5 var(--font-mono);
     color: var(--link);
 }
 
@@ -220,7 +216,7 @@ header nav a {
 
 .panel-title span {
     color: var(--link);
-    font: 18px var(--pixel);
+    font: 18px var(--font-body);
 }
 
 .panel-links {
@@ -250,11 +246,9 @@ header nav a {
 
 .chips li {
     padding: 3px 8px;
-    border: 1px dashed #a89178;
-    font:
-        12px / 1.5 "Courier New",
-        monospace;
-    color: #554737;
+    border: 1px dashed var(--line);
+    font: 12px / 1.5 var(--font-mono);
+    color: var(--muted);
 }
 
 /* CV e chamadas finais */
@@ -300,7 +294,7 @@ header nav a {
 .page-head h1,
 .practice h1 {
     margin: 0 0 14px;
-    font: clamp(36px, 4.4vw, 52px) / 1.06 var(--pixel);
+    font: clamp(36px, 4.4vw, 52px) / 1.06 var(--font-body);
     letter-spacing: -1px;
 }
 
@@ -315,7 +309,7 @@ header nav a {
     gap: 18px 32px;
     margin-bottom: 40px;
     padding: 22px 24px;
-    background: #fbe6f0;
+    background: var(--surface-consulting);
     border: 1px solid var(--ink);
     box-shadow: 4px 4px 0 var(--ink);
 }
@@ -343,7 +337,7 @@ header nav a {
 
 .career-highlight li {
     padding: 8px 0;
-    border-top: 1px dotted #b69f83;
+    border-top: 1px dotted var(--line);
     font-size: 14px;
 }
 
@@ -380,28 +374,24 @@ header nav a {
 }
 
 .timeline > li.is-education:before {
-    background: #efc7dd;
+    background: var(--pink);
 }
 
 .timeline-period {
     margin: 0 0 2px;
-    font:
-        13px / 1.5 "Courier New",
-        monospace;
+    font: 13px / 1.5 var(--font-mono);
     color: var(--link);
 }
 
 .timeline h3 {
     margin: 0;
-    font: 22px / 1.25 var(--pixel);
+    font: 22px / 1.25 var(--font-body);
 }
 
 .timeline-org {
     margin: 2px 0 8px;
-    font:
-        14px / 1.5 "Courier New",
-        monospace;
-    color: #554737;
+    font: 14px / 1.5 var(--font-mono);
+    color: var(--muted);
 }
 
 .timeline-text {
@@ -427,14 +417,12 @@ header nav a {
     padding: 4px 10px;
     border: 1px solid var(--ink);
     color: var(--ink);
-    font:
-        12px / 1.5 "Courier New",
-        monospace;
+    font: 12px / 1.5 var(--font-mono);
     text-decoration: none;
 }
 
 .case-links a:hover {
-    background: #efc7dd;
+    background: var(--pink);
     text-decoration: none;
 }
 
@@ -444,7 +432,7 @@ header nav a {
     gap: 12px 32px;
     margin-bottom: 40px;
     padding-top: 24px;
-    border-top: 1px dashed #b69f83;
+    border-top: 1px dashed var(--line);
 }
 
 .career-before h2 {
@@ -477,7 +465,7 @@ header nav a {
     grid-template-columns: 100px minmax(0, 1fr);
     gap: 12px;
     padding: 8px 0;
-    border-top: 1px dotted #ab967d;
+    border-top: 1px dotted var(--line);
 }
 
 .spec-list dd {
@@ -499,7 +487,7 @@ header nav a {
     gap: 10px 24px;
     align-items: center;
     padding: 16px 0;
-    border-bottom: 1px dashed #b69f83;
+    border-bottom: 1px dashed var(--line);
 }
 
 /* biome-ignore lint/style/noDescendingSpecificity: targets a different, non-overlapping subtree than .setup-grid .panel h2 */
@@ -536,9 +524,7 @@ header nav a {
     white-space: pre-wrap;
     overflow-wrap: anywhere;
     color: var(--bg);
-    font:
-        13px / 1.5 "Courier New",
-        monospace;
+    font: 13px / 1.5 var(--font-mono);
 }
 
 .copy-button {
@@ -548,13 +534,13 @@ header nav a {
     border: 0;
     border-left: 1px solid var(--muted);
     background: var(--ink);
-    color: #efc7dd;
-    font: 13px var(--pixel);
+    color: var(--pink);
+    font: 13px var(--font-body);
     cursor: pointer;
 }
 
 .copy-button:hover {
-    color: #fff;
+    color: var(--on-ink);
 }
 
 .copy-button:focus-visible,
@@ -594,13 +580,13 @@ header nav a {
     box-shadow: 2px 2px 0 var(--ink);
     background: var(--bg);
     color: var(--ink);
-    font: 15px / 1.5 var(--pixel);
+    font: 15px / 1.5 var(--font-body);
     cursor: pointer;
 }
 
 .filters button:hover,
 .filters button[aria-pressed="true"] {
-    background: #efc7dd;
+    background: var(--pink);
 }
 
 .game-grid {
@@ -624,27 +610,23 @@ header nav a {
     align-items: center;
     justify-content: center;
     aspect-ratio: 4 / 3;
-    border: 1px dashed #b69f83;
+    border: 1px dashed var(--line);
     background: var(--soft);
     color: var(--muted);
-    font:
-        12px "Courier New",
-        monospace;
+    font: 12px var(--font-mono);
 }
 
 .game-meta {
     display: flex;
     justify-content: space-between;
     margin: 0;
-    color: #554737;
-    font:
-        12px / 1.5 "Courier New",
-        monospace;
+    color: var(--muted);
+    font: 12px / 1.5 var(--font-mono);
 }
 
 .game h3 {
     margin: 0;
-    font: 19px / 1.2 var(--pixel);
+    font: 19px / 1.2 var(--font-body);
 }
 
 @media (max-width: 780px) {
@@ -674,18 +656,18 @@ header nav a {
         min-height: 44px;
         padding: 6px 14px;
         border: 2px solid var(--ink);
-        border-top-color: white;
-        border-left-color: white;
-        outline: 1px solid #9c8c79;
+        border-top-color: var(--on-ink);
+        border-left-color: var(--on-ink);
+        outline: 1px solid var(--line);
         box-shadow: 1px 1px 0 var(--ink);
         background: var(--soft);
         color: var(--ink);
-        font: 16px / 1.5 var(--pixel);
+        font: 16px / 1.5 var(--font-body);
         cursor: pointer;
     }
 
     .menu-toggle[aria-expanded="true"] {
-        background: #efc7dd;
+        background: var(--pink);
     }
 
     .header-tools {
@@ -734,4 +716,29 @@ header nav a {
         border-left: 0;
         border-top: 1px solid var(--muted);
     }
+}
+
+/* Keep the shared editorial type roles on all internal pages. */
+.page-head h1,
+.practice h1,
+.workflow-page h1,
+.report-page h1 {
+    font-family: var(--font-display);
+    font-size: clamp(2.65rem, 6vw, 5.2rem);
+    font-weight: 400;
+    line-height: 1.03;
+    letter-spacing: -0.045em;
+}
+.panel.consulting,
+.consulting.panel,
+.panel--consulting {
+    background: var(--surface-consulting);
+}
+
+header nav a,
+.menu-toggle,
+.filters button,
+.copy-button {
+    font-family: var(--font-body);
+    font-size: 17px;
 }
