@@ -71,8 +71,15 @@ ladydebug-workstation/
 │   │   ├── projetos.md     # cartões dos projetos
 │   │   └── site.ts         # navegação, rótulos, links e textos auxiliares
 │   ├── styles/
-│   │   ├── global.css      # estilos base e compartilhados
-│   │   └── pages.css        # estilos das novas páginas (carregado após global.css)
+│   │   ├── foundation.css  # tokens, reset e estrutura compartilhada
+│   │   ├── home.css        # apresentação e blocos da home
+│   │   ├── practice.css    # relatos de contribuições
+│   │   ├── workflow.css    # fluxo e página de workflow
+│   │   ├── theme.css       # tipografia e aparência compartilhadas
+│   │   ├── sections.css    # mapa, painéis e CV
+│   │   ├── internal-pages.css # trajetória, setup, ferramentas e games
+│   │   ├── responsive.css  # ajustes responsivos das páginas internas
+│   │   └── editorial-layout.css # refinamentos de layout editorial
 │   └── assets/
 │       ├── pixel-desk.png
 │       ├── workflow.png
@@ -131,7 +138,7 @@ Essas cinco páginas usam o mesmo formato Markdown: front matter (`--- ... ---`)
 
 - **Navegação, rótulos, links, tópicos e textos auxiliares:** `src/content/site.ts`.
 - **Estrutura dos componentes:** `src/components/`.
-- **Cores e estilos:** `src/styles/global.css`.
+- **Cores:** `src/styles/foundation.css`. Os demais estilos ficam separados por seção em `src/styles/`; a ordem de importação está em `scripts/generate-pages.ts`.
 
 ### Convenções do Markdown
 

@@ -1,0 +1,398 @@
+.hero {
+    display: grid;
+    grid-template-columns: 1.25fr 1fr;
+    align-items: center;
+    gap: clamp(24px, 6vw, 76px);
+    padding-block: clamp(48px, 9vw, 110px);
+}
+
+.eyebrow {
+    font: 600 0.78rem / 1.6 var(--font-mono);
+    color: var(--link);
+    margin: 0 0 15px;
+}
+
+.hero h1 {
+    font: clamp(32px, 8vw, 53px) / 1.06 var(--font-body);
+    letter-spacing: -1px;
+    margin: 0 0 20px;
+}
+
+.hero h1 em {
+    font-style: normal;
+    color: var(--link);
+}
+
+.intro {
+    margin: 0;
+    color: var(--muted);
+    font-size: 16px;
+    line-height: 1.65;
+    max-width: 550px;
+}
+
+.intro + .intro {
+    margin-top: 12px;
+}
+
+:where(.text-link, .repo-link, .flow-ref, footer a, .cycle a) {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    min-width: 44px;
+    padding-block: 8px;
+}
+
+.intro strong {
+    color: var(--ink);
+    font-weight: normal;
+}
+
+.intro > strong:first-child {
+    font-weight: bold;
+}
+
+.actions {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-top: 24px;
+}
+
+.button {
+    display: inline-flex;
+    gap: 14px;
+    align-items: center;
+    border: 1px solid var(--ink);
+    border-radius: 4px;
+    outline: none;
+    box-shadow: none;
+    background: var(--ink);
+    color: var(--on-ink);
+    padding: 10px 16px;
+    font: 600 17px / 1.4 var(--font-body);
+}
+
+.button:hover {
+    background: var(--accent);
+    color: var(--on-ink);
+}
+
+.text-link {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.pixel-scene {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    border: 2px solid var(--ink);
+    box-shadow: 6px 6px 0 var(--window-shadow);
+    background: var(--surface-window);
+}
+
+.pixel-scene img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    aspect-ratio: 128 / 88;
+    object-fit: contain;
+    image-rendering: pixelated;
+}
+
+.pixel-scene figcaption {
+    order: -1;
+    padding: 8px 12px;
+    border-bottom: 2px solid var(--ink);
+    background: var(--pink);
+    color: var(--ink);
+    font: 600 0.82rem / 1.4 var(--font-mono);
+}
+
+.markdown-image {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin: 20px auto;
+}
+
+.projects {
+    padding-block: 36px;
+    border-top: 1px solid var(--line);
+}
+
+.section-head {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.section-head .eyebrow {
+    margin: 0 0 5px;
+    font-size: 14px;
+}
+
+h2 {
+    font: 400 32px / 1.1 var(--font-display);
+    margin: 0;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+.card {
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    background: var(--surface-card);
+    box-shadow: none;
+    padding: 22px;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+.card-top {
+    background: transparent;
+    border: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: -22px -22px 16px;
+    padding: 8px 22px;
+    gap: 10px;
+}
+
+.repo-icon {
+    color: var(--link);
+    font: 20px var(--font-body);
+}
+
+.badge {
+    font: 12px / 1.5 var(--font-mono);
+    color: var(--muted);
+}
+
+.card h3 {
+    font: 27px / 1.2 var(--font-body);
+    margin: 0 0 10px;
+    overflow-wrap: anywhere;
+}
+
+.card p {
+    font-size: 16px;
+    margin: 0 0 20px;
+    color: var(--muted);
+    line-height: 1.65;
+}
+
+.card-bottom {
+    margin-top: auto;
+    padding-top: 12px;
+    border-top: 1px dotted var(--line);
+    display: flex;
+    gap: 10px;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.tags {
+    font: 12px var(--font-mono);
+    color: var(--muted);
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.repo-link {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.about {
+    display: grid;
+    grid-template-columns: 0.85fr 1.4fr;
+    gap: 30px;
+    border: 3px double var(--line);
+    background: var(--soft);
+    padding: 22px;
+    margin: 28px 0 0;
+}
+
+.about h2 {
+    font-size: 29px;
+}
+
+.about-text p {
+    margin: 0 0 16px;
+    color: var(--muted);
+    font-size: 16px;
+}
+
+.about-text strong {
+    color: var(--ink);
+    font-weight: normal;
+}
+
+.education {
+    font: 14px / 1.7 var(--font-mono);
+    border-top: 1px dashed var(--line);
+    padding-top: 14px;
+}
+
+.closing {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    margin: 25px 0 28px;
+    padding: 18px 0;
+    border-top: 2px dotted var(--line);
+}
+
+.closing h2 {
+    font-size: 27px;
+}
+
+.closing p {
+    font-size: 14px;
+    color: var(--muted);
+    margin: 8px 0 0;
+}
+
+.closing .button {
+    flex-shrink: 0;
+    font-size: 16px;
+}
+
+footer {
+    border-top: 1px solid var(--line);
+    font: 0.9rem / 1.6 var(--font-body);
+    color: var(--muted);
+}
+
+.footer-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+    padding-block: 20px;
+}
+
+.footer-note {
+    text-align: right;
+}
+
+@media (max-width: 780px) {
+    header {
+        padding: 0;
+    }
+
+    .hero {
+        gap: 24px;
+    }
+
+    .card-top {
+        flex-wrap: wrap;
+    }
+
+    .about {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .closing {
+        align-items: start;
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 700px) {
+    .wrap {
+        width: calc(100% - 32px);
+    }
+
+    .hero,
+    .grid,
+    .highlights {
+        grid-template-columns: 1fr;
+    }
+
+    .pixel-scene {
+        max-width: 420px;
+        width: 100%;
+        margin-inline: auto;
+    }
+}
+
+@media (max-width: 560px) {
+    header {
+        gap: 0;
+    }
+
+    nav {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        width: 100%;
+        gap: 7px;
+    }
+
+    nav a {
+        font-size: 16px;
+        padding: 4px 8px;
+    }
+
+    .hero {
+        grid-template-columns: 1fr;
+        padding-block: 48px;
+        gap: 24px;
+    }
+
+    .section-head {
+        flex-direction: column;
+        align-items: start;
+        gap: 12px;
+    }
+
+    .card h3 {
+        font-size: 28px;
+    }
+
+    .about {
+        padding: 17px;
+    }
+
+    .about h2 {
+        font-size: 28px;
+    }
+
+    .closing h2 {
+        font-size: 28px;
+    }
+
+    footer {
+        padding-inline: 0;
+    }
+
+    .footer-note {
+        text-align: left;
+    }
+
+    .hero .eyebrow {
+        font-size: 15px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+}
