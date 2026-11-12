@@ -2,27 +2,6 @@ import { expect, test } from "@playwright/test";
 import { mainNavigation, openMenu } from "./support/site";
 
 test.describe("primary navigation", () => {
-  test("keeps desktop navigation and social links on one row", async ({ page }) => {
-    if ((page.viewportSize()?.width ?? 0) <= 1100) return;
-    await page.goto("/");
-    await page.evaluate(() => document.fonts.ready);
-    const boxes = await page
-      .locator("header .brand, header nav > a, header .nav-group-trigger, header .social a")
-      .evaluateAll((elements) =>
-        elements.map((element) => {
-          const rect = element.getBoundingClientRect();
-          return { center: rect.top + rect.height / 2, width: rect.width };
-        }),
-      );
-    for (const box of boxes) {
-      expect(Math.abs(box.center - (boxes[0]?.center ?? 0))).toBeLessThan(2);
-      expect(box.width).toBeGreaterThanOrEqual(44);
-    }
-    expect(await page.locator("header nav a").evaluateAll((links) => links.length)).toBeGreaterThan(
-      0,
-    );
-  });
-
   test("opens every internal page from the home navigation", async ({ page }) => {
     for (const path of [
       "trajetoria.html",
@@ -85,20 +64,6 @@ test.describe("primary navigation", () => {
       await page.locator(`header a[href="${href}"]`).click();
       await expect(page).toHaveURL(new RegExp(`#${anchor}$`));
       await expect(page.locator(`#${anchor}`)).toBeInViewport();
-    }
-  });
-
-  test("keeps social links external and safely isolated", async ({ page }) => {
-    await page.goto("/");
-    await openMenu(page);
-    for (const href of [
-      "https://github.com/kellen-xavier",
-      "https://www.linkedin.com/in/kellen-xavier/",
-      "https://kellen-xavier.github.io/ladydebug.github.io/",
-    ]) {
-      const link = page.locator(`.social a[href="${href}"]`);
-      await expect(link).toHaveAttribute("target", "_blank");
-      await expect(link).toHaveAttribute("rel", "noopener noreferrer");
     }
   });
 

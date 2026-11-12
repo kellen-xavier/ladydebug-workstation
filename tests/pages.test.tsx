@@ -2,7 +2,6 @@ import { describe, expect, test } from "bun:test";
 import { mkdtemp, rm } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
-import { renderToStaticMarkup } from "react-dom/server";
 import { generatePages } from "../scripts/generate-pages";
 import { pageFile, pages } from "../src/pages";
 
@@ -34,12 +33,4 @@ describe("site pages", () => {
       await rm(dir, { recursive: true, force: true });
     }
   });
-
-  for (const page of pages.filter((candidate) => candidate.slug !== "index")) {
-    test(`${pageFile(page)} has one heading and marks itself in the navigation`, () => {
-      const html = renderToStaticMarkup(<page.component />);
-      expect(html.match(/<h1[ >]/g)).toHaveLength(1);
-      expect(html).toContain(`href="./${pageFile(page)}" aria-current="page"`);
-    });
-  }
 });

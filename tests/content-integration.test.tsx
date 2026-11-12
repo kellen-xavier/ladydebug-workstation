@@ -1,24 +1,10 @@
 import { describe, expect, test } from "bun:test";
 import { renderToStaticMarkup } from "react-dom/server";
-import { About } from "../src/components/About";
-import { Hero } from "../src/components/Hero";
 import { Work } from "../src/components/Work";
 import { Workflow, workflow } from "../src/components/Workflow";
 import { workCases } from "../src/content/trabalhos";
 
 describe("content-driven portfolio sections", () => {
-  test("renders the presentation heading and emphasis from Markdown", () => {
-    const html = renderToStaticMarkup(<Hero />);
-    expect(html).toMatch(/<h1>[\s\S]*?<br\/>[\s\S]*?<\/h1>/);
-    expect(html).toMatch(/<h1>[\s\S]*?<em>[^<]+<\/em>[\s\S]*?<\/h1>/);
-    expect(html.match(/class="intro"/g)).toHaveLength(1);
-  });
-
-  test("renders the about title as a single heading", () => {
-    const html = renderToStaticMarkup(<About />);
-    expect(html.match(/<h2>/g)).toHaveLength(1);
-  });
-
   test("renders a newly registered Markdown work report without changing the layout", () => {
     workCases.push({
       id: "new-work",

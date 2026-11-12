@@ -10,7 +10,6 @@ export function Work({ titleAs: Title = "h2" }: { titleAs?: "h1" | "h2" }) {
           <p className="eyebrow">{site.work.eyebrow}</p>
           <Title>{site.work.title}</Title>
         </div>
-        <span className="badge">{site.work.badge}</span>
       </div>
       <p className="section-copy">{site.work.intro}</p>
       {workCases.map((work) => (

@@ -68,13 +68,16 @@ describe("local images in Markdown", () => {
     });
   });
 
-  test("supports the existing project-root image path used in the workflow document", async () => {
-    await withBundle("![workflow](/src/assets/workflow.png)", async ({ markdown, assets }) => {
-      expect(assets).toHaveLength(1);
-      expect(markdown).not.toContain("/src/assets/");
-      const original = Bun.file(new URL("../src/assets/workflow.png", import.meta.url));
-      expect(await Bun.file(assets[0] ?? "").arrayBuffer()).toEqual(await original.arrayBuffer());
-    });
+  test("bundles an existing project-root image path", async () => {
+    await withBundle(
+      "![Illustration](/src/assets/pixel-desk.png)",
+      async ({ markdown, assets }) => {
+        expect(assets).toHaveLength(1);
+        expect(markdown).not.toContain("/src/assets/");
+        const original = Bun.file(new URL("../src/assets/pixel-desk.png", import.meta.url));
+        expect(await Bun.file(assets[0] ?? "").arrayBuffer()).toEqual(await original.arrayBuffer());
+      },
+    );
   });
 
   test("preserves remote images and image examples inside code", async () => {

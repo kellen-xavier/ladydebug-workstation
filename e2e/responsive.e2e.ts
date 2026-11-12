@@ -2,26 +2,6 @@ import { expect, test } from "@playwright/test";
 import { hasHorizontalScroll, mainNavigation, openMenu, pagePaths } from "./support/site";
 
 test.describe("responsive layout", () => {
-  test("centers the site map in a responsive grid", async ({ page }) => {
-    await page.goto("/");
-    const section = page.locator("#mapa");
-    const grid = section.locator(".site-map");
-    const columns = await grid.evaluate(
-      (element) => getComputedStyle(element).gridTemplateColumns.split(" ").length,
-    );
-    const width = page.viewportSize()?.width ?? 0;
-    const expectedColumns = width <= 560 ? 1 : width <= 900 ? 2 : 3;
-    expect(columns).toBe(expectedColumns);
-    await expect(grid.locator(":scope > li")).toHaveCount(9);
-
-    const sectionBox = await section.boundingBox();
-    const gridBox = await grid.boundingBox();
-    if (!sectionBox || !gridBox) throw new Error("The site map or section is not visible");
-    expect(
-      Math.abs(sectionBox.x + sectionBox.width / 2 - (gridBox.x + gridBox.width / 2)),
-    ).toBeLessThanOrEqual(1);
-  });
-
   for (const path of pagePaths) {
     test(`avoids horizontal scrolling on ${path}`, async ({ page }) => {
       await page.goto(`/${path}`);

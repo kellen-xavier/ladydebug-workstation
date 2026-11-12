@@ -165,13 +165,11 @@ O exemplo funciona em `src/content/fluxo-completo.md`. Em arquivos dentro de `sr
 
 O plugin identifica as imagens locais e registra seus arquivos no empacotamento do Bun, preservando o texto alternativo e o título. `scripts/build.ts` aplica o mesmo plugin no build de produção. As URLs geradas são relativas, para funcionar também quando o site é publicado em uma subpasta. Não é necessário cadastrar cada imagem em um componente React. Imagens com URL externa permanecem externas; as imagens renderizadas se ajustam à largura do conteúdo.
 
-### Testes de conteúdo
+### Testes de comportamento
 
-Os testes cobrem as âncoras existentes, os relatos e suas referências, a formatação Markdown e a inclusão de novos relatos e etapas sem alterar o layout. O teste do servidor de desenvolvimento edita uma cópia temporária do conteúdo e verifica o recarregamento.
+Os testes Bun verificam a geração das páginas, a transformação de Markdown e imagens, a atualização de conteúdo no servidor de desenvolvimento e as regras da pipeline. Usam conteúdo temporário nos testes de transformação, sem comparar a redação das páginas. Os nomes dos testes permanecem em inglês.
 
-Os testes verificam estrutura, integração e comportamento; não comparam a redação das páginas com snapshots. Os nomes dos testes permanecem em inglês.
-
-`bun run test:browser` executa 36 cenários Playwright em 1440, 768, 390 e 320 px de largura, usando um servidor próprio na porta 4174. Os cenários ficam separados por fluxo em `e2e/navigation.e2e.ts`, `home.e2e.ts`, `career.e2e.ts`, `practice.e2e.ts`, `workflow.e2e.ts`, `tools-and-games.e2e.ts` e `responsive.e2e.ts`; helpers compartilhados ficam em `e2e/support/`. A suíte cobre navegação, ações e downloads da home, disclosures de relatórios, workflow e imagem local, ferramentas e cópia para área de transferência, filtros de jogos e invariantes responsivas. Os testes focam destinos, estados e efeitos funcionais, sem comparar textos editoriais. Os locators usam estrutura e atributos acessíveis para acionar controles.
+`bun run test:browser` executa 27 cenários Playwright em 1440, 768, 390 e 320 px de largura, usando um servidor próprio na porta 4174. Os cenários ficam separados por fluxo em `e2e/navigation.e2e.ts`, `home.e2e.ts`, `practice.e2e.ts`, `workflow.e2e.ts`, `tools-and-games.e2e.ts` e `responsive.e2e.ts`; helpers compartilhados ficam em `e2e/support/`. A suíte cobre navegação, cliques, downloads, abertura de relatórios, cópia para a área de transferência, filtros de jogos, âncoras e usabilidade responsiva.
 
 ## Publicação
 
