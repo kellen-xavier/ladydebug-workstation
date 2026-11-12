@@ -39,6 +39,15 @@ describe("site navigation", () => {
     expect(navLinks(html)).toHaveLength(7);
   });
 
+  test("groups Setup destinations under an accessible trigger", () => {
+    const html = renderToStaticMarkup(<Header />);
+    expect(html).toContain('aria-controls="setup-submenu"');
+    expect(html).toContain('aria-expanded="false"');
+    expect(html).toContain('id="setup-submenu"');
+    expect(html).toContain('href="./ferramentas.html"');
+    expect(html).toContain('href="./games.html"');
+  });
+
   test("uses the brand to reach the about section from every page", () => {
     for (const current of ["home", "setup"] as const) {
       expect(renderToStaticMarkup(<Header current={current} />)).toContain(

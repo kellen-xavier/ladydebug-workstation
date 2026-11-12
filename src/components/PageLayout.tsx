@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import { type PageId, site } from "../content/site";
+import { BackToTop } from "./BackToTop";
 import { Footer } from "./Footer";
 import { Header } from "./Header";
 
@@ -20,6 +21,7 @@ export function PageLayout({
         {children}
       </main>
       <Footer />
+      <BackToTop />
     </>
   );
 }

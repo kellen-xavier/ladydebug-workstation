@@ -49,7 +49,7 @@ test.describe("responsive layout", () => {
     const toggle = page.locator(".menu-toggle");
     await expect(toggle).toHaveCSS("min-height", "44px");
     await openMenu(page);
-    const targets = page.locator("nav a, .button, .social a");
+    const targets = page.locator("nav a:visible, nav button:visible, .button, .social a");
     const heights = await targets.evaluateAll((elements) =>
       elements.map((element) => element.getBoundingClientRect().height),
     );

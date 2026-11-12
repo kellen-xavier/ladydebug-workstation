@@ -22,6 +22,7 @@ linkLabel: Todos os repositórios ↗
 - url: https://github.com/kellen-xavier/qa-readme
 
 ## Ladydebug Wiki Projects
+
 - icon: ~/
 - badge: STUDY IN PROGRESS
 - descricao: Estudo em desenvolvimento para organizar documentação com IA, regras de negócio, Markdown e wiki.
@@ -29,6 +30,7 @@ linkLabel: Todos os repositórios ↗
 - url: https://github.com/kellen-xavier/ladydebug-wiki-projects
 
 ## My Skills
+
 - icon: >_
 - badge: DEVELOPER TOOLING
 - descricao: Repositório central de skills para agentes de código, compartilhadas entre ferramentas de desenvolvimento.

@@ -7,7 +7,7 @@ test.describe("primary navigation", () => {
     await page.goto("/");
     await page.evaluate(() => document.fonts.ready);
     const boxes = await page
-      .locator("header .brand, header nav a, header .social a")
+      .locator("header .brand, header nav > a, header .nav-group-trigger, header .social a")
       .evaluateAll((elements) =>
         elements.map((element) => {
           const rect = element.getBoundingClientRect();
@@ -34,10 +34,30 @@ test.describe("primary navigation", () => {
     ]) {
       await page.goto("/");
       await openMenu(page);
+      if (["setup.html", "ferramentas.html", "games.html"].includes(path)) {
+        await mainNavigation(page).getByRole("button", { name: "Setup" }).click();
+      }
       await mainNavigation(page).locator(`a[href="./${path}"]`).click();
       await expect(page).toHaveURL(new RegExp(`/${path}$`));
       await expect(page.getByRole("heading", { level: 1 })).toHaveCount(1);
     }
+  });
+
+  test("reveals Setup destinations by hover and closes with Escape", async ({ page }) => {
+    test.skip((page.viewportSize()?.width ?? 0) <= 1100);
+    await page.goto("/");
+    const nav = mainNavigation(page);
+    const setup = nav.getByRole("button", { name: "Setup" });
+    const tools = nav.getByRole("link", { name: "Ferramentas" });
+    const games = nav.getByRole("link", { name: "Games" });
+    await expect(tools).toBeHidden();
+    await expect(games).toBeHidden();
+    await setup.hover();
+    await expect(tools).toBeVisible();
+    await expect(games).toBeVisible();
+    await setup.focus();
+    await page.keyboard.press("Escape");
+    await expect(tools).toBeHidden();
   });
 
   test("marks only the open page as current", async ({ page }) => {
@@ -80,5 +100,16 @@ test.describe("primary navigation", () => {
       await expect(link).toHaveAttribute("target", "_blank");
       await expect(link).toHaveAttribute("rel", "noopener noreferrer");
     }
+  });
+
+  test("returns to the top after scrolling", async ({ page }) => {
+    await page.goto("/");
+    const backToTop = page.getByRole("button", { name: "Voltar ao topo" });
+    await expect(backToTop).toHaveCount(0);
+
+    await page.evaluate(() => window.scrollTo(0, document.documentElement.scrollHeight));
+    await expect(backToTop).toBeVisible();
+    await backToTop.click();
+    await expect.poll(() => page.evaluate(() => window.scrollY)).toBe(0);
   });
 });

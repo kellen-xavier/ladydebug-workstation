@@ -29,6 +29,7 @@ ladydebug-workstation/
 │   │   ├── ToolsPage.tsx
 │   │   ├── GamesPage.tsx
 │   │   ├── Header.tsx       # navegação principal + links sociais
+│   │   ├── BackToTop.tsx    # botão de retorno ao topo após rolar a página
 │   │   ├── SocialLinks.tsx  # ícones GitHub, LinkedIn e Blog
 │   │   ├── Hero.tsx
 │   │   ├── About.tsx

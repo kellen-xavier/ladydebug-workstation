@@ -40,6 +40,7 @@ export const topics = [
 export const site = {
   brand: "ladydebug",
   skipLink: "Ir para o conteúdo",
+  backToTopLabel: "Voltar ao topo",
   navigationLabel: "Navegação principal",
   menuLabel: "menu",
   navigation: [
@@ -47,10 +48,12 @@ export const site = {
     { label: "Trajetória", href: pageHref.trajetoria, page: "trajetoria" },
     { label: "Na prática", href: pageHref.pratica, page: "pratica" },
     { label: "Workflow", href: pageHref.workflow, page: "workflow" },
+  ] satisfies NavigationItem[],
+  setupNavigation: [
     { label: "Setup", href: pageHref.setup, page: "setup" },
     { label: "Ferramentas", href: pageHref.ferramentas, page: "ferramentas" },
     { label: "Games", href: pageHref.games, page: "games" },
-  ] satisfies NavigationItem[],
+  ] satisfies [NavigationItem, ...NavigationItem[]],
   socialLabel: "Redes",
   social: [
     { id: "github", label: "GitHub", href: links.github },
@@ -88,7 +91,6 @@ export const site = {
   work: {
     eyebrow: "worklog / contribuições",
     title: "O que faço, na prática.",
-    badge: "IMPLEMENTAÇÃO · EVIDÊNCIA · LIMITES",
     intro:
       "Os exemplos abaixo vêm de relatórios de contribuições com referências de código, histórico Git e registros de execução. Cada caso explicita o que foi feito e até onde a evidência permite afirmar.",
     methodLabel: "Como ler:",

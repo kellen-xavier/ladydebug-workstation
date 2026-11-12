@@ -76,6 +76,27 @@ a:focus-visible {
     top: 8px;
 }
 
+.back-to-top {
+    position: fixed;
+    right: clamp(16px, 3vw, 32px);
+    bottom: clamp(16px, 3vw, 32px);
+    z-index: 5;
+    display: grid;
+    place-items: center;
+    width: 48px;
+    height: 48px;
+    border: 1px solid var(--ink);
+    border-radius: 4px;
+    background: var(--ink);
+    color: var(--on-ink);
+    font: 26px / 1 var(--font-body);
+    cursor: pointer;
+}
+
+.back-to-top:hover {
+    background: var(--accent);
+}
+
 header {
     display: block;
     padding: 0;
