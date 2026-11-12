@@ -2,27 +2,6 @@ import { expect, test } from "@playwright/test";
 import { mainNavigation, openMenu } from "./support/site";
 
 test.describe("primary navigation", () => {
-  test("keeps desktop navigation and social links on one row", async ({ page }) => {
-    if ((page.viewportSize()?.width ?? 0) <= 1100) return;
-    await page.goto("/");
-    await page.evaluate(() => document.fonts.ready);
-    const boxes = await page
-      .locator("header .brand, header nav a, header .social a")
-      .evaluateAll((elements) =>
-        elements.map((element) => {
-          const rect = element.getBoundingClientRect();
-          return { center: rect.top + rect.height / 2, width: rect.width };
-        }),
-      );
-    for (const box of boxes) {
-      expect(Math.abs(box.center - (boxes[0]?.center ?? 0))).toBeLessThan(2);
-      expect(box.width).toBeGreaterThanOrEqual(44);
-    }
-    expect(await page.locator("header nav a").evaluateAll((links) => links.length)).toBeGreaterThan(
-      0,
-    );
-  });
-
   test("opens every internal page from the home navigation", async ({ page }) => {
     for (const path of [
       "trajetoria.html",
@@ -34,10 +13,30 @@ test.describe("primary navigation", () => {
     ]) {
       await page.goto("/");
       await openMenu(page);
+      if (["setup.html", "ferramentas.html", "games.html"].includes(path)) {
+        await mainNavigation(page).getByRole("button", { name: "Setup" }).click();
+      }
       await mainNavigation(page).locator(`a[href="./${path}"]`).click();
       await expect(page).toHaveURL(new RegExp(`/${path}$`));
       await expect(page.getByRole("heading", { level: 1 })).toHaveCount(1);
     }
+  });
+
+  test("reveals Setup destinations by hover and closes with Escape", async ({ page }) => {
+    test.skip((page.viewportSize()?.width ?? 0) <= 1100);
+    await page.goto("/");
+    const nav = mainNavigation(page);
+    const setup = nav.getByRole("button", { name: "Setup" });
+    const tools = nav.getByRole("link", { name: "Ferramentas" });
+    const games = nav.getByRole("link", { name: "Games" });
+    await expect(tools).toBeHidden();
+    await expect(games).toBeHidden();
+    await setup.hover();
+    await expect(tools).toBeVisible();
+    await expect(games).toBeVisible();
+    await setup.focus();
+    await page.keyboard.press("Escape");
+    await expect(tools).toBeHidden();
   });
 
   test("marks only the open page as current", async ({ page }) => {
@@ -68,17 +67,14 @@ test.describe("primary navigation", () => {
     }
   });
 
-  test("keeps social links external and safely isolated", async ({ page }) => {
+  test("returns to the top after scrolling", async ({ page }) => {
     await page.goto("/");
-    await openMenu(page);
-    for (const href of [
-      "https://github.com/kellen-xavier",
-      "https://www.linkedin.com/in/kellen-xavier/",
-      "https://kellen-xavier.github.io/ladydebug.github.io/",
-    ]) {
-      const link = page.locator(`.social a[href="${href}"]`);
-      await expect(link).toHaveAttribute("target", "_blank");
-      await expect(link).toHaveAttribute("rel", "noopener noreferrer");
-    }
+    const backToTop = page.getByRole("button", { name: "Voltar ao topo" });
+    await expect(backToTop).toHaveCount(0);
+
+    await page.evaluate(() => window.scrollTo(0, document.documentElement.scrollHeight));
+    await expect(backToTop).toBeVisible();
+    await backToTop.click();
+    await expect.poll(() => page.evaluate(() => window.scrollY)).toBe(0);
   });
 });

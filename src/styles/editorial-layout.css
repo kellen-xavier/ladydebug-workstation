@@ -1,0 +1,141 @@
+/* Final layout rules for shared navigation and responsive behavior. */
+.panel.consulting,
+.panel--consulting {
+    background: var(--surface-consulting);
+}
+
+.menu-toggle,
+.filters button,
+.copy-button {
+    font-family: var(--font-body);
+    font-size: 17px;
+}
+
+/* Editorial page frame: full-width dividers, centered content, plain navigation. */
+.header-inner nav a {
+    min-height: 44px;
+    min-width: 44px;
+    padding-inline: 0;
+    border: 0;
+    outline: none;
+    box-shadow: none;
+    background: transparent;
+    color: var(--accent);
+}
+
+.header-inner nav a:hover,
+.header-inner nav a[aria-current="page"] {
+    background: transparent;
+}
+
+.header-inner nav a[aria-current="page"] {
+    font-weight: 700;
+    text-decoration-thickness: 2px;
+}
+
+.nav-group {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.nav-group-trigger {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    min-width: 44px;
+    min-height: 44px;
+    padding: 5px 0;
+    border: 0;
+    background: transparent;
+    color: var(--accent);
+    font: 17px / 1.6 var(--font-body);
+    cursor: pointer;
+}
+
+.nav-group-trigger:hover,
+.nav-group-trigger[aria-expanded="true"] {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+}
+
+.nav-group-trigger:focus-visible {
+    outline: 3px dashed var(--link);
+    outline-offset: 3px;
+}
+
+.nav-group-chevron {
+    font-size: 18px;
+    line-height: 1;
+}
+
+.nav-submenu {
+    position: absolute;
+    top: 100%;
+    left: -12px;
+    z-index: 10;
+    display: grid;
+    min-width: 160px;
+    padding: 6px 12px;
+    border: 1px solid var(--line);
+    background: var(--surface-card);
+    box-shadow: 2px 2px 0 var(--window-shadow);
+}
+
+.nav-submenu[hidden] {
+    display: none;
+}
+
+.header-inner .nav-submenu a {
+    justify-content: flex-start;
+    padding: 5px 0;
+}
+
+.menu-toggle {
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    outline: none;
+    box-shadow: none;
+    background: var(--paper);
+}
+
+.footer-inner {
+    min-height: 60px;
+}
+
+@media (max-width: 1100px) {
+    .header-inner {
+        position: relative;
+        align-items: center;
+    }
+
+    .menu-toggle {
+        position: absolute;
+        top: 8px;
+        right: 0;
+    }
+
+    .header-tools {
+        padding-top: 52px;
+    }
+
+    header nav {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        width: 100%;
+        gap: 4px 12px;
+    }
+
+    .nav-group {
+        display: block;
+    }
+
+    .nav-submenu {
+        position: static;
+        min-width: 0;
+        margin-top: 2px;
+        padding: 4px 12px;
+        box-shadow: none;
+    }
+}

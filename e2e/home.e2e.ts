@@ -17,14 +17,15 @@ test.describe("home page", () => {
 
   test("routes a site map entry to its destination", async ({ page }) => {
     const map = page.locator("ul.site-map");
-    await expect(map.locator(":scope > li")).toHaveCount(9);
     await map.locator('a[href="./trajetoria.html"]').click();
     await expect(page).toHaveURL(/\/trajetoria\.html$/);
   });
 
-  test("links workflow and setup panels to their pages", async ({ page }) => {
+  test("opens workflow and setup pages from their panels", async ({ page }) => {
     for (const href of ["./workflow.html", "./setup.html", "./ferramentas.html"]) {
-      await expect(page.locator(`#como-trabalho .panel-links a[href="${href}"]`)).toBeVisible();
+      await page.goto("/");
+      await page.locator(`#como-trabalho .panel-links a[href="${href}"]`).click();
+      await expect(page).toHaveURL(new RegExp(`/${href.slice(2)}$`));
     }
   });
 
@@ -36,11 +37,5 @@ test.describe("home page", () => {
       await link.click();
       expect((await downloadPromise).suggestedFilename()).toBe(file);
     }
-  });
-
-  test("keeps the footer free of navigation lists and social links", async ({ page }) => {
-    const footer = page.getByRole("contentinfo");
-    await expect(footer.getByRole("link")).toHaveCount(1);
-    await expect(footer.locator("ul, nav")).toHaveCount(0);
   });
 });

@@ -61,8 +61,15 @@ function documentHtml(page: Pick<Page, "title" | "description">, entrySrc: strin
 }
 
 function clientEntry(componentName: string, src: string): string {
-  return `import "${src}/styles/global.css";
-import "${src}/styles/pages.css";
+  return `import "${src}/styles/foundation.css";
+import "${src}/styles/home.css";
+import "${src}/styles/practice.css";
+import "${src}/styles/workflow.css";
+import "${src}/styles/theme.css";
+import "${src}/styles/sections.css";
+import "${src}/styles/internal-pages.css";
+import "${src}/styles/responsive.css";
+import "${src}/styles/editorial-layout.css";
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { ${componentName} } from "${src}/components/${componentName}";
