@@ -70,6 +70,7 @@ import "${src}/styles/sections.css";
 import "${src}/styles/internal-pages.css";
 import "${src}/styles/responsive.css";
 import "${src}/styles/editorial-layout.css";
+import "${src}/styles/contact.css";
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { ${componentName} } from "${src}/components/${componentName}";

@@ -10,6 +10,7 @@ test.describe("primary navigation", () => {
       "setup.html",
       "ferramentas.html",
       "games.html",
+      "contato.html",
     ]) {
       await page.goto("/");
       await openMenu(page);

@@ -5,6 +5,7 @@ export const links = {
   blog: "https://kellen-xavier.github.io/ladydebug.github.io/",
   cvPt: "./cv-kellen-xavier-pt-br.pdf",
   cvEn: "./cv-kellen-xavier-en.pdf",
+  contactEmail: "kellenxaviier@gmail.com",
 };
 
 export type PageId =
@@ -14,7 +15,8 @@ export type PageId =
   | "workflow"
   | "setup"
   | "ferramentas"
-  | "games";
+  | "games"
+  | "contato";
 
 export const pageHref: Record<PageId, string> = {
   home: "./index.html",
@@ -24,6 +26,7 @@ export const pageHref: Record<PageId, string> = {
   setup: "./setup.html",
   ferramentas: "./ferramentas.html",
   games: "./games.html",
+  contato: "./contato.html",
 };
 
 export type NavigationItem = { label: string; href: string; page: PageId };
@@ -48,12 +51,14 @@ export const site = {
     { label: "Trajetória", href: pageHref.trajetoria, page: "trajetoria" },
     { label: "Na prática", href: pageHref.pratica, page: "pratica" },
     { label: "Workflow", href: pageHref.workflow, page: "workflow" },
+    { label: "Contate", href: pageHref.contato, page: "contato" },
   ] satisfies NavigationItem[],
   setupNavigation: [
     { label: "Setup", href: pageHref.setup, page: "setup" },
     { label: "Ferramentas", href: pageHref.ferramentas, page: "ferramentas" },
     { label: "Games", href: pageHref.games, page: "games" },
   ] satisfies [NavigationItem, ...NavigationItem[]],
+  
   socialLabel: "Redes",
   social: [
     { id: "github", label: "GitHub", href: links.github },
