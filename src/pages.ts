@@ -1,5 +1,6 @@
 import type { ComponentType } from "react";
 import { CareerPage } from "./components/CareerPage";
+import { ContactPage } from "./components/ContactPage";
 import { GamesPage } from "./components/GamesPage";
 import { HomePage } from "./components/HomePage";
 import { PracticePage } from "./components/PracticePage";
@@ -48,7 +49,7 @@ export const pages = [
   {
     slug: "pratica",
     path: "/pratica.html",
-    title: "Na prática — Ladydebug",
+    title: "Trabalhos — Ladydebug",
     description:
       "Casos de contribuição em desenvolvimento, automação de testes e documentação, com evidências e limites.",
     component: PracticePage,
@@ -87,6 +88,14 @@ export const pages = [
     description: "Como organizo meus jogos e acompanho estudos e projetos com games.",
     component: GamesPage,
     componentName: "GamesPage",
+  },
+  {
+    slug: "contato",
+    path: "/contato.html",
+    title: "Contato e serviços — Ladydebug",
+    description: "Envie um pedido de consultoria, mentoria ou apresentação de serviço.",
+    component: ContactPage,
+    componentName: "ContactPage",
   },
 ] satisfies Page[];
 

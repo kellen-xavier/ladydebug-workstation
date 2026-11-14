@@ -2,6 +2,19 @@ import { expect, test } from "@playwright/test";
 import { mainNavigation, openMenu } from "./support/site";
 
 test.describe("primary navigation", () => {
+  test("returns to the start of the home page through the brand links", async ({ page }) => {
+    for (const [source, link] of [
+      ["/pratica.html", "header a.brand"],
+      ["/index.html#sobre", "header a.brand"],
+      ["/pratica.html", "footer a.brand"],
+    ] as const) {
+      await page.goto(source);
+      await page.locator(link).click();
+      await expect(page).toHaveURL(/\/index\.html$/);
+      await expect.poll(() => page.evaluate(() => window.scrollY)).toBe(0);
+    }
+  });
+
   test("opens every internal page from the home navigation", async ({ page }) => {
     for (const path of [
       "trajetoria.html",
@@ -10,9 +23,13 @@ test.describe("primary navigation", () => {
       "setup.html",
       "ferramentas.html",
       "games.html",
+      "contato.html",
     ]) {
       await page.goto("/");
       await openMenu(page);
+      if (["trajetoria.html", "pratica.html", "workflow.html"].includes(path)) {
+        await mainNavigation(page).getByRole("button", { name: "Trabalhos" }).click();
+      }
       if (["setup.html", "ferramentas.html", "games.html"].includes(path)) {
         await mainNavigation(page).getByRole("button", { name: "Setup" }).click();
       }
@@ -39,10 +56,27 @@ test.describe("primary navigation", () => {
     await expect(tools).toBeHidden();
   });
 
+  test("reveals work destinations by hover and closes with Escape", async ({ page }) => {
+    test.skip((page.viewportSize()?.width ?? 0) <= 1100);
+    await page.goto("/");
+    const nav = mainNavigation(page);
+    const work = nav.getByRole("button", { name: "Trabalhos" });
+    const career = nav.getByRole("link", { name: "Trajetória" });
+    const workflow = nav.getByRole("link", { name: "Workflow" });
+    await expect(career).toBeHidden();
+    await work.hover();
+    await expect(career).toBeVisible();
+    await expect(workflow).toBeVisible();
+    await work.focus();
+    await page.keyboard.press("Escape");
+    await expect(career).toBeHidden();
+  });
+
   test("marks only the open page as current", async ({ page }) => {
     await page.goto("/trajetoria.html");
     await openMenu(page);
     const nav = mainNavigation(page);
+    await nav.getByRole("button", { name: "Trabalhos" }).click();
     await expect(nav.locator('a[href="./trajetoria.html"]')).toHaveAttribute(
       "aria-current",
       "page",
@@ -54,17 +88,15 @@ test.describe("primary navigation", () => {
     await expect(mainNavigation(page).locator('a[aria-current="page"]')).toHaveCount(0);
   });
 
-  test("scrolls to home sections through their links", async ({ page }) => {
-    for (const [href, anchor] of [
-      ["./index.html#sobre", "sobre"],
-      ["./index.html#mapa", "mapa"],
-    ]) {
-      await page.goto("/");
-      await openMenu(page);
-      await page.locator(`header a[href="${href}"]`).click();
-      await expect(page).toHaveURL(new RegExp(`#${anchor}$`));
-      await expect(page.locator(`#${anchor}`)).toBeInViewport();
-    }
+  test("opens the about section from the main menu", async ({ page }) => {
+    await page.goto("/");
+    await openMenu(page);
+    const nav = mainNavigation(page);
+    await expect(nav.locator('a[href="./index.html#mapa"]')).toHaveCount(0);
+    const about = nav.getByRole("link", { name: "Sobre" });
+    await about.click();
+    await expect(page).toHaveURL(/#sobre$/);
+    await expect(page.locator("#sobre")).toBeInViewport();
   });
 
   test("returns to the top after scrolling", async ({ page }) => {

@@ -15,7 +15,7 @@
         flex-direction: column;
     }
 
-    .menu-toggle {
+    header .menu-toggle {
         position: absolute;
         top: 14px;
         right: 12px;
@@ -35,28 +35,28 @@
         cursor: pointer;
     }
 
-    .menu-toggle[aria-expanded="true"] {
+    header .menu-toggle[aria-expanded="true"] {
         background: var(--pink);
     }
 
-    .header-tools {
+    header .header-tools {
         display: none;
         flex-basis: 100%;
         width: 100%;
     }
 
-    .header-tools[data-open="true"] {
+    header .header-tools[data-open="true"] {
         display: flex;
         flex-direction: column;
         gap: 12px;
     }
 
-    .social {
+    header .header-tools .social {
         padding-left: 0;
         border-left: 0;
     }
 
-    header nav {
+    header .header-tools nav {
         display: grid;
         grid-template-columns: repeat(2, minmax(0, 1fr));
         width: 100%;

@@ -1,3 +1,9 @@
+---
+stack: Vue.js · JavaScript · Axios · Playwright
+period: 2026
+summary: Implementei validação fiscal, coordenação de sessão e consultas assíncronas, com testes de comportamento e contratos.
+---
+
 # Web: integração, sessão e comportamento assíncrono
 
 Contribuí para uma área de cliente existente em Vue.js e JavaScript, implementando funcionalidades e corrigindo comportamentos de integração com APIs, com testes de serviços, componentes e contratos.

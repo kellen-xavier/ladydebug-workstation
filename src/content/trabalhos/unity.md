@@ -1,3 +1,9 @@
+---
+stack: C# · Unity Test Framework · NUnit · Zenject
+period: set. 2023 – mar. 2024
+summary: Teste de unidade e integração de jogos desenvolvidos em Unity, com injeção de dependência e testes automatizados.
+---
+
 # Unity: jornadas de simulação automatizadas
 
 Criei e mantive testes de aceitação de um simulador educacional em Unity, reproduzindo jornadas do aluno e decisões alternativas.

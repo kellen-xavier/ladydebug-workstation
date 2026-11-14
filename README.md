@@ -23,11 +23,12 @@ ladydebug-workstation/
 │   ├── components/         # componentes: páginas (*Page/HomePage) e seções compartilhadas
 │   │   ├── HomePage.tsx     # composição da home
 │   │   ├── CareerPage.tsx   # página de trajetória
-│   │   ├── PracticePage.tsx # página "Na prática"
+│   │   ├── PracticePage.tsx # página Trabalhos
 │   │   ├── WorkflowPage.tsx # página de workflow (relato completo do processo)
 │   │   ├── SetupPage.tsx
 │   │   ├── ToolsPage.tsx
 │   │   ├── GamesPage.tsx
+│   │   ├── ContactPage.tsx # formulário de serviços
 │   │   ├── Header.tsx       # navegação principal + links sociais
 │   │   ├── BackToTop.tsx    # botão de retorno ao topo após rolar a página
 │   │   ├── SocialLinks.tsx  # ícones GitHub, LinkedIn e Blog
@@ -69,6 +70,7 @@ ladydebug-workstation/
 │   │   ├── setup.md        # painéis do setup
 │   │   ├── ferramentas.md  # lista de ferramentas e comandos
 │   │   ├── games.md         # games, organização e status
+│   │   ├── contato.ts       # opções e textos do contato
 │   │   ├── projetos.md     # cartões dos projetos
 │   │   └── site.ts         # navegação, rótulos, links e textos auxiliares
 │   ├── styles/
@@ -80,7 +82,8 @@ ladydebug-workstation/
 │   │   ├── sections.css    # mapa, painéis e CV
 │   │   ├── internal-pages.css # trajetória, setup, ferramentas e games
 │   │   ├── responsive.css  # ajustes responsivos das páginas internas
-│   │   └── editorial-layout.css # refinamentos de layout editorial
+│   │   ├── editorial-layout.css # refinamentos de layout editorial
+│   │   └── contact.css     # formulário de contato
 │   └── assets/
 │       ├── pixel-desk.png
 │       ├── workflow.png
@@ -124,16 +127,18 @@ bun run lint:fix   # corrige automaticamente o que for possível
 ## Editar
 
 - **Apresentação e sobre:** `src/content/apresentacao.md` e `src/content/sobre.md`.
-- **Relatos dos trabalhos:** `src/content/trabalhos/*.md`. A ordem, o ID da âncora, as tecnologias, o período e o resumo visível de cada contribuição (`summary`) ficam em `src/content/trabalhos/index.ts`.
+- **Página Trabalhos:** `src/content/trabalhos.md` guarda a introdução, os rótulos e a nota de leitura.
+- **Relatos dos trabalhos:** `src/content/trabalhos/*.md`. Edite `stack`, `period` e `summary` no front matter de cada relato; o restante é Markdown. A ordem e o ID da âncora ficam em `src/content/trabalhos/index.ts`.
 - **Texto de apresentação do fluxo:** `src/content/fluxo.md` — aceita parágrafos, ênfase e links Markdown.
 - **Página completa do workflow:** `src/content/fluxo-completo.md` — conteúdo acessível pelo botão “Conhecer meu Workflow”, em `workflow.html`. Aceita listas de tarefas com `- [ ]` e `- [x]`.
-- **Etapas do fluxo:** `src/content/fluxo-passos.md` — uma seção `## <id-do-caso>` por etapa (o id liga ao caso em Na prática); a ordem das seções define a exibição.
+- **Etapas do fluxo:** `src/content/fluxo-passos.md` — uma seção `## <id-do-caso>` por etapa (o id liga ao caso em Trabalhos); a ordem das seções define a exibição.
 - **Projetos:** `src/content/projetos.md` — uma seção `## Nome do projeto` por cartão (tags separadas por `|`).
 - **Mapa do site:** `src/content/mapa.md`.
 - **Trajetória:** `src/content/trajetoria.md` — linha do tempo da página Trajetória.
 - **Setup:** `src/content/setup.md`.
 - **Ferramentas:** `src/content/ferramentas.md` — lista e comandos de instalação (os exemplos de Git e k6 assumem Linux/Homebrew).
 - **Games:** `src/content/games.md`.
+- **Contato e serviços:** `src/content/contato.ts` — opções, rótulos e mensagens. O e-mail de destino fica em `src/content/site.ts`.
 
 Essas cinco páginas usam o mesmo formato Markdown: front matter (`--- ... ---`) com os rótulos da página e seções `## título` com linhas `- chave: valor`. Onde quiser um link, escreva `[texto](url)` no valor (em Setup, o link vira um link externo seguro). O parsing fica em `src/components/contentFormat.ts`; cada componente de página monta a estrutura e o texto vem só do `.md`.
 
@@ -169,11 +174,15 @@ O plugin identifica as imagens locais e registra seus arquivos no empacotamento 
 
 Os testes Bun verificam a geração das páginas, a transformação de Markdown e imagens, a atualização de conteúdo no servidor de desenvolvimento e as regras da pipeline. Usam conteúdo temporário nos testes de transformação, sem comparar a redação das páginas. Os nomes dos testes permanecem em inglês.
 
-`bun run test:browser` executa 27 cenários Playwright em 1440, 768, 390 e 320 px de largura, usando um servidor próprio na porta 4174. Os cenários ficam separados por fluxo em `e2e/navigation.e2e.ts`, `home.e2e.ts`, `practice.e2e.ts`, `workflow.e2e.ts`, `tools-and-games.e2e.ts` e `responsive.e2e.ts`; helpers compartilhados ficam em `e2e/support/`. A suíte cobre navegação, cliques, downloads, abertura de relatórios, cópia para a área de transferência, filtros de jogos, âncoras e usabilidade responsiva.
+`bun run test:browser` executa 31 cenários Playwright em 1440, 768, 390 e 320 px de largura, usando um servidor próprio na porta 4174. Os cenários ficam separados por fluxo em `e2e/navigation.e2e.ts`, `home.e2e.ts`, `contact.e2e.ts`, `practice.e2e.ts`, `workflow.e2e.ts`, `tools-and-games.e2e.ts` e `responsive.e2e.ts`; helpers compartilhados ficam em `e2e/support/`. A suíte cobre navegação, cliques, downloads, contato, abertura de relatórios, cópia para a área de transferência, filtros de jogos, âncoras e usabilidade responsiva.
+
+### Formulário de contato
+
+A página `contato.html` envia pedidos para o e-mail publicado no CV por meio do [FormSubmit](https://formsubmit.co/). A primeira tentativa de envio gera uma mensagem de ativação para esse endereço: confirme-a antes de divulgar o formulário. Os testes de navegador simulam a resposta do serviço e não enviam mensagens reais. Se o envio falhar, a página oferece um link `mailto:` com assunto e instruções preenchidos.
 
 ## Publicação
 
-`bun run build` gera em `dist/` as páginas `index.html`, `trajetoria.html`, `pratica.html`, `workflow.html`, `setup.html`, `ferramentas.html` e `games.html`, além dos CVs em português e inglês e dos arquivos estáticos, com caminhos relativos. O build falha se algum dos PDFs em `src/assets/` não existir. Publique todo o diretório para que o acesso direto a cada página funcione sem redirecionamentos de SPA. Os arquivos podem ser hospedados no GitHub Pages, Netlify ou outra hospedagem estática.
+`bun run build` gera em `dist/` as páginas `index.html`, `trajetoria.html`, `pratica.html`, `workflow.html`, `setup.html`, `ferramentas.html`, `games.html` e `contato.html`, além dos CVs em português e inglês e dos arquivos estáticos, com caminhos relativos. O build falha se algum dos PDFs em `src/assets/` não existir. Publique todo o diretório para que o acesso direto a cada página funcione sem redirecionamentos de SPA. Os arquivos podem ser hospedados no GitHub Pages, Netlify ou outra hospedagem estática.
 
 ### GitHub Pages
 
