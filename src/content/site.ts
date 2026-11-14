@@ -47,7 +47,7 @@ export const site = {
   navigationLabel: "Navegação principal",
   menuLabel: "menu",
   navigation: [
-    { label: "Mapa", href: `${pageHref.home}#mapa`, page: "home" },
+    { label: "Sobre", href: `${pageHref.home}#sobre`, page: "home" },
     { label: "Contate", href: pageHref.contato, page: "contato" },
   ] satisfies [NavigationItem, NavigationItem],
   workNavigation: [

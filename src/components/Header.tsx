@@ -77,7 +77,7 @@ export function Header({ current = "home" }: { current?: PageId }) {
   return (
     <header>
       <div className="wrap header-inner">
-        <a className="brand" href={`${pageHref.home}#sobre`}>
+        <a className="brand" href={pageHref.home}>
           {site.brand}
         </a>
         <button

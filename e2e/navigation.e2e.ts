@@ -2,6 +2,19 @@ import { expect, test } from "@playwright/test";
 import { mainNavigation, openMenu } from "./support/site";
 
 test.describe("primary navigation", () => {
+  test("returns to the start of the home page through the brand links", async ({ page }) => {
+    for (const [source, link] of [
+      ["/pratica.html", "header a.brand"],
+      ["/index.html#sobre", "header a.brand"],
+      ["/pratica.html", "footer a.brand"],
+    ] as const) {
+      await page.goto(source);
+      await page.locator(link).click();
+      await expect(page).toHaveURL(/\/index\.html$/);
+      await expect.poll(() => page.evaluate(() => window.scrollY)).toBe(0);
+    }
+  });
+
   test("opens every internal page from the home navigation", async ({ page }) => {
     for (const path of [
       "trajetoria.html",
@@ -75,17 +88,15 @@ test.describe("primary navigation", () => {
     await expect(mainNavigation(page).locator('a[aria-current="page"]')).toHaveCount(0);
   });
 
-  test("scrolls to home sections through their links", async ({ page }) => {
-    for (const [href, anchor] of [
-      ["./index.html#sobre", "sobre"],
-      ["./index.html#mapa", "mapa"],
-    ]) {
-      await page.goto("/");
-      await openMenu(page);
-      await page.locator(`header a[href="${href}"]`).click();
-      await expect(page).toHaveURL(new RegExp(`#${anchor}$`));
-      await expect(page.locator(`#${anchor}`)).toBeInViewport();
-    }
+  test("opens the about section from the main menu", async ({ page }) => {
+    await page.goto("/");
+    await openMenu(page);
+    const nav = mainNavigation(page);
+    await expect(nav.locator('a[href="./index.html#mapa"]')).toHaveCount(0);
+    const about = nav.getByRole("link", { name: "Sobre" });
+    await about.click();
+    await expect(page).toHaveURL(/#sobre$/);
+    await expect(page.locator("#sobre")).toBeInViewport();
   });
 
   test("returns to the top after scrolling", async ({ page }) => {

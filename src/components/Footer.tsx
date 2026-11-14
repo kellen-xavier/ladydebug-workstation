@@ -4,7 +4,7 @@ export function Footer() {
   return (
     <footer>
       <div className="wrap footer-inner">
-        <a className="brand" href={`${pageHref.home}#main`}>
+        <a className="brand" href={pageHref.home}>
           {site.brand}
         </a>
         <span className="footer-note">
