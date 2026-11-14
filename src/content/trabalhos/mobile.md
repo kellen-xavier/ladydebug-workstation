@@ -1,3 +1,9 @@
+---
+stack: React Native · TypeScript · Detox · Jest
+period: 2026
+summary: Aplicativo mobile de estacionamento de carros (com gerenciamento de estacionamento e multas) para usuários finais.
+---
+
 # Mobile: implementação, testes e verificação de estado
 
 Desenvolvi e corrigi fluxos em uma aplicação mobile de mobilidade e pagamentos, junto com a infraestrutura e os cenários de teste.

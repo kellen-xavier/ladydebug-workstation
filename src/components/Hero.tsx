@@ -15,11 +15,6 @@ export function Hero() {
         >
           {presentation}
         </MarkdownContent>
-        <div className="actions">
-          <a className="button" href={site.hero.action.href}>
-            {site.hero.action.label}
-          </a>
-        </div>
       </div>
       <figure className="pixel-scene">
         <img src={pixelDesk} width="1512" height="1040" alt={site.hero.imageAlt} />

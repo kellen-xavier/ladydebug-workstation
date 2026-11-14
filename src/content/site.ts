@@ -48,17 +48,19 @@ export const site = {
   menuLabel: "menu",
   navigation: [
     { label: "Mapa", href: `${pageHref.home}#mapa`, page: "home" },
-    { label: "Trajetória", href: pageHref.trajetoria, page: "trajetoria" },
-    { label: "Na prática", href: pageHref.pratica, page: "pratica" },
-    { label: "Workflow", href: pageHref.workflow, page: "workflow" },
     { label: "Contate", href: pageHref.contato, page: "contato" },
-  ] satisfies NavigationItem[],
+  ] satisfies [NavigationItem, NavigationItem],
+  workNavigation: [
+    { label: "Trabalhos", href: pageHref.pratica, page: "pratica" },
+    { label: "Trajetória", href: pageHref.trajetoria, page: "trajetoria" },
+    { label: "Workflow", href: pageHref.workflow, page: "workflow" },
+  ] satisfies [NavigationItem, ...NavigationItem[]],
   setupNavigation: [
     { label: "Setup", href: pageHref.setup, page: "setup" },
     { label: "Ferramentas", href: pageHref.ferramentas, page: "ferramentas" },
     { label: "Games", href: pageHref.games, page: "games" },
   ] satisfies [NavigationItem, ...NavigationItem[]],
-  
+
   socialLabel: "Redes",
   social: [
     { id: "github", label: "GitHub", href: links.github },
@@ -67,7 +69,6 @@ export const site = {
   ] satisfies SocialLink[],
   hero: {
     eyebrow: "★ bem-vindo à workstation ★",
-    action: { href: pageHref.pratica, label: "Ver contribuições →" },
     imageAlt: "Estação de trabalho retrô em pixel art, com computador e caneca rosa",
     imageCaption: "code · test · document · repeat",
   },
@@ -92,15 +93,6 @@ export const site = {
         { href: pageHref.ferramentas, label: "Ver ferramentas →" },
       ],
     },
-  },
-  work: {
-    eyebrow: "worklog / contribuições",
-    title: "O que faço, na prática.",
-    intro:
-      "Os exemplos abaixo vêm de relatórios de contribuições com referências de código, histórico Git e registros de execução. Cada caso explicita o que foi feito e até onde a evidência permite afirmar.",
-    methodLabel: "Como ler:",
-    method:
-      "os casos profissionais são sínteses dos relatórios fornecidos, não uma auditoria independente dos repositórios privados. As fichas identificam a fonte e os localizadores para conferência com acesso ao original. Os projetos abertos podem ser inspecionados diretamente no GitHub.",
   },
   cv: {
     title: "Prefere em PDF?",

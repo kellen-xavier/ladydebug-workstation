@@ -1,54 +1,63 @@
 import { expect, test } from "@playwright/test";
 
-test.describe("practice reports", () => {
-  test("keeps reports collapsed and their summaries available", async ({ page }) => {
+test.describe("work cases", () => {
+  test("matches the prototype's alternating cover proportions", async ({ page }) => {
     await page.goto("/pratica.html");
-    const reports = page.locator("details.case");
-    expect(await reports.count()).toBeGreaterThan(0);
-    for (const report of await reports.all()) {
-      await expect(report).not.toHaveAttribute("open", "");
-      await expect(report.locator(":scope > summary")).toBeVisible();
-      await expect(report.locator(":scope > summary .case-excerpt")).toBeVisible();
+    const covers = page.locator(".work-item .work-cover");
+    const first = await covers.nth(0).boundingBox();
+    const second = await covers.nth(1).boundingBox();
+    expect(first).not.toBeNull();
+    expect(second).not.toBeNull();
+    if (!first || !second) return;
+
+    if ((page.viewportSize()?.width ?? 0) > 700) {
+      expect(first.width / first.height).toBeCloseTo(16 / 10, 2);
+      expect(second.width / second.height).toBeCloseTo(4 / 5, 2);
+      expect(second.y - first.y).toBeCloseTo(56, 0);
+    } else {
+      expect(first.width / first.height).toBeCloseTo(16 / 10, 2);
+      expect(second.width / second.height).toBeCloseTo(16 / 10, 2);
     }
   });
 
-  test("opens an external report link in a protected tab", async ({ page }) => {
+  test("opens a case from the grid and returns to all work", async ({ page }) => {
     await page.goto("/pratica.html");
-    const report = page.locator('details.case:has(a[target="_blank"])').first();
-    await report.locator(":scope > summary").click();
-    const externalLink = report.locator('a[target="_blank"]').first();
-    const destination = await externalLink.getAttribute("href");
-    await expect(externalLink).toHaveAttribute("rel", "noopener noreferrer");
+    const cards = page.locator(".work-item");
+    expect(await cards.count()).toBeGreaterThan(0);
+    const first = cards.first().locator("a");
+    const id = (await first.getAttribute("href"))?.slice(1);
+    expect(id).toBeTruthy();
+
+    await first.click();
+    await expect(page).toHaveURL(new RegExp(`#${id}$`));
+    await expect(page.locator(`.work-detail#${id}`)).toBeVisible();
+    await expect(cards.first()).toBeHidden();
+
+    await page.locator(".work-detail a[href='#pratica']").first().click();
+    await expect(cards.first()).toBeVisible();
+  });
+
+  test("opens a linked case directly and keeps evidence disclosures keyboard accessible", async ({
+    page,
+  }) => {
+    await page.goto("/pratica.html#web");
+    const detail = page.locator(".work-detail#web");
+    await expect(detail).toBeVisible();
+    const disclosure = detail.locator("details.provenance").first();
+    await disclosure.locator("summary").focus();
+    await page.keyboard.press("Enter");
+    await expect(disclosure).toHaveAttribute("open", "");
+  });
+
+  test("keeps external case references in a protected tab", async ({ page }) => {
+    await page.goto("/pratica.html#site-web");
+    const link = page.locator('.work-detail#site-web a[target="_blank"]').first();
+    await expect(link).toHaveAttribute("rel", "noopener noreferrer");
+    const destination = await link.getAttribute("href");
     const popupPromise = page.waitForEvent("popup");
-    await externalLink.click();
+    await link.click();
     const popup = await popupPromise;
     await expect(popup).toHaveURL(destination ?? "");
     await popup.close();
-  });
-
-  test("opens a report and toggles the evidence disclosure with the keyboard", async ({ page }) => {
-    await page.goto("/pratica.html");
-    const report = page.locator("details.case:has(details.provenance)").first();
-    await report.locator(":scope > summary").focus();
-    await page.keyboard.press("Enter");
-    await expect(report).toHaveAttribute("open", "");
-
-    const evidence = report.locator(".case-body > details.provenance").first();
-    const summary = evidence.locator(":scope > summary");
-    await summary.focus();
-    await page.keyboard.press("Enter");
-    await expect(evidence).toHaveAttribute("open", "");
-
-    await page.keyboard.press("Enter");
-    await expect(evidence).not.toHaveAttribute("open", "");
-  });
-
-  test("opens the report identified by the URL fragment", async ({ page }) => {
-    await page.goto("/pratica.html");
-    const id = await page.locator("details.case").first().getAttribute("id");
-    expect(id).toBeTruthy();
-    await page.goto(`/pratica.html#${id}`);
-    await expect(page.locator(`details.case#${id}`)).toHaveAttribute("open", "");
-    await expect(page.locator(`details.case#${id}`)).toBeInViewport();
   });
 });

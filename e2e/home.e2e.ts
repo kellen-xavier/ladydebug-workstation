@@ -1,17 +1,19 @@
 import { expect, test } from "@playwright/test";
+import { openMenu } from "./support/site";
 
 test.describe("home page", () => {
   test.beforeEach(async ({ page }) => {
     await page.goto("/");
   });
 
-  test("shows the primary action in the first viewport and routes to practice", async ({
+  test("keeps work accessible through the main navigation without a hero action", async ({
     page,
   }) => {
-    const action = page.locator('.hero .actions a[href="./pratica.html"]');
-    await expect(action).toBeVisible();
-    await expect(action).toBeInViewport();
-    await action.click();
+    await expect(page.locator(".hero .actions")).toHaveCount(0);
+    await openMenu(page);
+    const work = page.getByRole("navigation", { name: "Navegação principal" });
+    await work.getByRole("button", { name: "Trabalhos" }).click();
+    await work.locator('a[href="./pratica.html"]').click();
     await expect(page).toHaveURL(/\/pratica\.html$/);
   });
 

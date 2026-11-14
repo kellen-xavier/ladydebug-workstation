@@ -52,14 +52,6 @@
     font-weight: bold;
 }
 
-.actions {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 20px;
-    margin-top: 24px;
-}
-
 .button {
     display: inline-flex;
     gap: 14px;

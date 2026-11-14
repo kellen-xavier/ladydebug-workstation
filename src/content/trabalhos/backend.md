@@ -1,3 +1,9 @@
+---
+stack: C# · .NET 10 · xUnit · Moq
+period: 2026
+summary: Backend de microserviço para cadastro de clientes, com testes unitários e de integração, além de contratos HTTP.
+---
+
 # Backend: regras transacionais e contratos HTTP
 
 Criei testes, módulos e documentações para o backend de uma aplicação de "Mobilidade voltada para Estacionamento". A contribuição identificada está nos testes das regras existentes e na explicação técnica do sistema.

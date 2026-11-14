@@ -7,7 +7,7 @@ test.describe("service contact", () => {
   }) => {
     await page.goto("/");
     await openMenu(page);
-    await page.getByRole("navigation").getByRole("link", { name: "Contate serviços" }).click();
+    await page.getByRole("navigation").locator('a[href="./contato.html"]').click();
     await expect(page).toHaveURL(/\/contato\.html$/);
 
     await expect(page.getByLabel("Seu nome")).toHaveCount(0);

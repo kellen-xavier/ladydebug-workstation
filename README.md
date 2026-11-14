@@ -23,7 +23,7 @@ ladydebug-workstation/
 │   ├── components/         # componentes: páginas (*Page/HomePage) e seções compartilhadas
 │   │   ├── HomePage.tsx     # composição da home
 │   │   ├── CareerPage.tsx   # página de trajetória
-│   │   ├── PracticePage.tsx # página "Na prática"
+│   │   ├── PracticePage.tsx # página Trabalhos
 │   │   ├── WorkflowPage.tsx # página de workflow (relato completo do processo)
 │   │   ├── SetupPage.tsx
 │   │   ├── ToolsPage.tsx
@@ -127,10 +127,11 @@ bun run lint:fix   # corrige automaticamente o que for possível
 ## Editar
 
 - **Apresentação e sobre:** `src/content/apresentacao.md` e `src/content/sobre.md`.
-- **Relatos dos trabalhos:** `src/content/trabalhos/*.md`. A ordem, o ID da âncora, as tecnologias, o período e o resumo visível de cada contribuição (`summary`) ficam em `src/content/trabalhos/index.ts`.
+- **Página Trabalhos:** `src/content/trabalhos.md` guarda a introdução, os rótulos e a nota de leitura.
+- **Relatos dos trabalhos:** `src/content/trabalhos/*.md`. Edite `stack`, `period` e `summary` no front matter de cada relato; o restante é Markdown. A ordem e o ID da âncora ficam em `src/content/trabalhos/index.ts`.
 - **Texto de apresentação do fluxo:** `src/content/fluxo.md` — aceita parágrafos, ênfase e links Markdown.
 - **Página completa do workflow:** `src/content/fluxo-completo.md` — conteúdo acessível pelo botão “Conhecer meu Workflow”, em `workflow.html`. Aceita listas de tarefas com `- [ ]` e `- [x]`.
-- **Etapas do fluxo:** `src/content/fluxo-passos.md` — uma seção `## <id-do-caso>` por etapa (o id liga ao caso em Na prática); a ordem das seções define a exibição.
+- **Etapas do fluxo:** `src/content/fluxo-passos.md` — uma seção `## <id-do-caso>` por etapa (o id liga ao caso em Trabalhos); a ordem das seções define a exibição.
 - **Projetos:** `src/content/projetos.md` — uma seção `## Nome do projeto` por cartão (tags separadas por `|`).
 - **Mapa do site:** `src/content/mapa.md`.
 - **Trajetória:** `src/content/trajetoria.md` — linha do tempo da página Trajetória.

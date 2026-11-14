@@ -14,6 +14,9 @@ test.describe("primary navigation", () => {
     ]) {
       await page.goto("/");
       await openMenu(page);
+      if (["trajetoria.html", "pratica.html", "workflow.html"].includes(path)) {
+        await mainNavigation(page).getByRole("button", { name: "Trabalhos" }).click();
+      }
       if (["setup.html", "ferramentas.html", "games.html"].includes(path)) {
         await mainNavigation(page).getByRole("button", { name: "Setup" }).click();
       }
@@ -40,10 +43,27 @@ test.describe("primary navigation", () => {
     await expect(tools).toBeHidden();
   });
 
+  test("reveals work destinations by hover and closes with Escape", async ({ page }) => {
+    test.skip((page.viewportSize()?.width ?? 0) <= 1100);
+    await page.goto("/");
+    const nav = mainNavigation(page);
+    const work = nav.getByRole("button", { name: "Trabalhos" });
+    const career = nav.getByRole("link", { name: "Trajetória" });
+    const workflow = nav.getByRole("link", { name: "Workflow" });
+    await expect(career).toBeHidden();
+    await work.hover();
+    await expect(career).toBeVisible();
+    await expect(workflow).toBeVisible();
+    await work.focus();
+    await page.keyboard.press("Escape");
+    await expect(career).toBeHidden();
+  });
+
   test("marks only the open page as current", async ({ page }) => {
     await page.goto("/trajetoria.html");
     await openMenu(page);
     const nav = mainNavigation(page);
+    await nav.getByRole("button", { name: "Trabalhos" }).click();
     await expect(nav.locator('a[href="./trajetoria.html"]')).toHaveAttribute(
       "aria-current",
       "page",

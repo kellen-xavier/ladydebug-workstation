@@ -49,7 +49,7 @@ export const pages = [
   {
     slug: "pratica",
     path: "/pratica.html",
-    title: "Na prática — Ladydebug",
+    title: "Trabalhos — Ladydebug",
     description:
       "Casos de contribuição em desenvolvimento, automação de testes e documentação, com evidências e limites.",
     component: PracticePage,

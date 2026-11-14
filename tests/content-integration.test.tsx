@@ -16,11 +16,9 @@ describe("content-driven portfolio sections", () => {
     try {
       const html = renderToStaticMarkup(<Work />);
       expect(html).toContain('id="new-work"');
-      expect(html).toMatch(
-        /<summary>[\s\S]*?<span class="case-label">[^<]+<\/span>\s*<span class="case-period">[^<]+<\/span>/,
-      );
+      expect(html).toContain('href="#new-work"');
+      expect(html).toContain('class="work-item"');
       expect(html).toContain("<strong>");
-      expect(html).toMatch(/<span class="case-excerpt">[^<]+<\/span>/);
       expect(html).toMatch(/<details class="provenance">\s*<summary>[^<]+<\/summary>/);
     } finally {
       workCases.pop();

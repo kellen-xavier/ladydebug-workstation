@@ -34,7 +34,7 @@ describe("Markdown content in the development server", () => {
         url = output.match(/url:\s*(http:\/\/\S+)/)?.[1];
       }
       reader.releaseLock();
-      // Work-case Markdown renders on the "Na prática" page, not the home page.
+      // Work-case Markdown renders on the Trabalhos page, not the home page.
       const pageUrl = new URL("/pratica.html", url).href;
       const readBundle = async () => {
         const html = await (await fetch(pageUrl)).text();
