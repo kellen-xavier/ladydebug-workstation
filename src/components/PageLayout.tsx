@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import { type PageId, site } from "../content/site";
+import { BackToTop } from "./BackToTop";
 import { Footer } from "./Footer";
 import { Header } from "./Header";
 
@@ -15,15 +16,12 @@ export function PageLayout({
       <a className="skip" href="#main">
         {site.skipLink}
       </a>
-      <div className="wrap">
-        <div className="browser-bar">
-          <span>{site.browserTitle}</span>
-          <span aria-hidden="true">▁ □ ×</span>
-        </div>
-        <Header current={current} />
-        <main id="main">{children}</main>
-        <Footer />
-      </div>
+      <Header current={current} />
+      <main className="wrap" id="main">
+        {children}
+      </main>
+      <Footer />
+      <BackToTop />
     </>
   );
 }

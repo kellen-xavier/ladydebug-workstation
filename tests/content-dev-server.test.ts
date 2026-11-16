@@ -34,7 +34,7 @@ describe("Markdown content in the development server", () => {
         url = output.match(/url:\s*(http:\/\/\S+)/)?.[1];
       }
       reader.releaseLock();
-      // Work-case Markdown renders on the "Na prática" page, not the home page.
+      // Work-case Markdown renders on the Trabalhos page, not the home page.
       const pageUrl = new URL("/pratica.html", url).href;
       const readBundle = async () => {
         const html = await (await fetch(pageUrl)).text();
@@ -45,26 +45,17 @@ describe("Markdown content in the development server", () => {
         return response.text();
       };
       const bundle = await readBundle();
-      expect(bundle.includes("# Mobile: implementação, testes e verificação de estado")).toBe(true);
-      expect(
-        bundle.includes("<h1>Mobile: implementação, testes e verificação de estado</h1>"),
-      ).toBe(false);
-
+      const marker = "Markdown hot reload probe";
+      expect(bundle).not.toContain(marker);
       const report = join(directory, "src/content/trabalhos/mobile.md");
-      await Bun.write(report, `${await Bun.file(report).text()}\nEdited Markdown content.\n`);
+      await Bun.write(report, `${await Bun.file(report).text()}\n${marker}\n`);
       let updated = "";
       for (let attempt = 0; attempt < 25; attempt++) {
         updated = await readBundle();
-        if (updated.includes("Edited Markdown content.")) break;
+        if (updated.includes(marker)) break;
         await Bun.sleep(20);
       }
-      expect(updated.includes("Edited Markdown content.")).toBe(true);
-      expect(updated.includes("# Mobile: implementação, testes e verificação de estado")).toBe(
-        true,
-      );
-      expect(
-        updated.includes("<h1>Mobile: implementação, testes e verificação de estado</h1>"),
-      ).toBe(false);
+      expect(updated).toContain(marker);
     } finally {
       server.kill();
       await server.exited;

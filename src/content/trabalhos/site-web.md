@@ -1,3 +1,9 @@
+---
+stack: React · TypeScript · Decap CMS
+period: 2026
+summary: Criação de site profissional para divulgação de Prestação de Serviços com o suporte do CMS, com testes de interface e integração.
+---
+
 # Site para Prestação de Serviços
 
 Criei um website simples para apresentação e divulgação de prestação de serviços do cliente. Inicialmente o principal foi a lading page evoluindo depois com 

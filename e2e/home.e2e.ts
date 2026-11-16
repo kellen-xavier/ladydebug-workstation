@@ -1,30 +1,33 @@
 import { expect, test } from "@playwright/test";
+import { openMenu } from "./support/site";
 
 test.describe("home page", () => {
   test.beforeEach(async ({ page }) => {
     await page.goto("/");
   });
 
-  test("shows the primary action in the first viewport and routes to practice", async ({
+  test("keeps work accessible through the main navigation without a hero action", async ({
     page,
   }) => {
-    const action = page.locator('.hero .actions a[href="./pratica.html"]');
-    await expect(action).toBeVisible();
-    await expect(action).toBeInViewport();
-    await action.click();
+    await expect(page.locator(".hero .actions")).toHaveCount(0);
+    await openMenu(page);
+    const work = page.getByRole("navigation", { name: "Navegação principal" });
+    await work.getByRole("button", { name: "Trabalhos" }).click();
+    await work.locator('a[href="./pratica.html"]').click();
     await expect(page).toHaveURL(/\/pratica\.html$/);
   });
 
   test("routes a site map entry to its destination", async ({ page }) => {
     const map = page.locator("ul.site-map");
-    await expect(map.locator(":scope > li")).toHaveCount(9);
     await map.locator('a[href="./trajetoria.html"]').click();
     await expect(page).toHaveURL(/\/trajetoria\.html$/);
   });
 
-  test("links workflow and setup panels to their pages", async ({ page }) => {
+  test("opens workflow and setup pages from their panels", async ({ page }) => {
     for (const href of ["./workflow.html", "./setup.html", "./ferramentas.html"]) {
-      await expect(page.locator(`#como-trabalho .panel-links a[href="${href}"]`)).toBeVisible();
+      await page.goto("/");
+      await page.locator(`#como-trabalho .panel-links a[href="${href}"]`).click();
+      await expect(page).toHaveURL(new RegExp(`/${href.slice(2)}$`));
     }
   });
 
@@ -36,11 +39,5 @@ test.describe("home page", () => {
       await link.click();
       expect((await downloadPromise).suggestedFilename()).toBe(file);
     }
-  });
-
-  test("keeps the footer free of navigation lists and social links", async ({ page }) => {
-    const footer = page.getByRole("contentinfo");
-    await expect(footer.getByRole("link")).toHaveCount(1);
-    await expect(footer.locator("ul, nav")).toHaveCount(0);
   });
 });

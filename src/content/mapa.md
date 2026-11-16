@@ -18,7 +18,7 @@ intro: Escolha uma seção para conhecer meu trabalho.
 
 ## ✿ A plantação
 
-- destino: Na prática
+- destino: Trabalhos
 - pergunta: O que já entreguei?
 - link: ./pratica.html
 

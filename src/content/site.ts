@@ -5,6 +5,7 @@ export const links = {
   blog: "https://kellen-xavier.github.io/ladydebug.github.io/",
   cvPt: "./cv-kellen-xavier-pt-br.pdf",
   cvEn: "./cv-kellen-xavier-en.pdf",
+  contactEmail: "kellenxaviier@gmail.com",
 };
 
 export type PageId =
@@ -14,7 +15,8 @@ export type PageId =
   | "workflow"
   | "setup"
   | "ferramentas"
-  | "games";
+  | "games"
+  | "contato";
 
 export const pageHref: Record<PageId, string> = {
   home: "./index.html",
@@ -24,6 +26,7 @@ export const pageHref: Record<PageId, string> = {
   setup: "./setup.html",
   ferramentas: "./ferramentas.html",
   games: "./games.html",
+  contato: "./contato.html",
 };
 
 export type NavigationItem = { label: string; href: string; page: PageId };
@@ -39,19 +42,25 @@ export const topics = [
 
 export const site = {
   brand: "ladydebug",
-  browserTitle: "Ladydebug Workstation",
   skipLink: "Ir para o conteúdo",
+  backToTopLabel: "Voltar ao topo",
   navigationLabel: "Navegação principal",
   menuLabel: "menu",
   navigation: [
-    { label: "Mapa", href: `${pageHref.home}#mapa`, page: "home" },
+    { label: "Sobre", href: `${pageHref.home}#sobre`, page: "home" },
+    { label: "Contate", href: pageHref.contato, page: "contato" },
+  ] satisfies [NavigationItem, NavigationItem],
+  workNavigation: [
+    { label: "Trabalhos", href: pageHref.pratica, page: "pratica" },
     { label: "Trajetória", href: pageHref.trajetoria, page: "trajetoria" },
-    { label: "Na prática", href: pageHref.pratica, page: "pratica" },
     { label: "Workflow", href: pageHref.workflow, page: "workflow" },
+  ] satisfies [NavigationItem, ...NavigationItem[]],
+  setupNavigation: [
     { label: "Setup", href: pageHref.setup, page: "setup" },
     { label: "Ferramentas", href: pageHref.ferramentas, page: "ferramentas" },
     { label: "Games", href: pageHref.games, page: "games" },
-  ] satisfies NavigationItem[],
+  ] satisfies [NavigationItem, ...NavigationItem[]],
+
   socialLabel: "Redes",
   social: [
     { id: "github", label: "GitHub", href: links.github },
@@ -60,7 +69,6 @@ export const site = {
   ] satisfies SocialLink[],
   hero: {
     eyebrow: "★ bem-vindo à workstation ★",
-    action: { href: pageHref.pratica, label: "Ver contribuições →" },
     imageAlt: "Estação de trabalho retrô em pixel art, com computador e caneca rosa",
     imageCaption: "code · test · document · repeat",
   },
@@ -86,16 +94,6 @@ export const site = {
       ],
     },
   },
-  work: {
-    eyebrow: "worklog / contribuições",
-    title: "O que faço, na prática.",
-    badge: "IMPLEMENTAÇÃO · EVIDÊNCIA · LIMITES",
-    intro:
-      "Os exemplos abaixo vêm de relatórios de contribuições com referências de código, histórico Git e registros de execução. Cada caso explicita o que foi feito e até onde a evidência permite afirmar.",
-    methodLabel: "Como ler:",
-    method:
-      "os casos profissionais são sínteses dos relatórios fornecidos, não uma auditoria independente dos repositórios privados. As fichas identificam a fonte e os localizadores para conferência com acesso ao original. Os projetos abertos podem ser inspecionados diretamente no GitHub.",
-  },
   cv: {
     title: "Prefere em PDF?",
     description: "Baixe meu CV em português ou inglês.",
@@ -111,7 +109,7 @@ export const site = {
   },
   footer: {
     author: "Kellen Xavier",
-    taglines: ["code & tests", "keep the web personal"],
+    taglines: ["code & tests"],
   },
   projectsBlogLabel: "Estudos no blog ↗",
   projectLinkLabel: "Ver repositório ↗",

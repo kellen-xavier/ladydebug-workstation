@@ -8,6 +8,7 @@ export const pagePaths = [
   "setup.html",
   "ferramentas.html",
   "games.html",
+  "contato.html",
 ] as const;
 
 export const mainNavigation = (page: Page) => page.locator("header nav");

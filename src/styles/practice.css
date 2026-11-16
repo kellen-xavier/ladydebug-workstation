@@ -1,0 +1,168 @@
+.practice {
+    padding: 32px 0;
+    border-bottom: 3px double var(--line);
+}
+.section-copy {
+    color: var(--muted);
+    max-width: 760px;
+}
+.case {
+    border: 2px solid var(--line);
+    box-shadow: 3px 3px 0 var(--border);
+    margin: 20px 0;
+    background: var(--bg);
+}
+.case summary {
+    cursor: pointer;
+    padding: 18px;
+    list-style-position: inside;
+    font: 24px / 1.4 var(--font-body);
+    background: var(--soft);
+}
+.case summary:hover {
+    background: var(--pink);
+}
+.case summary:focus-visible {
+    outline: 3px dashed var(--link);
+    outline-offset: 3px;
+}
+.case .case-body {
+    padding: 20px;
+}
+.case h3 {
+    font: 23px var(--font-body);
+    margin: 0 0 12px;
+}
+.case p,
+.case li {
+    font-size: 15px;
+    color: var(--muted);
+}
+.case ul {
+    padding-left: 22px;
+}
+.case :where(h3) + p {
+    padding: 13px;
+    background: var(--soft);
+    border-left: 3px solid var(--link);
+    font-size: 13px;
+    overflow-wrap: anywhere;
+}
+.trace code {
+    color: var(--ink);
+}
+.case .case-limit {
+    font-size: 13px;
+    border-top: 1px dashed var(--line);
+    padding-top: 14px;
+    margin: 1em 0;
+}
+.case-label {
+    display: block;
+    font: 0.78rem / 1.6 var(--font-mono);
+    color: var(--link);
+    padding-left: 19px;
+}
+
+.case-period {
+    display: block;
+    padding-left: 19px;
+    color: var(--muted);
+    font: 0.78rem / 1.6 var(--font-mono);
+}
+
+.case-excerpt {
+    display: block;
+    max-width: 72ch;
+    margin: 8px 0 0 19px;
+    color: var(--muted);
+    font: 15px / 1.6 var(--font-body);
+}
+.workflow {
+    counter-reset: steps;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+    padding: 0;
+    list-style: none;
+}
+.workflow li {
+    padding: 18px;
+    border: 1px dashed var(--line);
+    background: var(--soft);
+}
+.workflow h3 {
+    font: 23px var(--font-body);
+    margin: 0 0 10px;
+}
+.workflow p {
+    font-size: 14px;
+    color: var(--muted);
+    margin: 0;
+}
+.workflow h3:before {
+    counter-increment: steps;
+    content: "0" counter(steps) " / ";
+    color: var(--link);
+}
+.method {
+    font-size: 13px;
+    color: var(--muted);
+    padding: 16px;
+    border: 1px dashed var(--line);
+}
+.evidence-heading {
+    font: 18px var(--font-body);
+    color: var(--link);
+}
+.card.featured {
+    grid-column: 1 / -1;
+    background: var(--surface-card);
+}
+.card.featured .card-top {
+    background: var(--pink);
+}
+.meta,
+.provenance p:has(code) {
+    font: 0.78rem / 1.6 var(--font-mono);
+    color: var(--muted);
+    overflow-wrap: anywhere;
+}
+.report-page {
+    padding: 28px;
+    max-width: 900px;
+    margin: auto;
+}
+.report-page h1 {
+    font: 36px var(--font-body);
+}
+.report-page h2 {
+    font-size: 26px;
+    margin-top: 30px;
+}
+.report-page p {
+    overflow-wrap: anywhere;
+}
+.report-page code {
+    font-size: 12px;
+}
+.report-page footer {
+    margin-top: 30px;
+}
+@media (max-width: 560px) {
+    .workflow {
+        grid-template-columns: 1fr;
+    }
+    .case summary {
+        font-size: 22px;
+    }
+    .case .case-body {
+        padding: 15px;
+    }
+    .card.featured {
+        grid-column: auto;
+    }
+    .report-page {
+        padding: 20px 12px;
+    }
+}

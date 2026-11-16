@@ -1,70 +1,63 @@
 import { expect, test } from "@playwright/test";
 
-test.describe("practice reports", () => {
-  test("uses the same heading typography as other internal pages", async ({ page }) => {
-    await page.goto("/setup.html");
-    const typography = await page.getByRole("heading", { level: 1 }).evaluate((element) => {
-      const style = getComputedStyle(element);
-      return { family: style.fontFamily, size: style.fontSize, weight: style.fontWeight };
-    });
+test.describe("work cases", () => {
+  test("matches the prototype's alternating cover proportions", async ({ page }) => {
     await page.goto("/pratica.html");
-    const title = page.getByRole("heading", { level: 1 });
-    await expect(title).toHaveCSS("font-family", typography.family);
-    await expect(title).toHaveCSS("font-size", typography.size);
-    await expect(title).toHaveCSS("font-weight", typography.weight);
-  });
+    const covers = page.locator(".work-item .work-cover");
+    const first = await covers.nth(0).boundingBox();
+    const second = await covers.nth(1).boundingBox();
+    expect(first).not.toBeNull();
+    expect(second).not.toBeNull();
+    if (!first || !second) return;
 
-  test("keeps reports collapsed and their summaries available", async ({ page }) => {
-    await page.goto("/pratica.html");
-    const reports = page.locator("details.case");
-    await expect(reports).toHaveCount(6);
-    for (const report of await reports.all()) {
-      await expect(report).not.toHaveAttribute("open", "");
-      await expect(report.locator(":scope > summary")).toBeVisible();
-      await expect(report.locator(":scope > summary .case-excerpt")).toBeVisible();
+    if ((page.viewportSize()?.width ?? 0) > 700) {
+      expect(first.width / first.height).toBeCloseTo(16 / 10, 2);
+      expect(second.width / second.height).toBeCloseTo(4 / 5, 2);
+      expect(second.y - first.y).toBeCloseTo(56, 0);
+    } else {
+      expect(first.width / first.height).toBeCloseTo(16 / 10, 2);
+      expect(second.width / second.height).toBeCloseTo(16 / 10, 2);
     }
   });
 
-  test("opens the published services project in a protected external tab", async ({ page }) => {
+  test("opens a case from the grid and returns to all work", async ({ page }) => {
     await page.goto("/pratica.html");
-    const report = page.locator("#site-web");
-    await report.locator(":scope > summary").click();
-    const publishedSite = report.locator('a[href="https://elementarprojetos.com.br"]');
-    await expect(publishedSite).toHaveAttribute("target", "_blank");
-    await expect(publishedSite).toHaveAttribute("rel", "noopener noreferrer");
+    const cards = page.locator(".work-item");
+    expect(await cards.count()).toBeGreaterThan(0);
+    const first = cards.first().locator("a");
+    const id = (await first.getAttribute("href"))?.slice(1);
+    expect(id).toBeTruthy();
+
+    await first.click();
+    await expect(page).toHaveURL(new RegExp(`#${id}$`));
+    await expect(page.locator(`.work-detail#${id}`)).toBeVisible();
+    await expect(cards.first()).toBeHidden();
+
+    await page.locator(".work-detail a[href='#pratica']").first().click();
+    await expect(cards.first()).toBeVisible();
   });
 
-  test("opens a report and toggles the evidence disclosure with the keyboard", async ({ page }) => {
-    await page.goto("/pratica.html");
-    const report = page.locator("#mobile");
-    await report.locator(":scope > summary").focus();
+  test("opens a linked case directly and keeps evidence disclosures keyboard accessible", async ({
+    page,
+  }) => {
+    await page.goto("/pratica.html#web");
+    const detail = page.locator(".work-detail#web");
+    await expect(detail).toBeVisible();
+    const disclosure = detail.locator("details.provenance").first();
+    await disclosure.locator("summary").focus();
     await page.keyboard.press("Enter");
-    await expect(report).toHaveAttribute("open", "");
-
-    const evidence = report.locator(".case-body > details.provenance").first();
-    const summary = evidence.locator(":scope > summary");
-    await summary.focus();
-    await page.keyboard.press("Enter");
-    await expect(evidence).toHaveAttribute("open", "");
-    await expect(report.locator(".case-limit")).toBeVisible();
-
-    await page.keyboard.press("Enter");
-    await expect(evidence).not.toHaveAttribute("open", "");
-    await expect(report.locator(".case-limit")).not.toBeVisible();
+    await expect(disclosure).toHaveAttribute("open", "");
   });
 
-  test("opens the report identified by the URL fragment", async ({ page }) => {
-    await page.goto("/pratica.html#backend");
-    await expect(page.locator("#backend")).toHaveAttribute("open", "");
-    await expect(page.locator("#backend")).toBeInViewport();
-  });
-
-  test("links career entries to existing practice reports", async ({ page }) => {
-    await page.goto("/trajetoria.html");
-    const reportLink = page.locator('a[href="./pratica.html#mobile"]');
-    await expect(reportLink).toBeVisible();
-    await reportLink.click();
-    await expect(page).toHaveURL(/\/pratica\.html#mobile$/);
-    await expect(page.locator("#mobile")).toHaveAttribute("open", "");
+  test("keeps external case references in a protected tab", async ({ page }) => {
+    await page.goto("/pratica.html#site-web");
+    const link = page.locator('.work-detail#site-web a[target="_blank"]').first();
+    await expect(link).toHaveAttribute("rel", "noopener noreferrer");
+    const destination = await link.getAttribute("href");
+    const popupPromise = page.waitForEvent("popup");
+    await link.click();
+    const popup = await popupPromise;
+    await expect(popup).toHaveURL(destination ?? "");
+    await popup.close();
   });
 });

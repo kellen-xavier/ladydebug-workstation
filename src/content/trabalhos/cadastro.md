@@ -1,3 +1,9 @@
+---
+stack: C# · .NET · NUnit · Contratos HTTP
+period: 2026
+summary: Extraí validações fiscais do legado para um módulo de domínio, integrei ao cadastro e criei testes de regressão.
+---
+
 # Backend: validação de identificadores fiscais no cadastro
 
 ## Fluxo do Usuário e Motivações
