@@ -28,7 +28,7 @@ ladydebug-workstation/
 │   │   ├── SetupPage.tsx
 │   │   ├── ToolsPage.tsx
 │   │   ├── GamesPage.tsx
-│   │   ├── ContactPage.tsx # formulário de serviços
+│   │   ├── ContactPage.tsx # contato por e-mail e redes sociais
 │   │   ├── Header.tsx       # navegação principal + links sociais
 │   │   ├── BackToTop.tsx    # botão de retorno ao topo após rolar a página
 │   │   ├── SocialLinks.tsx  # ícones GitHub, LinkedIn e Blog
@@ -70,7 +70,7 @@ ladydebug-workstation/
 │   │   ├── setup.md        # painéis do setup
 │   │   ├── ferramentas.md  # lista de ferramentas e comandos
 │   │   ├── games.md         # games, organização e status
-│   │   ├── contato.ts       # opções e textos do contato
+│   │   ├── contato.md       # apresentação e rótulos da página de contato
 │   │   ├── projetos.md     # cartões dos projetos
 │   │   └── site.ts         # navegação, rótulos, links e textos auxiliares
 │   ├── styles/
@@ -83,7 +83,7 @@ ladydebug-workstation/
 │   │   ├── internal-pages.css # trajetória, setup, ferramentas e games
 │   │   ├── responsive.css  # ajustes responsivos das páginas internas
 │   │   ├── editorial-layout.css # refinamentos de layout editorial
-│   │   └── contact.css     # formulário de contato
+│   │   └── contact.css     # página de contato
 │   └── assets/
 │       ├── pixel-desk.png
 │       ├── workflow.png
@@ -138,7 +138,7 @@ bun run lint:fix   # corrige automaticamente o que for possível
 - **Setup:** `src/content/setup.md`.
 - **Ferramentas:** `src/content/ferramentas.md` — lista e comandos de instalação (os exemplos de Git e k6 assumem Linux/Homebrew).
 - **Games:** `src/content/games.md`.
-- **Contato e serviços:** `src/content/contato.ts` — opções, rótulos e mensagens. O e-mail de destino fica em `src/content/site.ts`.
+- **Contato:** `src/content/contato.md` — apresentação e rótulos. O e-mail e os links sociais ficam em `src/content/site.ts`.
 
 Essas cinco páginas usam o mesmo formato Markdown: front matter (`--- ... ---`) com os rótulos da página e seções `## título` com linhas `- chave: valor`. Onde quiser um link, escreva `[texto](url)` no valor (em Setup, o link vira um link externo seguro). O parsing fica em `src/components/contentFormat.ts`; cada componente de página monta a estrutura e o texto vem só do `.md`.
 
@@ -178,7 +178,7 @@ Os testes Bun verificam a geração das páginas, a transformação de Markdown 
 
 ### Formulário de contato
 
-A página `contato.html` envia pedidos para o e-mail publicado no CV por meio do [FormSubmit](https://formsubmit.co/). A primeira tentativa de envio gera uma mensagem de ativação para esse endereço: confirme-a antes de divulgar o formulário. Os testes de navegador simulam a resposta do serviço e não enviam mensagens reais. Se o envio falhar, a página oferece um link `mailto:` com assunto e instruções preenchidos.
+A página `contato.html` oferece um link `mailto:` com o assunto “Vamos conversar”, além de links para GitHub, LinkedIn e Blog. Ela não envia dados pelo site.
 
 ## Publicação
 
