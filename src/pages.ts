@@ -93,8 +93,7 @@ export const pages = [
     slug: "contato",
     path: "/contato.html",
     title: "Contato — Ladydebug",
-    description:
-      "Entre em contato",
+    description: "Entre em contato",
     component: ContactPage,
     componentName: "ContactPage",
   },
