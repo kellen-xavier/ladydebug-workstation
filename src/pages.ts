@@ -92,8 +92,9 @@ export const pages = [
   {
     slug: "contato",
     path: "/contato.html",
-    title: "Contato e serviços — Ladydebug",
-    description: "Envie um pedido de consultoria, mentoria ou apresentação de serviço.",
+    title: "Contato — Ladydebug",
+    description:
+      "Entre em contato",
     component: ContactPage,
     componentName: "ContactPage",
   },
