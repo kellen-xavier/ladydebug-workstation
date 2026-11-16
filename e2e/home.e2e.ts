@@ -17,10 +17,25 @@ test.describe("home page", () => {
     await expect(page).toHaveURL(/\/pratica\.html$/);
   });
 
-  test("routes a site map entry to its destination", async ({ page }) => {
-    const map = page.locator("ul.site-map");
-    await map.locator('a[href="./trajetoria.html"]').click();
-    await expect(page).toHaveURL(/\/trajetoria\.html$/);
+  test("keeps the site map off the home page", async ({ page }) => {
+    await expect(page.locator("#mapa")).toHaveCount(0);
+    await expect(page.locator("#sobre")).toBeVisible();
+  });
+
+  test("aligns the three project previews in one row on wide screens", async ({ page }) => {
+    test.skip((page.viewportSize()?.width ?? 0) < 1100);
+    const cards = page.locator("#projetos .card");
+    await expect(cards).toHaveCount(3);
+    const boxes = await cards.evaluateAll((elements) =>
+      elements.map((element) => {
+        const box = element.getBoundingClientRect();
+        return { x: box.x, y: box.y, width: box.width };
+      }),
+    );
+    expect(boxes[0]?.x).toBeLessThan(boxes[1]?.x ?? 0);
+    expect(boxes[1]?.x).toBeLessThan(boxes[2]?.x ?? 0);
+    expect(boxes[0]?.y).toBeCloseTo(boxes[1]?.y ?? 0, 0);
+    expect(boxes[1]?.y).toBeCloseTo(boxes[2]?.y ?? 0, 0);
   });
 
   test("opens workflow and setup pages from their panels", async ({ page }) => {

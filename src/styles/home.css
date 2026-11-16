@@ -139,6 +139,22 @@ h2 {
     gap: 16px;
 }
 
+.projects--preview .grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+@media (max-width: 1000px) {
+    .projects--preview .grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 700px) {
+    .projects--preview .grid {
+        grid-template-columns: 1fr;
+    }
+}
+
 .card {
     border: 1px solid var(--line);
     border-radius: 6px;

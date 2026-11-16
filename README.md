@@ -34,7 +34,7 @@ ladydebug-workstation/
 │   │   ├── SocialLinks.tsx  # ícones GitHub, LinkedIn e Blog
 │   │   ├── Hero.tsx
 │   │   ├── About.tsx
-│   │   ├── SiteMap.tsx      # mapa do site na home
+│   │   ├── SiteMap.tsx      # mapa do site, atualmente fora da home
 │   │   ├── HowIWork.tsx     # resumo de workflow e setup na home
 │   │   ├── Projects.tsx
 │   │   ├── ProjectCard.tsx
@@ -133,7 +133,7 @@ bun run lint:fix   # corrige automaticamente o que for possível
 - **Página completa do workflow:** `src/content/fluxo-completo.md` — conteúdo acessível pelo botão “Conhecer meu Workflow”, em `workflow.html`. Aceita listas de tarefas com `- [ ]` e `- [x]`.
 - **Etapas do fluxo:** `src/content/fluxo-passos.md` — uma seção `## <id-do-caso>` por etapa (o id liga ao caso em Trabalhos); a ordem das seções define a exibição.
 - **Projetos:** `src/content/projetos.md` — uma seção `## Nome do projeto` por cartão (tags separadas por `|`).
-- **Mapa do site:** `src/content/mapa.md`.
+- **Mapa do site:** `src/content/mapa.md` — conteúdo preservado; a seção está temporariamente fora da home.
 - **Trajetória:** `src/content/trajetoria.md` — linha do tempo da página Trajetória.
 - **Setup:** `src/content/setup.md`.
 - **Ferramentas:** `src/content/ferramentas.md` — lista e comandos de instalação (os exemplos de Git e k6 assumem Linux/Homebrew).
