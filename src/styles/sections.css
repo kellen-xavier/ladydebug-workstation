@@ -77,21 +77,79 @@ header nav a {
 
 /* Quem sou eu */
 .about {
-    border: 0;
+    display: grid;
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
+    align-items: center;
+    gap: clamp(36px, 7vw, 88px);
     border-top: 1px solid var(--line);
-    background: none;
-    padding: 36px 0;
+    padding-block: clamp(64px, 8vw, 104px);
     margin: 0;
+    scroll-margin-top: 16px;
+}
+
+.about-story {
+    max-width: 62ch;
+}
+
+.about h2 {
+    max-width: 12ch;
+    margin-bottom: 24px;
+    font: 400 clamp(2.8rem, 5vw, 4.6rem) / 1.06 var(--font-display);
+    letter-spacing: -0.04em;
 }
 
 .about-text {
-    display: flex;
-    flex-direction: column;
-    gap: 18px;
+    margin-bottom: 24px;
 }
 
 .about-text p {
+    margin: 0 0 16px;
+    color: var(--muted);
+    font-size: 17px;
+    line-height: 1.7;
+}
+
+.about-portrait {
+    display: grid;
+    place-items: center;
+    width: 100%;
+    aspect-ratio: 4 / 5;
     margin: 0;
+    border: 1px solid var(--line);
+    background: var(--surface-window);
+    background-image: radial-gradient(var(--line) 1px, transparent 1px);
+    background-size: 18px 18px;
+    overflow: hidden;
+}
+
+.about-portrait p {
+    display: grid;
+    place-items: center;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    color: var(--muted);
+    font: 0.85rem / 1.5 var(--font-mono);
+    text-align: center;
+}
+
+.about-portrait .markdown-image {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    object-fit: cover;
+}
+
+@media (max-width: 780px) {
+    .about {
+        grid-template-columns: 1fr;
+        gap: 36px;
+    }
+
+    .about-portrait {
+        width: min(100%, 440px);
+        margin-inline: auto;
+    }
 }
 
 .panel {
@@ -183,7 +241,8 @@ header nav a {
 .highlights {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
-    gap: 16px;
+    gap: 24px;
+    padding-block: clamp(56px, 6vw, 80px);
 }
 
 .panel {
@@ -191,6 +250,11 @@ header nav a {
     flex-direction: column;
     gap: 12px;
     padding: 22px;
+}
+
+.highlights .panel {
+    gap: 16px;
+    padding: clamp(24px, 3vw, 32px);
 }
 
 .panel .eyebrow {
@@ -279,4 +343,15 @@ header nav a {
     display: flex;
     flex-wrap: wrap;
     gap: 12px;
+}
+
+#cv {
+    gap: 24px;
+    padding: 30px 32px;
+}
+
+@media (max-width: 560px) {
+    #cv {
+        padding: 24px;
+    }
 }

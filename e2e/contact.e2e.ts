@@ -13,11 +13,49 @@ test.describe("contact page", () => {
     await expect(main.getByRole("button")).toHaveCount(0);
     const emailLink = main.getByRole("link", { name: /Vamos conversar/ });
     await expect(emailLink).toBeVisible();
+    await expect(emailLink.locator("small")).toHaveCount(0);
     const href = await emailLink.getAttribute("href");
     expect(href).toBeTruthy();
     const [recipient, query] = (href ?? "").replace("mailto:", "").split("?");
     expect(recipient).toBe("kellenxaviier@gmail.com");
     expect(new URLSearchParams(query).get("subject")).toBe("Vamos conversar");
+  });
+
+  test("keeps the email tooltip next to the pointer and available on focus", async ({ page }) => {
+    await page.goto("/contato.html");
+    const emailLink = page.locator(".contact-email");
+    const tooltip = page.getByRole("tooltip");
+
+    await expect(tooltip).toBeHidden();
+    const linkBox = await emailLink.boundingBox();
+    expect(linkBox).not.toBeNull();
+    if (!linkBox) return;
+    const pointerX = linkBox.x + 100;
+    const pointerY = linkBox.y + 72;
+    await page.mouse.move(pointerX, pointerY);
+    await expect(tooltip).toBeVisible();
+    const first = await tooltip.boundingBox();
+    expect(first).not.toBeNull();
+    if (first && (page.viewportSize()?.width ?? 0) > 900) {
+      expect(Math.abs(first.y - pointerY)).toBeLessThanOrEqual(30);
+      expect(Math.abs(first.x - pointerX)).toBeLessThanOrEqual(30);
+      await page.mouse.move(pointerX + 80, pointerY + 20);
+      const moved = await tooltip.boundingBox();
+      expect((moved?.x ?? 0) - first.x).toBeGreaterThan(40);
+    }
+    if (first && (page.viewportSize()?.width ?? 0) <= 700) {
+      const social = await page.locator(".contact-social").boundingBox();
+      expect(social).not.toBeNull();
+      expect(first.y + first.height).toBeLessThanOrEqual(social?.y ?? 0);
+    }
+    await page.mouse.move(0, 0);
+    await expect(tooltip).toBeHidden();
+    await emailLink.focus();
+    await expect(tooltip).toBeVisible();
+    await expect(emailLink).toHaveAttribute(
+      "aria-describedby",
+      (await tooltip.getAttribute("id")) ?? "",
+    );
   });
 
   test("offers visible social destinations with safe external links", async ({ page }) => {
