@@ -113,7 +113,6 @@ header nav a {
     display: grid;
     place-items: center;
     width: 100%;
-    aspect-ratio: 4 / 5;
     margin: 0;
     border: 1px solid var(--line);
     background: var(--surface-window);
