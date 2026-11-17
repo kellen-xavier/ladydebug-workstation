@@ -6,7 +6,6 @@ import { Hero } from "./Hero";
 import { HowIWork } from "./HowIWork";
 import { PageLayout } from "./PageLayout";
 import { Projects } from "./Projects";
-import { SiteMap } from "./SiteMap";
 
 export function HomePage() {
   useHashReveal();
@@ -14,7 +13,6 @@ export function HomePage() {
     <PageLayout current="home">
       <Hero />
       <About />
-      <SiteMap />
       <HowIWork />
       <Projects limit={3} />
       <CvDownload />

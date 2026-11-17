@@ -43,7 +43,11 @@ export const { projects, projectSection } = parseProjects(projectsSource);
 export function Projects({ limit }: { limit?: number }) {
   const preview = limit !== undefined;
   return (
-    <section className="projects" id="projetos" aria-labelledby="projects-title">
+    <section
+      className={preview ? "projects projects--preview" : "projects"}
+      id="projetos"
+      aria-labelledby="projects-title"
+    >
       <div className="section-head">
         <div>
           <p className="eyebrow">{projectSection.eyebrow}</p>

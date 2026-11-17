@@ -73,7 +73,7 @@ export const site = {
     imageCaption: "code · test · document · repeat",
   },
   about: {
-    eyebrow: "readme.txt",
+    eyebrow: "readme.txt / Kellen Xavier",
     careerLink: { href: pageHref.trajetoria, label: "Ver trajetória completa →" },
   },
   howIWork: {
