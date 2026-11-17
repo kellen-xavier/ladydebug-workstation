@@ -34,7 +34,7 @@ ladydebug-workstation/
 │   │   ├── SocialLinks.tsx  # ícones GitHub, LinkedIn e Blog
 │   │   ├── Hero.tsx
 │   │   ├── About.tsx
-│   │   ├── SiteMap.tsx      # mapa do site na home
+│   │   ├── SiteMap.tsx      # mapa do site, atualmente fora da home
 │   │   ├── HowIWork.tsx     # resumo de workflow e setup na home
 │   │   ├── Projects.tsx
 │   │   ├── ProjectCard.tsx
@@ -127,13 +127,14 @@ bun run lint:fix   # corrige automaticamente o que for possível
 ## Editar
 
 - **Apresentação e sobre:** `src/content/apresentacao.md` e `src/content/sobre.md`.
+- **Retrato no Sobre:** `src/content/retrato.md` contém o espaço reservado. Para mostrar sua foto, coloque o arquivo em `src/assets/` e substitua a linha de texto por `![Kellen Xavier](../assets/kellen-xavier.jpg)`. O texto alternativo e o caminho ficam no Markdown; o build copia a imagem automaticamente.
 - **Página Trabalhos:** `src/content/trabalhos.md` guarda a introdução, os rótulos e a nota de leitura.
 - **Relatos dos trabalhos:** `src/content/trabalhos/*.md`. Edite `stack`, `period` e `summary` no front matter de cada relato; o restante é Markdown. A ordem e o ID da âncora ficam em `src/content/trabalhos/index.ts`.
 - **Texto de apresentação do fluxo:** `src/content/fluxo.md` — aceita parágrafos, ênfase e links Markdown.
 - **Página completa do workflow:** `src/content/fluxo-completo.md` — conteúdo acessível pelo botão “Conhecer meu Workflow”, em `workflow.html`. Aceita listas de tarefas com `- [ ]` e `- [x]`.
 - **Etapas do fluxo:** `src/content/fluxo-passos.md` — uma seção `## <id-do-caso>` por etapa (o id liga ao caso em Trabalhos); a ordem das seções define a exibição.
 - **Projetos:** `src/content/projetos.md` — uma seção `## Nome do projeto` por cartão (tags separadas por `|`).
-- **Mapa do site:** `src/content/mapa.md`.
+- **Mapa do site:** `src/content/mapa.md` — conteúdo preservado; a seção está temporariamente fora da home.
 - **Trajetória:** `src/content/trajetoria.md` — linha do tempo da página Trajetória.
 - **Setup:** `src/content/setup.md`.
 - **Ferramentas:** `src/content/ferramentas.md` — lista e comandos de instalação (os exemplos de Git e k6 assumem Linux/Homebrew).
@@ -178,7 +179,7 @@ Os testes Bun verificam a geração das páginas, a transformação de Markdown 
 
 ### Formulário de contato
 
-A página `contato.html` oferece um link `mailto:` com o assunto “Vamos conversar”, além de links para GitHub, LinkedIn e Blog. Ela não envia dados pelo site.
+A página `contato.html` oferece um link `mailto:` com o assunto “Vamos conversar”, além de links para GitHub, LinkedIn e Blog. O texto do tooltip fica em `src/content/contato.md` (`emailTooltip`). Ela não envia dados pelo site.
 
 ## Publicação
 

@@ -28,9 +28,13 @@
     align-items: start;
 }
 
+.contact-email-wrap {
+    min-width: 0;
+}
+
 .contact-email {
-    display: grid;
-    gap: 12px;
+    display: flex;
+    align-items: center;
     min-height: 152px;
     padding: 26px 30px;
     border: 1px solid var(--line);
@@ -54,11 +58,25 @@
     font: 400 clamp(1.7rem, 3vw, 2.35rem) / 1.2 var(--font-display);
 }
 
-.contact-email small {
-    align-self: end;
-    overflow-wrap: anywhere;
-    color: var(--muted);
-    font: 0.9rem / 1.5 var(--font-mono);
+.contact-tooltip {
+    position: fixed;
+    z-index: 2;
+    top: 0;
+    left: 0;
+    width: min(34ch, calc(100vw - 24px));
+    margin: 0;
+    padding: 12px 16px;
+    border: 1px solid var(--ink);
+    background: var(--ink);
+    color: var(--on-ink);
+    font: 14px / 1.5 var(--font-body);
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.contact-email:hover + .contact-tooltip,
+.contact-email:focus + .contact-tooltip {
+    visibility: visible;
 }
 
 .contact-social {
@@ -106,5 +124,17 @@
 
     .contact-email {
         min-height: 140px;
+    }
+
+    .contact-tooltip {
+        position: static;
+        display: none;
+        width: 100%;
+        margin-top: 12px;
+    }
+
+    .contact-email:hover + .contact-tooltip,
+    .contact-email:focus + .contact-tooltip {
+        display: block;
     }
 }
