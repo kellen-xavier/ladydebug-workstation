@@ -50,6 +50,53 @@ test.describe("responsive layout", () => {
     await expect(nav.locator("a").first()).toBeVisible();
   });
 
+  test("keeps the expanded menu below the brand and across the available width", async ({
+    page,
+  }) => {
+    test.skip((page.viewportSize()?.width ?? 0) > 1100, "Collapsed layout only");
+    await page.goto("/");
+    const brand = await page.locator("header .brand").boundingBox();
+    const toggle = await page.locator(".menu-toggle").boundingBox();
+    expect(brand).not.toBeNull();
+    expect(toggle).not.toBeNull();
+    if (brand && toggle) expect(Math.abs(brand.y - toggle.y)).toBeLessThan(20);
+
+    await page.locator(".menu-toggle").click();
+    const frame = await page.locator(".header-inner").boundingBox();
+    const navigation = await mainNavigation(page).boundingBox();
+    const social = await page.locator("header .social").boundingBox();
+    expect(frame).not.toBeNull();
+    expect(navigation).not.toBeNull();
+    expect(social).not.toBeNull();
+    if (brand && frame && navigation && social) {
+      expect(navigation.y).toBeGreaterThanOrEqual(brand.y + brand.height);
+      expect(Math.abs(navigation.x - frame.x)).toBeLessThan(2);
+      expect(Math.abs(navigation.width - frame.width)).toBeLessThan(2);
+      expect(social.y).toBeGreaterThanOrEqual(navigation.y + navigation.height);
+    }
+    if ((page.viewportSize()?.width ?? 0) <= 900) {
+      const about = await mainNavigation(page).getByRole("link", { name: "Sobre" }).boundingBox();
+      const work = await mainNavigation(page)
+        .getByRole("button", { name: "Trabalhos" })
+        .boundingBox();
+      expect(about).not.toBeNull();
+      expect(work).not.toBeNull();
+      if (about && work) expect(work.y).toBeGreaterThanOrEqual(about.y + about.height);
+    }
+  });
+
+  test("lets touch users close and reopen a navigation group", async ({ page }) => {
+    test.skip((page.viewportSize()?.width ?? 0) > 1100, "Collapsed layout only");
+    await page.goto("/");
+    await openMenu(page);
+    const work = mainNavigation(page).getByRole("button", { name: "Trabalhos" });
+    const career = mainNavigation(page).getByRole("link", { name: "Trajetória" });
+    await work.click();
+    await expect(career).toBeVisible();
+    await work.click();
+    await expect(career).toBeHidden();
+  });
+
   test("keeps navigation visible without a toggle on wide screens", async ({ page }) => {
     test.skip((page.viewportSize()?.width ?? 0) <= 1100, "Wide-screen layout only");
     await page.goto("/");
