@@ -2,6 +2,8 @@ import { useEffect, useRef, useState } from "react";
 import { type NavigationItem, type PageId, pageHref, site } from "../content/site";
 import { SocialLinks } from "./SocialLinks";
 
+const compactNavigation = () => window.matchMedia("(max-width: 1100px)").matches;
+
 function NavGroup({
   id,
   items,
@@ -30,8 +32,12 @@ function NavGroup({
       className="nav-group"
       role="group"
       ref={groupRef}
-      onMouseEnter={() => setOpen(true)}
-      onMouseLeave={() => setOpen(false)}
+      onMouseEnter={() => {
+        if (!compactNavigation()) setOpen(true);
+      }}
+      onMouseLeave={() => {
+        if (!compactNavigation()) setOpen(false);
+      }}
       onBlur={(event) => {
         if (!event.currentTarget.contains(event.relatedTarget)) setOpen(false);
       }}
@@ -48,8 +54,7 @@ function NavGroup({
         ref={buttonRef}
         aria-expanded={open}
         aria-controls={id}
-        onClick={() => setOpen(true)}
-        onFocus={() => setOpen(true)}
+        onClick={() => setOpen((value) => (compactNavigation() ? !value : true))}
       >
         {items[0].label}
         <span aria-hidden="true" className="nav-group-chevron">
