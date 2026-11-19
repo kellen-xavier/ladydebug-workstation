@@ -72,6 +72,7 @@ import "${src}/styles/responsive.css";
 import "${src}/styles/editorial-layout.css";
 import "${src}/styles/contact.css";
 import "${src}/styles/work-gallery.css";
+import "${src}/styles/click-spark.css";
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { ${componentName} } from "${src}/components/${componentName}";

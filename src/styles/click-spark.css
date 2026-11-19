@@ -1,0 +1,18 @@
+.click-spark {
+    position: relative;
+}
+
+.click-spark-layer {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.click-spark-layer canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    pointer-events: none;
+}

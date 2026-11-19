@@ -1,10 +1,7 @@
 # Ladydebug Workstation
 
-Landing page pessoal minha (Ladydebug), com projetos de engenharia de software, qualidade, automação de testes e documentação.
-
-## Visual
-
-Estética de homepage dos anos 2000–2009, ilustração em pixel art e paleta do blog Ladydebug: creme, bege, marrom e rosa. Layout responsivo, navegação por teclado e fonte hospedada localmente.
+Landing page pessoal minha (Ladydebug), com projetos de engenharia de software, qualidade e o pouco que já trabalhei.
+Ainda estou desenvolvendo, tem alguns achado que preciso colocar aqui.
 
 ## Tecnologias
 
@@ -12,6 +9,8 @@ Estética de homepage dos anos 2000–2009, ilustração em pixel art e paleta d
 - [React 19](https://react.dev/) + TypeScript.
 - [react-markdown](https://github.com/remarkjs/react-markdown) — renderização dos textos em Markdown.
 - CSS puro (sem framework), com variáveis de cor em `:root`.
+- Ícones sociais sem biblioteca: GitHub e LinkedIn são SVGs no componente; o Blog usa `src/assets/icons-blog.svg` com cor herdada do tema.
+- Os cartões de projetos usam uma versão enxuta do [ClickSpark do React Bits](https://reactbits.dev/animations/click-spark), desenhada em canvas com a cor de destaque do site. O efeito respeita a preferência por movimento reduzido.
 - [Biome](https://biomejs.dev/) — lint e formatação de TS/TSX, CSS e JSON (inclui regras de React e acessibilidade).
 
 ## Estrutura
@@ -28,6 +27,7 @@ ladydebug-workstation/
 │   │   ├── SetupPage.tsx
 │   │   ├── ToolsPage.tsx
 │   │   ├── GamesPage.tsx
+│   │   ├── UnderDevelopmentPage.tsx # mensagem temporária em games.html
 │   │   ├── ContactPage.tsx # contato por e-mail e redes sociais
 │   │   ├── Header.tsx       # navegação principal + links sociais
 │   │   ├── BackToTop.tsx    # botão de retorno ao topo após rolar a página
@@ -38,6 +38,7 @@ ladydebug-workstation/
 │   │   ├── HowIWork.tsx     # resumo de workflow e setup na home
 │   │   ├── Projects.tsx
 │   │   ├── ProjectCard.tsx
+│   │   ├── ClickSpark.tsx  # efeito de clique nos cartões de projetos
 │   │   ├── CvDownload.tsx   # bloco de download do CV
 │   │   ├── Closing.tsx
 │   │   ├── Footer.tsx
@@ -69,7 +70,8 @@ ladydebug-workstation/
 │   │   ├── trajetoria.md   # linha do tempo da trajetória
 │   │   ├── setup.md        # painéis do setup
 │   │   ├── ferramentas.md  # lista de ferramentas e comandos
-│   │   ├── games.md         # games, organização e status
+│   │   ├── games.md         # rascunho de games, preservado para depois
+│   │   ├── em-desenvolvimento.md # mensagem temporária da rota games.html
 │   │   ├── contato.md       # apresentação e rótulos da página de contato
 │   │   ├── projetos.md     # cartões dos projetos
 │   │   └── site.ts         # navegação, rótulos, links e textos auxiliares
@@ -83,9 +85,11 @@ ladydebug-workstation/
 │   │   ├── internal-pages.css # trajetória, setup, ferramentas e games
 │   │   ├── responsive.css  # ajustes responsivos das páginas internas
 │   │   ├── editorial-layout.css # refinamentos de layout editorial
-│   │   └── contact.css     # página de contato
+│   │   ├── contact.css     # página de contato
+│   │   └── click-spark.css # camada visual dos cliques nos projetos
 │   └── assets/
 │       ├── pixel-desk.png
+│       ├── icons-blog.svg   # ícone do Blog adaptável às cores do menu
 │       ├── workflow.png
 │       ├── cv-kellen-xavier-pt-br.pdf # CV em português
 │       ├── cv-kellen-xavier-en.pdf    # CV em inglês
@@ -106,7 +110,7 @@ ladydebug-workstation/
 └── tsconfig.json
 ```
 
-## Executar localmente
+## Commands
 
 Requer [Bun](https://bun.com/docs/installation) 1.3 ou superior.
 
@@ -124,62 +128,7 @@ bun run lint       # lint + checagem de formatação (Biome)
 bun run lint:fix   # corrige automaticamente o que for possível
 ```
 
-## Editar
-
-- **Apresentação e sobre:** `src/content/apresentacao.md` e `src/content/sobre.md`.
-- **Retrato no Sobre:** `src/content/retrato.md` contém o espaço reservado. Para mostrar sua foto, coloque o arquivo em `src/assets/` e substitua a linha de texto por `![Kellen Xavier](../assets/kellen-xavier.jpg)`. O texto alternativo e o caminho ficam no Markdown; o build copia a imagem automaticamente.
-- **Página Trabalhos:** `src/content/trabalhos.md` guarda a introdução, os rótulos e a nota de leitura.
-- **Relatos dos trabalhos:** `src/content/trabalhos/*.md`. Edite `stack`, `period` e `summary` no front matter de cada relato; o restante é Markdown. A ordem e o ID da âncora ficam em `src/content/trabalhos/index.ts`.
-- **Texto de apresentação do fluxo:** `src/content/fluxo.md` — aceita parágrafos, ênfase e links Markdown.
-- **Página completa do workflow:** `src/content/fluxo-completo.md` — conteúdo acessível pelo botão “Conhecer meu Workflow”, em `workflow.html`. Aceita listas de tarefas com `- [ ]` e `- [x]`.
-- **Etapas do fluxo:** `src/content/fluxo-passos.md` — uma seção `## <id-do-caso>` por etapa (o id liga ao caso em Trabalhos); a ordem das seções define a exibição.
-- **Projetos:** `src/content/projetos.md` — uma seção `## Nome do projeto` por cartão (tags separadas por `|`).
-- **Mapa do site:** `src/content/mapa.md` — conteúdo preservado; a seção está temporariamente fora da home.
-- **Trajetória:** `src/content/trajetoria.md` — linha do tempo da página Trajetória.
-- **Setup:** `src/content/setup.md`.
-- **Ferramentas:** `src/content/ferramentas.md` — lista e comandos de instalação (os exemplos de Git e k6 assumem Linux/Homebrew).
-- **Games:** `src/content/games.md`.
-- **Contato:** `src/content/contato.md` — apresentação e rótulos. O e-mail e os links sociais ficam em `src/content/site.ts`.
-
-Essas cinco páginas usam o mesmo formato Markdown: front matter (`--- ... ---`) com os rótulos da página e seções `## título` com linhas `- chave: valor`. Onde quiser um link, escreva `[texto](url)` no valor (em Setup, o link vira um link externo seguro). O parsing fica em `src/components/contentFormat.ts`; cada componente de página monta a estrutura e o texto vem só do `.md`.
-
-- **Navegação, rótulos, links, tópicos e textos auxiliares:** `src/content/site.ts`.
-- **Estrutura dos componentes:** `src/components/`.
-- **Cores:** `src/styles/foundation.css`. Os demais estilos ficam separados por seção em `src/styles/`; a ordem de importação está em `scripts/generate-pages.ts`.
-
-### Convenções do Markdown
-
-O primeiro título de cada arquivo ocupa o espaço de título da seção; os demais blocos formam o corpo. Para preservar os títulos com várias linhas da apresentação e do sobre, eles usam a sintaxe Setext: uma linha de `===` ou `---` abaixo do título. Dois espaços ao final de uma linha inserem uma quebra de linha.
-
-Nos relatos dos trabalhos, use `#` para o título do caso, `###` para os subtítulos e `>` para destacar os limites da evidência. Um título `##` inicia a área expansível de referências; os blocos seguintes ficam dentro dela. Os relatos aceitam parágrafos, listas, ênfase, código e links Markdown, sem JSX ou HTML no conteúdo.
-
-Os arquivos são importados como texto e renderizados por `react-markdown`. Links externos recebem `target="_blank"` e `rel="noopener noreferrer"`; âncoras internas continuam na mesma página. HTML bruto não é renderizado.
-
-Na apresentação do fluxo, os títulos Markdown são exibidos com um único estilo de subtítulo. A hierarquia dos títulos do relato completo é preservada na página interna. Essa página usa `remark-gfm` para apresentar a lista de critérios dos estudos.
-
-O plugin em `scripts/markdown-text.ts`, registrado em `bunfig.toml`, preserva a leitura como texto também após editar um `.md` com o servidor aberto. Isso evita que o recarregamento do Bun converta o Markdown em HTML antes de chegar ao componente. No build, os imports usam `with { type: "text" }`.
-
-### Imagens no Markdown
-
-Use o caminho da imagem relativo ao arquivo Markdown:
-
-```md
-![Diagrama do workflow](../assets/workflow.png)
-```
-
-O exemplo funciona em `src/content/fluxo-completo.md`. Em arquivos dentro de `src/content/trabalhos/`, use `../../assets/` para chegar à mesma pasta. Caminhos existentes como `/src/assets/workflow.png` também são aceitos.
-
-O plugin identifica as imagens locais e registra seus arquivos no empacotamento do Bun, preservando o texto alternativo e o título. `scripts/build.ts` aplica o mesmo plugin no build de produção. As URLs geradas são relativas, para funcionar também quando o site é publicado em uma subpasta. Não é necessário cadastrar cada imagem em um componente React. Imagens com URL externa permanecem externas; as imagens renderizadas se ajustam à largura do conteúdo.
-
-### Testes de comportamento
-
-Os testes Bun verificam a geração das páginas, a transformação de Markdown e imagens, a atualização de conteúdo no servidor de desenvolvimento e as regras da pipeline. Usam conteúdo temporário nos testes de transformação, sem comparar a redação das páginas. Os nomes dos testes permanecem em inglês.
-
-`bun run test:browser` executa 31 cenários Playwright em 1440, 768, 390 e 320 px de largura, usando um servidor próprio na porta 4174. Os cenários ficam separados por fluxo em `e2e/navigation.e2e.ts`, `home.e2e.ts`, `contact.e2e.ts`, `practice.e2e.ts`, `workflow.e2e.ts`, `tools-and-games.e2e.ts` e `responsive.e2e.ts`; helpers compartilhados ficam em `e2e/support/`. A suíte cobre navegação, cliques, downloads, contato, abertura de relatórios, cópia para a área de transferência, filtros de jogos, âncoras e usabilidade responsiva.
-
-### Formulário de contato
-
-A página `contato.html` oferece um link `mailto:` com o assunto “Vamos conversar”, além de links para GitHub, LinkedIn e Blog. O texto do tooltip fica em `src/content/contato.md` (`emailTooltip`). Ela não envia dados pelo site.
+`bun run test:browser` executa cenários Playwright em 1440, 768, 390 e 320 px de largura, usando um servidor próprio na porta 4174. Os cenários ficam separados por fluxo em `e2e/navigation.e2e.ts`, `home.e2e.ts`, `contact.e2e.ts`, `practice.e2e.ts`, `workflow.e2e.ts`, `tools-and-games.e2e.ts` e `responsive.e2e.ts`; helpers compartilhados ficam em `e2e/support/`. A suíte cobre navegação, cliques, downloads, contato, abertura de relatórios, cópia para a área de transferência, a rota temporária de Games, âncoras e usabilidade responsiva.
 
 ## Publicação
 
@@ -191,9 +140,7 @@ O workflow `.github/workflows/pages.yml` valida pull requests destinados à `mai
 
 Após um push na `main`, os mesmos testes são executados e o diretório `dist/` validado é publicado no ambiente `github-pages`. A publicação também pode ser iniciada manualmente na aba Actions, selecionando a `main`. Pull requests e outras branches não publicam o site.
 
-A pipeline usa Bun 1.3.14 e Node 24 para o Playwright, com as actions fixadas por commit. As permissões de publicação ficam restritas ao job de deploy. O Pages deve usar **Settings → Pages → Source → GitHub Actions**.
-
-Endereço de publicação: [kellen-xavier.github.io/ladydebug-workstation](https://kellen-xavier.github.io/ladydebug-workstation/).
+Publicado: [kellen-xavier.github.io/ladydebug-workstation](https://kellen-xavier.github.io/ladydebug-workstation/).
 
 ## Créditos
 

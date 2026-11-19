@@ -2,6 +2,32 @@ import { expect, test } from "@playwright/test";
 import { mainNavigation, openMenu } from "./support/site";
 
 test.describe("primary navigation", () => {
+  test("shows a vector blog icon that adapts to light and dark colors", async ({ page }) => {
+    await page.goto("/");
+    await openMenu(page);
+    const blog = page.locator('header .social a[aria-label="Blog"]');
+    const icon = blog.locator(".social-blog-icon");
+    await expect(icon).toBeVisible();
+    const mask = await icon.evaluate((element) => getComputedStyle(element).maskImage);
+    const asset = mask.match(/url\("?([^")]+)"?\)/)?.[1];
+    expect(asset).toBeTruthy();
+    if (asset) {
+      const url = new URL(asset, page.url());
+      expect(url.pathname).toMatch(/\.svg$/);
+      const response = await page.request.get(url.href);
+      expect(response.ok()).toBe(true);
+      expect(await response.text()).toContain("currentColor");
+    }
+    const normal = await icon.evaluate((element) => getComputedStyle(element).backgroundColor);
+    await blog.hover();
+    const hovered = await icon.evaluate((element) => getComputedStyle(element).backgroundColor);
+    expect(hovered).not.toBe(normal);
+    await blog.evaluate((element) => {
+      element.style.color = "rgb(255, 255, 255)";
+    });
+    await expect(icon).toHaveCSS("background-color", "rgb(255, 255, 255)");
+  });
+
   test("returns to the start of the home page through the brand links", async ({ page }) => {
     for (const [source, link] of [
       ["/pratica.html", "header a.brand"],
@@ -22,7 +48,6 @@ test.describe("primary navigation", () => {
       "workflow.html",
       "setup.html",
       "ferramentas.html",
-      "games.html",
       "contato.html",
     ]) {
       await page.goto("/");
@@ -30,7 +55,7 @@ test.describe("primary navigation", () => {
       if (["trajetoria.html", "pratica.html", "workflow.html"].includes(path)) {
         await mainNavigation(page).getByRole("button", { name: "Trabalhos" }).click();
       }
-      if (["setup.html", "ferramentas.html", "games.html"].includes(path)) {
+      if (["setup.html", "ferramentas.html"].includes(path)) {
         await mainNavigation(page).getByRole("button", { name: "Setup" }).click();
       }
       await mainNavigation(page).locator(`a[href="./${path}"]`).click();
@@ -45,12 +70,10 @@ test.describe("primary navigation", () => {
     const nav = mainNavigation(page);
     const setup = nav.getByRole("button", { name: "Setup" });
     const tools = nav.getByRole("link", { name: "Ferramentas" });
-    const games = nav.getByRole("link", { name: "Games" });
     await expect(tools).toBeHidden();
-    await expect(games).toBeHidden();
+    await expect(nav.locator('a[href="./games.html"]')).toHaveCount(0);
     await setup.hover();
     await expect(tools).toBeVisible();
-    await expect(games).toBeVisible();
     await setup.focus();
     await page.keyboard.press("Escape");
     await expect(tools).toBeHidden();

@@ -1,6 +1,6 @@
 import { expect, test } from "@playwright/test";
 
-test.describe("setup, tools and games", () => {
+test.describe("setup and tools", () => {
   test("copies an install command to the clipboard", async ({ page, context }) => {
     await context.grantPermissions(["clipboard-read", "clipboard-write"]);
     await page.goto("/ferramentas.html");
@@ -11,21 +11,10 @@ test.describe("setup, tools and games", () => {
     expect(await page.evaluate(() => navigator.clipboard.readText())).toBe(command);
   });
 
-  test("filters the games library and updates the selected state", async ({ page }) => {
+  test("keeps the unfinished games route available as a placeholder", async ({ page }) => {
     await page.goto("/games.html");
-    const cards = page.locator(".game");
-    const filters = page.locator(".filters button");
-    expect(await filters.count()).toBeGreaterThan(1);
-    await expect(filters.nth(0)).toHaveAttribute("aria-pressed", "true");
-    const allGames = await cards.count();
-
-    await filters.nth(1).click();
-    await expect(filters.nth(1)).toHaveAttribute("aria-pressed", "true");
-    await expect(filters.nth(0)).toHaveAttribute("aria-pressed", "false");
-    const filteredGames = await cards.count();
-    expect(filteredGames).toBeLessThan(allGames);
-
-    await filters.nth(0).click();
-    await expect(cards).toHaveCount(allGames);
+    await expect(page).toHaveURL(/\/games\.html$/);
+    await expect(page.getByRole("main").getByRole("heading", { level: 1 })).toHaveCount(1);
+    await expect(page.locator(".game, .filters, .game-organization")).toHaveCount(0);
   });
 });

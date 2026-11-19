@@ -64,6 +64,16 @@ header nav a {
     fill: currentColor;
 }
 
+.social-blog-icon {
+    display: block;
+    width: 30px;
+    height: 30px;
+    background: currentColor;
+    mask-position: center;
+    mask-repeat: no-repeat;
+    mask-size: contain;
+}
+
 .section {
     padding-block: 36px;
     border-top: 1px solid var(--line);
@@ -137,6 +147,18 @@ header nav a {
     height: 100%;
     margin: 0;
     object-fit: cover;
+}
+
+@media (hover: hover) {
+    .about-portrait:hover .markdown-image {
+        filter: brightness(1.1) saturate(1.12);
+    }
+}
+
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+    .about-portrait .markdown-image {
+        transition: filter 240ms ease-out;
+    }
 }
 
 @media (max-width: 780px) {
@@ -254,6 +276,17 @@ header nav a {
 .highlights .panel {
     gap: 16px;
     padding: clamp(24px, 3vw, 32px);
+}
+
+.highlights .panel:hover,
+.highlights .panel:focus-within {
+    background-color: var(--pink);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .highlights .panel {
+        transition: background-color 220ms ease-out;
+    }
 }
 
 .panel .eyebrow {
