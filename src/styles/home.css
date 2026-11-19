@@ -67,8 +67,8 @@
 }
 
 .button:hover {
-    background: var(--accent);
-    color: var(--on-ink);
+    background: var(--pink);
+    color: var(--ink);
 }
 
 .text-link {
@@ -172,6 +172,17 @@ h2 {
     display: flex;
     flex-direction: column;
     min-width: 0;
+}
+
+.projects .card:hover,
+.projects .card:focus-within {
+    background-color: var(--pink);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .projects .card {
+        transition: background-color 220ms ease-out;
+    }
 }
 
 .card-top {

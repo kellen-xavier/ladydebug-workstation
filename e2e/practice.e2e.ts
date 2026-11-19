@@ -37,6 +37,16 @@ test.describe("work cases", () => {
     await expect(cards.first()).toBeVisible();
   });
 
+  test("keeps the next work link clear on hover", async ({ page }) => {
+    await page.goto("/pratica.html#web");
+    const next = page.locator(".work-detail#web .work-next a");
+    await next.hover();
+    await expect(next).toHaveCSS("background-color", "rgba(0, 0, 0, 0)");
+    const destination = await next.getAttribute("href");
+    await next.click();
+    await expect(page).toHaveURL(new RegExp(`${destination}$`));
+  });
+
   test("opens a linked case directly and keeps evidence disclosures keyboard accessible", async ({
     page,
   }) => {

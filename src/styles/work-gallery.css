@@ -232,6 +232,16 @@
     text-decoration: none;
 }
 
+.work-next a:hover,
+.work-next a:focus-visible {
+    background: transparent;
+}
+
+.work-next a:focus-visible {
+    outline: 3px dashed var(--accent);
+    outline-offset: 4px;
+}
+
 .work-next span {
     color: var(--accent);
     font: 0.78rem / 1.6 var(--font-mono);
