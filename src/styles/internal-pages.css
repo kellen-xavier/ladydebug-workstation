@@ -269,7 +269,31 @@
     outline-offset: 2px;
 }
 
-/* Games */
+#root:has(.under-development) {
+    display: flex;
+    flex-direction: column;
+    min-height: 100svh;
+}
+
+#root:has(.under-development) main {
+    display: grid;
+    flex: 1;
+}
+
+.under-development {
+    display: grid;
+    place-items: center;
+    min-height: 65svh;
+    padding-block: clamp(72px, 12vw, 144px);
+    text-align: center;
+}
+
+.under-development h1 {
+    margin: 0;
+    font: 400 clamp(2.7rem, 6vw, 5rem) / 1.05 var(--font-display);
+}
+
+/* Games draft */
 .game-organization {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr));

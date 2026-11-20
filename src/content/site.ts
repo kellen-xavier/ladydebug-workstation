@@ -58,7 +58,6 @@ export const site = {
   setupNavigation: [
     { label: "Setup", href: pageHref.setup, page: "setup" },
     { label: "Ferramentas", href: pageHref.ferramentas, page: "ferramentas" },
-    { label: "Games", href: pageHref.games, page: "games" },
   ] satisfies [NavigationItem, ...NavigationItem[]],
 
   socialLabel: "Redes",

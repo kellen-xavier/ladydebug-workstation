@@ -1,11 +1,11 @@
 import type { ComponentType } from "react";
 import { CareerPage } from "./components/CareerPage";
 import { ContactPage } from "./components/ContactPage";
-import { GamesPage } from "./components/GamesPage";
 import { HomePage } from "./components/HomePage";
 import { PracticePage } from "./components/PracticePage";
 import { SetupPage } from "./components/SetupPage";
 import { ToolsPage } from "./components/ToolsPage";
+import { UnderDevelopmentPage } from "./components/UnderDevelopmentPage";
 import { WorkflowPage } from "./components/WorkflowPage";
 
 /**
@@ -84,10 +84,10 @@ export const pages = [
   {
     slug: "games",
     path: "/games.html",
-    title: "Games — Ladydebug",
-    description: "Como organizo meus jogos e acompanho estudos e projetos com games.",
-    component: GamesPage,
-    componentName: "GamesPage",
+    title: "Em desenvolvimento — Ladydebug",
+    description: "Página de Games em desenvolvimento.",
+    component: UnderDevelopmentPage,
+    componentName: "UnderDevelopmentPage",
   },
   {
     slug: "contato",

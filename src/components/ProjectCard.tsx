@@ -1,4 +1,5 @@
 import { site } from "../content/site";
+import { ClickSpark } from "./ClickSpark";
 import { ExternalLink } from "./ExternalLink";
 
 export type Project = {
@@ -12,7 +13,7 @@ export type Project = {
 
 export function ProjectCard({ project }: { project: Project }) {
   return (
-    <article className="card">
+    <ClickSpark className="card">
       <div className="card-top">
         <span className="repo-icon" aria-hidden="true">
           {project.icon}
@@ -35,6 +36,6 @@ export function ProjectCard({ project }: { project: Project }) {
           {site.projectLinkLabel}
         </ExternalLink>
       </div>
-    </article>
+    </ClickSpark>
   );
 }
