@@ -11,7 +11,7 @@ Curto Layout dos anos 2000–2009 (estou tentando reformular porém esta ainda u
 - **Página Trabalhos:** `src/content/trabalhos.md` guarda a introdução, os rótulos e a nota de leitura.
 - **Relatos dos trabalhos:** `src/content/trabalhos/*.md`. Edite `stack`, `period` e `summary` no front matter de cada relato; o restante é Markdown. A ordem e o ID da âncora ficam em `src/content/trabalhos/index.ts`.
 - **Texto de apresentação do fluxo:** `src/content/fluxo.md` — aceita parágrafos, ênfase e links Markdown.
-- **Página completa do workflow:** `src/content/fluxo-completo.md` — conteúdo acessível pelo botão “Conhecer meu Workflow”, em `workflow.html`. Aceita listas de tarefas com `- [ ]` e `- [x]`.
+- **Página completa do workflow:** `src/content/fluxo-completo.md` — relato detalhado exibido abaixo do ciclo de trabalho em `workflow.html`. A apresentação inicial fica em `src/content/fluxo.md`.
 - **Etapas do fluxo:** `src/content/fluxo-passos.md` — uma seção `## <id-do-caso>` por etapa (o id liga ao caso em Trabalhos); a ordem das seções define a exibição.
 - **Projetos:** `src/content/projetos.md` — uma seção `## Nome do projeto` por cartão (tags separadas por `|`).
 - **Mapa do site:** `src/content/mapa.md` — conteúdo preservado; a seção está temporariamente fora da home.
@@ -31,7 +31,7 @@ Nos relatos dos trabalhos, use `#` para o título do caso, `###` para os subtít
 
 Os arquivos são importados como texto e renderizados por `react-markdown`. Links externos recebem `target="_blank"` e `rel="noopener noreferrer"`; âncoras internas continuam na mesma página. HTML bruto não é renderizado.
 
-Na apresentação do fluxo, os títulos Markdown são exibidos com um único estilo de subtítulo. A hierarquia dos títulos do relato completo é preservada na página interna. Essa página usa `remark-gfm` para apresentar a lista de critérios dos estudos.
+Na apresentação do fluxo, os títulos Markdown são exibidos com um único estilo de subtítulo. O relato completo usa títulos de segundo nível para cada etapa e aceita extensões de Markdown do GitHub por meio de `remark-gfm`.
 
 O plugin em `scripts/markdown-text.ts`, registrado em `bunfig.toml`, preserva a leitura como texto também após editar um `.md` com o servidor aberto. Isso evita que o recarregamento do Bun converta o Markdown em HTML antes de chegar ao componente. No build, os imports usam `with { type: "text" }`.
 

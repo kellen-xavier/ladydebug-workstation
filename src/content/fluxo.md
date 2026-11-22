@@ -1,3 +1,1 @@
-# Do contexto à revisão, os testes acompanham a implementação
-
-## Registro as decisões e uso o aprendizado para orientar a próxima entrega
+Geralmente chego a um projeto por uma demanda de qualidade. Investigo onde a equipe encontra dificuldades para entender, modificar e validar o software. A partir daí, trabalho com ela para priorizar melhorias, testar mudanças e compartilhar o que aprendemos.

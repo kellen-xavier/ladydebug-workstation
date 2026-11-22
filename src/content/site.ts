@@ -80,7 +80,7 @@ export const site = {
       eyebrow: "01 / como trabalho",
       title: "Entender. Construir. Aprender. Evoluir.",
       description:
-        "Do contexto à revisão, os testes acompanham a implementação. Registro as decisões e uso o aprendizado para orientar a próxima entrega.",
+        "Entendo onde o trabalho trava e priorizo melhorias com a equipe. Uso testes, documentação e mentoria para apoiar a entrega e a manutenção.",
       link: { href: pageHref.workflow, label: "Ver meu workflow →" },
     },
     setup: {

@@ -64,8 +64,8 @@ ladydebug-workstation/
 │   │   │   ├── cadastro.md
 │   │   │   └── unity.md
 │   │   ├── fluxo.md        # breve apresentação do processo de trabalho
-│   │   ├── fluxo-completo.md # relato e critérios de conclusão dos estudos
-│   │   ├── fluxo-passos.md # etapas, rótulos e ciclo do fluxo (seção da home)
+│   │   ├── fluxo-completo.md # etapas detalhadas e ferramentas de apoio
+│   │   ├── fluxo-passos.md # etapas, rótulos e casos ligados ao fluxo
 │   │   ├── mapa.md         # lugares do mapa do site
 │   │   ├── trajetoria.md   # linha do tempo da trajetória
 │   │   ├── setup.md        # painéis do setup
