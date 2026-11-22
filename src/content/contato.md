@@ -1,7 +1,7 @@
 ---
 eyebrow: contato
 emailAction: Vamos conversar
-emailTooltip: Abre seu aplicativo de e-mail com o assunto pronto. Conte brevemente sobre o que gostaria de conversar.
+emailTooltip: Abra seu aplicativo de e-mail com o assunto pronto. Conte brevemente sobre o que gostaria de conversar.
 socialTitle: Onde estou
 ---
 

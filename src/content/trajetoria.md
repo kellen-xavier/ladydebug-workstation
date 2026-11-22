@@ -26,7 +26,7 @@ practiceLinkLabel: Casos relacionados:
 - organizacao: Unisinos · Especialização
 - fim: 2025-12
 - tipo: education
-- descricao: Especialização que aprofunda a formação em Engenharia de Software e se conecta à atuação em desenvolvimento, integrações, testes e documentação.
+- descricao: Especialização em Engenharia de Software, trabalhando em atuação em desenvolvimento, integrações, testes e planejamento de sistemas.
 
 ## Analista de Testes / Quality Engineer
 
