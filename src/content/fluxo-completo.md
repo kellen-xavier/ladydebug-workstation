@@ -22,6 +22,8 @@ ESTUDO CONCLUÍDO
 
 > o repositório deve guardar evidência do aprendizado.
 
+## Aprendizado - Entendimento - Complexidade Cognitiva
+
 ---
 
 ## Inicio do Trabalho
