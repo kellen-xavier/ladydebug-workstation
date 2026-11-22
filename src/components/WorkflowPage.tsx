@@ -8,10 +8,10 @@ import { Workflow } from "./Workflow";
 export function WorkflowPage() {
   return (
     <PageLayout current="workflow">
+      <Workflow showDetailsLink={false} headingLevel={1} />
       <article className="workflow-page">
         <MarkdownContent remarkPlugins={[remarkGfm]}>{content}</MarkdownContent>
       </article>
-      <Workflow showDetailsLink={false} />
       <Projects />
     </PageLayout>
   );

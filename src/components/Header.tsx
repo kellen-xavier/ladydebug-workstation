@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { type Ref, useEffect, useRef, useState } from "react";
 import { type NavigationItem, type PageId, pageHref, site } from "../content/site";
 import { SocialLinks } from "./SocialLinks";
 
@@ -76,11 +76,17 @@ function NavGroup({
   );
 }
 
-export function Header({ current = "home" }: { current?: PageId }) {
+export function Header({
+  current = "home",
+  headerRef,
+}: {
+  current?: PageId;
+  headerRef?: Ref<HTMLElement>;
+}) {
   const [open, setOpen] = useState(false);
 
   return (
-    <header>
+    <header ref={headerRef}>
       <div className="wrap header-inner">
         <a className="brand" href={pageHref.home}>
           {site.brand}

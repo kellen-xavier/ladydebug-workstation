@@ -4,7 +4,10 @@
     gap: 24px;
     text-align: center;
 }
-#fluxo h2 em {
+#fluxo h1 {
+    font: clamp(28px, 5vw, 46px) / 1.2 var(--font-body);
+}
+#fluxo :is(h1, h2) em {
     font-style: normal;
     color: var(--link);
 }
@@ -32,11 +35,6 @@
     display: flex;
     justify-content: center;
     margin-bottom: 28px;
-}
-.workflow-page h1 {
-    margin: 0 0 28px;
-    text-align: center;
-    font: clamp(28px, 4vw, 40px) / 1.2 var(--font-body);
 }
 .workflow-page h2 {
     margin: 32px 0 16px;
@@ -102,11 +100,11 @@
     display: block;
     margin-bottom: 18px;
 }
-.workflow h3 {
+.workflow :is(h2, h3) {
     font-size: 22px;
     line-height: 1.25;
 }
-.workflow h3:before {
+.workflow :is(h2, h3):before {
     display: block;
     font: 0.78rem / 1.6 var(--font-mono);
     margin-bottom: 9px;
@@ -124,9 +122,11 @@
 }
 .cycle {
     display: flex;
-    flex-direction: column;
     align-items: center;
-    gap: 6px;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 6px 16px;
+    max-width: none;
     text-align: center;
     border: 3px double var(--line);
     background: var(--soft);
@@ -151,7 +151,7 @@
     }
 }
 @media (max-width: 560px) {
-    #fluxo h2 {
+    #fluxo .section-head h2 {
         font-size: 24px;
     }
     .workflow {
@@ -162,11 +162,11 @@
         gap: 8px;
         padding: 12px;
     }
-    .workflow h3 {
+    .workflow :is(h2, h3) {
         margin: 0;
         font-size: 18px;
     }
-    .workflow h3:before {
+    .workflow :is(h2, h3):before {
         display: inline;
         margin: 0 6px 0 0;
     }
@@ -189,7 +189,7 @@
         display: block;
     }
     .cycle {
-        align-items: center;
+        flex-direction: column;
     }
     .cycle strong {
         flex: 1;

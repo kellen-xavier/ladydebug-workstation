@@ -60,7 +60,7 @@ export const pages = [
     path: "/workflow.html",
     title: "Workflow de trabalho — Ladydebug",
     description:
-      "Como organizo desenvolvimento, testes, documentação e aprendizado nos meus projetos.",
+      "Como identifico gargalos e colaboro com equipes para melhorar a qualidade de software por meio de testes, documentação e mentoria técnica.",
     component: WorkflowPage,
     componentName: "WorkflowPage",
   },

@@ -58,17 +58,26 @@ function Subtitle({ children }: { children?: ReactNode }) {
   return <p className="flow-subtitle">{children}</p>;
 }
 
-export function Workflow({ showDetailsLink = true }: { showDetailsLink?: boolean }) {
+export function Workflow({
+  showDetailsLink = true,
+  headingLevel = 2,
+}: {
+  showDetailsLink?: boolean;
+  headingLevel?: 1 | 2;
+}) {
+  const Heading = headingLevel === 1 ? "h1" : "h2";
+  const StepHeading = headingLevel === 1 ? "h2" : "h3";
+
   return (
     <section className="practice" id="fluxo">
       <div className="section-head">
         <div>
           <p className="eyebrow">{workflow.eyebrow}</p>
-          <h2>
+          <Heading>
             {workflow.title}
             <br />
             <em>{workflow.titleEmphasis}</em>
-          </h2>
+          </Heading>
         </div>
         <div className="flow-intro">
           <MarkdownContent
@@ -96,7 +105,7 @@ export function Workflow({ showDetailsLink = true }: { showDetailsLink?: boolean
             <span className="step-icon" aria-hidden="true">
               {step.icon}
             </span>
-            <h3>{step.title}</h3>
+            <StepHeading>{step.title}</StepHeading>
             <p>{step.description}</p>
             <a className="flow-ref" href={step.href}>
               {step.linkLabel}
