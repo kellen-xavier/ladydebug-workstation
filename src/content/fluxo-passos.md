@@ -4,21 +4,21 @@ title: Entender. Construir.
 titleEmphasis: Aprender. Evoluir.
 detailsLabel: Conhecer meu workflow
 cycleIcon: ↻
-cycleDescription: O que observamos em cada entrega orienta o próximo diagnóstico.
-cycleLinkLabel: Voltar ao início do fluxo
+cycleDescription: Quais problemas identificador, quais complexidades encontradas, a análise e treinamento orieta o próximo passo.
+cycleLinkLabel:
 ---
 
 ## mobile
 
 - icon: ⌕
-- titulo: Entender o contexto
-- descricao: Investigo o fluxo real, localizo os gargalos e confirmo as prioridades com a equipe.
-- link: Ver o caso mobile
+- titulo: Entender o contexto com base na análise
+- descricao: Investigo o fluxo real, localizo os gargalos e confirmo as prioridades.
+- link:
 
 ## cadastro
 
 - icon: </>
-- titulo: Construir com a equipe
+- titulo: Construir
 - descricao: Dividimos as melhorias em mudanças pequenas, com critérios de aceite e testes.
 - link: Ver o caso de cadastro
 

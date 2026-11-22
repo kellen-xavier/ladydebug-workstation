@@ -46,6 +46,11 @@ export const site = {
   backToTopLabel: "Voltar ao topo",
   navigationLabel: "Navegação principal",
   menuLabel: "menu",
+  scrollMenu: {
+    openLabel: "Abrir menu flutuante",
+    closeLabel: "Fechar menu flutuante",
+    navigationLabel: "Navegação ao rolar",
+  },
   navigation: [
     { label: "Sobre", href: `${pageHref.home}#sobre`, page: "home" },
     { label: "Contate", href: pageHref.contato, page: "contato" },

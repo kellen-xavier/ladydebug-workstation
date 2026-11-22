@@ -11,6 +11,7 @@ Ainda estou desenvolvendo, tem alguns achado que preciso colocar aqui.
 - CSS puro (sem framework), com variáveis de cor em `:root`.
 - Ícones sociais sem biblioteca: GitHub e LinkedIn são SVGs no componente; o Blog usa `src/assets/icons-blog.svg` com cor herdada do tema.
 - Os cartões de projetos usam uma versão enxuta do [ClickSpark do React Bits](https://reactbits.dev/animations/click-spark), desenhada em canvas com a cor de destaque do site. O efeito respeita a preferência por movimento reduzido.
+- Após o cabeçalho sair da tela, um menu adaptado do [StaggeredMenu do React Bits](https://reactbits.dev/components/staggered-menu) mantém a navegação acessível. A animação usa GSAP e respeita a preferência por movimento reduzido.
 - [Biome](https://biomejs.dev/) — lint e formatação de TS/TSX, CSS e JSON (inclui regras de React e acessibilidade).
 
 ## Estrutura
@@ -30,6 +31,7 @@ ladydebug-workstation/
 │   │   ├── UnderDevelopmentPage.tsx # mensagem temporária em games.html
 │   │   ├── ContactPage.tsx # contato por e-mail e redes sociais
 │   │   ├── Header.tsx       # navegação principal + links sociais
+│   │   ├── StaggeredMenu.tsx # navegação animada exibida após o scroll
 │   │   ├── BackToTop.tsx    # botão de retorno ao topo após rolar a página
 │   │   ├── SocialLinks.tsx  # ícones GitHub, LinkedIn e Blog
 │   │   ├── Hero.tsx

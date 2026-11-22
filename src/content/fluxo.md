@@ -1,1 +1,1 @@
-Geralmente chego a um projeto por uma demanda de qualidade. Investigo onde a equipe encontra dificuldades para entender, modificar e validar o software. A partir daí, trabalho com ela para priorizar melhorias, testar mudanças e compartilhar o que aprendemos.
+Ao chegar em um projeto faço a analise geral e gero o contexto. Investigo onde a equipe encontra dificuldades para entender, modificar e validar o software. Então a partir do ensumo e análise, trabalho com ela para priorizar melhorias, aplicar testes, mudanças e aplicar o conhecimento.

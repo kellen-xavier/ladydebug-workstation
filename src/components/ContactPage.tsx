@@ -8,7 +8,7 @@ import { PageLayout } from "./PageLayout";
 
 const { meta, body } = frontmatter(contactSource);
 const emailAction = meta.emailAction ?? "";
-const emailHref = `mailto:${links.contactEmail}?subject=${encodeURIComponent(emailAction)}`;
+const emailHref = `mailto:${links.contactEmail}?subject=${encodeURIComponent(meta.emailSubject ?? emailAction)}`;
 
 function placeTooltip(tooltip: HTMLElement | null, x: number, y: number) {
   if (!tooltip) return;
