@@ -2,6 +2,68 @@ import { expect, test } from "@playwright/test";
 import { mainNavigation, openMenu } from "./support/site";
 
 test.describe("primary navigation", () => {
+  test("keeps the compact scroll toggle at the viewport edge", async ({ page }) => {
+    await page.goto("/");
+    await page.evaluate(() => window.scrollTo({ top: 700, behavior: "instant" }));
+    const toggle = page.getByRole("button", { name: /abrir menu flutuante/i });
+    await expect(toggle).toBeVisible();
+    await expect(toggle.locator(".staggered-menu-icon-line")).toHaveCount(3);
+    const bounds = await toggle.boundingBox();
+    expect(bounds).not.toBeNull();
+    if (bounds) {
+      expect(bounds.width).toBeLessThanOrEqual(56);
+      expect((page.viewportSize()?.width ?? 0) - bounds.x - bounds.width).toBeLessThanOrEqual(32);
+    }
+    await toggle.click();
+    await expect(page.locator(".staggered-menu-toggle")).toHaveAttribute("aria-expanded", "true");
+  });
+
+  test("reveals the scroll menu after the header leaves view and hides it at the top", async ({
+    page,
+  }) => {
+    await page.goto("/");
+    const toggle = page.getByRole("button", { name: /abrir menu flutuante/i });
+    await expect(toggle).toBeHidden();
+
+    await page.evaluate(() => window.scrollTo({ top: 700, behavior: "instant" }));
+    await expect(toggle).toBeVisible();
+    await toggle.click();
+    const panel = page.getByRole("navigation", { name: /navegação ao rolar/i });
+    await expect(panel).toBeVisible();
+    await expect(panel.locator('a[href="./workflow.html"]')).toBeVisible();
+    await expect(panel.locator('a[href="./games.html"]')).toHaveCount(0);
+    await expect(page.locator(".staggered-menu-brand")).toBeFocused();
+
+    await page.keyboard.press("Escape");
+    await expect(panel).toBeHidden();
+    await expect(toggle).toBeFocused();
+    await page.evaluate(() => window.scrollTo({ top: 0, behavior: "instant" }));
+    await expect(toggle).toBeHidden();
+  });
+
+  test("opens a page from the scroll menu", async ({ page }) => {
+    await page.goto("/");
+    await page.evaluate(() => window.scrollTo({ top: 700, behavior: "instant" }));
+    await page.getByRole("button", { name: /abrir menu flutuante/i }).click();
+    await page
+      .getByRole("navigation", { name: /navegação ao rolar/i })
+      .locator('a[href="./workflow.html"]')
+      .click();
+    await expect(page).toHaveURL(/\/workflow\.html$/);
+  });
+
+  test("closes the scroll menu when clicking outside it", async ({ page }) => {
+    test.skip((page.viewportSize()?.width ?? 0) <= 480);
+    await page.goto("/");
+    await page.evaluate(() => window.scrollTo({ top: 700, behavior: "instant" }));
+    const toggle = page.getByRole("button", { name: /abrir menu flutuante/i });
+    await toggle.click();
+    await expect(page.getByRole("navigation", { name: /navegação ao rolar/i })).toBeVisible();
+    await page.locator(".staggered-menu-backdrop").click({ position: { x: 20, y: 200 } });
+    await expect(page.getByRole("navigation", { name: /navegação ao rolar/i })).toBeHidden();
+    await expect(toggle).toBeVisible();
+  });
+
   test("shows a vector blog icon that adapts to light and dark colors", async ({ page }) => {
     await page.goto("/");
     await openMenu(page);

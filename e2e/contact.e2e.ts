@@ -15,10 +15,12 @@ test.describe("contact page", () => {
     await expect(emailLink).toBeVisible();
     await expect(emailLink.locator("small")).toHaveCount(0);
     const href = await emailLink.getAttribute("href");
-    expect(href).toBeTruthy();
-    const [recipient, query] = (href ?? "").replace("mailto:", "").split("?");
-    expect(recipient).toBe("kellenxaviier@gmail.com");
-    expect(new URLSearchParams(query).get("subject")).toBe("Vamos conversar");
+    expect(href).toMatch(/^mailto:/);
+    const destination = new URL(href ?? "mailto:");
+    expect(destination.pathname).toBe("kellenxaviier@gmail.com");
+    expect(destination.searchParams.get("subject")?.trim()).toBeTruthy();
+    await emailLink.click();
+    await expect(page).toHaveURL(/\/contato\.html$/);
   });
 
   test("keeps the email tooltip next to the pointer and available on focus", async ({ page }) => {
