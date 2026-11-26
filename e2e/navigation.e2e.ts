@@ -2,66 +2,32 @@ import { expect, test } from "@playwright/test";
 import { mainNavigation, openMenu } from "./support/site";
 
 test.describe("primary navigation", () => {
-  test("keeps the compact scroll toggle at the viewport edge", async ({ page }) => {
+  test("keeps the primary header at the top while scrolling", async ({ page }) => {
     await page.goto("/");
+    const header = page.locator("header");
     await page.evaluate(() => window.scrollTo({ top: 700, behavior: "instant" }));
-    const toggle = page.getByRole("button", { name: /abrir menu flutuante/i });
-    await expect(toggle).toBeVisible();
-    await expect(toggle.locator(".staggered-menu-icon-line")).toHaveCount(3);
-    const bounds = await toggle.boundingBox();
-    expect(bounds).not.toBeNull();
-    if (bounds) {
-      expect(bounds.width).toBeLessThanOrEqual(56);
-      expect((page.viewportSize()?.width ?? 0) - bounds.x - bounds.width).toBeLessThanOrEqual(32);
-    }
-    await toggle.click();
-    await expect(page.locator(".staggered-menu-toggle")).toHaveAttribute("aria-expanded", "true");
+    await expect.poll(() => page.evaluate(() => window.scrollY)).toBeGreaterThan(600);
+    await expect(header).toBeInViewport();
+    await expect.poll(async () => (await header.boundingBox())?.y).toBe(0);
+    await expect(page.locator(".staggered-menu")).toHaveCount(0);
   });
 
-  test("reveals the scroll menu after the header leaves view and hides it at the top", async ({
-    page,
-  }) => {
+  test("opens navigation from the sticky header on compact screens", async ({ page }) => {
+    test.skip((page.viewportSize()?.width ?? 0) > 1100);
     await page.goto("/");
-    const toggle = page.getByRole("button", { name: /abrir menu flutuante/i });
-    await expect(toggle).toBeHidden();
-
     await page.evaluate(() => window.scrollTo({ top: 700, behavior: "instant" }));
-    await expect(toggle).toBeVisible();
+    const toggle = page.locator("header .menu-toggle");
+    await expect(toggle).toBeInViewport();
+    await expect(toggle).toHaveAttribute("aria-expanded", "false");
     await toggle.click();
-    const panel = page.getByRole("navigation", { name: /navegação ao rolar/i });
-    await expect(panel).toBeVisible();
-    await expect(panel.locator('a[href="./workflow.html"]')).toBeVisible();
-    await expect(panel.locator('a[href="./games.html"]')).toHaveCount(0);
-    await expect(page.locator(".staggered-menu-brand")).toBeFocused();
-
-    await page.keyboard.press("Escape");
-    await expect(panel).toBeHidden();
-    await expect(toggle).toBeFocused();
-    await page.evaluate(() => window.scrollTo({ top: 0, behavior: "instant" }));
-    await expect(toggle).toBeHidden();
-  });
-
-  test("opens a page from the scroll menu", async ({ page }) => {
-    await page.goto("/");
-    await page.evaluate(() => window.scrollTo({ top: 700, behavior: "instant" }));
-    await page.getByRole("button", { name: /abrir menu flutuante/i }).click();
-    await page
-      .getByRole("navigation", { name: /navegação ao rolar/i })
-      .locator('a[href="./workflow.html"]')
-      .click();
+    await expect(toggle).toHaveAttribute("aria-expanded", "true");
+    await expect(mainNavigation(page).getByRole("button", { name: "Trabalhos" })).toBeVisible();
+    await toggle.click();
+    await expect(toggle).toHaveAttribute("aria-expanded", "false");
+    await toggle.click();
+    await mainNavigation(page).getByRole("button", { name: "Trabalhos" }).click();
+    await mainNavigation(page).locator('a[href="./workflow.html"]').click();
     await expect(page).toHaveURL(/\/workflow\.html$/);
-  });
-
-  test("closes the scroll menu when clicking outside it", async ({ page }) => {
-    test.skip((page.viewportSize()?.width ?? 0) <= 480);
-    await page.goto("/");
-    await page.evaluate(() => window.scrollTo({ top: 700, behavior: "instant" }));
-    const toggle = page.getByRole("button", { name: /abrir menu flutuante/i });
-    await toggle.click();
-    await expect(page.getByRole("navigation", { name: /navegação ao rolar/i })).toBeVisible();
-    await page.locator(".staggered-menu-backdrop").click({ position: { x: 20, y: 200 } });
-    await expect(page.getByRole("navigation", { name: /navegação ao rolar/i })).toBeHidden();
-    await expect(toggle).toBeVisible();
   });
 
   test("shows a vector blog icon that adapts to light and dark colors", async ({ page }) => {
@@ -70,6 +36,11 @@ test.describe("primary navigation", () => {
     const blog = page.locator('header .social a[aria-label="Blog"]');
     const icon = blog.locator(".social-blog-icon");
     await expect(icon).toBeVisible();
+    const githubIcon = page.locator('header .social a[aria-label="GitHub"] svg');
+    const blogSize = await icon.boundingBox();
+    const githubSize = await githubIcon.boundingBox();
+    expect(blogSize?.width).toBe(githubSize?.width);
+    expect(blogSize?.height).toBe(githubSize?.height);
     const mask = await icon.evaluate((element) => getComputedStyle(element).maskImage);
     const asset = mask.match(/url\("?([^")]+)"?\)/)?.[1];
     expect(asset).toBeTruthy();
@@ -107,6 +78,7 @@ test.describe("primary navigation", () => {
     for (const path of [
       "trajetoria.html",
       "pratica.html",
+      "projetos-e-estudos.html",
       "workflow.html",
       "setup.html",
       "ferramentas.html",
@@ -114,7 +86,10 @@ test.describe("primary navigation", () => {
     ]) {
       await page.goto("/");
       await openMenu(page);
-      if (["trajetoria.html", "pratica.html", "workflow.html"].includes(path)) {
+      if (path === "trajetoria.html") {
+        await mainNavigation(page).getByRole("button", { name: "Sobre" }).click();
+      }
+      if (["pratica.html", "projetos-e-estudos.html", "workflow.html"].includes(path)) {
         await mainNavigation(page).getByRole("button", { name: "Trabalhos" }).click();
       }
       if (["setup.html", "ferramentas.html"].includes(path)) {
@@ -146,22 +121,32 @@ test.describe("primary navigation", () => {
     await page.goto("/");
     const nav = mainNavigation(page);
     const work = nav.getByRole("button", { name: "Trabalhos" });
-    const career = nav.getByRole("link", { name: "Trajetória" });
     const workflow = nav.getByRole("link", { name: "Workflow" });
-    await expect(career).toBeHidden();
     await work.hover();
-    await expect(career).toBeVisible();
     await expect(workflow).toBeVisible();
+    await expect(nav.locator("#work-submenu a[href='./trajetoria.html']")).toHaveCount(0);
     await work.focus();
     await page.keyboard.press("Escape");
+    await expect(workflow).toBeHidden();
+  });
+
+  test("reveals about and career destinations from Sobre", async ({ page }) => {
+    await page.goto("/");
+    await openMenu(page);
+    const nav = mainNavigation(page);
+    const about = nav.getByRole("button", { name: "Sobre" });
+    const career = nav.getByRole("link", { name: "Trajetória" });
     await expect(career).toBeHidden();
+    await about.click();
+    await expect(nav.locator('a[href="./index.html#sobre"]')).toBeVisible();
+    await expect(career).toBeVisible();
   });
 
   test("marks only the open page as current", async ({ page }) => {
     await page.goto("/trajetoria.html");
     await openMenu(page);
     const nav = mainNavigation(page);
-    await nav.getByRole("button", { name: "Trabalhos" }).click();
+    await nav.getByRole("button", { name: "Sobre" }).click();
     await expect(nav.locator('a[href="./trajetoria.html"]')).toHaveAttribute(
       "aria-current",
       "page",
@@ -178,6 +163,7 @@ test.describe("primary navigation", () => {
     await openMenu(page);
     const nav = mainNavigation(page);
     await expect(nav.locator('a[href="./index.html#mapa"]')).toHaveCount(0);
+    await nav.getByRole("button", { name: "Sobre" }).click();
     const about = nav.getByRole("link", { name: "Sobre" });
     await about.click();
     await expect(page).toHaveURL(/#sobre$/);

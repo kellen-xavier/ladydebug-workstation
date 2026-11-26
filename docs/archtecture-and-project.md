@@ -11,9 +11,10 @@ Curto Layout dos anos 2000–2009 (estou tentando reformular porém esta ainda u
 - **Página Trabalhos:** `src/content/trabalhos.md` guarda a introdução, os rótulos e a nota de leitura.
 - **Relatos dos trabalhos:** `src/content/trabalhos/*.md`. Edite `stack`, `period` e `summary` no front matter de cada relato; o restante é Markdown. A ordem e o ID da âncora ficam em `src/content/trabalhos/index.ts`.
 - **Texto de apresentação do fluxo:** `src/content/fluxo.md` — aceita parágrafos, ênfase e links Markdown.
-- **Página completa do workflow:** `src/content/fluxo-completo.md` — relato detalhado exibido abaixo do ciclo de trabalho em `workflow.html`. A apresentação inicial fica em `src/content/fluxo.md`.
-- **Etapas do fluxo:** `src/content/fluxo-passos.md` — uma seção `## <id-do-caso>` por etapa (o id liga ao caso em Trabalhos); a ordem das seções define a exibição.
+- **Relato detalhado do workflow:** `src/content/fluxo-completo.md` — exibido em uma coluna de leitura abaixo dos quadros em `workflow.html`. A apresentação inicial fica em `src/content/fluxo.md`.
+- **Etapas do fluxo:** `src/content/fluxo-passos.md` — cada `##` cria um quadro, sem limite fixo, na ordem do arquivo. Use `- subtitulo:` (ou `- titulo:`) para o texto abaixo do tema e `- descricao:` para a explicação. `- icon:` e os textos podem ficar vazios enquanto você edita. Para mostrar um link a Trabalhos, preencha `- caso:` (ID do relato) e `- link:` (rótulo); sem os dois, o link não aparece.
 - **Projetos:** `src/content/projetos.md` — uma seção `## Nome do projeto` por cartão (tags separadas por `|`).
+- **Página de projetos e estudos:** `src/content/page-projetos-e-estudos.md` — título e introdução da página interna; os cartões continuam em `src/content/projetos.md`.
 - **Mapa do site:** `src/content/mapa.md` — conteúdo preservado; a seção está temporariamente fora da home.
 - **Trajetória:** `src/content/trajetoria.md` — linha do tempo da página Trajetória.
 - **Setup:** `src/content/setup.md`.

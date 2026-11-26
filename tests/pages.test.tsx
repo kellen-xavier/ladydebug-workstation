@@ -33,4 +33,18 @@ describe("site pages", () => {
       await rm(dir, { recursive: true, force: true });
     }
   });
+
+  test("writes publishable HTML pages at the dist root", async () => {
+    const root = new URL("../", import.meta.url);
+    const build = Bun.spawn(["bun", "scripts/build.ts"], {
+      cwd: root.pathname,
+      stdout: "pipe",
+      stderr: "pipe",
+    });
+    expect(await build.exited).toBe(0);
+    for (const page of pages) {
+      const html = Bun.file(new URL(`dist/${pageFile(page)}`, root));
+      expect(await html.exists()).toBe(true);
+    }
+  });
 });

@@ -1,1 +1,2 @@
-Ao chegar em um projeto faço a analise geral e gero o contexto. Investigo onde a equipe encontra dificuldades para entender, modificar e validar o software. Então a partir do ensumo e análise, trabalho com ela para priorizar melhorias, aplicar testes, mudanças e aplicar o conhecimento.
+Entendimento do contexto, análise e aplicabilidade, validar os resultados, entendendo quais complexidades cognitivas existem,
+compartilhar o aprendizado e ajustar o próximo ciclo.

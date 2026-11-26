@@ -1,7 +1,7 @@
 import { describe, expect, test } from "bun:test";
 import { renderToStaticMarkup } from "react-dom/server";
 import { Work } from "../src/components/Work";
-import { Workflow, workflow } from "../src/components/Workflow";
+import { parseWorkflow, Workflow, workflow } from "../src/components/Workflow";
 import { workCases } from "../src/content/trabalhos";
 
 describe("content-driven portfolio sections", () => {
@@ -25,23 +25,41 @@ describe("content-driven portfolio sections", () => {
     }
   });
 
-  test("renders workflow steps and anchor links from the editable structured content", () => {
-    workflow.steps.push({
-      id: "new-step",
-      icon: "✓",
-      title: "An editable step",
-      description: "An editable description.",
-      href: "#mobile",
-      linkLabel: "Inspect the example",
+  test("uses Markdown headings as step titles and omits links without a case reference", () => {
+    const source = `---\ntitle: Workflow\n---\n\n## Analyze\n- subtitulo: Find the issue\n- descricao: Inspect the process.\n\n## Improve\n- subtitulo: Deliver a change\n- descricao: Verify it.\n- caso: backend\n- link: Inspect the case\n`;
+    const parsed = parseWorkflow(source, "");
+    expect(parsed.steps).toHaveLength(2);
+    expect(parsed.steps[0]).toMatchObject({
+      title: "Analyze",
+      subtitle: "Find the issue",
+      description: "Inspect the process.",
     });
-    try {
-      const html = renderToStaticMarkup(<Workflow />);
-      expect(html.match(/<h3>/g)).toHaveLength(workflow.steps.length);
-      expect(html).toMatch(/<p>[^<]+<\/p>/);
-      expect(html).toMatch(/<a class="flow-ref" href="#mobile">[^<]+<\/a>/);
-    } finally {
-      workflow.steps.pop();
-    }
+    expect(parsed.steps[0]?.link).toBeUndefined();
+    expect(parsed.steps[1]?.link).toEqual({
+      href: "./pratica.html#backend",
+      label: "Inspect the case",
+    });
+  });
+
+  test("accepts any number of steps with optional fields and title aliases", () => {
+    const source = `## First\n- subtitulo: Plan\n- descricao: Inspect.\n\n## Second\n- titulo: Build\n- descricao: Deliver.\n\n## Third\n- icon: ↻\n- titulo:\n- descricao:\n- link:\n\n## Fourth\n- icon: ↻\n\n## Fifth\n- titulo: Review\n\n## Sixth\n- descricao: Learn.\n`;
+    const parsed = parseWorkflow(source, "");
+    expect(parsed.steps).toHaveLength(6);
+    expect(parsed.steps.map((step) => step.title)).toEqual([
+      "First",
+      "Second",
+      "Third",
+      "Fourth",
+      "Fifth",
+      "Sixth",
+    ]);
+    expect(parsed.steps[1]?.subtitle).toBe("Build");
+    expect(parsed.steps[2]).toMatchObject({
+      icon: "↻",
+      subtitle: "",
+      description: "",
+      link: undefined,
+    });
   });
 
   test("renders the workflow introduction as Markdown with paragraphs and internal links", () => {

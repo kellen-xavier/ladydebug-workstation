@@ -1,4 +1,4 @@
-import { type Ref, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { type NavigationItem, type PageId, pageHref, site } from "../content/site";
 import { SocialLinks } from "./SocialLinks";
 
@@ -66,7 +66,7 @@ function NavGroup({
           <a
             key={item.href}
             href={item.href}
-            aria-current={item.page === current ? "page" : undefined}
+            aria-current={item.page === current && item.page !== "home" ? "page" : undefined}
           >
             {item.label}
           </a>
@@ -76,17 +76,11 @@ function NavGroup({
   );
 }
 
-export function Header({
-  current = "home",
-  headerRef,
-}: {
-  current?: PageId;
-  headerRef?: Ref<HTMLElement>;
-}) {
+export function Header({ current = "home" }: { current?: PageId }) {
   const [open, setOpen] = useState(false);
 
   return (
-    <header ref={headerRef}>
+    <header className="site-header">
       <div className="wrap header-inner">
         <a className="brand" href={pageHref.home}>
           {site.brand}
@@ -94,22 +88,27 @@ export function Header({
         <button
           type="button"
           className="menu-toggle"
+          aria-label={site.menuLabel}
           aria-expanded={open}
           aria-controls="header-tools"
           onClick={() => setOpen((value) => !value)}
         >
-          <span aria-hidden="true">☰</span> {site.menuLabel}
+          <span className="menu-toggle-icon" aria-hidden="true">
+            <span />
+            <span />
+            <span />
+          </span>
         </button>
         <div className="header-tools" id="header-tools" data-open={open}>
           <nav aria-label={site.navigationLabel}>
-            <a href={site.navigation[0].href}>{site.navigation[0].label}</a>
+            <NavGroup id="about-submenu" items={site.aboutNavigation} current={current} />
             <NavGroup id="work-submenu" items={site.workNavigation} current={current} />
             <NavGroup id="setup-submenu" items={site.setupNavigation} current={current} />
             <a
-              href={site.navigation[1].href}
+              href={site.navigation[0].href}
               aria-current={current === "contato" ? "page" : undefined}
             >
-              {site.navigation[1].label}
+              {site.navigation[0].label}
             </a>
           </nav>
           <SocialLinks />

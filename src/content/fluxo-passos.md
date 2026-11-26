@@ -1,37 +1,33 @@
 ---
 eyebrow: Como trabalho
-title: Entender. Construir.
-titleEmphasis: Aprender. Evoluir.
-detailsLabel: Conhecer meu workflow
-cycleIcon: ↻
-cycleDescription: Quais problemas identificador, quais complexidades encontradas, a análise e treinamento orieta o próximo passo.
-cycleLinkLabel:
+title: Workflow
+detailsLabel: Como geralmente faço as análises
 ---
 
-## mobile
+## Diagnóstico Técnico
 
 - icon: ⌕
-- titulo: Entender o contexto com base na análise
-- descricao: Investigo o fluxo real, localizo os gargalos e confirmo as prioridades.
+- titulo: Contexto, requisitos, problemas e causas
+- descricao: Investigação o fluxo real, compreender o problema antes de propor soluções técnicas.
 - link:
 
-## cadastro
+## Arquitetura e Qualidade
 
 - icon: </>
-- titulo: Construir
-- descricao: Dividimos as melhorias em mudanças pequenas, com critérios de aceite e testes.
-- link: Ver o caso de cadastro
+- titulo: Modelagem, decisões, testes e evolução técnica
+- descricao: Analise da arquitetura do projeto, modelagem pode utilizar C4, UML, avaliar processo de suporte e qualidade.
+- link:
 
-## backend
+## Cognição e Complexidade
 
 - icon: [✓]
-- titulo: Aprender na prática
-- descricao: Conduzo mentorias com exemplos do projeto e registro o que a equipe precisa consultar depois.
-- link: Ver a documentação no caso de backend
+- titulo: Análise Cognitiva, Carga cognitiva, compreensão e tomada de decisão
+- descricao: Investigar o esforço cognitivo exigido para compreender, modificar, testar e manter o software.
+- link:
 
-## unity
+## Aprendizado Contínuo e IA
 
 - icon: ↻
-- titulo: Evoluir a cada entrega
-- descricao: Observamos o que funcionou, o que ainda exige esforço e o que vale ajustar na próxima rodada.
-- link: Ver a evolução dos testes em Unity
+- titulo: Conhecimento compartilhado, capacitação e assistência
+- descricao: Reduzir a dependência de conhecimento individual e melhorar a capacidade coletiva das equipes de compreender e evoluir os sistemas.
+- link:

@@ -78,33 +78,6 @@
     color: var(--muted);
     font: 15px / 1.6 var(--font-body);
 }
-.workflow {
-    counter-reset: steps;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 18px;
-    padding: 0;
-    list-style: none;
-}
-.workflow li {
-    padding: 18px;
-    border: 1px dashed var(--line);
-    background: var(--soft);
-}
-.workflow h3 {
-    font: 23px var(--font-body);
-    margin: 0 0 10px;
-}
-.workflow p {
-    font-size: 14px;
-    color: var(--muted);
-    margin: 0;
-}
-.workflow h3:before {
-    counter-increment: steps;
-    content: "0" counter(steps) " / ";
-    color: var(--link);
-}
 .method {
     font-size: 13px;
     color: var(--muted);
@@ -150,9 +123,6 @@
     margin-top: 30px;
 }
 @media (max-width: 560px) {
-    .workflow {
-        grid-template-columns: 1fr;
-    }
     .case summary {
         font-size: 22px;
     }

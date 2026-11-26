@@ -91,12 +91,9 @@ test.describe("home page", () => {
     await page.emulateMedia({ reducedMotion: "no-preference" });
     await page.reload();
     await openMenu(page);
-    await page
-      .getByRole("navigation", { name: "Navegação principal" })
-      .getByRole("link", {
-        name: "Sobre",
-      })
-      .click();
+    const nav = page.getByRole("navigation", { name: "Navegação principal" });
+    await nav.getByRole("button", { name: "Sobre" }).click();
+    await nav.getByRole("link", { name: "Sobre" }).click();
     await expect(page).toHaveURL(/#sobre$/);
     const portrait = page.locator("#sobre .about-portrait");
     if ((page.viewportSize()?.width ?? 0) <= 780) await portrait.scrollIntoViewIfNeeded();
@@ -197,7 +194,7 @@ test.describe("home page", () => {
     await expect(first).toHaveCSS("background-color", "rgb(240, 212, 223)");
   });
 
-  test("keeps the projects blog link plain while CV and blog buttons turn pink", async ({
+  test("keeps the projects page link plain while CV and blog buttons turn pink", async ({
     page,
   }) => {
     test.skip(!(await page.evaluate(() => matchMedia("(hover: hover)").matches)));

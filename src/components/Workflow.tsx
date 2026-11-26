@@ -9,17 +9,16 @@ type WorkflowStep = {
   id: string;
   icon: string;
   title: string;
+  subtitle: string;
   description: string;
-  href: string;
-  linkLabel: string;
+  link?: { href: string; label: string };
 };
 
 /**
- * Reads src/content/fluxo-passos.md (front matter + one "## <id>" section per
- * step, with "- icon / titulo / descricao / link"); each step id links to its
- * case on the practice page. The intro prose stays in src/content/fluxo.md.
+ * Reads one "## title" per step from fluxo-passos.md. An optional case ID and
+ * link label point to a work report. The intro stays in fluxo.md.
  */
-function parseWorkflow(source: string, intro: string) {
+export function parseWorkflow(source: string, intro: string) {
   const { meta, body } = frontmatter(source);
   const steps: WorkflowStep[] = sections(body).map((section) => {
     const fields: Record<string, string> = {};
@@ -30,25 +29,21 @@ function parseWorkflow(source: string, intro: string) {
     return {
       id: section.heading,
       icon: fields.icon ?? "",
-      title: fields.titulo ?? "",
+      title: section.heading,
+      subtitle: fields.subtitulo || fields.titulo || "",
       description: fields.descricao ?? "",
-      href: `${pageHref.pratica}#${section.heading}`,
-      linkLabel: fields.link ?? "",
+      link:
+        fields.link && fields.caso
+          ? { href: `${pageHref.pratica}#${fields.caso}`, label: fields.link }
+          : undefined,
     };
   });
   return {
     eyebrow: meta.eyebrow ?? "",
     title: meta.title ?? "",
-    titleEmphasis: meta.titleEmphasis ?? "",
     intro,
     details: { href: pageHref.workflow, label: meta.detailsLabel ?? "" },
     steps,
-    cycle: {
-      icon: meta.cycleIcon ?? "",
-      description: meta.cycleDescription ?? "",
-      href: "#fluxo",
-      linkLabel: meta.cycleLinkLabel ?? "",
-    },
   };
 }
 
@@ -69,15 +64,11 @@ export function Workflow({
   const StepHeading = headingLevel === 1 ? "h2" : "h3";
 
   return (
-    <section className="practice" id="fluxo">
+    <section className="practice workflow-section" id="fluxo">
       <div className="section-head">
         <div>
           <p className="eyebrow">{workflow.eyebrow}</p>
-          <Heading>
-            {workflow.title}
-            <br />
-            <em>{workflow.titleEmphasis}</em>
-          </Heading>
+          <Heading>{workflow.title}</Heading>
         </div>
         <div className="flow-intro">
           <MarkdownContent
@@ -106,18 +97,16 @@ export function Workflow({
               {step.icon}
             </span>
             <StepHeading>{step.title}</StepHeading>
-            <p>{step.description}</p>
-            <a className="flow-ref" href={step.href}>
-              {step.linkLabel}
-            </a>
+            {step.subtitle && <p className="step-subtitle">{step.subtitle}</p>}
+            {step.description && <p>{step.description}</p>}
+            {step.link && (
+              <a className="flow-ref" href={step.link.href}>
+                {step.link.label}
+              </a>
+            )}
           </li>
         ))}
       </ol>
-      <p className="cycle">
-        <span aria-hidden="true">{workflow.cycle.icon}</span>
-        <strong>{workflow.cycle.description}</strong>
-        <a href={workflow.cycle.href}>{workflow.cycle.linkLabel}</a>
-      </p>
     </section>
   );
 }

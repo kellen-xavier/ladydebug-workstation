@@ -2,7 +2,6 @@ import remarkGfm from "remark-gfm";
 import content from "../content/fluxo-completo.md" with { type: "text" };
 import { MarkdownContent } from "./MarkdownContent";
 import { PageLayout } from "./PageLayout";
-import { Projects } from "./Projects";
 import { Workflow } from "./Workflow";
 
 export function WorkflowPage() {
@@ -10,9 +9,10 @@ export function WorkflowPage() {
     <PageLayout current="workflow">
       <Workflow showDetailsLink={false} headingLevel={1} />
       <article className="workflow-page">
-        <MarkdownContent remarkPlugins={[remarkGfm]}>{content}</MarkdownContent>
+        <MarkdownContent remarkPlugins={[remarkGfm]} components={{ h1: "h2", h2: "h3" }}>
+          {content}
+        </MarkdownContent>
       </article>
-      <Projects />
     </PageLayout>
   );
 }

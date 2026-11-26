@@ -13,6 +13,7 @@ const entrypoints = await generatePages(generated, "../src");
 const result = await Bun.build({
   entrypoints,
   outdir,
+  root: generated,
   target: "browser",
   minify: true,
   publicPath: "./",

@@ -3,6 +3,7 @@ import { CareerPage } from "./components/CareerPage";
 import { ContactPage } from "./components/ContactPage";
 import { HomePage } from "./components/HomePage";
 import { PracticePage } from "./components/PracticePage";
+import { ProjectsAndStudiesPage } from "./components/ProjectsAndStudiesPage";
 import { SetupPage } from "./components/SetupPage";
 import { ToolsPage } from "./components/ToolsPage";
 import { UnderDevelopmentPage } from "./components/UnderDevelopmentPage";
@@ -54,6 +55,14 @@ export const pages = [
       "Casos de contribuição em desenvolvimento, automação de testes e documentação, com evidências e limites.",
     component: PracticePage,
     componentName: "PracticePage",
+  },
+  {
+    slug: "projetos-e-estudos",
+    path: "/projetos-e-estudos.html",
+    title: "Projetos pessoais e de estudo — Ladydebug",
+    description: "Projetos pessoais e estudos de Kellen Xavier, com acesso aos repositórios.",
+    component: ProjectsAndStudiesPage,
+    componentName: "ProjectsAndStudiesPage",
   },
   {
     slug: "workflow",

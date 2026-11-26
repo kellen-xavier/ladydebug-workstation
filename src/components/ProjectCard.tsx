@@ -11,7 +11,14 @@ export type Project = {
   url: string;
 };
 
-export function ProjectCard({ project }: { project: Project }) {
+export function ProjectCard({
+  project,
+  headingLevel = 3,
+}: {
+  project: Project;
+  headingLevel?: 2 | 3;
+}) {
+  const Heading = headingLevel === 2 ? "h2" : "h3";
   return (
     <ClickSpark className="card">
       <div className="card-top">
@@ -20,7 +27,7 @@ export function ProjectCard({ project }: { project: Project }) {
         </span>
         <span className="badge">{project.badge}</span>
       </div>
-      <h3>{project.title}</h3>
+      <Heading>{project.title}</Heading>
       <p>{project.description}</p>
       <div className="card-bottom">
         <div className="tags">

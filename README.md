@@ -11,7 +11,7 @@ Ainda estou desenvolvendo, tem alguns achado que preciso colocar aqui.
 - CSS puro (sem framework), com variáveis de cor em `:root`.
 - Ícones sociais sem biblioteca: GitHub e LinkedIn são SVGs no componente; o Blog usa `src/assets/icons-blog.svg` com cor herdada do tema.
 - Os cartões de projetos usam uma versão enxuta do [ClickSpark do React Bits](https://reactbits.dev/animations/click-spark), desenhada em canvas com a cor de destaque do site. O efeito respeita a preferência por movimento reduzido.
-- Após o cabeçalho sair da tela, um menu adaptado do [StaggeredMenu do React Bits](https://reactbits.dev/components/staggered-menu) mantém a navegação acessível. A animação usa GSAP e respeita a preferência por movimento reduzido.
+- O cabeçalho permanece visível durante o scroll; em telas compactas, a navegação abre pelo botão de menu.
 - [Biome](https://biomejs.dev/) — lint e formatação de TS/TSX, CSS e JSON (inclui regras de React e acessibilidade).
 
 ## Estrutura
@@ -24,14 +24,14 @@ ladydebug-workstation/
 │   │   ├── HomePage.tsx     # composição da home
 │   │   ├── CareerPage.tsx   # página de trajetória
 │   │   ├── PracticePage.tsx # página Trabalhos
-│   │   ├── WorkflowPage.tsx # página de workflow (relato completo do processo)
+│   │   ├── ProjectsAndStudiesPage.tsx # página de projetos e estudos
+│   │   ├── WorkflowPage.tsx # quadros e relato detalhado do processo
 │   │   ├── SetupPage.tsx
 │   │   ├── ToolsPage.tsx
 │   │   ├── GamesPage.tsx
 │   │   ├── UnderDevelopmentPage.tsx # mensagem temporária em games.html
 │   │   ├── ContactPage.tsx # contato por e-mail e redes sociais
 │   │   ├── Header.tsx       # navegação principal + links sociais
-│   │   ├── StaggeredMenu.tsx # navegação animada exibida após o scroll
 │   │   ├── BackToTop.tsx    # botão de retorno ao topo após rolar a página
 │   │   ├── SocialLinks.tsx  # ícones GitHub, LinkedIn e Blog
 │   │   ├── Hero.tsx
@@ -66,8 +66,9 @@ ladydebug-workstation/
 │   │   │   ├── cadastro.md
 │   │   │   └── unity.md
 │   │   ├── fluxo.md        # breve apresentação do processo de trabalho
-│   │   ├── fluxo-completo.md # etapas detalhadas e ferramentas de apoio
+│   │   ├── fluxo-completo.md # relato detalhado abaixo dos quadros
 │   │   ├── fluxo-passos.md # etapas, rótulos e casos ligados ao fluxo
+│   │   ├── page-projetos-e-estudos.md # introdução da página de projetos
 │   │   ├── mapa.md         # lugares do mapa do site
 │   │   ├── trajetoria.md   # linha do tempo da trajetória
 │   │   ├── setup.md        # painéis do setup
@@ -122,7 +123,7 @@ bun test           # testes de regressão e integração
 bunx playwright install chromium # instala o navegador dos testes (uma vez)
 bun run test:browser # testes de interface em desktop, tablet e celular
 bun run test:browser:production # os mesmos testes sobre o build estático
-bun run dev        # desenvolvimento em http://localhost:3000 (hot reload)
+bun run dev        # hot reload; usa a porta 3000 ou informa outra URL livre no terminal
 bun run build      # gera o site estático em dist/
 bun run preview    # build + serve dist/ em http://localhost:4173
 bun run typecheck  # verificação de tipos com TypeScript
@@ -134,7 +135,7 @@ bun run lint:fix   # corrige automaticamente o que for possível
 
 ## Publicação
 
-`bun run build` gera em `dist/` as páginas `index.html`, `trajetoria.html`, `pratica.html`, `workflow.html`, `setup.html`, `ferramentas.html`, `games.html` e `contato.html`, além dos CVs em português e inglês e dos arquivos estáticos, com caminhos relativos. O build falha se algum dos PDFs em `src/assets/` não existir. Publique todo o diretório para que o acesso direto a cada página funcione sem redirecionamentos de SPA. Os arquivos podem ser hospedados no GitHub Pages, Netlify ou outra hospedagem estática.
+`bun run build` gera em `dist/` as páginas `index.html`, `trajetoria.html`, `pratica.html`, `projetos-e-estudos.html`, `workflow.html`, `setup.html`, `ferramentas.html`, `games.html` e `contato.html`, além dos CVs em português e inglês e dos arquivos estáticos, com caminhos relativos. O build falha se algum dos PDFs em `src/assets/` não existir. Publique todo o diretório para que o acesso direto a cada página funcione sem redirecionamentos de SPA. Os arquivos podem ser hospedados no GitHub Pages, Netlify ou outra hospedagem estática.
 
 ### GitHub Pages
 

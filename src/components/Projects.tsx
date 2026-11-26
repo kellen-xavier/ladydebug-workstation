@@ -1,5 +1,5 @@
 import projectsSource from "../content/projetos.md" with { type: "text" };
-import { links, site } from "../content/site";
+import { links, pageHref, site } from "../content/site";
 import { frontmatter, keyValue, sections } from "./contentFormat";
 import { ExternalLink } from "./ExternalLink";
 import { type Project, ProjectCard } from "./ProjectCard";
@@ -40,23 +40,32 @@ function parseProjects(source: string) {
 export const { projects, projectSection } = parseProjects(projectsSource);
 
 /** Lists open projects; `limit` shows a preview with a link to the blog studies. */
-export function Projects({ limit }: { limit?: number }) {
+export function Projects({ limit, showHeading = true }: { limit?: number; showHeading?: boolean }) {
   const preview = limit !== undefined;
   return (
     <section
-      className={preview ? "projects projects--preview" : "projects"}
+      className={
+        preview
+          ? "projects projects--preview"
+          : showHeading
+            ? "projects"
+            : "projects projects--page"
+      }
       id="projetos"
-      aria-labelledby="projects-title"
+      aria-labelledby={showHeading ? "projects-title" : undefined}
+      aria-label={showHeading ? undefined : projectSection.title}
     >
       <div className="section-head">
-        <div>
-          <p className="eyebrow">{projectSection.eyebrow}</p>
-          <h2 id="projects-title">{projectSection.title}</h2>
-        </div>
+        {showHeading && (
+          <div>
+            <p className="eyebrow">{projectSection.eyebrow}</p>
+            <h2 id="projects-title">{projectSection.title}</h2>
+          </div>
+        )}
         {preview ? (
-          <ExternalLink className="text-link" href={links.blog}>
-            {site.projectsBlogLabel}
-          </ExternalLink>
+          <a className="text-link" href={pageHref.projetos}>
+            {site.projectsPageLabel}
+          </a>
         ) : (
           <ExternalLink className="text-link" href={links.repositories}>
             {projectSection.linkLabel}
@@ -65,7 +74,7 @@ export function Projects({ limit }: { limit?: number }) {
       </div>
       <div className="grid">
         {projects.slice(0, limit).map((project) => (
-          <ProjectCard key={project.url} project={project} />
+          <ProjectCard key={project.url} project={project} headingLevel={showHeading ? 3 : 2} />
         ))}
       </div>
     </section>

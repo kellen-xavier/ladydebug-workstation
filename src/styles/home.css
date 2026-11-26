@@ -35,7 +35,7 @@
     margin-top: 12px;
 }
 
-:where(.text-link, .repo-link, .flow-ref, footer a, .cycle a) {
+:where(.text-link, .repo-link, .flow-ref, footer a) {
     display: inline-flex;
     align-items: center;
     min-height: 44px;
@@ -151,6 +151,30 @@ h2 {
     margin-bottom: clamp(24px, 3vw, 36px);
 }
 
+.projects-page-intro {
+    max-width: 72ch;
+    padding-block: clamp(64px, 8vw, 96px) clamp(40px, 5vw, 64px);
+}
+
+.projects-page-intro h1 {
+    max-width: 17ch;
+}
+
+.projects-page-intro p:not(.eyebrow) {
+    max-width: 62ch;
+    margin: 24px 0 0;
+    color: var(--muted);
+}
+
+.projects--page {
+    padding-block: clamp(28px, 4vw, 44px) clamp(72px, 8vw, 112px);
+}
+
+.projects--page .section-head {
+    justify-content: flex-end;
+    margin-bottom: clamp(24px, 3vw, 36px);
+}
+
 @media (max-width: 1000px) {
     .projects--preview .grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -206,7 +230,7 @@ h2 {
     color: var(--muted);
 }
 
-.card h3 {
+.card :is(h2, h3) {
     font: 27px / 1.2 var(--font-body);
     margin: 0 0 10px;
     overflow-wrap: anywhere;

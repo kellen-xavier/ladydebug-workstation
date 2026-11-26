@@ -12,6 +12,7 @@ export type PageId =
   | "home"
   | "trajetoria"
   | "pratica"
+  | "projetos"
   | "workflow"
   | "setup"
   | "ferramentas"
@@ -22,6 +23,7 @@ export const pageHref: Record<PageId, string> = {
   home: "./index.html",
   trajetoria: "./trajetoria.html",
   pratica: "./pratica.html",
+  projetos: "./projetos-e-estudos.html",
   workflow: "./workflow.html",
   setup: "./setup.html",
   ferramentas: "./ferramentas.html",
@@ -46,18 +48,16 @@ export const site = {
   backToTopLabel: "Voltar ao topo",
   navigationLabel: "Navegação principal",
   menuLabel: "menu",
-  scrollMenu: {
-    openLabel: "Abrir menu flutuante",
-    closeLabel: "Fechar menu flutuante",
-    navigationLabel: "Navegação ao rolar",
-  },
-  navigation: [
+  aboutNavigation: [
     { label: "Sobre", href: `${pageHref.home}#sobre`, page: "home" },
-    { label: "Contate", href: pageHref.contato, page: "contato" },
-  ] satisfies [NavigationItem, NavigationItem],
+    { label: "Trajetória", href: pageHref.trajetoria, page: "trajetoria" },
+  ] satisfies [NavigationItem, ...NavigationItem[]],
+  navigation: [{ label: "Contate", href: pageHref.contato, page: "contato" }] satisfies [
+    NavigationItem,
+  ],
   workNavigation: [
     { label: "Trabalhos", href: pageHref.pratica, page: "pratica" },
-    { label: "Trajetória", href: pageHref.trajetoria, page: "trajetoria" },
+    { label: "Projetos e estudos", href: pageHref.projetos, page: "projetos" },
     { label: "Workflow", href: pageHref.workflow, page: "workflow" },
   ] satisfies [NavigationItem, ...NavigationItem[]],
   setupNavigation: [
@@ -115,7 +115,7 @@ export const site = {
     author: "Kellen Xavier",
     taglines: ["code & tests"],
   },
-  projectsBlogLabel: "Estudos no blog ↗",
+  projectsPageLabel: "Ver todos os projetos →",
   projectLinkLabel: "Ver repositório ↗",
   projectLinkAccessibleLabel: "Ver repositório",
 };

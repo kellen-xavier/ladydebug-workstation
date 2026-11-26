@@ -30,7 +30,15 @@ async function buildRoutes(clean: boolean): Promise<Record<string, HTMLBundle | 
   return routes;
 }
 
-const server = Bun.serve({ routes: await buildRoutes(true), development: true });
+const routes = await buildRoutes(true);
+let server: ReturnType<typeof Bun.serve>;
+try {
+  server = Bun.serve({ routes, development: true });
+} catch (error) {
+  if ((error as { code?: string }).code !== "EADDRINUSE") throw error;
+  server = Bun.serve({ routes, development: true, port: 0 });
+  console.warn(`Port already in use. Development server moved to ${server.url}`);
+}
 
 // A page's title and description live in src/pages.ts, so they are baked into
 // the generated HTML at startup. Watch the top of src/ (whose only file is

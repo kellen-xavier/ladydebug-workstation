@@ -4,6 +4,7 @@ export const pagePaths = [
   "index.html",
   "trajetoria.html",
   "pratica.html",
+  "projetos-e-estudos.html",
   "workflow.html",
   "setup.html",
   "ferramentas.html",

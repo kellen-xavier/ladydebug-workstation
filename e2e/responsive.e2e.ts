@@ -47,7 +47,7 @@ test.describe("responsive layout", () => {
     await toggle.click();
     await expect(toggle).toHaveAttribute("aria-expanded", "true");
     await expect(nav).toBeVisible();
-    await expect(nav.locator("a").first()).toBeVisible();
+    await expect(nav.getByRole("button", { name: "Sobre" })).toBeVisible();
   });
 
   test("keeps the expanded menu below the brand and across the available width", async ({
@@ -75,7 +75,7 @@ test.describe("responsive layout", () => {
       expect(social.y).toBeGreaterThanOrEqual(navigation.y + navigation.height);
     }
     if ((page.viewportSize()?.width ?? 0) <= 900) {
-      const about = await mainNavigation(page).getByRole("link", { name: "Sobre" }).boundingBox();
+      const about = await mainNavigation(page).getByRole("button", { name: "Sobre" }).boundingBox();
       const work = await mainNavigation(page)
         .getByRole("button", { name: "Trabalhos" })
         .boundingBox();
@@ -89,7 +89,7 @@ test.describe("responsive layout", () => {
     test.skip((page.viewportSize()?.width ?? 0) > 1100, "Collapsed layout only");
     await page.goto("/");
     await openMenu(page);
-    const work = mainNavigation(page).getByRole("button", { name: "Trabalhos" });
+    const work = mainNavigation(page).getByRole("button", { name: "Sobre" });
     const career = mainNavigation(page).getByRole("link", { name: "Trajetória" });
     await work.click();
     await expect(career).toBeVisible();
